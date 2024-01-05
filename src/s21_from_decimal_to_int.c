@@ -1,5 +1,7 @@
 #include "s21_decimal.h"
 
+// maybe scale check should be included? 
+
 int s21_from_decimal_to_int(s21_decimal src, int *dst){
     if(dst == NULL){
         return 1; 
