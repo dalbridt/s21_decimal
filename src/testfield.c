@@ -37,17 +37,17 @@ int main() {
   // }
 
   // --------------- TESTING BITWISE PRINT ------------------
-  // float f = -2.5;
-  // uint32_t fbits = *(uint32_t*)&f;
+  float f = 0.15625;
+  uint32_t fbits = *(uint32_t*)&f;
 
-  // printf("bitwise check :\n");
-  // for(uint32_t mask = 0x80000000; mask; mask >>=1){
-  //   printf("%d", !!(fbits & mask));
-  // }
+  printf("bitwise check :\n");
+  for(uint32_t mask = 0x80000000; mask; mask >>=1){
+    printf("%d", !!(fbits & mask));
+  }
 
-  // s21_decimal dst;
-  // printf("\nfunction check :\n");
-  // s21_from_float_to_decimal(f, &dst);
+  s21_decimal dst;
+  printf("\nfunction check :\n");
+  s21_from_float_to_decimal(f, &dst);
   // -------------------------------------------------------
 
   // --------------- TESTING SET BIT  ---------------------
