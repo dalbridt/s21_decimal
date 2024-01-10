@@ -1,6 +1,9 @@
 #ifndef S21_DECIMAL_H
 #define S21_DECIMAL_H
 #include <stddef.h>
+#include <math.h>
+#include <stdint.h>
+#include <stdio.h> // for debug printing, delete later
 
 typedef struct {
   int bits[4];
@@ -69,5 +72,5 @@ int get_scale(s21_decimal num);
 void set_scale(s21_decimal* num, int scale_value);
 
 int get_bit(int src, int index); 
-// void set_bit(int src, int index, int value);
+void set_bit(s21_decimal * src, int index, int value);
 #endif
