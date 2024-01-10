@@ -18,7 +18,7 @@ int main() {
   // printf("ya conchil");
   // ---------------------------------------------------------------------
 
-  // s21_decimal num;
+  // // s21_decimal num;
   // num.bits[0] = 0b00000000001000000000000000000000;
   // num.bits[1] = 0b00000000000000000000000000000000;
   // num.bits[2] = 0b00000000000000000000000000000000;
@@ -37,23 +37,29 @@ int main() {
   // }
 
   // --------------- TESTING BITWISE PRINT ------------------
-  float f = 0.15625;
-  uint32_t fbits = *(uint32_t*)&f;
+  float f = 0;
 
-  printf("bitwise check :\n");
-  for(uint32_t mask = 0x80000000; mask; mask >>=1){
-    printf("%d", !!(fbits & mask));
-  }
+  printf("\nfloat\n");
+
+  debug_display_float(&f);
 
   s21_decimal dst;
-  printf("\nfunction check :\n");
-  s21_from_float_to_decimal(f, &dst);
+  reset_decimal(&dst);
+  printf("\ndecimal\n");
+  // s21_from_float_to_decimal(f, &dst);
+  dst.bits[0] = 0b00000000001000000000000000000000;
+  dst.bits[1] = 0b00000000000000000000000000000000;
+  dst.bits[2] = 0b00000000000000000000000000000000;
+  dst.bits[3] = 0b10000000011111111100000000000000;
+
+  debug_display_decimal(&dst);
+
   // -------------------------------------------------------
 
   // --------------- TESTING SET BIT  ---------------------
   // s21_decimal num = (s21_decimal){0};
   // for (int i = 0; i < 128; i++) {
-  //   set_bit(&num, i, 1); 
+  //   set_bit(&num, i, 1);
   // }
   // printf("\nsetbit check :\n");
   // for (int i = 0; i < 4; i++) {
@@ -63,7 +69,7 @@ int main() {
   //   printf("\n");
   // }
   // for(int i = 112; i < 120; i++){
-  //   set_bit(&num, i, 0); 
+  //   set_bit(&num, i, 0);
   // }
   // printf("\nsetbit check - 2 :\n");
   // for (int i = 0; i < 4; i++) {

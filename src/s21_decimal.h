@@ -1,9 +1,9 @@
 #ifndef S21_DECIMAL_H
 #define S21_DECIMAL_H
-#include <stddef.h>
 #include <math.h>
+#include <stddef.h>
 #include <stdint.h>
-#include <stdio.h> // for debug printing, delete later
+#include <stdio.h>  // for debug printing, delete later
 
 typedef struct {
   int bits[4];
@@ -64,13 +64,17 @@ int s21_negate(s21_decimal value, s21_decimal *result);
 // 0 - OK
 // 1 - calculation error
 
-// extra functions - helpers 
+// extra functions - helpers
 
-int get_sign(s21_decimal num); 
+int get_sign(s21_decimal num);
 void set_sign(s21_decimal num, int sign_value);
 int get_scale(s21_decimal num);
-void set_scale(s21_decimal* num, int scale_value);
+void set_scale(s21_decimal *num, int scale_value);
 
-int get_bit(int src, int index); 
-void set_bit(s21_decimal * src, int index, int value);
+int get_bit(int src, int index);
+void set_bit(s21_decimal *src, int index, int value);
+
+void debug_display_decimal(s21_decimal *src);
+void debug_display_float(float *src);
+void reset_decimal(s21_decimal *src);
 #endif
