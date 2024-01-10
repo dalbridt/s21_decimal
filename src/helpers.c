@@ -36,7 +36,7 @@ void debug_display_decimal(s21_decimal* src) {
   unsigned char byte;
   for (short i = 0; i < 0x80; i++) {
     if (i % 8 == 0) printf(C_NO "[");
-    byte = (b[0] >> i) & 1;
+    byte = (b[i / 0x20] >> i) & 1;
     printf(C_BLUE);
     if (i / 0x20 == 3) {
       printf(C_GREY);
@@ -51,17 +51,14 @@ void debug_display_decimal(s21_decimal* src) {
 }
 
 void debug_display_float(float* src) {
-  int* b = &src;
+  int* b = (int*)src;
   unsigned char byte;
   for (short i = 0; i < 0x20; i++) {
     if (i % 8 == 0) printf(C_NO "[");
     byte = (b[0] >> i) & 1;
     printf(C_BLUE);
-    if (i / 0x20 == 3) {
-      printf(C_GREY);
-      if (i > 0x6F && i <= 0x77) printf(C_NO C_GREEN);
-      if (i == 0x7F) printf(C_NO C_RED);
-    }
+    if (i > 0x16 && i < 0x1F) printf(C_NO C_GREEN);
+    if (i == 0x1F) printf(C_NO C_RED);
 
     printf("%u" C_NO, byte);
     if (i % 8 == 7) printf(C_NO "] ");

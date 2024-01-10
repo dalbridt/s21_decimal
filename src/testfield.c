@@ -37,7 +37,7 @@ int main() {
   // }
 
   // --------------- TESTING BITWISE PRINT ------------------
-  float f = 0;
+  float f = 1;
 
   printf("\nfloat\n");
 
@@ -47,10 +47,10 @@ int main() {
   reset_decimal(&dst);
   printf("\ndecimal\n");
   // s21_from_float_to_decimal(f, &dst);
-  dst.bits[0] = 0b00000000001000000000000000000000;
+  dst.bits[0] = 0b00100000001000000000000000000000;
   dst.bits[1] = 0b00000000000000000000000000000000;
   dst.bits[2] = 0b00000000000000000000000000000000;
-  dst.bits[3] = 0b10000000011111111100000000000000;
+  dst.bits[3] = 0b10000000111111110000000000000000;
 
   debug_display_decimal(&dst);
 
