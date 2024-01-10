@@ -67,4 +67,7 @@ int get_sign(s21_decimal num);
 void set_sign(s21_decimal num, int sign_value);
 int get_scale(s21_decimal num);
 void set_scale(s21_decimal* num, int scale_value);
+
+int get_bit(int src, int index); 
+// void set_bit(int src, int index, int value);
 #endif
