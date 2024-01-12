@@ -8,11 +8,9 @@
 #define C_GREY "\x1b[8m"
 #define C_NO "\x1b[0m"
 
-int get_bit(int src, int index) {
-  int mask = 1 << index;
-  int ret = (src & mask) == 0 ? 0 : 1;
-
-  return ret;
+int get_bit(s21_decimal src, int index) {
+  int mask = 1u << (index % 32);
+  return (src.bits[index / 32] & mask) != 0;
 }
 
 /*  index 0 - 31 = bits[0]
@@ -25,9 +23,9 @@ void set_bit(s21_decimal* src, int index, int value) {
   int arr_index = index / 32;
   int bit_index = index % 32;
   if (value == 1) {
-    src->bits[arr_index] |= (1 << bit_index);
+    src->bits[arr_index] |= (1u << bit_index);
   } else if (value == 0) {
-    src->bits[arr_index] &= ~(1 << bit_index);
+    src->bits[arr_index] &= ~(1u << bit_index);
   }
 }
 
@@ -67,3 +65,25 @@ void debug_display_float(float* src) {
 }
 
 void reset_decimal(s21_decimal* src) { *src = (s21_decimal){0}; }
+
+int get_sign(s21_decimal num) { return (num.bits[3] & 1u << 31) != 0; }
+
+void set_sign(s21_decimal* num, int sign_value) {
+  int mask = 1u << 31;
+  if (sign_value == 0)
+    num->bits[3] &= ~mask;
+  else
+    num->bits[3] |= mask;
+}
+
+int get_scale(s21_decimal num) {
+  int mask = 127 << 16;  //получается 7 единиц, мб надо 8(???)
+  return ((mask & num.bits[3]) >> 16);
+}
+
+void set_scale(s21_decimal* num, int scale_value) {
+  reset_decimal(&num);
+  scale_value <<= 16;
+  num->bits[3] = num->bits[3] | scale_value;
+  if (get_sign(*num)) set_sign(&num, 1);
+}

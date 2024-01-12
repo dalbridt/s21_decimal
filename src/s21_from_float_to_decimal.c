@@ -8,7 +8,8 @@ int s21_from_float_to_decimal(float src, s21_decimal *dst) {
       uint32_t src_bits = *(uint32_t *)&src;
 
       int sign = (src_bits >> 31) & 1;  // use bit
-      int exponent =((src_bits & ~0x80000000) >> 23) - 127;  // 0х -hex, left bit is set
+      int exponent =
+          ((src_bits & ~0x80000000) >> 23) - 127;  // 0х -hex, left bit is set
 
       if (exponent > -95 && exponent < 95) {
         int scale = 0;

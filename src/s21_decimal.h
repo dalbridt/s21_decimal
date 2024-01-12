@@ -67,13 +67,11 @@ int s21_negate(s21_decimal value, s21_decimal *result);
 // extra functions - helpers
 
 int get_sign(s21_decimal num);
-void set_sign(s21_decimal num, int sign_value);
+void set_sign(s21_decimal *num, int sign_value);
 int get_scale(s21_decimal num);
 void set_scale(s21_decimal *num, int scale_value);
-
-int get_bit(int src, int index);
+int get_bit(s21_decimal src, int index);
 void set_bit(s21_decimal *src, int index, int value);
-
 void debug_display_decimal(s21_decimal *src);
 void debug_display_float(float *src);
 void reset_decimal(s21_decimal *src);
