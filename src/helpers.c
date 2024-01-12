@@ -66,24 +66,57 @@ void debug_display_float(float* src) {
 
 void reset_decimal(s21_decimal* src) { *src = (s21_decimal){0}; }
 
-int get_sign(s21_decimal num) { return (num.bits[3] & 1u << 31) != 0; }
+int get_sign(s21_decimal num) { return (num.bits[3] & MINUS) != 0; }
 
 void set_sign(s21_decimal* num, int sign_value) {
-  int mask = 1u << 31;
+  int mask = MINUS;
   if (sign_value == 0)
     num->bits[3] &= ~mask;
   else
     num->bits[3] |= mask;
 }
 
-int get_scale(s21_decimal num) {
-  int mask = 127 << 16;  //получается 7 единиц, мб надо 8(???)
-  return ((mask & num.bits[3]) >> 16);
-}
+int get_scale(s21_decimal num) { return ((SCALE & num.bits[3]) >> 16); }
 
 void set_scale(s21_decimal* num, int scale_value) {
   reset_decimal(num);
   scale_value <<= 16;
   num->bits[3] = num->bits[3] | scale_value;
   if (get_sign(*num)) set_sign(num, 1);
+}
+
+void import_to_big_decimal(s21_decimal src, s21_big_decimal* dst) {
+  dst->bits[0] = src.bits[0] & MAX4BITE;
+  dst->bits[1] = src.bits[1] & MAX4BITE;
+  dst->bits[2] = src.bits[2] & MAX4BITE;
+}
+
+void import_to_small_decimal(s21_big_decimal src, s21_decimal* dst) {
+  dst->bits[0] = src.bits[0] & MAX4BITE;
+  dst->bits[1] = src.bits[1] & MAX4BITE;
+  dst->bits[2] = src.bits[2] & MAX4BITE;
+}
+
+void reset_big_decimal(s21_big_decimal* src) { *src = (s21_big_decimal){0}; }
+
+int decimal_is_zero(s21_decimal src) {
+  return src.bits[0] + src.bits[1] + src.bits[2];
+}
+
+int big_decimal_is_zero(s21_big_decimal src) {
+  return src.bits[0] + src.bits[1] + src.bits[2] + src.bits[3] + src.bits[4] +
+         src.bits[5] + src.bits[6] + src.bits[7];
+}
+
+int get_bit_big_decimal(s21_big_decimal src, int index) {
+  int mask = 1u << (index % 32);
+  return (src.bits[index / 32] & mask) != 0;
+}
+
+void set_bit_big_decimal(s21_big_decimal* dst, int index, int bit) {
+  int mask = 1u << (index % 32);
+  if (bit == 0)
+    dst->bits[index / 32] = dst->bits[index / 32] & ~mask;
+  else
+    dst->bits[index / 32] = dst->bits[index / 32] | mask;
 }
