@@ -82,8 +82,8 @@ int get_scale(s21_decimal num) {
 }
 
 void set_scale(s21_decimal* num, int scale_value) {
-  reset_decimal(&num);
+  reset_decimal(num);
   scale_value <<= 16;
   num->bits[3] = num->bits[3] | scale_value;
-  if (get_sign(*num)) set_sign(&num, 1);
+  if (get_sign(*num)) set_sign(num, 1);
 }
