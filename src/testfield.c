@@ -91,6 +91,7 @@ int main() {
   //   printf("\n");
   // }
   // ---- trying to convert binary float ---------
+  // - мб конвертировать флот / децимал используя операции с децималом (используя этот алгоритм)!!!! 
   // float f = 15.3;
   // uint32_t f_bits = *(uint32_t *)&f;
   //  for (uint32_t mask = 0x80000000; mask; mask >>= 1) {
