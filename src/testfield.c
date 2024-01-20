@@ -47,12 +47,19 @@ int main() {
   reset_decimal(&dst);
   printf("\ndecimal\n");
   // s21_from_float_to_decimal(f, &dst);
-  dst.bits[0] = 0b00100000001000000000000000000000;
+  dst.bits[0] = 0b00100000001000000001000000100000;
   dst.bits[1] = 0b00000000000000000000000000000000;
   dst.bits[2] = 0b00000000000000000000000000000000;
-  dst.bits[3] = 0b10000000111111110000000000000000;
+  dst.bits[3] = 0b10000000000111010000000000000000;
 
   debug_display_decimal(&dst);
+
+   // --------------- TESTING fukin Dec to float conversion ------------------
+   s21_from_decimal_to_float(dst, &f);
+   printf("converted: \n");
+   debug_display_float(&f);
+   printf("\n%f\n", f);
+
 
   // -------------------------------------------------------
 

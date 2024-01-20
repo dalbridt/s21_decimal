@@ -103,10 +103,10 @@ int decimal_is_zero(s21_decimal src) {
   return src.bits[0] + src.bits[1] + src.bits[2];
 }
 
-int big_decimal_is_zero(s21_big_decimal src) {
-  return src.bits[0] + src.bits[1] + src.bits[2] + src.bits[3] + src.bits[4] +
-         src.bits[5] + src.bits[6] + src.bits[7];
-}
+// int big_decimal_is_zero(s21_big_decimal src) {
+//   return src.bits[0] + src.bits[1] + src.bits[2] + src.bits[3] + src.bits[4] +
+//          src.bits[5] + src.bits[6] + src.bits[7];
+// }
 
 int get_bit_big_decimal(s21_big_decimal src, int index) {
   int mask = 1u << (index % 32);
