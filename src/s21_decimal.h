@@ -1,9 +1,21 @@
 #ifndef S21_DECIMAL_H
 #define S21_DECIMAL_H
+#include <math.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>  // for debug printing, delete later
 
+#define MINUS 0x80000000     // 10000000 00000000 00000000 00000000
+#define SCALE 0x00ff0000     // 00000000 11111111 00000000 00000000
+#define MAX4BITE 0xffffffff  // 1111111 1111111 1111111 1111111
 typedef struct {
   int bits[4];
 } s21_decimal;
+
+typedef struct {
+  uint64_t bits[7];
+  uint16_t scale;
+} s21_big_decimal;
 
 // Arithmetic Operators
 int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
@@ -54,5 +66,24 @@ int s21_negate(s21_decimal value, s21_decimal *result);
 // Return value - code error:
 // 0 - OK
 // 1 - calculation error
+
+// extra functions - helpers
+
+int get_sign(s21_decimal num);
+void set_sign(s21_decimal *num, int sign_value);
+int get_scale(s21_decimal num);
+void set_scale(s21_decimal *num, int scale_value);
+int get_bit(s21_decimal src, int index);
+void set_bit(s21_decimal *src, int index, int value);
+void debug_display_decimal(s21_decimal *src);
+void debug_display_float(float *src);
+void reset_decimal(s21_decimal *src);
+void import_to_big_decimal(s21_decimal src, s21_big_decimal *dst);
+void import_to_small_decimal(s21_big_decimal src, s21_decimal *dst);
+void reset_big_decimal(s21_big_decimal *src);
+int decimal_is_zero(s21_decimal src);
+int big_decimal_is_zero(s21_big_decimal src);
+int get_bit_big_decimal(s21_big_decimal src, int index);
+void set_bit_big_decimal(s21_big_decimal *dst, int index, int bit);
 
 #endif
