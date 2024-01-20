@@ -24,7 +24,7 @@ void set_bit(s21_decimal* src, int index, int value) {
   int bit_index = index % 32;
   if (value == 1) {
     src->bits[arr_index] |= (1u << bit_index);
-  } else if (value == 0) {
+  } else if (value == 0) { 
     src->bits[arr_index] &= ~(1u << bit_index);
   }
 }
