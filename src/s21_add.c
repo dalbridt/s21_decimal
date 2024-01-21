@@ -2,9 +2,13 @@
 
 int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   int flag = 0; 
-  int exp_1 = (value_1.bits[3] & ~0x1FF0000);
+  int exp_1 = get_scale(value_1);
+  int exp_2 = get_scale(value_2); 
 
   // normalize to get same exponent 
+  if(exp_1 != exp_2){
+    // 
+  }
 
   int ctrl = 0; 
   int mask = 1; 
@@ -16,4 +20,15 @@ int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   }
 
   return flag;
+}
+
+void equalize_scale(s21_decimal * value, int scale_required){
+  // scale_required <= 28
+
+  // получить скейл 
+  // если скейл меньше required -  mantissa *= 10 
+  // если скейл больше -  mantissa /= 10 
+  // записать новую мантиссу в  value 
+  // required -> value 
+
 }

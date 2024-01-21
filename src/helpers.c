@@ -18,9 +18,6 @@ int get_bit(s21_decimal src, int index) {
     index 32 - 63 = bits[1]
     index 64 - 95 = bits[2]
     index 96 - 127 = bits[3]
-    
-    - bit 127 (or bits[3] / 31) - sign 
-    - bits[3] 16 - 23  - exponent 
 */
 
 void set_bit(s21_decimal* src, int index, int value) {
@@ -34,29 +31,25 @@ void set_bit(s21_decimal* src, int index, int value) {
 }
 
 void debug_display_decimal(s21_decimal* src) {
-  int* b = &src->bits[0];
+ int* b = &src->bits[0];
   unsigned char byte;
 
   int sign = get_sign(*src);
   int exp = get_scale(*src);
-  int exp_copy = exp;
-  float mantissa = 0;
+
+  long double mantissa = 0;
   long double power = 1;
   for (short i = 0; i < 0x60; i++, power *= 2) {
     byte = (b[i / 0x20] >> i) & 1;
     mantissa += byte * power;
   }
 
-  if (mantissa < 1) {
-    while (mantissa < 10) {
-      mantissa *= 10;
-      exp_copy--;
-    }
-  } else {
-    while (mantissa > 10) {
-      mantissa /= 10;
-      exp_copy++;
-    }
+  long double mantissa_copy = mantissa;
+  int exp_copy = exp;
+
+  while (exp_copy > 0) {
+    mantissa_copy /= 10;
+    exp_copy--;
   }
 
   printf("decimal: is ");

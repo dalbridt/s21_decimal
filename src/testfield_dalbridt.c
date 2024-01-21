@@ -15,29 +15,25 @@ int main() {
   //     printf("number %d is not processed correctly", i);
   //   }
   // }
-  // ---------------------------------------------------------------------
+  // ---------- Working on ADD ALGO  --------------
 
-  s21_decimal num;
-  num.bits[0] = 0b00000000001000000000000000000000;
-  num.bits[1] = 0b00000000000000000000000000000000;
-  num.bits[2] = 0b00000000000000000000000000000000;
-  num.bits[3] = 0b00000000011111111100000000000000;
+  s21_decimal num1;
+  num1.bits[0] = 0b00000001010000000000000000000000;
+  num1.bits[1] = 0b00000000000000000000000000000000;
+  num1.bits[2] = 0b00000000000000000000000000000000;
+  num1.bits[3] = 0b00000000000010110000000000000000;
 
-  debug_display_decimal(&num);
-  int exp = (num.bits[3] & ~0x1FF0000);
+  debug_display_decimal(&num1);
 
-    printf("\n num part: ");
+    printf("\n ------ \n ");
 
-    for (uint32_t mask = 0x80000000; mask; mask >>= 1) {
-      printf("%d", !!(num.bits[3] & mask));
-    }
-    printf("\n exp variable: ");
+  s21_decimal num2;
+  num2.bits[0] = 0b00000000001000000000000000000000;
+  num2.bits[1] = 0b00000000000000000000000000000000;
+  num2.bits[2] = 0b00000000000000000000000000000000;
+  num2.bits[3] = 0b00000000000010100000000000000000;
 
-    for (uint32_t mask = 0x80000000; mask; mask >>= 1) {
-      printf("%d", !!(exp & mask));
-    }
-    printf("\n");
-
+  debug_display_decimal(&num2);
 
 
   // float res;
