@@ -9,102 +9,102 @@
 #define ITER 100
 #define TOL 1e-06
 
-double rand_double(int random, double min, double max);
+double rand_double(int random, float min, float max);
 
-double rand_double(int random, double min, double max) {
+double rand_double(int random, float min, float max) {
   srand(random * time(NULL));
-  double value = min + ((double)rand() / RAND_MAX) * (max - min);
+  float value = min + ((float)rand() / RAND_MAX) * (max - min);
   return value;
 }
 
-// 01. s21_add
-
-START_TEST(t_dec_s21_add) {}
+START_TEST(t_dec_s21_add) {  // 01. s21_add
+  //
+}
 END_TEST
 
-// 02. s21_sub
-
-START_TEST(t_dec_s21_sub) {}
+START_TEST(t_dec_s21_sub) {  // 02. s21_sub
+  //
+}
 END_TEST
 
-// 03. s21_mul
-
-START_TEST(t_dec_s21_mul) {}
+START_TEST(t_dec_s21_mul) {  // 03. s21_mul
+  //
+}
 END_TEST
 
-// 04. s21_div
-
-START_TEST(t_dec_s21_div) {}
+START_TEST(t_dec_s21_div) {  // 04. s21_div
+  //
+}
 END_TEST
 
-// 05. s21_is_less
-
-START_TEST(t_dec_s21_is_less) {}
+START_TEST(t_dec_s21_is_less) {  // 05. s21_is_less
+  //
+}
 END_TEST
 
-// 06. s21_is_less_or_equal
-
-START_TEST(t_dec_s21_is_less_or_equal) {}
+START_TEST(t_dec_s21_is_less_or_equal) {  // 06. s21_is_less_or_equal
+  //
+}
 END_TEST
 
-// 07. s21_is_greater
-
-START_TEST(t_dec_s21_is_greater) {}
+START_TEST(t_dec_s21_is_greater) {  // 07. s21_is_greater
+  //
+}
 END_TEST
 
-// 08. s21_is_greater_or_equal
-
-START_TEST(t_dec_s21_is_greater_or_equal) {}
+START_TEST(t_dec_s21_is_greater_or_equal) {  // 08. s21_is_greater_or_equal
+  //
+}
 END_TEST
 
-// 09. s21_is_equal
-
-START_TEST(t_dec_s21_is_equal) {}
+START_TEST(t_dec_s21_is_equal) {  // 09. s21_is_equal
+  //
+}
 END_TEST
 
-// 10. s21_is_not_equal
-
-START_TEST(t_dec_s21_is_not_equal) {}
+START_TEST(t_dec_s21_is_not_equal) {  // 10. s21_is_not_equal
+  //
+}
 END_TEST
 
-// 11. s21_from_int_to_decimal
-
-START_TEST(t_dec_s21_from_int_to_decimal) {}
+START_TEST(t_dec_s21_from_int_to_decimal) {  // 11. s21_from_int_to_decimal
+  //
+}
 END_TEST
 
-// 12. s21_from_float_to_decimal
-
-START_TEST(t_dec_s21_from_float_to_decimal) {}
+START_TEST(t_dec_s21_from_float_to_decimal) {  // 12. s21_from_float_to_decimal
+  //
+}
 END_TEST
 
-// 13. s21_from_decimal_to_int
-
-START_TEST(t_dec_s21_from_decimal_to_int) {}
+START_TEST(t_dec_s21_from_decimal_to_int) {  // 13. s21_from_decimal_to_int
+  //
+}
 END_TEST
 
-// 14. s21_from_decimal_to_float
-
-START_TEST(t_dec_s21_from_decimal_to_float) {}
+START_TEST(t_dec_s21_from_decimal_to_float) {  // 14. s21_from_decimal_to_float
+  //
+}
 END_TEST
 
-// 15. s21_floor
-
-START_TEST(t_dec_s21_floor) {}
+START_TEST(t_dec_s21_floor) {  // 15. s21_floor
+  //
+}
 END_TEST
 
-// 16. s21_round
-
-START_TEST(t_dec_s21_round) {}
+START_TEST(t_dec_s21_round) {  // 16. s21_round
+  //
+}
 END_TEST
 
-// 17. s21_truncate
-
-START_TEST(t_dec_s21_truncate) {}
+START_TEST(t_dec_s21_truncate) {  // 17. s21_truncate
+  //
+}
 END_TEST
 
-// 18. s21_negate
-
-START_TEST(t_dec_s21_negate) {}
+START_TEST(t_dec_s21_negate) {  // 18. s21_negate
+  //
+}
 END_TEST
 
 Suite *decimal_suite() {

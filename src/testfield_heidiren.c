@@ -2,12 +2,15 @@
 
 #include "s21_decimal.h"
 
-// int main() {
-//   float f = 32.02234;
+int main() {
+  float f = 32.02234;
 
   s21_decimal dst;
-  max_decimal(&dst);
-
+  // max_decimal(&dst);
+  dst.bits[0] = 0b10000000000000000000000000000111;
+  dst.bits[1] = 0b00000000000000000000000000000011;
+  dst.bits[2] = 0b00000000000000000000000000000100;
+  dst.bits[3] = 0b00000000000000000000000000000000;
   //   system("clear");
   printf("\n");
   debug_display_float(&f);
