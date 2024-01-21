@@ -30,6 +30,20 @@ void set_bit(s21_decimal* src, int index, int value) {
   }
 }
 
+long double get_mantissa(s21_decimal* src){
+  int* b = &src->bits[0];
+  unsigned int byte;
+
+  long double mantissa = 0;
+  long double power = 1;
+  for (short i = 0; i < 0x60; i++, power *= 2) {
+    byte = (b[i / 0x20] >> i) & 1;
+    mantissa += byte * power;
+  }
+  return mantissa;
+}
+
+
 void debug_display_decimal(s21_decimal* src) {
   int* b = &src->bits[0];
   unsigned int byte;
@@ -43,7 +57,6 @@ void debug_display_decimal(s21_decimal* src) {
     byte = (b[i / 0x20] >> i) & 1;
     mantissa += byte * power;
   }
-
   long double mantissa_copy = mantissa;
   int exp_copy = exp;
 
@@ -76,6 +89,7 @@ void debug_display_decimal(s21_decimal* src) {
   }
   printf("\n");
 }
+
 
 void debug_display_float(float* src) {
   unsigned int* b = (unsigned int*)src;
@@ -177,11 +191,4 @@ void min_decimal(s21_decimal* dst) {
   dst->bits[1] = 0b11111111111111111111111111111111;
   dst->bits[2] = 0b11111111111111111111111111111111;
   dst->bits[3] = 0b10000000000111000000000000000000;
-}
-
-void small_decimal(s21_decimal* dst) {
-  dst->bits[0] = 0b00000000000000000000000000000001;
-  dst->bits[1] = 0b00000000000000000000000000000000;
-  dst->bits[2] = 0b00000000000000000000000000000000;
-  dst->bits[3] = 0b00000000000001000000000000000000;
 }

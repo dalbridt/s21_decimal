@@ -2,8 +2,8 @@
 
 #include "s21_decimal.h"
 
-int main() {
-  float f = 32.02234;
+// int main() {
+//   float f = 32.02234;
 
   s21_decimal dst;
   max_decimal(&dst);
