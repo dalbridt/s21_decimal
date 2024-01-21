@@ -24,7 +24,7 @@ void set_bit(s21_decimal* src, int index, int value) {
   int bit_index = index % 32;
   if (value == 1) {
     src->bits[arr_index] |= (1u << bit_index);
-  } else if (value == 0) { 
+  } else if (value == 0) {
     src->bits[arr_index] &= ~(1u << bit_index);
   }
 }
@@ -32,6 +32,19 @@ void set_bit(s21_decimal* src, int index, int value) {
 void debug_display_decimal(s21_decimal* src) {
   int* b = &src->bits[0];
   unsigned char byte;
+
+  int sign = get_sign(*src);
+  // int exp;
+  // float mantissa = frexpf(*src, &exp);
+
+  // float real_float = (sign ? -1 : 1) * mantissa * pow(2.0, exp);
+
+  printf("decimal: is ");
+  printf("%s%d%s", C_RED, sign ? -1 : 1, C_NO);
+  // printf(" * %s%f%s", C_BLUE, mantissa, C_NO);
+  // printf(" * 2^%s%d%s\n", C_GREEN, exp, C_NO);
+  printf("\n");
+
   for (short i = 0; i < 0x80; i++) {
     if (i % 8 == 0) printf(C_NO "[");
     byte = (b[i / 0x20] >> i) & 1;
@@ -49,8 +62,21 @@ void debug_display_decimal(s21_decimal* src) {
 }
 
 void debug_display_float(float* src) {
-  int* b = (int*)src;
+  unsigned int* b = (unsigned int*)src;
   unsigned char byte;
+
+  int sign = signbit(*src);
+  int exp;
+  float mantissa = frexpf(*src, &exp);
+
+  float real_float = (sign ? -1 : 1) * mantissa * pow(2.0, exp);
+
+  printf("float: %f is ", *src);
+  printf("%s%d%s", C_RED, sign ? -1 : 1, C_NO);
+  printf(" * %s%f%s", C_BLUE, mantissa, C_NO);
+  printf(" * 2^%s%d%s", C_GREEN, exp, C_NO);
+  printf("\n");
+
   for (short i = 0; i < 0x20; i++) {
     if (i % 8 == 0) printf(C_NO "[");
     byte = (b[0] >> i) & 1;
@@ -104,7 +130,8 @@ int decimal_is_zero(s21_decimal src) {
 }
 
 // int big_decimal_is_zero(s21_big_decimal src) {
-//   return src.bits[0] + src.bits[1] + src.bits[2] + src.bits[3] + src.bits[4] +
+//   return src.bits[0] + src.bits[1] + src.bits[2] + src.bits[3] + src.bits[4]
+//   +
 //          src.bits[5] + src.bits[6] + src.bits[7];
 // }
 

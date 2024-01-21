@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "cstddef": "c",
-        "ratio": "c"
+        "ratio": "c",
+        "locale": "c"
     }
 }

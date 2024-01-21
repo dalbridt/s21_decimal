@@ -4,7 +4,7 @@ int s21_from_decimal_to_float(s21_decimal src, float *dst);
 int find_bit(s21_decimal src, int index);
 int s21_from_float_to_decimal(float src, s21_decimal *dst);
 
-int main() {
+int main_2() {
   // ---------testing convertr from and to int ----------------
   // for (int i = -2147483647; i < 2147483647; i++) {
   //   s21_decimal num;
@@ -56,17 +56,17 @@ int main() {
 
   // --------------- TESTING fukin Dec to float conversion ------------------
 
-   s21_from_decimal_to_float(dst, &f);
-   printf("converted: \n");
-   debug_display_float(&f);
-   printf("\n%f\n", f);
+  s21_from_decimal_to_float(dst, &f);
+  printf("converted: \n");
+  debug_display_float(&f);
+  printf("\n%f\n", f);
 
   // ---------- TESTING FROM FLOAT TO DECIMAL CONVERSION ------------------
 
   // float f = 840696.023;
   // s21_decimal dst = (s21_decimal){0};
 
-  // s21_from_float_to_decimal(f, &dst); 
+  // s21_from_float_to_decimal(f, &dst);
 
   // --------------- TESTING SET BIT  ---------------------
   // s21_decimal num = (s21_decimal){0};
@@ -91,30 +91,30 @@ int main() {
   //   printf("\n");
   // }
   // ---- trying to convert binary float ---------
-  // - мб конвертировать флот / децимал используя операции с децималом (используя этот алгоритм)!!!! 
-  // float f = 15.3;
-  // uint32_t f_bits = *(uint32_t *)&f;
+  // - мб конвертировать флот / децимал используя операции с децималом
+  // (используя этот алгоритм)!!!! float f = 15.3; uint32_t f_bits = *(uint32_t
+  // *)&f;
   //  for (uint32_t mask = 0x80000000; mask; mask >>= 1) {
   //     printf("%d", !!(f_bits & mask));
   //   }
   //   printf("\n");
-  // float result = 1; 
-  // int i = -1; 
+  // float result = 1;
+  // int i = -1;
 
   // for (uint32_t mask = 0x400000; mask; mask >>= 1) {
-  //   int bit = !!(f_bits & mask); 
+  //   int bit = !!(f_bits & mask);
   //   printf("%d", bit);
-  //   result += bit * pow(2, i); 
-  //   i--; 
+  //   result += bit * pow(2, i);
+  //   i--;
   // }
   // printf("\n");
   // printf("mantissa: %d\n", result);
   // int exponent = ((f_bits & ~0x80000000) >> 23) - 127;
-  // float exp = pow(2, exponent); 
-  // float res = result * exp; 
+  // float exp = pow(2, exponent);
+  // float res = result * exp;
 
   // printf("%f", res);
 
- // mantissa i need to get : 7665091
+  // mantissa i need to get : 7665091
   return 0;
 }
