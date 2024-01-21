@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "cstddef": "c",
-        "ratio": "c"
+        "ratio": "c",
+        "s21_decimal.h": "c"
     }
 }
