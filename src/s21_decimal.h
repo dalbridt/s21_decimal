@@ -86,4 +86,7 @@ int big_decimal_is_zero(s21_big_decimal src);
 int get_bit_big_decimal(s21_big_decimal src, int index);
 void set_bit_big_decimal(s21_big_decimal *dst, int index, int bit);
 
+void max_decimal(s21_decimal *dst);
+void min_decimal(s21_decimal *dst);
+
 #endif
