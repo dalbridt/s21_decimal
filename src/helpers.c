@@ -32,7 +32,7 @@ void set_bit(s21_decimal* src, int index, int value) {
 
 void debug_display_decimal(s21_decimal* src) {
   int* b = &src->bits[0];
-  unsigned char byte;
+  unsigned int byte;
 
   int sign = get_sign(*src);
   int exp = get_scale(*src);
