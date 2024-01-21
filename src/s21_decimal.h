@@ -88,5 +88,6 @@ void set_bit_big_decimal(s21_big_decimal *dst, int index, int bit);
 
 void max_decimal(s21_decimal *dst);
 void min_decimal(s21_decimal *dst);
+void small_decimal(s21_decimal *dst);
 
 #endif

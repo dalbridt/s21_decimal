@@ -36,31 +36,27 @@ void debug_display_decimal(s21_decimal* src) {
 
   int sign = get_sign(*src);
   int exp = get_scale(*src);
-  int exp_copy = exp;
-  float mantissa = 0;
+
+  long double mantissa = 0;
   long double power = 1;
   for (short i = 0; i < 0x60; i++, power *= 2) {
     byte = (b[i / 0x20] >> i) & 1;
     mantissa += byte * power;
   }
 
-  if (mantissa < 1) {
-    while (mantissa < 10) {
-      mantissa *= 10;
-      exp_copy--;
-    }
-  } else {
-    while (mantissa > 10) {
-      mantissa /= 10;
-      exp_copy++;
-    }
+  long double mantissa_copy = mantissa;
+  int exp_copy = exp;
+
+  while (exp_copy > 0) {
+    mantissa_copy /= 10;
+    exp_copy--;
   }
 
   printf("decimal: is ");
   printf("%s%d%s", C_RED, sign ? -1 : 1, C_NO);
-  printf(" * %s%f%s", C_BLUE, mantissa, C_NO);
-  printf(" * 10^%s%d%s", C_GREEN, exp, C_NO);
-  printf(" = %lf", mantissa * pow(10.0, exp));
+  printf(" * %s%Lf%s", C_BLUE, mantissa, C_NO);
+  printf(" / 10^%s%d%s", C_GREEN, exp, C_NO);
+  printf(" =± %Lf", mantissa_copy);
   printf("\n");
 
   for (short i = 0x80 - 1; i >= 0; i--) {
@@ -181,4 +177,11 @@ void min_decimal(s21_decimal* dst) {
   dst->bits[1] = 0b11111111111111111111111111111111;
   dst->bits[2] = 0b11111111111111111111111111111111;
   dst->bits[3] = 0b10000000000111000000000000000000;
+}
+
+void small_decimal(s21_decimal* dst) {
+  dst->bits[0] = 0b00000000000000000000000000000001;
+  dst->bits[1] = 0b00000000000000000000000000000000;
+  dst->bits[2] = 0b00000000000000000000000000000000;
+  dst->bits[3] = 0b00000000000001000000000000000000;
 }
