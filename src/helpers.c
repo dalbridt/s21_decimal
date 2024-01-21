@@ -30,9 +30,10 @@ void set_bit(s21_decimal* src, int index, int value) {
   }
 }
 
+
 void debug_display_decimal(s21_decimal* src) {
- int* b = &src->bits[0];
-  unsigned char byte;
+  int* b = &src->bits[0];
+  unsigned int byte;
 
   int sign = get_sign(*src);
   int exp = get_scale(*src);
@@ -54,9 +55,9 @@ void debug_display_decimal(s21_decimal* src) {
 
   printf("decimal: is ");
   printf("%s%d%s", C_RED, sign ? -1 : 1, C_NO);
-  printf(" * %s%f%s", C_BLUE, mantissa, C_NO);
-  printf(" * 10^%s%d%s", C_GREEN, exp, C_NO);
-  printf(" = %lf", mantissa * pow(10.0, exp));
+  printf(" * %s%Lf%s", C_BLUE, mantissa, C_NO);
+  printf(" / 10^%s%d%s", C_GREEN, exp, C_NO);
+  printf(" =± %Lf", mantissa_copy);
   printf("\n");
 
   for (short i = 0x80 - 1; i >= 0; i--) {
@@ -76,6 +77,7 @@ void debug_display_decimal(s21_decimal* src) {
   }
   printf("\n");
 }
+
 
 void debug_display_float(float* src) {
   unsigned int* b = (unsigned int*)src;
