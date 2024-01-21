@@ -18,6 +18,9 @@ int get_bit(s21_decimal src, int index) {
     index 32 - 63 = bits[1]
     index 64 - 95 = bits[2]
     index 96 - 127 = bits[3]
+    
+    - bit 127 (or bits[3] / 31) - sign 
+    - bits[3] 16 - 23  - exponent 
 */
 
 void set_bit(s21_decimal* src, int index, int value) {

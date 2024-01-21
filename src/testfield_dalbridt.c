@@ -15,14 +15,30 @@ int main() {
   //     printf("number %d is not processed correctly", i);
   //   }
   // }
-  // printf("ya conchil");
   // ---------------------------------------------------------------------
 
-  // // s21_decimal num;
-  // num.bits[0] = 0b00000000001000000000000000000000;
-  // num.bits[1] = 0b00000000000000000000000000000000;
-  // num.bits[2] = 0b00000000000000000000000000000000;
-  // num.bits[3] = 0b1000000001111111110000000000000;
+  s21_decimal num;
+  num.bits[0] = 0b00000000001000000000000000000000;
+  num.bits[1] = 0b00000000000000000000000000000000;
+  num.bits[2] = 0b00000000000000000000000000000000;
+  num.bits[3] = 0b00000000011111111100000000000000;
+
+  debug_display_decimal(&num);
+  int exp = (num.bits[3] & ~0x1FF0000);
+
+    printf("\n num part: ");
+
+    for (uint32_t mask = 0x80000000; mask; mask >>= 1) {
+      printf("%d", !!(num.bits[3] & mask));
+    }
+    printf("\n exp variable: ");
+
+    for (uint32_t mask = 0x80000000; mask; mask >>= 1) {
+      printf("%d", !!(exp & mask));
+    }
+    printf("\n");
+
+
 
   // float res;
 
@@ -37,29 +53,35 @@ int main() {
   // }
 
   // --------------- TESTING BITWISE PRINT ------------------
-  float f = 1;
+  // float f = 1;
 
-  // printf("\nfloat\n");
+  // // printf("\nfloat\n");
 
-  // debug_display_float(&f);
+  // // debug_display_float(&f);
 
-  s21_decimal dst;
-  // reset_decimal(&dst);
-  // printf("\ndecimal\n");
-  // // s21_from_float_to_decimal(f, &dst);
-  dst.bits[0] = 0b00100000001000000001000000100000;
-  dst.bits[1] = 0b00000000000000000000000000000000;
-  dst.bits[2] = 0b00000000000000000000000000000000;
-  dst.bits[3] = 0b10000000000111010000000000000000;
+  // s21_decimal dst;
+  // // reset_decimal(&dst);
+  // // printf("\ndecimal\n");
+  // // // s21_from_float_to_decimal(f, &dst);
+  // dst.bits[0] = 0b00100000001000000001000000100000;
+  // dst.bits[1] = 0b00000000000000000000000000000000;
+  // dst.bits[2] = 0b00000000000000000000000000000000;
+  // dst.bits[3] = 0b10000000000111010000000000000000;
 
-  debug_display_decimal(&dst);
+  // debug_display_decimal(&dst);
+  // printf("\n");
+
+  // //   for (uint32_t mask = 0x80000000; mask; mask >>= 1) {
+  // //     printf("%d", !!(num.bits[3] & mask));
+  // //   }
+  // //   printf("\n");
 
   // --------------- TESTING fukin Dec to float conversion ------------------
 
-  s21_from_decimal_to_float(dst, &f);
-  printf("converted: \n");
-  debug_display_float(&f);
-  printf("\n%f\n", f);
+  // s21_from_decimal_to_float(dst, &f);
+  // printf("converted: \n");
+  // debug_display_float(&f);
+  // printf("\n%f\n", f);
 
   // ---------- TESTING FROM FLOAT TO DECIMAL CONVERSION ------------------
 
