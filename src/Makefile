@@ -46,3 +46,13 @@ s21_decimal_tests.a: s21_decimal_tests.o
 	ar rcs libs21_decimal.a s21_*.o
 clean:	
 	rm -rf *.o *.gcno *.gcda *.html *.css *.info unit_test_out report_test_coverage *.a *.out test_report.log
+
+#DEBUG_TARGETS
+heidiren: clean
+	gcc testfield_heidiren.c helpers.c s21_*.c -o a.out && ./a.out
+
+dalbridt: clean
+	gcc testfield_dalbridt.c helpers.c s21_*.c -o a.out && ./a.out
+
+annamaer: clean
+	gcc testfield_annamaer.c helpers.c s21_*.c -o a.out && ./a.out

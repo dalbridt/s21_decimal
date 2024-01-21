@@ -196,7 +196,7 @@ Suite *decimal_suite() {
   return s;
 }
 
-int main() {
+int main_tests() {
   int failed = 0;
   Suite *s = decimal_suite();
   SRunner *runner = srunner_create(s);

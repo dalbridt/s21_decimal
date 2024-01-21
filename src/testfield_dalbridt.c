@@ -4,7 +4,7 @@ int s21_from_decimal_to_float(s21_decimal src, float *dst);
 int find_bit(s21_decimal src, int index);
 int s21_from_float_to_decimal(float src, s21_decimal *dst);
 
-int main_2() {
+int main() {
   // ---------testing convertr from and to int ----------------
   // for (int i = -2147483647; i < 2147483647; i++) {
   //   s21_decimal num;

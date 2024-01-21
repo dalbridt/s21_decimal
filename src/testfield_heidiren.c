@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #include "s21_decimal.h"
 
 int main() {
@@ -9,11 +11,12 @@ int main() {
   dst.bits[2] = 0b00000000000000000000000000000000;
   dst.bits[3] = 0b10000000000111010000000000000000;
 
-  //   s21_from_decimal_to_float(dst, &f);
-
+  system("clear");  //*nix
+  printf("\n");
   debug_display_float(&f);
   printf("\n");
   debug_display_decimal(&dst);
+  printf("\n");
 
   return 0;
 }
