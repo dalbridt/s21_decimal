@@ -6,7 +6,7 @@ int main() {
   float f = 32.02234;
 
   s21_decimal dst;
-  small_decimal(&dst);
+  max_decimal(&dst);
 
   //   system("clear");
   printf("\n");
