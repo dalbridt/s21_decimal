@@ -30,6 +30,19 @@ void set_bit(s21_decimal* src, int index, int value) {
   }
 }
 
+long double get_mantissa(s21_decimal* src){
+  int* b = &src->bits[0];
+  unsigned int byte;
+
+  long double mantissa = 0;
+  long double power = 1;
+  for (short i = 0; i < 0x60; i++, power *= 2) {
+    byte = (b[i / 0x20] >> i) & 1;
+    mantissa += byte * power;
+  }
+  return mantissa;
+}
+
 
 void debug_display_decimal(s21_decimal* src) {
   int* b = &src->bits[0];
@@ -44,7 +57,6 @@ void debug_display_decimal(s21_decimal* src) {
     byte = (b[i / 0x20] >> i) & 1;
     mantissa += byte * power;
   }
-
   long double mantissa_copy = mantissa;
   int exp_copy = exp;
 

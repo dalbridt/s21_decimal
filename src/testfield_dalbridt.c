@@ -35,6 +35,8 @@ int main() {
 
   debug_display_decimal(&num2);
 
+  equalize_scale(&num1, 10);
+
 
   // float res;
 
