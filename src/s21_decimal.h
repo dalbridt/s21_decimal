@@ -75,6 +75,7 @@ int get_scale(s21_decimal num);
 void set_scale(s21_decimal *num, int scale_value);
 int get_bit(s21_decimal src, int index);
 void set_bit(s21_decimal *src, int index, int value);
+long double get_mantissa(s21_decimal* src);
 void debug_display_decimal(s21_decimal *src);
 void debug_display_float(float *src);
 void reset_decimal(s21_decimal *src);
@@ -85,5 +86,11 @@ int decimal_is_zero(s21_decimal src);
 int big_decimal_is_zero(s21_big_decimal src);
 int get_bit_big_decimal(s21_big_decimal src, int index);
 void set_bit_big_decimal(s21_big_decimal *dst, int index, int bit);
+
+void max_decimal(s21_decimal *dst);
+void min_decimal(s21_decimal *dst);
+void small_decimal(s21_decimal *dst);
+
+void equalize_scale(s21_decimal *value, int scale_required); 
 
 #endif
