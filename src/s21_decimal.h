@@ -11,7 +11,7 @@
 #define MAX4BITE 0xffffffff  // 0b1111111 1111111 1111111 1111111
 
 typedef struct {
-  int bits[4];
+  unsigned int bits[4];
 } s21_decimal;
 
 typedef struct {

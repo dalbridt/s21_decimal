@@ -76,12 +76,12 @@
 // }
 
 void shiftl(void* object, size_t size) {
-  unsigned char* byte;
+  unsigned int* byte;
   for (byte = object; size--; ++byte) {
-    unsigned char bit = 0;
-    if (size) {
-      bit = byte[1] & (1 << (CHAR_BIT - 1)) ? 1 : 0;
-    }
+    unsigned int bit = 0;
+    // if (size) {
+    //   bit = byte[1] & ((CHAR_BIT - 1) >> 1) ? 1 : 0;
+    // }
     *byte <<= 1;
     *byte |= bit;
   }
@@ -90,7 +90,8 @@ void shiftl(void* object, size_t size) {
 int main() {
   /* 11110000 11001100 10101010 11110000 */
   s21_decimal dec1 = {
-      .bits[0] = 0b00000000000000000000000000000001,
+      .bits[0] =  // 0b00000000000000000000000000000001,
+      0b00000000000000000000000000000001,
       .bits[1] = 0b00000000000000000000000000000000,
       .bits[2] = 0b00000000000000000000000000000000,
       .bits[3] = 0b00000000000000000000000000000000,
@@ -100,12 +101,12 @@ int main() {
   clock_t before = clock();
   int i;
 
-  for (i = 0; i < 9; i++) {
+  for (i = 0; i < 64; i++) {
     //
     // dec2 = dec1;
     // int iterations = 0;
     // for (iterations = 0; iterations < 3; iterations++) {
-    shiftl(dec1.bits, sizeof(int) * 4);
+    shiftl(dec1.bits, sizeof(dec1));
     // }
     // shiftl(dec2.bits, sizeof(unsigned int) * 4);
     // dec3 = add_decimal_beta(&dec1, &dec2);

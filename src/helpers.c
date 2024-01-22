@@ -31,7 +31,7 @@ void set_bit(s21_decimal* src, int index, int value) {
 }
 
 long double get_mantissa(s21_decimal* src) {
-  int* b = &src->bits[0];
+  unsigned int* b = &src->bits[0];
   unsigned int byte;
 
   long double mantissa = 0;
@@ -44,7 +44,7 @@ long double get_mantissa(s21_decimal* src) {
 }
 
 void debug_display_decimal(char* name, s21_decimal* src) {
-  int* b = &src->bits[0];
+  unsigned int* b = &src->bits[0];
   unsigned int byte;
 
   int sign = get_sign(*src);
