@@ -222,15 +222,28 @@ u_int32_t div10(u_int32_t dividend) {
   return (u_int32_t)((invDivisor * dividend) >> 32);
 }
 
-unsigned long long divu10(unsigned long long n) {
-  unsigned long long q, r;
-  q = (n >> 1) + (n >> 2);
-  q = q + (q >> 4);
-  q = q + (q >> 8);
-  q = q + (q >> 16);
-  q = q >> 3;
-  r = n - (((q << 2) + q) << 1);
-  return q + (r > 9);  // return q+((r+6)>>4);
-}
+// unsigned long long divu10(unsigned long long n) {
+//   unsigned long long q, r;
+//   q = (n >> 1) + (n >> 2);
+//   q = q + (q >> 4);
+//   q = q + (q >> 8);
+//   q = q + (q >> 16);
+//   q = q >> 3;
+//   r = n - (((q << 2) + q) << 1);
+//   return q + (r > 9);  // return q+((r+6)>>4);
+// }
 
 // i = (i << 3) + (i << 1);
+
+void shiftl(void* object, size_t size) {
+  unsigned int* byte;
+  unsigned int bit = 0;
+  for (byte = object; size--; ++byte) {
+    if (size) {
+      // bit = byte[1] & (1 << (CHAR_BIT - 1)) ? 1 : 0;
+      bit = byte[-1] & (1 << (32 - 1)) ? 1 : 0;
+    }
+    *byte <<= 1;
+    *byte |= bit;
+  }
+}

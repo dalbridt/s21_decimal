@@ -99,6 +99,7 @@ void set_mantissa(s21_decimal *value, long double new_mantissa);
 
 u_int32_t div10(u_int32_t dividend);
 s21_decimal add_decimal_beta(s21_decimal *x, s21_decimal *y);
+void shiftl(void *object, size_t size);
 // unsigned long long divu10(unsigned long long n);
 
 #endif

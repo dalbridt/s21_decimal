@@ -1,59 +1,83 @@
+#include <limits.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
 #include "s21_decimal.h"
 
-// s21_decimal add_decimal_beta(s21_decimal* x, s21_decimal* y);
+#define SELECTOR 1
 
-// int main() {
-//   float f = 32.02234;
+s21_decimal add_decimal_beta(s21_decimal* x, s21_decimal* y);
 
-//   s21_decimal dst;
-//   // max_decimal(&dst);
-//   system("clear");
-//   printf("\n");
-//   // debug_display_float(&f);
-//   // printf("\n");
+int main() {
+  s21_decimal dec1 = {
+      .bits[0] = 0b00000000000000000000000011001000,
+      .bits[1] = 0b00000000000000000000000000000000,
+      .bits[2] = 0b00000000000000000000000000000000,
+      .bits[3] = 0b00000000000000000000000000000000,
+  };
 
-//   // s21_decimal dec1, dec2;
+  s21_decimal dec2 = {
+      .bits[0] = 0b00000000000000000000000000010100,
+      .bits[1] = 0b00000000000000000000000000000000,
+      .bits[2] = 0b00000000000000000000000000000000,
+      .bits[3] = 0b00000000000000000000000000000000,
+  };
 
-//   s21_decimal dec1 = {
-//       .bits[0] = 0b00000000000000000000000011001000,
-//       .bits[1] = 0b00000000000000000000000000000000,
-//       .bits[2] = 0b00000000000000000000000000000000,
-//       .bits[3] = 0b00000000000000000000000000000000,
-//   };
+  s21_decimal dec3;
 
-//   s21_decimal dec2 = {
-//       .bits[0] = 0b00000000000000000000000000010100,
-//       .bits[1] = 0b00000000000000000000000000000000,
-//       .bits[2] = 0b00000000000000000000000000000000,
-//       .bits[3] = 0b00000000000000000000000000000000,
-//   };
+#if (SELECTOR == 0)
 
-//   uint32_t abc = 1000000000u;
+  float f = 32.02234;
 
-//   printf("divided int %u", div10(abc));
+  s21_decimal dst;
+  // max_decimal(&dst);
+  system("clear");
+  printf("\n");
+  // debug_display_float(&f);
+  // printf("\n");
 
-//   // equalize_scale(&dec1, 1);
-//   // equalize_scale(&dec2, 1);
-//   // printf("\n");
-//   // s21_decimal dec3 = add_decimal_beta(&dec1, &dec2);
+  // s21_decimal dec1, dec2;
 
-// debug_display_decimal("dec1", &dec1);
+  debug_display_decimal("dec1", &dec1);
 
-//   // debug_display_decimal("dec2", &dec2);
+  debug_display_decimal("dec2", &dec2);
 
-//   // debug_display_decimal("dec3", &dec3);
+  dec3 = add_decimal_beta(&dec1, &dec2);
 
-//   // printf("are dec1 and dec2 equal? - %s\n",
-//   //        (s21_is_equal(dec1, dec2) == 1) ? "yes" : "no");
+  debug_display_decimal("dec3", &dec3);
 
-//   return 0;
-// }
+#endif
 
-#include <limits.h>
-#include <stdio.h>
+#if (SELECTOR == 1)
+  debug_display_decimal("dec1", &dec1);
+
+  int iterations = 0;
+
+  dec2 = dec1;
+
+  for (iterations = 0; iterations < 3; iterations++) {
+    shiftl(dec2.bits, sizeof(unsigned int));
+  }
+  shiftl(dec1.bits, sizeof(unsigned int));
+  dec3 = add_decimal_beta(&dec1, &dec2);
+  debug_display_decimal("dec3", &dec3);
+
+#endif
+
+  // printf("divided int %u", div10(abc));
+
+  // equalize_scale(&dec1, 1);
+  // equalize_scale(&dec2, 1);
+  // printf("\n");
+
+  // debug_display_decimal("dec3", &dec3);
+
+  // printf("are dec1 and dec2 equal? - %s\n",
+  //        (s21_is_equal(dec1, dec2) == 1) ? "yes" : "no");
+
+  return 0;
+}
 
 // void show(const void* object, size_t size) {
 //   const unsigned char* byte;
@@ -75,57 +99,44 @@
 //   putchar('\n');
 // }
 
-void shiftl(void* object, size_t size) {
-  unsigned int* byte;
-  for (byte = object; size--; ++byte) {
-    unsigned int bit = 0;
-    // if (size) {
-    //   bit = byte[1] & ((CHAR_BIT - 1) >> 1) ? 1 : 0;
-    // }
-    *byte <<= 1;
-    *byte |= bit;
-  }
-}
+// 10100 aka 20
+// 10100000
+// 00101000
+// 11001000
 
-int main() {
-  /* 11110000 11001100 10101010 11110000 */
-  s21_decimal dec1 = {
-      .bits[0] =  // 0b00000000000000000000000000000001,
-      0b00000000000000000000000000000001,
-      .bits[1] = 0b00000000000000000000000000000000,
-      .bits[2] = 0b00000000000000000000000000000000,
-      .bits[3] = 0b00000000000000000000000000000000,
-  };
-  // s21_decimal dec2 = {0}, dec3 = {0};
-  // int msec = 0, trigger = 10; /* 10ms */
-  clock_t before = clock();
-  int i;
+// int main() {
+//   /* 11110000 11001100 10101010 11110000 */
+//   s21_decimal dec1 = {
+//       .bits[0] =  // 0b00000000000000000000000000000001,
+//       0b00000000000000000000000000000001,
+//       .bits[1] = 0b00000000000000000000000000000000,
+//       .bits[2] = 0b00000000000000000000000000000000,
+//       .bits[3] = 0b00000000000000000000000000000000,
+//   };
+//   // s21_decimal dec2 = {0}, dec3 = {0};
+//   // int msec = 0, trigger = 10; /* 10ms */
+//   // clock_t before = clock();
+//   int i;
 
-  for (i = 0; i < 64; i++) {
-    //
-    // dec2 = dec1;
-    // int iterations = 0;
-    // for (iterations = 0; iterations < 3; iterations++) {
-    shiftl(dec1.bits, sizeof(dec1));
-    // }
-    // shiftl(dec2.bits, sizeof(unsigned int) * 4);
-    // dec3 = add_decimal_beta(&dec1, &dec2);
-    debug_display_decimal("dec1", &dec1);
-    // dec1 = dec3;
-  }
-  // show(dec1.bits, sizeof(unsigned int) * 4);
-  // debug_display_decimal("dec1", &dec1);
+//   for (i = 0; i < 32; i++) {
+//     //
+//     // dec2 = dec1;
 
-  // show(dec1.bits, sizeof(unsigned int) * 4);
+// }
+//   // show(dec1.bits, sizeof(unsigned int) * 4);
+//   // debug_display_decimal("dec1", &dec1);
 
-  // clock_t difference = clock() - before;
-  // msec = difference * 1000 / CLOCKS_PER_SEC;
-  // printf("Time taken %d seconds %d milliseconds (%d iterations)\n", msec /
-  // 1000,
-  //        msec % 1000, i);
+//   // show(dec1.bits, sizeof(unsigned int) * 4);
 
-  return 0;
-}
+//   // clock_t difference = clock() - before;
+//   // msec = difference * 1000 / CLOCKS_PER_SEC;
+//   // printf("Time taken %d seconds %d milliseconds (%d iterations)\n", msec
+//   /
+//   // 1000,
+//   //        msec % 1000, i);
+
+//   return 0;
+// }
 
 // #include <stdint.h>
 // #include <stdio.h>
@@ -137,7 +148,7 @@ int main() {
 s21_decimal add_decimal_beta(s21_decimal* x, s21_decimal* y) {
   s21_decimal result = {0};
   unsigned int carry = 0;
-  short i = 3;  // sizeof(x.bits) / sizeof(x.bits[0]);
+  short i = 3;
   while (i--) {
     uint64_t tmp = (uint64_t)x->bits[i] + y->bits[i] + carry;
     result.bits[i] = (uint32_t)tmp;
