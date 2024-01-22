@@ -23,9 +23,9 @@ int main() {
   num1.bits[2] = 0b00000000000000000000000000000000;
   num1.bits[3] = 0b00000000000010110000000000000000;
 
-  debug_display_decimal(&num1);
+  debug_display_decimal("", &num1);
 
-    printf("\n ------ \n ");
+  printf("\n ------ \n ");
 
   s21_decimal num2;
   num2.bits[0] = 0b00000000001000000000000000000000;
@@ -33,10 +33,9 @@ int main() {
   num2.bits[2] = 0b00000000000000000000000000000000;
   num2.bits[3] = 0b00000000000010100000000000000000;
 
-  debug_display_decimal(&num2);
+  debug_display_decimal("", &num2);
 
-  equalize_scale(&num1, 10);
-
+  // equalize_scale(&num1, 10);
 
   // float res;
 
