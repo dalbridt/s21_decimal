@@ -2,7 +2,7 @@
 #include "s21_decimal.h"
 
 s21_decimal add_decimals_mantissa(s21_decimal* x, s21_decimal* y) {
-  s21_decimal result = {0};
+  s21_decimal result = *x;
   unsigned int carry = 0;
   for (int i = 0; i < 3; i++) {
     uint64_t tmp = (uint64_t)x->bits[i] + y->bits[i] + carry;
