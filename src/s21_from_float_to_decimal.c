@@ -39,7 +39,7 @@ int s21_from_float_to_decimal(float src, s21_decimal *dst) {
         printf("\n");
         debug_display_float(&src);
         printf("\n");
-        debug_display_decimal("", dst);
+        debug_display_decimal("", *dst);
 
         // uint32_t mask = 0x400000; // - mask to set 22nd bit
         // what to do with scale ?

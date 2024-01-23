@@ -7,14 +7,14 @@
 #define C_NO "\x1b[0m"
 #define C_GREY "\x1b[2m"
 
-void debug_display_decimal(char* name, s21_decimal* src) {
-  unsigned int* b = &src->bits[0];
+void debug_display_decimal(char* name, s21_decimal src) {
+  unsigned int* b = &src.bits[0];
   unsigned int byte;
 
-  int sign = get_sign(*src);
-  int exp = get_scale(*src);
+  int sign = get_sign(src);
+  int exp = get_scale(src);
 
-  long double mantissa = get_mantissa(src);
+  long double mantissa = get_mantissa(&src);
   long double mantissa_copy = mantissa;
   int exp_copy = exp;
 
