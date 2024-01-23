@@ -25,17 +25,17 @@ int main() {
 
   debug_display_decimal(&num1);
 
-    printf("\n ------ \n ");
+  //   printf("\n ------ \n ");
 
-  s21_decimal num2;
-  num2.bits[0] = 0b00000000001000000000000000000000;
-  num2.bits[1] = 0b00000000000000000000000000000000;
-  num2.bits[2] = 0b00000000000000000000000000000000;
-  num2.bits[3] = 0b00000000000010100000000000000000;
+  // s21_decimal num2;
+  // num2.bits[0] = 0b00000000001000000000000000000000;
+  // num2.bits[1] = 0b00000000000000000000000000000000;
+  // num2.bits[2] = 0b00000000000000000000000000000000;
+  // num2.bits[3] = 0b00000000000010100000000000000000;
 
-  debug_display_decimal(&num2);
+  // debug_display_decimal(&num2);
 
-  equalize_scale(&num1, 10);
+  // equalize_scale(&num1, 10);
 
 
   // float res;
@@ -112,8 +112,8 @@ int main() {
   // }
   // ---- trying to convert binary float ---------
   // - мб конвертировать флот / децимал используя операции с децималом
-  // (используя этот алгоритм)!!!! float f = 15.3; uint32_t f_bits = *(uint32_t
-  // *)&f;
+  // (используя этот алгоритм)!!!!
+  // float f = 15.3; uint32_t f_bits = *(uint32_t*)&f;
   //  for (uint32_t mask = 0x80000000; mask; mask >>= 1) {
   //     printf("%d", !!(f_bits & mask));
   //   }
@@ -128,7 +128,7 @@ int main() {
   //   i--;
   // }
   // printf("\n");
-  // printf("mantissa: %d\n", result);
+  // printf("mantissa: %f\n", result);
   // int exponent = ((f_bits & ~0x80000000) >> 23) - 127;
   // float exp = pow(2, exponent);
   // float res = result * exp;

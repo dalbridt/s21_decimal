@@ -15,6 +15,7 @@ int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   for (int arr_idx = 2; arr_idx >= 0; arr_idx--) {
     for (int bit_idx = 31; bit_idx >= 0; bit_idx--) {
       // add bits by applying mask
+
     }
   }
 
@@ -28,11 +29,11 @@ void equalize_scale(s21_decimal *value, int scale_required) {
          mantissa, scale_cur);
 
   if (scale_cur < scale_required) {
-    for (scale_cur; scale_cur < scale_required; scale_cur++) {
+    for (; scale_cur < scale_required; scale_cur++) {
       mantissa *= 10;
     }
   } else if (scale_cur > scale_required) {
-    for (scale_cur; scale_cur > scale_required; scale_cur--) {
+    for (; scale_cur > scale_required; scale_cur--) {
       mantissa /= 10;
     }
   }
