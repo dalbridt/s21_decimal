@@ -49,10 +49,10 @@ clean:
 
 #DEBUG_TARGETS
 heidiren: clean
-	gcc testfield_heidiren.c helpers.c s21_*.c -o a.out && ./a.out
+	gcc testfield_heidiren.c helpers*.c s21_*.c -o a.out && ./a.out
 
 dalbridt: clean
-	gcc testfield_dalbridt.c helpers.c s21_*.c -o a.out && ./a.out
+	gcc testfield_dalbridt.c helpers*.c s21_*.c -o a.out && ./a.out
 
 annamaer: clean
-	gcc testfield_annamaer.c helpers.c s21_*.c -o a.out && ./a.out
+	gcc testfield_annamaer.c helpers*.c s21_*.c -o a.out && ./a.out

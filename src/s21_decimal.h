@@ -1,15 +1,17 @@
 #ifndef S21_DECIMAL_H
 #define S21_DECIMAL_H
 #include <math.h>
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>  // for debug printing, delete later
 
-#define MINUS 0x80000000     // 10000000 00000000 00000000 00000000
-#define SCALE 0x00ff0000     // 00000000 11111111 00000000 00000000
-#define MAX4BITE 0xffffffff  // 1111111 1111111 1111111 1111111
+#define MINUS 0x80000000     // 0b10000000 00000000 00000000 00000000
+#define SCALE 0x00ff0000     // 0b00000000 11111111 00000000 00000000
+#define MAX4BITE 0xffffffff  // 0b1111111 1111111 1111111 1111111
+
 typedef struct {
-  int bits[4];
+  unsigned int bits[4];
 } s21_decimal;
 
 typedef struct {
@@ -75,8 +77,8 @@ int get_scale(s21_decimal num);
 void set_scale(s21_decimal *num, int scale_value);
 int get_bit(s21_decimal src, int index);
 void set_bit(s21_decimal *src, int index, int value);
-long double get_mantissa(s21_decimal* src);
-void debug_display_decimal(s21_decimal *src);
+long double get_mantissa(s21_decimal *src);
+void debug_display_decimal(char *name, s21_decimal src);
 void debug_display_float(float *src);
 void reset_decimal(s21_decimal *src);
 void import_to_big_decimal(s21_decimal src, s21_big_decimal *dst);
@@ -91,6 +93,16 @@ void max_decimal(s21_decimal *dst);
 void min_decimal(s21_decimal *dst);
 void small_decimal(s21_decimal *dst);
 
-void equalize_scale(s21_decimal *value, int scale_required); 
+void equalize_scale(s21_decimal *value, int scale_required);
+
+void set_mantissa(s21_decimal *value, long double new_mantissa);
+
+u_int32_t div10(u_int32_t dividend);  // unused
+s21_decimal add_decimals_mantissa(s21_decimal *x, s21_decimal *y);
+void decimal_mantissa_shift_l(s21_decimal *dec, int offset);
+
+void switchEndian(s21_decimal *x);
+
+void decimal_x10(s21_decimal *src);
 
 #endif
