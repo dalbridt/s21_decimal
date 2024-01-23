@@ -53,14 +53,24 @@ int main() {
       .bits[0] = 0b00000000000000000000000000000001,
       .bits[1] = 0b00000000000000000000000000000000,
       .bits[2] = 0b00000000000000000000000000000000,
-      .bits[3] = 0b10000000000000010000000000000000,
+      .bits[3] = 0b00000000000000000000000000000000,
   };
-  for (int i = 0; i < 28; i++) {
+
+  s21_decimal dec5 = {
+      .bits[0] = 0b00000000000000000000000000000001,
+      .bits[1] = 0b00000000000000000000000000000000,
+      .bits[2] = 0b00000000000000000000000000000000,
+      .bits[3] = 0b00000000000000000000000000000000,
+  };
+
+  for (int i = 0; i < 96; i++) {
     debug_display_decimal("dec4", dec4);
-
-    decimal_x10(&dec4);
+    decimal_mantissa_shift_l(&dec4, 1);
+    // decimal_x10(&dec4);
+    dec4 = add_decimals_mantissa(&dec4, &dec5);
   }
-
+  decimal_mantissa_shift_l(&dec4, 1);
+  debug_display_decimal("dec4", dec4);
 #endif
 
   // printf("divided int %u", div10(abc));

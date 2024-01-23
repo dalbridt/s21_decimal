@@ -37,7 +37,7 @@ void debug_display_decimal(char* name, s21_decimal src) {
     if (i / 0x20 == 3) {
       printf(C_GREY);  // C_INVIS
 
-      if (i > 0x74 && i <= 0x77) printf(C_NO C_GREY);
+      if (i > 0x74 && i <= 0x77) printf(C_GREY);
       if (i > 0x6F && i <= 0x74) printf(C_NO C_GREEN);
       if (i == 0x7F) printf(C_NO C_RED);
     }
