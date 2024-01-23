@@ -9,9 +9,9 @@
 #define ITER 100
 #define TOL 1e-06
 
-double rand_double(int random, float min, float max);
+float rand_double(int random, float min, float max);
 
-double rand_double(int random, float min, float max) {
+float rand_double(int random, float min, float max) {
   srand(random * time(NULL));
   float value = min + ((float)rand() / RAND_MAX) * (max - min);
   return value;
@@ -197,8 +197,3 @@ int main() {
   srunner_free(runner);
   return (failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
-
-// 12345678901234567890123456789
-// 79228162514264337593543950335
-
-// 1234567890123456789012345678

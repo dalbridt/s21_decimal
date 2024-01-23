@@ -97,9 +97,12 @@ void equalize_scale(s21_decimal *value, int scale_required);
 
 void set_mantissa(s21_decimal *value, long double new_mantissa);
 
-u_int32_t div10(u_int32_t dividend);
-s21_decimal add_decimal_beta(s21_decimal *x, s21_decimal *y);
-void shiftl(void *object, size_t size);
-// unsigned long long divu10(unsigned long long n);
+u_int32_t div10(u_int32_t dividend);  // unused
+s21_decimal add_decimals_mantissa(s21_decimal *x, s21_decimal *y);
+void decimal_mantissa_shift_l(s21_decimal *dec, int offset);
+
+void switchEndian(s21_decimal *x);
+
+void decimal_x10(s21_decimal *src);
 
 #endif
