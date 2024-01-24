@@ -148,14 +148,15 @@ void equalize_scale(s21_decimal* value, int scale_required) {
       decimal_div10(value); 
     }
   }
-  set_scale(value, scale_cur);
+  set_scale(value, scale_required);
 }
 
 int get_scale(s21_decimal num) { return ((SCALE & num.bits[3]) >> 16); }
 
 void set_scale(s21_decimal* num, int scale_value) {
+  num->bits[3]&= 0x80000000; 
   scale_value <<= 16;
-  num->bits[3] = num->bits[3] | scale_value;
+  num->bits[3] |= scale_value;
 }
 
 int get_sign(s21_decimal num) { return (num.bits[3] & MINUS) != 0; }
