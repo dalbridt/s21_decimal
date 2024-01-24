@@ -118,45 +118,7 @@ int main() {
   return 0;
 }
 
-void decimal_div10(s21_decimal* src) {
-  s21_decimal src_copy = *src;
-  s21_decimal src_copy2 = *src;
 
-  decimal_mantissa_shift_r(&src_copy, 1);
-  decimal_mantissa_shift_r(&src_copy2, 2);
-  s21_decimal q = add_decimals_mantissa(&src_copy, &src_copy2);
-
-  for (int i = 4; i < 512; i *= 2) {
-    src_copy = q;
-    decimal_mantissa_shift_r(&src_copy, i);
-    q = add_decimals_mantissa(&q, &src_copy);
-  }
-
-  decimal_mantissa_shift_r(&q, 3);
-
-  src_copy2 = q;
-  decimal_mantissa_shift_l(&src_copy2, 2);
-  src_copy2 = add_decimals_mantissa(&q, &src_copy2);
-
-  decimal_mantissa_shift_l(&src_copy2, 1);
-
-  s21_decimal r = sub_decimals_mantissa(src, &src_copy2);
-
-  q = add_decimals_mantissa(&q, &src_copy);
-
-  if (r.bits[0] >= 0x9) {
-    s21_decimal one = {
-        .bits[0] = 0b00000000000000000000000000000001,
-        .bits[1] = 0b00000000000000000000000000000000,
-        .bits[2] = 0b00000000000000000000000000000000,
-        .bits[3] = 0b00000000000000000000000000000000,
-    };
-
-    q = add_decimals_mantissa(&q, &one);
-  }
-
-  *src = q;
-}
 
 unsigned long long divu10(unsigned long long n) {
   unsigned long long q, r;

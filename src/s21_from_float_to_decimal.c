@@ -9,6 +9,7 @@ int s21_from_float_to_decimal(float src, s21_decimal *dst) {
           *(uint32_t *)&src;  // to get aka int but with the same bits order
 
       int sign = (src_bits >> 31) & 1;
+      src *=sign ? -1:1;
       int exponent = ((src_bits & ~0x80000000) >> 23) - 127;
 
       if (exponent > -95 && exponent < 95) {
