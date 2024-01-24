@@ -5,6 +5,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>  // for debug printing, delete later
+#include <string.h>
 
 #define MINUS 0x80000000     // 0b10000000 00000000 00000000 00000000
 #define SCALE 0x00ff0000     // 0b00000000 11111111 00000000 00000000

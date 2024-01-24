@@ -1,9 +1,5 @@
 #include "s21_decimal.h"
 
-int s21_from_decimal_to_float(s21_decimal src, float *dst);
-int find_bit(s21_decimal src, int index);
-int s21_from_float_to_decimal(float src, s21_decimal *dst);
-
 int main() {
   // ---------testing convertr from and to int ----------------
   // for (int i = -2147483647; i < 2147483647; i++) {
@@ -17,23 +13,21 @@ int main() {
   // }
   // ---------- Working on ADD ALGO  --------------
 
-  s21_decimal num1;
-  num1.bits[0] = 0b00000001010000000000000000000000;
-  num1.bits[1] = 0b00000000000000000000000000000000;
-  num1.bits[2] = 0b00000000000000000000000000000000;
-  num1.bits[3] = 0b00000000000010110000000000000000;
+  // s21_decimal num1;
+  // num1.bits[0] = 0b00000001010000000000000000000000;
+  // num1.bits[1] = 0b00000000000000000000000000000000;
+  // num1.bits[2] = 0b00000000000000000000000000000000;
+  // num1.bits[3] = 0b00000000000010110000000000000000;
 
-  debug_display_decimal("", &num1);
+  // debug_display_decimal("", num1);
 
-  printf("\n ------ \n ");
+  // printf("\n ------ \n ");
 
-  s21_decimal num2;
-  num2.bits[0] = 0b00000000001000000000000000000000;
-  num2.bits[1] = 0b00000000000000000000000000000000;
-  num2.bits[2] = 0b00000000000000000000000000000000;
-  num2.bits[3] = 0b00000000000010100000000000000000;
-
-  debug_display_decimal("", &num2);
+  // s21_decimal num2;
+  // num2.bits[0] = 0b00000000001000000000000000000000;
+  // num2.bits[1] = 0b00000000000000000000000000000000;
+  // num2.bits[2] = 0b00000000000000000000000000000000;
+  // num2.bits[3] = 0b00000000000010100000000000000000;
 
   // equalize_scale(&num1, 10);
 
@@ -82,10 +76,14 @@ int main() {
 
   // ---------- TESTING FROM FLOAT TO DECIMAL CONVERSION ------------------
 
-  // float f = 840696.023;
-  // s21_decimal dst = (s21_decimal){0};
+  float f = 1.605;
 
-  // s21_from_float_to_decimal(f, &dst);
+  s21_decimal dst = (s21_decimal){0};
+
+  s21_from_float_to_decimal(f, &dst);
+  printf("_______________\n\n");
+  debug_display_decimal("i", dst); 
+
 
   // --------------- TESTING SET BIT  ---------------------
   // s21_decimal num = (s21_decimal){0};
@@ -111,8 +109,8 @@ int main() {
   // }
   // ---- trying to convert binary float ---------
   // - мб конвертировать флот / децимал используя операции с децималом
-  // (используя этот алгоритм)!!!! float f = 15.3; uint32_t f_bits = *(uint32_t
-  // *)&f;
+  // (используя этот алгоритм)!!!!
+  // float f = 15.3; uint32_t f_bits = *(uint32_t*)&f;
   //  for (uint32_t mask = 0x80000000; mask; mask >>= 1) {
   //     printf("%d", !!(f_bits & mask));
   //   }
@@ -127,7 +125,7 @@ int main() {
   //   i--;
   // }
   // printf("\n");
-  // printf("mantissa: %d\n", result);
+  // printf("mantissa: %f\n", result);
   // int exponent = ((f_bits & ~0x80000000) >> 23) - 127;
   // float exp = pow(2, exponent);
   // float res = result * exp;
