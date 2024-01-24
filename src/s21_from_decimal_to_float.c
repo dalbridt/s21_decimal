@@ -1,16 +1,20 @@
 #include "s21_decimal.h"
 
-int s21_from_decimal_to_float(s21_decimal src, float *dst) {
-  double temp = (double)*dst;
+int s21_from_decimal_to_float(s21_decimal src, float* dst) {
+  unsigned int* b = &src.bits[0];
+  unsigned int byte;
 
-  for (int i = 0; i < 96; i++) {
-    temp += get_bit(src, i) * pow(2, i);
+  int sign = get_sign(src);
+  int exp = get_scale(src);
+
+  long double mantissa = get_mantissa(&src);
+
+  while (exp > 0) {
+    mantissa /= 10;
+    exp--;
   }
-  int scale = 0x0000FF00 & src.bits[3] >> 16;
-  temp = temp * pow(10, -scale);
-  *dst = temp;
-  if (get_bit(src, 127)) {
-    *dst *= -1;
-  }
+
+  *dst = mantissa * (sign ? -1 : 1);
+
   return 0;
 }
