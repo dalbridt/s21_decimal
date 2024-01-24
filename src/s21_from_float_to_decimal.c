@@ -46,7 +46,7 @@ int s21_from_float_to_decimal(float src, s21_decimal *dst) {
         // set bit - (dst, ?)to set 1 that is default in float between exp bits
         // and mantissa;
       }
-    }
+        }
     ret = 0;
   }
   return ret;

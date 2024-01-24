@@ -65,9 +65,9 @@ int main() {
 #elif (SELECTOR == 2)
 
   s21_decimal dec4 = {
-      .bits[0] = 0b10001001111010000000000000000000,
-      .bits[1] = 0b10001010110001110010001100000100,
-      .bits[2] = 0b00000000000000000000000000000000,
+      .bits[0] = 0b00010000000000000000000000000000,
+      .bits[1] = 0b00111110001001010000001001100001,
+      .bits[2] = 0b00100000010011111100111001011110,
       .bits[3] = 0b00000000000000000000000000000000,
   };
 
@@ -126,7 +126,7 @@ void decimal_div10(s21_decimal* src) {
   decimal_mantissa_shift_r(&src_copy2, 2);
   s21_decimal q = add_decimals_mantissa(&src_copy, &src_copy2);
 
-  for (int i = 4; i < 128; i *= 2) {
+  for (int i = 4; i < 512; i *= 2) {
     src_copy = q;
     decimal_mantissa_shift_r(&src_copy, i);
     q = add_decimals_mantissa(&q, &src_copy);
@@ -178,3 +178,6 @@ u_int32_t div10(u_int32_t dividend) {
 }
 
 #endif
+
+// 00100000010011111100111001011110 00111110001001010000001001100001
+// 00010000000000000000000000000000
