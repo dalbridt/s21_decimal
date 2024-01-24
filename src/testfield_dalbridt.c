@@ -12,36 +12,18 @@ int main() {
   //   }
   // }
   // ---------- Working on ADD ALGO  --------------
-
-  // s21_decimal num1;
-  // num1.bits[0] = 0b00000001010000000000000000000000;
-  // num1.bits[1] = 0b00000000000000000000000000000000;
-  // num1.bits[2] = 0b00000000000000000000000000000000;
-  // num1.bits[3] = 0b00000000000010110000000000000000;
-
-  // debug_display_decimal("", num1);
-
-  // printf("\n ------ \n ");
-
-  // s21_decimal num2;
-  // num2.bits[0] = 0b00000000001000000000000000000000;
-  // num2.bits[1] = 0b00000000000000000000000000000000;
-  // num2.bits[2] = 0b00000000000000000000000000000000;
-  // num2.bits[3] = 0b00000000000010100000000000000000;
-
-  // equalize_scale(&num1, 10);
-
-  // float res;
-
-  // s21_from_decimal_to_float(num, &res);
-
-  // printf("FLOAT: %f", res);
-
-  // int src = 0b10000000011111111100000000011111;
-  // for(int i = 0; i < 32; i++){
-  // //printf("get bit check (index %d): %d", index, get_bit(src, index))
-  // printf("%d", get_bit(src, i));
-  // }
+    system("clear");
+    float f1 = 3.45;
+    float f2 = -10.1; 
+    s21_decimal dec1 = {0}; 
+    s21_decimal dec2 = {0}; 
+    s21_from_float_to_decimal(f1, &dec1);
+    debug_display_decimal("fl 1", dec1);
+    s21_from_float_to_decimal(f2, &dec2);
+    s21_decimal res = {0}; 
+    s21_add(dec1, dec2, &res); 
+    printf("float add: %f+%f = %f\n",f1, f2, (f1+f2));
+    debug_display_decimal("res",res); 
 
   // --------------- TESTING BITWISE PRINT ------------------
   // float f = 1;
@@ -76,13 +58,13 @@ int main() {
 
   // ---------- TESTING FROM FLOAT TO DECIMAL CONVERSION ------------------
 
-  float f = 1.605;
+  // float f = 1.605;
 
-  s21_decimal dst = (s21_decimal){0};
+  // s21_decimal dst = (s21_decimal){0};
 
-  s21_from_float_to_decimal(f, &dst);
-  printf("_______________\n\n");
-  debug_display_decimal("i", dst); 
+  // s21_from_float_to_decimal(f, &dst);
+  // printf("_______________\n\n");
+  // debug_display_decimal("i", dst); 
 
 
   // --------------- TESTING SET BIT  ---------------------

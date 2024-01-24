@@ -110,33 +110,16 @@ void min_decimal(s21_decimal* dst) {
 
 void equalize_scale(s21_decimal* value, int scale_required) {
   int scale_cur = get_scale(*value);
-  long double mantissa = get_mantissa(value);
-  printf("TEST equalizer of scale:\nold mantissa: %Lf| old scale: %d\n",
-         mantissa, scale_cur);
-
   if (scale_cur < scale_required) {
     for (; scale_cur < scale_required; scale_cur++) {
-      mantissa *= 10;
+      decimal_x10(value);
     }
   } else if (scale_cur > scale_required) {
     for (; scale_cur > scale_required; scale_cur--) {
-      mantissa /= 10;
+      decimal_div10(value); 
     }
   }
-  printf("new mantissa:  %Lf | new scale: %d\n", mantissa, scale_cur);
-
-  set_mantissa(value, mantissa);
-
   set_scale(value, scale_cur);
-}
-
-void set_mantissa(s21_decimal* value, long double new_mantissa) {
-  printf("\n%Lf\n", new_mantissa);
-
-  unsigned long long int_mantissa = (unsigned long long)new_mantissa;
-
-  printf("\n%llu\n", int_mantissa);
-  //
 }
 
 #if FALSE
