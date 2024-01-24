@@ -49,6 +49,10 @@ void debug_display_decimal(char* name, s21_decimal src) {
   printf("\n");
 }
 
+// void debug_display_big_decimal(char* name, s21_big_decimal src) {
+
+// }
+
 void debug_display_float(float* src) {
   unsigned int* b = (unsigned int*)src;
   unsigned char byte;

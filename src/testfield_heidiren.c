@@ -7,6 +7,21 @@
 
 #define SELECTOR 2
 
+int divideBy10(int num) {
+  // Right shift the bits by 1 (equivalent to dividing by 2)
+  int result = num >> 1;
+
+  // Right shift the bits by 3 more positions (equivalent to dividing by 8)
+  result >>= 3;
+
+  // Add the two results to get the final division by 10
+  result += result >> 1;
+  result += result >> 4;
+  result += result >> 4;
+
+  return result;
+}
+
 int main() {
   s21_decimal dec1 = {
       .bits[0] = 0b01010101010101010101010101010101,
@@ -50,8 +65,8 @@ int main() {
 #elif (SELECTOR == 2)
 
   s21_decimal dec4 = {
-      .bits[0] = 0b00000000000000000000000000000001,
-      .bits[1] = 0b00000000000000000000000000000000,
+      .bits[0] = 0b10001001111010000000000000000000,
+      .bits[1] = 0b10001010110001110010001100000100,
       .bits[2] = 0b00000000000000000000000000000000,
       .bits[3] = 0b00000000000000000000000000000000,
   };
@@ -63,14 +78,30 @@ int main() {
       .bits[3] = 0b00000000000000000000000000000000,
   };
 
-  for (int i = 0; i < 96; i++) {
+  unsigned long long b = 1000000000000000000;
+  for (int i = 0; i < 30; i++) {
     debug_display_decimal("dec4", dec4);
-    decimal_mantissa_shift_l(&dec4, 1);
+    // decimal_mantissa_shift_r(&dec4, 2);
+
+    decimal_div10(&dec4);
+
+    // b = divu10(b);
+    // printf("%llu\n", b);
+
+    // decimal_div10(&dec4);
+
     // decimal_x10(&dec4);
-    dec4 = add_decimals_mantissa(&dec4, &dec5);
+    // dec4 = add_decimals_mantissa(&dec4, &dec5);
   }
-  decimal_mantissa_shift_l(&dec4, 1);
-  debug_display_decimal("dec4", dec4);
+  // decimal_mantissa_shift_l(&dec4, 1);
+  // debug_display_decimal("dec4", dec4);
+
+  // int number = 5000;
+  // int result = divideBy10(number);
+
+  // printf("%d divided by 10 is %d\n", number, result);
+
+  return 0;
 #endif
 
   // printf("divided int %u", div10(abc));
@@ -86,3 +117,64 @@ int main() {
 
   return 0;
 }
+
+void decimal_div10(s21_decimal* src) {
+  s21_decimal src_copy = *src;
+  s21_decimal src_copy2 = *src;
+
+  decimal_mantissa_shift_r(&src_copy, 1);
+  decimal_mantissa_shift_r(&src_copy2, 2);
+  s21_decimal q = add_decimals_mantissa(&src_copy, &src_copy2);
+
+  for (int i = 4; i < 128; i *= 2) {
+    src_copy = q;
+    decimal_mantissa_shift_r(&src_copy, i);
+    q = add_decimals_mantissa(&q, &src_copy);
+  }
+
+  decimal_mantissa_shift_r(&q, 3);
+
+  src_copy2 = q;
+  decimal_mantissa_shift_l(&src_copy2, 2);
+  src_copy2 = add_decimals_mantissa(&q, &src_copy2);
+
+  decimal_mantissa_shift_l(&src_copy2, 1);
+
+  s21_decimal r = sub_decimals_mantissa(src, &src_copy2);
+
+  q = add_decimals_mantissa(&q, &src_copy);
+
+  if (r.bits[0] >= 0x9) {
+    s21_decimal one = {
+        .bits[0] = 0b00000000000000000000000000000001,
+        .bits[1] = 0b00000000000000000000000000000000,
+        .bits[2] = 0b00000000000000000000000000000000,
+        .bits[3] = 0b00000000000000000000000000000000,
+    };
+
+    q = add_decimals_mantissa(&q, &one);
+  }
+
+  *src = q;
+}
+
+unsigned long long divu10(unsigned long long n) {
+  unsigned long long q, r;
+  q = (n >> 1) + (n >> 2);
+  q = q + (q >> 4);
+  q = q + (q >> 8);
+  q = q + (q >> 16);
+  q = q + (q >> 32);
+  q = q >> 3;
+  r = n - (((q << 2) + q) << 1);
+  return q + (r > 9);  // return q+((r+6)>>4);
+}
+
+#if FALSE
+
+u_int32_t div10(u_int32_t dividend) {
+  u_int64_t invDivisor = 0x1999999A;
+  return (u_int32_t)((invDivisor * dividend) >> 32);
+}
+
+#endif
