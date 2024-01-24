@@ -9,16 +9,20 @@
 #define ITER 5
 #define TOL 1e-06
 
-float rand_double(int random, float min, float max);
-
-float rand_double(int random, float min, float max) {
+float rand_float(int random, float min, float max) {
   srand(random * time(NULL));
   float value = min + ((float)rand() / RAND_MAX) * (max - min);
   return value;
 }
 
 START_TEST(t_add) {  // 01. s21_add
-  //
+  float f1 = rand_float(_i, FLT_MIN, FLT_MAX); 
+  float f2 = rand_float(_i+6, FLT_MIN, FLT_MAX); 
+  s21_decimal dec1 = {0}; 
+  s21_decimal dec2 = {0};
+  s21_from_float_to_decimal(f1, &dec1);
+  s21_from_float_to_decimal(f2, &dec2);
+  //ck_assert
 }
 END_TEST
 

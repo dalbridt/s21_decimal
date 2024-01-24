@@ -24,6 +24,9 @@ int main() {
     s21_add(dec1, dec2, &res); 
     printf("float add: %f+%f = %f\n",f1, f2, (f1+f2));
     debug_display_decimal("res",res); 
+    float flt_res; 
+    s21_from_decimal_to_float(res, &flt_res);
+    printf("\nfloat res: %f\n", flt_res);
 
   // --------------- TESTING BITWISE PRINT ------------------
   // float f = 1;
