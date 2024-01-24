@@ -27,7 +27,7 @@ int s21_from_float_to_decimal(float src, s21_decimal *dst) {
         set_scale(dst, scale);
         set_sign(dst, sign);
       }
-    }
+        }
     ret = 0;
   }
   return ret;

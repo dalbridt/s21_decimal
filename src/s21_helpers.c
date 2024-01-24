@@ -12,6 +12,17 @@ s21_decimal add_decimals_mantissa(s21_decimal* x, s21_decimal* y) {
   return result;
 }
 
+s21_decimal sub_decimals_mantissa(s21_decimal* x, s21_decimal* y) {
+  s21_decimal result = *x;
+  unsigned int borrow = 0;
+  for (int i = 0; i < 3; i++) {
+    uint64_t tmp = (uint64_t)x->bits[i] - y->bits[i] - borrow;
+    result.bits[i] = (uint32_t)tmp;
+    borrow = (tmp >> 32) & 1;  // Extract the borrow for the next iteration
+  }
+  return result;
+}
+
 void decimal_mantissa_shift_l(s21_decimal* dec, int offset) {
   unsigned int* byte;
   size_t size = sizeof(unsigned int);
@@ -35,6 +46,26 @@ void decimal_mantissa_shift_l(s21_decimal* dec, int offset) {
   switchEndian(dec);
 }
 
+void decimal_mantissa_shift_r(s21_decimal* dec, int offset) {
+  unsigned int* byte;
+  size_t size = sizeof(unsigned int);
+  size--;
+  size_t basic_size = size;
+
+  switchEndian(dec);
+
+  while (offset--) {
+    int carry = 0;
+    for (int i = 0; i < 3; ++i) {
+      int next = (dec->bits[i] & 1) ? 0x80000000 : 0;
+      dec->bits[i] = carry | (dec->bits[i] >> 1);
+      carry = next;
+    }
+  }
+
+  switchEndian(dec);
+}
+
 void switchEndian(s21_decimal* x) {
   unsigned int temp0 = x->bits[0];
   unsigned int temp2 = x->bits[2];
@@ -51,3 +82,12 @@ void decimal_x10(s21_decimal* src) {
 
   *src = add_decimals_mantissa(&dec2, &dec3);
 }
+
+// void xyeta() {
+//   uint64_t a = {0};  //
+//   uint32_t b = {1};
+//   uint32_t c = {1};
+//   a += (uint64_t)b;
+//   a << 32;
+//   a += (uint64_t)c;
+// }
