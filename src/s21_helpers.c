@@ -178,6 +178,7 @@ long double get_mantissa(s21_decimal* src) {
   for (short i = 0; i < 0x60; i++, power *= 2) {
     byte = (b[i / 0x20] >> i) & 1;
     mantissa += byte * power;
+    // printf("m: %0.3Lf\n", mantissa);
   }
   return mantissa;
 }

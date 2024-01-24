@@ -6,9 +6,8 @@
 #include <time.h>
 
 #include "s21_decimal.h"
-#define ITER 10
+#define ITER 100
 #define TOL 1e-06
-#define F_MAX 150003232340.253123
 
 float rand_float(int random, float min, float max) {
   srand(random * time(NULL));
@@ -29,7 +28,7 @@ START_TEST(t_add) {                          // 01. s21_add
   float flt_res;
   s21_from_decimal_to_float(res, &flt_res);
 
-  ck_assert_float_eq_tol(flt_res, flt_orig_res, 0.1);
+  ck_assert_float_eq_tol(flt_res, flt_orig_res, 0.001);
 }
 END_TEST
 

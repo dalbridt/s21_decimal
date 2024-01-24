@@ -1,35 +1,53 @@
+#include <stdint.h>
+
 #include "s21_decimal.h"
+
+typedef union {
+  int uin_t;
+  float floa_t;
+} s21_float_bits;
 
 int s21_from_float_to_decimal(float src, s21_decimal *dst) {
   int ret = 1;
-  if (!isinf(src) && !isnan(src) && dst != NULL) {
-    *dst = (s21_decimal){0};
+  dst->bits[0] = dst->bits[1] = dst->bits[2] = dst->bits[3] = 0;
+
+  if (!isinf(src) && !isnan(src)) {
     if (src != 0) {
-      uint32_t src_bits =
-          *(uint32_t *)&src;  // to get aka int but with the same bits order
+      int sign = *(int *)&src >> 31;
+      int exponent = ((*(int *)&src & ~0x80000000) >> 23) - 127;
+      double temp = (double)fabs(src);
+      int off = 0;
 
-      int sign = (src_bits >> 31) & 1;
-      src *= sign ? -1 : 1;
-      int exponent = ((src_bits & ~0x80000000) >> 23) - 127;
+      while (off < 28 && (int)temp / (int)pow(2, 21) == 0) {
+        temp *= 10;
+        off++;
+      }
 
-      if (exponent > -95 && exponent < 95) {
-        int scale = 0;
-        char num[50];
-        sprintf(num, "%f", src);
-        char *whole = strtok(num, ".");
-        double integr;
-        for (int i = strlen(whole); i < 12; src *= 10, scale++, i++) {
-          if (modf(src, &integr) == 0) {
-            break;
-          }
+      temp = round(temp);
+
+      if (off <= 28 && (exponent > -94 && exponent < 96)) {
+        s21_float_bits mantissa = {0};
+        temp = (float)temp;
+
+        while (fmod(temp, 10) == 0 && off > 0) {
+          off--;
+          temp /= 10;
         }
-        int sr = (int)src;
-        dst->bits[0] = sr & MAX4BITE;
-        set_scale(dst, scale);
-        set_sign(dst, sign);
+
+        mantissa.floa_t = temp;
+        exponent = ((*(int *)&mantissa.floa_t & ~0x80000000) >> 23) - 127;
+        dst->bits[exponent / 32] |= 1 << exponent % 32;
+
+        for (int i = exponent - 1, j = 22; j >= 0; i--, j--)
+          if ((mantissa.uin_t & (1 << j)) != 0)
+            dst->bits[i / 32] |= 1 << i % 32;
+
+        dst->bits[3] = (sign << 31) | (off << 16);
       }
     }
     ret = 0;
   }
   return ret;
 }
+
+// TODO: SPISZHENO
