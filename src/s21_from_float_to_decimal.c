@@ -15,12 +15,14 @@ int s21_from_float_to_decimal(float src, s21_decimal *dst) {
         int scale = 0;
         char num[50];
         sprintf(num, "%f", src);
-        char *even = strtok(num, ".");
-        printf("original: %f\n", src);
-        for (int i = strlen(even); i < 8; src *= 10, scale++, i++)
-          ;
+        char *whole = strtok(num, ".");
+        double integr; 
+        for (int i = strlen(whole);i < 8; src *= 10, scale++, i++){
+          if(modf(src, &integr) == 0){
+            break; 
+          }
+        }
         int sr = (int)src;
-        printf("After scaling:  %d | %d\n", sr, scale);
         dst->bits[0] = sr & MAX4BITE; 
         set_scale(dst, scale);
         set_sign(dst, sign);

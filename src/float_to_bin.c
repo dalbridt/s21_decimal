@@ -4,8 +4,8 @@
 void float_to_binary(long double floatValue) {
   double intgr;
   double fract = modf(floatValue, &intgr);
-  int prt1 = (int)intgr;
-  int prt2 = (int)fract;
+  int prt1 = (int)intgr; 
+  //int prt2 = (int)fract;
 
   printf("Number 1: %f\n", intgr);
   printf("Fractional Part: %f\n", fract);

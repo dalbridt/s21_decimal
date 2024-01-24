@@ -76,7 +76,7 @@ int main() {
 
   // ---------- TESTING FROM FLOAT TO DECIMAL CONVERSION ------------------
 
-  float f = 1.9;
+  float f = 1.605;
 
   s21_decimal dst = (s21_decimal){0};
 
