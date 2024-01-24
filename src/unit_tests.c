@@ -6,7 +6,7 @@
 #include <time.h>
 
 #include "s21_decimal.h"
-#define ITER 5
+#define ITER 10
 #define TOL 1e-06
 
 float rand_float(int random, float min, float max) {
@@ -16,13 +16,19 @@ float rand_float(int random, float min, float max) {
 }
 
 START_TEST(t_add) {  // 01. s21_add
-  float f1 = rand_float(_i, FLT_MIN, FLT_MAX); 
-  float f2 = rand_float(_i+6, FLT_MIN, FLT_MAX); 
+  float f1 = rand_float(_i, -1000, 1000); 
+  float f2 = rand_float(_i+6, -1000, 1000); 
   s21_decimal dec1 = {0}; 
   s21_decimal dec2 = {0};
   s21_from_float_to_decimal(f1, &dec1);
   s21_from_float_to_decimal(f2, &dec2);
-  //ck_assert
+  s21_decimal res = {0};
+  s21_add(dec1, dec2, &res); 
+  float flt_orig_res = f1 + f2; 
+  float flt_res; 
+  s21_from_decimal_to_float(res, &flt_res); 
+
+  ck_assert_float_eq_tol(flt_res, flt_orig_res, 0.1);
 }
 END_TEST
 

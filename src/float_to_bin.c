@@ -31,3 +31,30 @@ int main() {
 
   return 0;
 }
+
+// ---- trying to convert binary float ---------
+  // - мб конвертировать флот / децимал используя операции с децималом
+  // (используя этот алгоритм)!!!!
+  // float f = 15.3; uint32_t f_bits = *(uint32_t*)&f;
+  //  for (uint32_t mask = 0x80000000; mask; mask >>= 1) {
+  //     printf("%d", !!(f_bits & mask));
+  //   }
+  //   printf("\n");
+  // float result = 1;
+  // int i = -1;
+
+  // for (uint32_t mask = 0x400000; mask; mask >>= 1) {
+  //   int bit = !!(f_bits & mask);
+  //   printf("%d", bit);
+  //   result += bit * pow(2, i);
+  //   i--;
+  // }
+  // printf("\n");
+  // printf("mantissa: %f\n", result);
+  // int exponent = ((f_bits & ~0x80000000) >> 23) - 127;
+  // float exp = pow(2, exponent);
+  // float res = result * exp;
+
+  // printf("%f", res);
+
+  // mantissa i need to get : 7665091

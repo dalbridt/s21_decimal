@@ -23,39 +23,9 @@ void set_bit(s21_decimal* src, int index, int value) {
   }
 }
 
-long double get_mantissa(s21_decimal* src) {
-  unsigned int* b = &src->bits[0];
-  unsigned int byte;
-
-  long double mantissa = 0;
-  long double power = 1;
-  for (short i = 0; i < 0x60; i++, power *= 2) {
-    byte = (b[i / 0x20] >> i) & 1;
-    mantissa += byte * power;
-  }
-  return mantissa;
-}
 
 void reset_decimal(s21_decimal* src) { *src = (s21_decimal){0}; }
 
-int get_sign(s21_decimal num) { return (num.bits[3] & MINUS) != 0; }
-
-void set_sign(s21_decimal* num, int sign_value) {
-  int mask = MINUS;
-  if (sign_value == 0)
-    num->bits[3] &= ~mask;
-  else
-    num->bits[3] |= mask;
-}
-
-int get_scale(s21_decimal num) { return ((SCALE & num.bits[3]) >> 16); }
-
-void set_scale(s21_decimal* num, int scale_value) {
-  // reset_decimal(num);
-  scale_value <<= 16;
-  num->bits[3] = num->bits[3] | scale_value;
-  // if (get_sign(*num)) set_sign(num, 1);
-}
 
 void import_to_big_decimal(s21_decimal src, s21_big_decimal* dst) {
   dst->bits[0] = src.bits[0] & MAX4BITE;
@@ -108,19 +78,6 @@ void min_decimal(s21_decimal* dst) {
   dst->bits[3] = 0b10000000000111000000000000000000;
 }
 
-void equalize_scale(s21_decimal* value, int scale_required) {
-  int scale_cur = get_scale(*value);
-  if (scale_cur < scale_required) {
-    for (; scale_cur < scale_required; scale_cur++) {
-      decimal_x10(value);
-    }
-  } else if (scale_cur > scale_required) {
-    for (; scale_cur > scale_required; scale_cur--) {
-      decimal_div10(value); 
-    }
-  }
-  set_scale(value, scale_cur);
-}
 
 #if FALSE
 
