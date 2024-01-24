@@ -123,7 +123,7 @@ void decimal_div10(s21_decimal* src) {
   *src = q;
 }
 
-int s21_mantisa_compare(s21_decimal *value_1, s21_decimal *value_2) {
+int s21_mantisa_compare(s21_decimal* value_1, s21_decimal* value_2) {
   int flag = -1;
 
   for (int i = 2; i >= 0; i--) {
@@ -145,7 +145,7 @@ void equalize_scale(s21_decimal* value, int scale_required) {
     }
   } else if (scale_cur > scale_required) {
     for (; scale_cur > scale_required; scale_cur--) {
-      decimal_div10(value); 
+      decimal_div10(value);
     }
   }
   set_scale(value, scale_required);
@@ -154,7 +154,7 @@ void equalize_scale(s21_decimal* value, int scale_required) {
 int get_scale(s21_decimal num) { return ((SCALE & num.bits[3]) >> 16); }
 
 void set_scale(s21_decimal* num, int scale_value) {
-  num->bits[3]&= 0x80000000; 
+  num->bits[3] &= 0x80000000;
   scale_value <<= 16;
   num->bits[3] |= scale_value;
 }

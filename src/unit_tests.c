@@ -8,7 +8,7 @@
 #include "s21_decimal.h"
 #define ITER 10
 #define TOL 1e-06
-#define F_MAX 15000340.25
+#define F_MAX 150003232340.253123
 
 float rand_float(int random, float min, float max) {
   srand(random * time(NULL));
@@ -16,18 +16,18 @@ float rand_float(int random, float min, float max) {
   return value;
 }
 
-START_TEST(t_add) {  // 01. s21_add
+START_TEST(t_add) {                          // 01. s21_add
   float f1 = rand_float(_i, -F_MAX, F_MAX);  // FLT_MIN / 2, FLT_MAX / 2
-  float f2 = rand_float(_i+6, -F_MAX, F_MAX); 
-  s21_decimal dec1 = {0}; 
+  float f2 = rand_float(_i + 6, -F_MAX, F_MAX);
+  s21_decimal dec1 = {0};
   s21_decimal dec2 = {0};
   s21_from_float_to_decimal(f1, &dec1);
   s21_from_float_to_decimal(f2, &dec2);
   s21_decimal res = {0};
-  s21_add(dec1, dec2, &res); 
-  float flt_orig_res = f1 + f2; 
-  float flt_res; 
-  s21_from_decimal_to_float(res, &flt_res); 
+  s21_add(dec1, dec2, &res);
+  float flt_orig_res = f1 + f2;
+  float flt_res;
+  s21_from_decimal_to_float(res, &flt_res);
 
   ck_assert_float_eq_tol(flt_res, flt_orig_res, 0.1);
 }

@@ -9,6 +9,8 @@ int s21_from_decimal_to_float(s21_decimal src, float* dst) {
 
   long double mantissa = get_mantissa(&src);
 
+  printf("\nexp: %d, mantissa: %Lf\n", exp, mantissa);
+
   while (exp > 0) {
     mantissa /= 10;
     exp--;

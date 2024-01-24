@@ -23,9 +23,7 @@ void set_bit(s21_decimal* src, int index, int value) {
   }
 }
 
-
 void reset_decimal(s21_decimal* src) { *src = (s21_decimal){0}; }
-
 
 void import_to_big_decimal(s21_decimal src, s21_big_decimal* dst) {
   dst->bits[0] = src.bits[0] & MAX4BITE;
@@ -78,7 +76,6 @@ void min_decimal(s21_decimal* dst) {
   dst->bits[3] = 0b10000000000111000000000000000000;
 }
 
-
 #if FALSE
 
 u_int32_t div10(u_int32_t dividend) {
@@ -98,3 +95,9 @@ unsigned long long divu10(unsigned long long n) {
 }
 
 #endif
+
+float rand_float(int random, float min, float max) {
+  srand(random * time(NULL));
+  float value = min + ((float)rand() / RAND_MAX) * (max - min);
+  return value;
+}
