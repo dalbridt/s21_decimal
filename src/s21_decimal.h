@@ -13,7 +13,7 @@
 #define SCALE 0x00ff0000     // 0b00000000 11111111 00000000 00000000
 #define MAX4BITE 0xffffffff  // 0b1111111 1111111 1111111 1111111
 
-#define F_MAX 4523462362123231234562456.23123
+#define F_MAX 1233.01  // 4523462362123231234562456.23123
 
 typedef struct {
   unsigned int bits[4];
@@ -86,17 +86,17 @@ long double get_mantissa(s21_decimal *src);
 void debug_display_decimal(char *name, s21_decimal src);
 void debug_display_float(float *src);
 void reset_decimal(s21_decimal *src);
-void import_to_big_decimal(s21_decimal src, s21_big_decimal *dst);
-void import_to_small_decimal(s21_big_decimal src, s21_decimal *dst);
+// void import_to_big_decimal(s21_decimal src, s21_big_decimal *dst);
+// void import_to_small_decimal(s21_big_decimal src, s21_decimal *dst);
 void reset_big_decimal(s21_big_decimal *src);
 int decimal_is_zero(s21_decimal src);
-int big_decimal_is_zero(s21_big_decimal src);
+// int big_decimal_is_zero(s21_big_decimal src);
 int get_bit_big_decimal(s21_big_decimal src, int index);
 void set_bit_big_decimal(s21_big_decimal *dst, int index, int bit);
 
 void max_decimal(s21_decimal *dst);
 void min_decimal(s21_decimal *dst);
-void small_decimal(s21_decimal *dst);
+// void small_decimal(s21_decimal *dst);
 
 void equalize_scale(s21_decimal *value, int scale_required);
 

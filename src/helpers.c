@@ -23,19 +23,17 @@ void set_bit(s21_decimal* src, int index, int value) {
   }
 }
 
-void reset_decimal(s21_decimal* src) { *src = (s21_decimal){0}; }
+// void import_to_big_decimal(s21_decimal src, s21_big_decimal* dst) {
+//   dst->bits[0] = src.bits[0] & MAX4BITE;
+//   dst->bits[1] = src.bits[1] & MAX4BITE;
+//   dst->bits[2] = src.bits[2] & MAX4BITE;
+// }
 
-void import_to_big_decimal(s21_decimal src, s21_big_decimal* dst) {
-  dst->bits[0] = src.bits[0] & MAX4BITE;
-  dst->bits[1] = src.bits[1] & MAX4BITE;
-  dst->bits[2] = src.bits[2] & MAX4BITE;
-}
-
-void import_to_small_decimal(s21_big_decimal src, s21_decimal* dst) {
-  dst->bits[0] = src.bits[0] & MAX4BITE;
-  dst->bits[1] = src.bits[1] & MAX4BITE;
-  dst->bits[2] = src.bits[2] & MAX4BITE;
-}
+// void import_to_small_decimal(s21_big_decimal src, s21_decimal* dst) {
+//   dst->bits[0] = src.bits[0] & MAX4BITE;
+//   dst->bits[1] = src.bits[1] & MAX4BITE;
+//   dst->bits[2] = src.bits[2] & MAX4BITE;
+// }
 
 void reset_big_decimal(s21_big_decimal* src) { *src = (s21_big_decimal){0}; }
 

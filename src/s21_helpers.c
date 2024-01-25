@@ -1,6 +1,8 @@
 
 #include "s21_decimal.h"
 
+void reset_decimal(s21_decimal* src) { *src = (s21_decimal){0}; }
+
 s21_decimal add_decimals_mantissa(s21_decimal* x, s21_decimal* y) {
   s21_decimal result = *x;
   unsigned int carry = 0;
@@ -18,7 +20,7 @@ s21_decimal sub_decimals_mantissa(s21_decimal* x, s21_decimal* y) {
   for (int i = 0; i < 3; i++) {
     uint64_t tmp = (uint64_t)x->bits[i] - y->bits[i] - borrow;
     result.bits[i] = (uint32_t)tmp;
-    borrow = (tmp >> 32) & 1;  // Extract the borrow for the next iteration
+    borrow = (tmp >> 32) & 1;
   }
   return result;
 }
@@ -47,11 +49,6 @@ void decimal_mantissa_shift_l(s21_decimal* dec, int offset) {
 }
 
 void decimal_mantissa_shift_r(s21_decimal* dec, int offset) {
-  unsigned int* byte;
-  size_t size = sizeof(unsigned int);
-  size--;
-  size_t basic_size = size;
-
   switchEndian(dec);
 
   while (offset--) {
@@ -178,7 +175,6 @@ long double get_mantissa(s21_decimal* src) {
   for (short i = 0; i < 0x60; i++, power *= 2) {
     byte = (b[i / 0x20] >> i) & 1;
     mantissa += byte * power;
-    // printf("m: %0.3Lf\n", mantissa);
   }
   return mantissa;
 }

@@ -3,46 +3,44 @@
 #include "s21_decimal.h"
 
 typedef union {
-  int uin_t;
-  float floa_t;
-} s21_float_bits;
+  int u_int;
+  float u_float;
+} fti_union;
 
 int s21_from_float_to_decimal(float src, s21_decimal *dst) {
   int ret = 1;
-  dst->bits[0] = dst->bits[1] = dst->bits[2] = dst->bits[3] = 0;
+  reset_decimal(dst);
 
   if (!isinf(src) && !isnan(src)) {
     if (src != 0) {
-      int sign = *(int *)&src >> 31;
-      int exponent = ((*(int *)&src & ~0x80000000) >> 23) - 127;
-      double temp = (double)fabs(src);
+      int exponent, sign = signbit(src);
+      frexp(src, &exponent);
+      double temp = fabs(src);
       int off = 0;
-
-      while (off < 28 && (int)temp / (int)pow(2, 21) == 0) {
+      double pow_2_21 = pow(2, 21);
+      while (off < 28 && temp < pow_2_21) {
         temp *= 10;
         off++;
       }
 
-      temp = round(temp);
-
-      if (off <= 28 && (exponent > -94 && exponent < 96)) {
-        s21_float_bits mantissa = {0};
-        temp = (float)temp;
-
+      if ((exponent > -94 && exponent < 96)) {
+        fti_union convertor = {0};
+        temp = round(temp);
         while (fmod(temp, 10) == 0 && off > 0) {
           off--;
           temp /= 10;
         }
 
-        mantissa.floa_t = temp;
-        exponent = ((*(int *)&mantissa.floa_t & ~0x80000000) >> 23) - 127;
-        dst->bits[exponent / 32] |= 1 << exponent % 32;
+        convertor.u_float = temp;
+        exponent = ((*(int *)&convertor.u_float & ~MINUS) >> 0x17) - 0x7f;
+        dst->bits[exponent / 0x20] |= 1 << exponent % 0x20;
 
-        for (int i = exponent - 1, j = 22; j >= 0; i--, j--)
-          if ((mantissa.uin_t & (1 << j)) != 0)
-            dst->bits[i / 32] |= 1 << i % 32;
-
-        dst->bits[3] = (sign << 31) | (off << 16);
+        for (int exp = exponent - 1, j = 22; j >= 0; exp--, j--) {
+          if ((convertor.u_int & (1 << j)) != 0) {
+            dst->bits[exp / 0x20] |= 1 << exp % 0x20;
+          }
+        }
+        dst->bits[3] = (sign << 0x1f) | (off << 0x10);
       }
     }
     ret = 0;
@@ -51,3 +49,57 @@ int s21_from_float_to_decimal(float src, s21_decimal *dst) {
 }
 
 // TODO: SPISZHENO
+
+/*
+
+typedef union {
+  int u_int;
+  float u_float;
+} fti_union;
+
+int s21_from_float_to_decimal(float src, s21_decimal *dst) {
+  int flag = 1;
+  reset_decimal(dst);
+
+  if (!isinf(src) && !isnan(src)) {
+    flag = 0;
+    if (src != 0) {
+      int exponent, sign = signbit(src);
+      frexp(src, &exponent);
+
+      if (exponent > -94 && exponent < 96) {
+        double temp = fabs(src);
+        int off = 0;
+
+        double pow_2_21 = pow(2, 21);
+        while (off < 28 && temp < pow_2_21) {
+          temp *= 10;
+          off++;
+        }
+
+        fti_union convertor = {0};
+
+        while (fmod(temp, 10) == 0 && off > 0) {
+          off--;
+          temp /= 10;
+        }
+
+        convertor.u_float = temp;
+        exponent = ((*(int *)&convertor.u_float & ~MINUS) >> 0x17) - 0x7f;
+        dst->bits[exponent / 0x20] |= 1 << exponent % 0x20;
+
+        for (int exp = exponent - 1, j = 22; j >= 0; exp--, j--) {
+          if ((convertor.u_int & (1 << j)) != 0) {
+            dst->bits[exp / 0x20] |= 1 << exp % 0x20;
+          }
+        }
+        dst->bits[3] = (sign << 0x1f) | (off << 0x10);
+
+      } else {
+        flag = 1;
+      }
+    }
+  }
+  return flag;
+}
+*/

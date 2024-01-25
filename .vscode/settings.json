@@ -16,6 +16,7 @@
         "vector": "c",
         "array": "c",
         "climits": "c",
-        "string": "c"
+        "string": "c",
+        "complex": "c"
     }
 }

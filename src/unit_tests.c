@@ -15,25 +15,46 @@ float rand_float(int random, float min, float max) {
   return value;
 }
 
-START_TEST(t_add) {                          // 01. s21_add
-  float f1 = rand_float(_i, -F_MAX, F_MAX);  // FLT_MIN / 2, FLT_MAX / 2
-  float f2 = rand_float(_i + 6, -F_MAX, F_MAX);
-  s21_decimal dec1 = {0};
-  s21_decimal dec2 = {0};
-  s21_from_float_to_decimal(f1, &dec1);
-  s21_from_float_to_decimal(f2, &dec2);
-  s21_decimal res = {0};
-  s21_add(dec1, dec2, &res);
-  float flt_orig_res = f1 + f2;
-  float flt_res;
-  s21_from_decimal_to_float(res, &flt_res);
+void randomize_decimal(s21_decimal *dec, float *fl, int it) {
+  *fl = rand_float(it, -F_MAX, F_MAX);  // FLT_MIN / 2, FLT_MAX / 2
+  reset_decimal(dec);
 
-  ck_assert_float_eq_tol(flt_res, flt_orig_res, 0.001);
+  s21_from_float_to_decimal(*fl, dec);
+
+  int even = it % 2;
+  if (even != 2) {
+    decimal_x10(dec);
+    set_scale(dec, get_scale(*dec) + 1);
+  }
+}
+
+START_TEST(t_add) {  // 01. s21_add
+  float f1, f2, flt_res;
+  s21_decimal dec1, dec2, dec_res;
+
+  randomize_decimal(&dec1, &f1, _i);
+  randomize_decimal(&dec2, &f2, _i + 5);
+
+  s21_add(dec1, dec2, &dec_res);
+
+  s21_from_decimal_to_float(dec_res, &flt_res);
+
+  ck_assert_float_eq_tol(flt_res, f1 + f2, 0.001);
 }
 END_TEST
 
 START_TEST(t_sub) {  // 02. s21_sub
-  //
+  // float f1, f2, flt_res;
+  // s21_decimal dec1, dec2, dec_res;
+
+  // randomize_decimal(&dec1, &f1, _i);
+  // randomize_decimal(&dec2, &f2, _i + 5);
+
+  // s21_sub(dec1, dec2, &dec_res);
+
+  // s21_from_decimal_to_float(dec_res, &flt_res);
+
+  // ck_assert_float_eq_tol(flt_res, f1 - f2, 0.001);
 }
 END_TEST
 
@@ -83,7 +104,16 @@ START_TEST(t_from_int_to_decimal) {  // 11. s21_from_int_to_decimal
 END_TEST
 
 START_TEST(t_from_float_to_decimal) {  // 12. s21_from_float_to_decimal
-  //
+  float f1, flt_res;
+  s21_decimal dec_res;
+
+  f1 = rand_float(_i, -F_MAX, F_MAX);
+
+  s21_from_float_to_decimal(f1, &dec_res);
+
+  s21_from_decimal_to_float(dec_res, &flt_res);
+
+  ck_assert_float_eq_tol(flt_res, f1, 0.001);
 }
 END_TEST
 

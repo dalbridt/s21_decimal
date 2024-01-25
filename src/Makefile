@@ -18,9 +18,9 @@ ifeq ($(OS),Darwin)
     endif
 endif
 CC=gcc 
-CFLAGS = -c -Wall -std=c11
+CFLAGS = -c -Wall -Werror -Wextra -std=c11
 
-# -Werror  -Wextra
+# 
 
 BUILD_FLAGS=
 COVERAGE_FLAGS= -fprofile-arcs -ftest-coverage
@@ -38,6 +38,10 @@ gcov_report:
 	$(GCOV_FLAG)
 genhtml: 
 	$(GENERATE_HTML)
+ifeq ($(OS),Darwin)
+	open report.html
+endif
+
 call_test:
 	./unit_test_out
 s21_decimal.a: s21_decimal.o
