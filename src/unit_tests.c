@@ -118,12 +118,30 @@ START_TEST(t_from_float_to_decimal) {  // 12. s21_from_float_to_decimal
 END_TEST
 
 START_TEST(t_from_decimal_to_int) {  // 13. s21_from_decimal_to_int
-  //
+  float f1;
+  int i1;
+  s21_decimal dec_res;
+  f1 = rand_float(_i, -F_MAX, F_MAX);
+
+  s21_from_float_to_decimal(f1, &dec_res);
+
+  s21_from_decimal_to_int(dec_res, &i1);
+
+  ck_assert_int_eq((int)f1, i1);
 }
 END_TEST
 
 START_TEST(t_from_decimal_to_float) {  // 14. s21_from_decimal_to_float
-  //
+  float f1, flt_res;
+  s21_decimal dec_res;
+
+  f1 = rand_float(_i, -F_MAX, F_MAX);
+
+  s21_from_float_to_decimal(f1, &dec_res);
+
+  s21_from_decimal_to_float(dec_res, &flt_res);
+
+  ck_assert_float_eq_tol(flt_res, f1, 0.001);
 }
 END_TEST
 
@@ -143,7 +161,16 @@ START_TEST(t_truncate) {  // 17. s21_truncate
 END_TEST
 
 START_TEST(t_negate) {  // 18. s21_negate
-  //
+  float f1, flt_res;
+  s21_decimal dec1, dec_res;
+
+  randomize_decimal(&dec1, &f1, _i);
+
+  s21_negate(dec1, &dec_res);
+
+  s21_from_decimal_to_float(dec_res, &flt_res);
+
+  ck_assert_float_eq_tol(flt_res, -f1, 0.001);
 }
 END_TEST
 

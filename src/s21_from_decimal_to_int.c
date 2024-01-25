@@ -3,13 +3,17 @@
 // maybe scale check should be included?
 
 int s21_from_decimal_to_int(s21_decimal src, int *dst) {
-  if (dst == NULL) {
-    return 1;
+  int scale = get_scale(src);
+
+  for (int i = 0; i < scale; i++) {
+    decimal_div10(&src);
   }
   *dst = src.bits[0];
 
-  if (src.bits[3] & (1 << 31)) {
-    *dst = -1 * (*dst);
-  }
+  // if (src.bits[3] & (1 << 31)) {
+  //   *dst = -1 * (*dst);
+  // }
+  // set_sign(&src, )
+
   return 0;
 }
