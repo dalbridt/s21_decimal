@@ -68,7 +68,7 @@ int main() {
 
 #elif (SELECTOR == 4)
 
-  for (int z = 0; z < 3; z++) {
+  for (int z = 0; z < 1; z++) {
     float f1 = rand_float(z, -F_MAX, F_MAX);
     float f2 = rand_float(z + 6, -F_MAX, F_MAX);
 
@@ -77,15 +77,16 @@ int main() {
     s21_from_float_to_decimal(f1, &dec1);
     s21_from_float_to_decimal(f2, &dec2);
 
-    // debug_display_decimal("dec1", dec1);
-    // debug_display_decimal("dec2", dec2);
+    debug_display_decimal("dec1", dec1);
+    debug_display_decimal("dec2", dec2);
 
     s21_decimal res = {0};
-    s21_add(dec1, dec2, &res);
+    s21_sub(dec1, dec2, &res);
     float flt_res;
     s21_from_decimal_to_float(res, &flt_res);
-    printf("%0.3f + %0.3f = %0.3f \nshould be %0.3f\n", f1, f2, flt_res,
-           (f1 + f2));
+    debug_display_decimal("res", res);
+    printf("\n%0.3f - %0.3f = %0.3f \nshould be %0.3f\n", f1, f2, flt_res,
+           (f1 - f2));
   }
 
 #endif

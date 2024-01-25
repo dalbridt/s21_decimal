@@ -44,17 +44,17 @@ START_TEST(t_add) {  // 01. s21_add
 END_TEST
 
 START_TEST(t_sub) {  // 02. s21_sub
-  // float f1, f2, flt_res;
-  // s21_decimal dec1, dec2, dec_res;
+  float f1, f2, flt_res;
+  s21_decimal dec1, dec2, dec_res;
 
-  // randomize_decimal(&dec1, &f1, _i);
-  // randomize_decimal(&dec2, &f2, _i + 5);
+  randomize_decimal(&dec1, &f1, _i);
+  randomize_decimal(&dec2, &f2, _i + 5);
 
-  // s21_sub(dec1, dec2, &dec_res);
+  s21_sub(dec1, dec2, &dec_res);
 
-  // s21_from_decimal_to_float(dec_res, &flt_res);
+  s21_from_decimal_to_float(dec_res, &flt_res);
 
-  // ck_assert_float_eq_tol(flt_res, f1 - f2, 0.001);
+  ck_assert_float_eq_tol(flt_res, f1 - f2, 0.001);
 }
 END_TEST
 
