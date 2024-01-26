@@ -1,4 +1,5 @@
 #include <limits.h>
+#include <string.h>
 #include <time.h>
 
 #include "s21_decimal.h"
@@ -36,13 +37,19 @@ int main() {
 
   for (int i = 0; i < 10; i++) {
     int val, val_res;
-    s21_decimal dec_res;
-    val = (rand() % (10000 - (-10000) + 1)) + (-10000);
+    s21_decimal dec_res = {0};
+    val = rand();  //% (10000000 - (-10000000) + 1)) + (-10000000);
+    if (i % 2 == 0) {
+      val *= -1;
+    }
 
     s21_from_int_to_decimal(val, &dec_res);
+    char name[50];
+    sprintf(name, "%d", val);
+    // debug_display_decimal(name, dec_res);
     s21_from_decimal_to_int(dec_res, &val_res);
-
-    printf("orig: %d  |  after: %d \n", val, val_res);
+    printf("assertion: %d | orig: %d  |  after: %d \n", (val - val_res), val,
+           val_res);
   }
 
   return 0;
