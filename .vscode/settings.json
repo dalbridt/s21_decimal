@@ -17,6 +17,7 @@
         "array": "c",
         "climits": "c",
         "string": "c",
-        "complex": "c"
+        "complex": "c",
+        "__locale": "c"
     }
 }

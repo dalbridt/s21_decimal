@@ -15,6 +15,15 @@ float rand_float(int random, float min, float max) {
   return value;
 }
 
+int randomize_int(int random){
+  srand(random * time(NULL)); 
+  int value = rand(); 
+  if(random % 2 == 0){
+    value = -value; 
+  }
+  return value;
+}
+
 void randomize_decimal(s21_decimal *dec, float *fl, int it) {
   *fl = rand_float(it, -F_MAX, F_MAX);  // FLT_MIN / 2, FLT_MAX / 2
   reset_decimal(dec);
@@ -99,7 +108,12 @@ START_TEST(t_is_not_equal) {  // 10. s21_is_not_equal
 END_TEST
 
 START_TEST(t_from_int_to_decimal) {  // 11. s21_from_int_to_decimal
-  //
+  int val, val_res; 
+  s21_decimal dec_res;
+  val = randomize_int(_i);
+  s21_from_int_to_decimal(val, &dec_res); 
+  s21_from_decimal_to_int(dec_res, &val_res); 
+  ck_assert_int_eq(val, val_res); 
 }
 END_TEST
 
