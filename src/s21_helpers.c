@@ -178,3 +178,7 @@ long double get_mantissa(s21_decimal* src) {
   }
   return mantissa;
 }
+
+int decimal_is_zero(s21_decimal src) {
+  return (src.bits[0] == 0 && src.bits[1] == 0 &&  src.bits[2] == 0);
+}

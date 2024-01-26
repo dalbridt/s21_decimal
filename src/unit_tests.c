@@ -15,11 +15,11 @@ float rand_float(int random, float min, float max) {
   return value;
 }
 
-int randomize_int(int random){
-  srand(random * time(NULL)); 
-  int value = rand(); 
-  if(random % 2 == 0){
-    value = -value; 
+int randomize_int(int random) {
+  srand(random * time(NULL));
+  int value = rand();
+  if (random % 2 == 0) {
+    value = -value;
   }
   return value;
 }
@@ -98,7 +98,36 @@ START_TEST(t_is_greater_or_equal) {  // 08. s21_is_greater_or_equal
 END_TEST
 
 START_TEST(t_is_equal) {  // 09. s21_is_equal
-  //
+  int v_int = randomize_int(_i);
+  s21_decimal dec1, dec2;
+  if (_i % 2 == 0) {
+    s21_from_int_to_decimal(v_int, &dec1);
+    s21_from_int_to_decimal(v_int, &dec2);
+    int res = s21_is_equal(dec1, dec2);
+    ck_assert_int_eq(res, 1);
+  } else {
+    s21_from_int_to_decimal(v_int, &dec1);
+    s21_from_int_to_decimal((v_int + _i), &dec2);
+    int res = s21_is_equal(dec1, dec2);
+    ck_assert_int_eq(res, 0);
+  }
+  reset_decimal(&dec1);
+  reset_decimal(&dec2);
+  int res = s21_is_equal(dec1, dec2);
+  ck_assert_int_eq(res, 1);
+  // is it too much for one test and should be two?
+  float f_val = rand_float(_i, -F_MAX, F_MAX);
+  if (_i % 2 == 0) {
+    s21_from_float_to_decimal(f_val, &dec1);
+    s21_from_float_to_decimal(f_val, &dec2);
+    int res = s21_is_equal(dec1, dec2);
+    ck_assert_int_eq(res, 1);
+  } else {
+    s21_from_float_to_decimal(f_val, &dec1);
+    s21_from_float_to_decimal(f_val + _i, &dec2);
+    int res = s21_is_equal(dec1, dec2);
+    ck_assert_int_eq(res, 0);
+  }
 }
 END_TEST
 
@@ -108,12 +137,12 @@ START_TEST(t_is_not_equal) {  // 10. s21_is_not_equal
 END_TEST
 
 START_TEST(t_from_int_to_decimal) {  // 11. s21_from_int_to_decimal
-  int val, val_res; 
+  int val, val_res;
   s21_decimal dec_res;
   val = randomize_int(_i);
-  s21_from_int_to_decimal(val, &dec_res); 
-  s21_from_decimal_to_int(dec_res, &val_res); 
-  ck_assert_int_eq(val, val_res); 
+  s21_from_int_to_decimal(val, &dec_res);
+  s21_from_decimal_to_int(dec_res, &val_res);
+  ck_assert_int_eq(val, val_res);
 }
 END_TEST
 

@@ -38,7 +38,7 @@ void set_bit(s21_decimal* src, int index, int value) {
 void reset_big_decimal(s21_big_decimal* src) { *src = (s21_big_decimal){0}; }
 
 int decimal_is_zero(s21_decimal src) {
-  return (src.bits[0] + src.bits[1] + src.bits[2]) == 0;
+  return (src.bits[0] == 0 && src.bits[1] == 0 &&  src.bits[2] == 0);
 }
 
 // int big_decimal_is_zero(s21_big_decimal src) {
