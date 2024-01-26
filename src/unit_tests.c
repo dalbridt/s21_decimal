@@ -88,7 +88,19 @@ START_TEST(t_is_less_or_equal) {  // 06. s21_is_less_or_equal
 END_TEST
 
 START_TEST(t_is_greater) {  // 07. s21_is_greater
-  //
+  float val1 = rand_float(_i, -F_MAX, F_MAX);
+  float val2 = rand_float(_i, -F_MAX, F_MAX);
+  if(_i %2 == 0){
+    val1 *=-1;
+  } if(_i %5 == 0){
+    val2 = round(val2);
+  }
+  s21_decimal dec_1 = {0};
+  s21_decimal dec_2 = {0};
+  s21_from_float_to_decimal(val1, &dec_1);
+  s21_from_float_to_decimal(val2, &dec_2);
+  int res = val1 > val2;
+  ck_assert_int_eq(res, s21_is_greater(dec_1, dec_2));
 }
 END_TEST
 
