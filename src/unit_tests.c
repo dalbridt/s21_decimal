@@ -144,7 +144,25 @@ START_TEST(t_is_equal) {  // 09. s21_is_equal
 END_TEST
 
 START_TEST(t_is_not_equal) {  // 10. s21_is_not_equal
-  //
+  s21_decimal dec1, dec2;
+  float f1, f2;
+  randomize_decimal(&dec1, &f1, _i);
+  if(_i % 5 == 0){
+    dec2 = dec1; 
+    f2 = f1; 
+  } else if(_i % 10 == 0){
+    dec2 = dec1; 
+    f2 = -f1;
+    s21_from_float_to_decimal(f2, &dec2);
+  } else if (_i % 50 == 0){
+    reset_decimal(&dec1);
+    reset_decimal(&dec2);
+    f1 = 0;
+    f2 = 0;
+  } else {
+    randomize_decimal(&dec2, &f2, _i + 5);
+  }
+  ck_assert_int_eq(s21_is_not_equal(dec1, dec2), (f1 !=f2));
 }
 END_TEST
 
