@@ -191,10 +191,10 @@ START_TEST(t_from_float_to_decimal) {  // 12. s21_from_float_to_decimal
 END_TEST
 
 START_TEST(t_from_decimal_to_int) {  // 13. s21_from_decimal_to_int
-  // float f1;
   // int i1;
   // s21_decimal dec_res;
-  // f1 = rand_float(_i, -F_MAX, F_MAX);
+  // проблемы с округлением
+  // float f1 = rand_float(_i, -F_MAX, F_MAX);
 
   // s21_from_float_to_decimal(f1, &dec_res);
 
