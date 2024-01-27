@@ -9,7 +9,7 @@
 #include <string.h>
 #include <time.h>  // FOR DEBUG RANDOM
 
-#define MINUS 0x80000000     // 0b10000000 00000000 00000000 00000000
+#define MINUS 0x80000000  // 0b10000000 00000000 00000000 00000000
 #define BLANK 0x0
 #define SCALE 0x00ff0000     // 0b00000000 11111111 00000000 00000000
 #define MAX4BITE 0xffffffff  // 0b1111111 1111111 1111111 1111111
@@ -111,7 +111,7 @@ int s21_mantisa_compare(s21_decimal *value_1, s21_decimal *value_2);
 void switchEndian(s21_decimal *x);
 
 void decimal_x10(s21_decimal *src);
-void decimal_div10(s21_decimal *src, bool roundup);
+void decimal_div10(s21_decimal *src, unsigned int roundup);
 
 float rand_float(int random, float min, float max);
 

@@ -8,14 +8,36 @@
 #define SELECTOR 5
 
 int main() {
-  s21_decimal dec1 = {
-      .bits[0] = 0b01010101010101010101010101010101,
-      .bits[1] = 0b00000000000000000000000000000000,
-      .bits[2] = 0b00000000000000000000000000000000,
-      .bits[3] = 0b00000000000000000000000000000000,
-  };
+  int fail = 0;
+  for (int i = 0; i < 100; i++) {
+    float fl_r, fl = rand_float(i, -F_MAX, F_MAX);
+    s21_decimal dec, dec_res, dec_rnd;
+    s21_from_float_to_decimal(fl, &dec);
+    fl_r = round(fl);
+    s21_from_float_to_decimal(fl_r, &dec_rnd);
+    // hui
+    s21_round(dec, &dec_res);
 
-  s21_decimal dec3;
+    float fl_a;
+    s21_from_decimal_to_float(dec_res, &fl_a);
+
+    if (s21_is_not_equal(dec_rnd, dec_res)) {
+      fail++;
+      printf("%d | before: %0.3f | after :%0.3f : should be %0.3f\n", i, fl,
+             fl_a, fl_r);
+      debug_display_decimal("posle", dec_res);
+    }
+  }
+  printf(("\nfails: %d\n"), fail);
+  return 0;
+  // s21_decimal dec1 = {
+  //     .bits[0] = 0b01010101010101010101010101010101,
+  //     .bits[1] = 0b00000000000000000000000000000000,
+  //     .bits[2] = 0b00000000000000000000000000000000,
+  //     .bits[3] = 0b00000000000000000000000000000000,
+  // };
+
+  // s21_decimal dec3;
 
 #if (SELECTOR == 0)
 
@@ -118,6 +140,3 @@ u_int32_t div10(u_int32_t dividend, , true) {
 }
 
 #endif
-
-return 0;
-}

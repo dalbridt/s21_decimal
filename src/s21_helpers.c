@@ -80,7 +80,7 @@ void decimal_x10(s21_decimal* src) {
   *src = add_decimals_mantissa(&dec2, &dec3);
 }
 
-void decimal_div10(s21_decimal* src, bool roundup) {
+void decimal_div10(s21_decimal* src, unsigned int roundup) {
   s21_decimal src_copy = *src;
   s21_decimal src_copy2 = *src;
 
@@ -106,7 +106,7 @@ void decimal_div10(s21_decimal* src, bool roundup) {
 
   q = add_decimals_mantissa(&q, &src_copy);
 
-  if (r.bits[0] >= (10 - roundup)) {
+  if (r.bits[0] >= (0xA - roundup)) {
     s21_decimal one = {
         .bits[0] = 0b00000000000000000000000000000001,
         .bits[1] = 0b00000000000000000000000000000000,
