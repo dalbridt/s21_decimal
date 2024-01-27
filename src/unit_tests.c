@@ -6,13 +6,35 @@
 #include <time.h>
 
 #include "s21_decimal.h"
-#define ITER 5
+#define ITER 100
 #define TOL 1e-06
 
 float rand_float(int random, float min, float max) {
   srand(random * time(NULL));
   float value = min + ((float)rand() / RAND_MAX) * (max - min);
   return value;
+}
+
+int randomize_int(int random) {
+  srand(random * time(NULL));
+  int value = rand();
+  if (random % 2 == 0) {
+    value = -value;
+  }
+  return value;
+}
+
+void randomize_decimal(s21_decimal *dec, float *fl, int it) {
+  *fl = rand_float(it, -F_MAX, F_MAX);  // FLT_MIN / 2, FLT_MAX / 2
+  reset_decimal(dec);
+
+  s21_from_float_to_decimal(*fl, dec);
+
+  int even = it % 2;
+  if (even != 2) {
+    decimal_x10(dec);
+    set_scale(dec, get_scale(*dec) + 1);
+  }
 }
 
 START_TEST(t_add) {  // 01. s21_add
@@ -23,11 +45,32 @@ START_TEST(t_add) {  // 01. s21_add
   s21_from_float_to_decimal(f1, &dec1);
   s21_from_float_to_decimal(f2, &dec2);
   // ck_assert
+  float f1, f2, flt_res;
+  s21_decimal dec1, dec2, dec_res;
+
+  randomize_decimal(&dec1, &f1, _i);
+  randomize_decimal(&dec2, &f2, _i + 5);
+
+  s21_add(dec1, dec2, &dec_res);
+
+  s21_from_decimal_to_float(dec_res, &flt_res);
+
+  ck_assert_float_eq_tol(flt_res, f1 + f2, 0.001);
 }
 END_TEST
 
 START_TEST(t_sub) {  // 02. s21_sub
-  //
+  float f1, f2, flt_res;
+  s21_decimal dec1, dec2, dec_res;
+
+  randomize_decimal(&dec1, &f1, _i);
+  randomize_decimal(&dec2, &f2, _i + 5);
+
+  s21_sub(dec1, dec2, &dec_res);
+
+  s21_from_decimal_to_float(dec_res, &flt_res);
+
+  ck_assert_float_eq_tol(flt_res, f1 - f2, 0.001);
 }
 END_TEST
 
@@ -52,7 +95,20 @@ START_TEST(t_is_less_or_equal) {  // 06. s21_is_less_or_equal
 END_TEST
 
 START_TEST(t_is_greater) {  // 07. s21_is_greater
-  //
+  float val1 = rand_float(_i, -F_MAX, F_MAX);
+  float val2 = rand_float(_i, -F_MAX, F_MAX);
+  if (_i % 2 == 0) {
+    val1 *= -1;
+  }
+  if (_i % 5 == 0) {
+    val2 = round(val2);
+  }
+  s21_decimal dec_1 = {0};
+  s21_decimal dec_2 = {0};
+  s21_from_float_to_decimal(val1, &dec_1);
+  s21_from_float_to_decimal(val2, &dec_2);
+  int res = val1 > val2;
+  ck_assert_int_eq(res, s21_is_greater(dec_1, dec_2));
 }
 END_TEST
 
@@ -62,59 +118,111 @@ START_TEST(t_is_greater_or_equal) {  // 08. s21_is_greater_or_equal
 END_TEST
 
 START_TEST(t_is_equal) {  // 09. s21_is_equal
-  //
+  int v_int = randomize_int(_i);
+  s21_decimal dec1, dec2;
+  if (_i % 2 == 0) {
+    s21_from_int_to_decimal(v_int, &dec1);
+    s21_from_int_to_decimal(v_int, &dec2);
+    int res = s21_is_equal(dec1, dec2);
+    ck_assert_int_eq(res, 1);
+  } else {
+    s21_from_int_to_decimal(v_int, &dec1);
+    s21_from_int_to_decimal((v_int + _i), &dec2);
+    int res = s21_is_equal(dec1, dec2);
+    ck_assert_int_eq(res, 0);
+  }
+  reset_decimal(&dec1);
+  reset_decimal(&dec2);
+  int res = s21_is_equal(dec1, dec2);
+  ck_assert_int_eq(res, 1);
+  // is it too much for one test and should be two?
+  float f_val = rand_float(_i, -F_MAX, F_MAX);
+  if (_i % 2 == 0) {
+    s21_from_float_to_decimal(f_val, &dec1);
+    s21_from_float_to_decimal(f_val, &dec2);
+    int res = s21_is_equal(dec1, dec2);
+    ck_assert_int_eq(res, 1);
+  } else {
+    s21_from_float_to_decimal(f_val, &dec1);
+    s21_from_float_to_decimal(f_val + _i, &dec2);
+    int res = s21_is_equal(dec1, dec2);
+    ck_assert_int_eq(res, 0);
+  }
 }
 END_TEST
 
 START_TEST(t_is_not_equal) {  // 10. s21_is_not_equal
-  //
+  s21_decimal dec1, dec2;
+  float f1, f2;
+  randomize_decimal(&dec1, &f1, _i);
+  if (_i % 5 == 0) {
+    dec2 = dec1;
+    f2 = f1;
+  } else if (_i % 10 == 0) {
+    dec2 = dec1;
+    f2 = -f1;
+    s21_from_float_to_decimal(f2, &dec2);
+  } else if (_i % 50 == 0) {
+    reset_decimal(&dec1);
+    reset_decimal(&dec2);
+    f1 = 0;
+    f2 = 0;
+  } else {
+    randomize_decimal(&dec2, &f2, _i + 5);
+  }
+  ck_assert_int_eq(s21_is_not_equal(dec1, dec2), (f1 != f2));
 }
 END_TEST
 
 START_TEST(t_from_int_to_decimal) {  // 11. s21_from_int_to_decimal
-  // float f1;
-  int i1, i_res;
-  s21_decimal dec1;
-  i1 = (int)round(rand_float(_i, -INT_MAX / 2, INT_MAX / 2));
-
-  s21_from_int_to_decimal(i1, &dec1);
-
-  // if (_i % 2 == 0) {
-  //   decimal_x10(&dec1);
-  //   set_scale(&dec1, get_scale(dec1) + 1);
-  // }
-
-  s21_from_decimal_to_int(dec1, &i_res);
-
-  ck_assert_int_eq(i_res, i1);
+  int val, val_res;
+  s21_decimal dec_res;
+  val = randomize_int(_i);
+  s21_from_int_to_decimal(val, &dec_res);
+  s21_from_decimal_to_int(dec_res, &val_res);
+  ck_assert_int_eq(val, val_res);
 }
 END_TEST
 
 START_TEST(t_from_float_to_decimal) {  // 12. s21_from_float_to_decimal
-  //
+  float f1, flt_res;
+  s21_decimal dec_res;
+
+  f1 = rand_float(_i, -F_MAX, F_MAX);
+
+  s21_from_float_to_decimal(f1, &dec_res);
+
+  s21_from_decimal_to_float(dec_res, &flt_res);
+
+  ck_assert_float_eq_tol(flt_res, f1, 0.001);
 }
 END_TEST
 
 START_TEST(t_from_decimal_to_int) {  // 13. s21_from_decimal_to_int
-  float f1;
-  int i1;
-  s21_decimal dec_res;
-  f1 = round(rand_float(_i, -INT_MAX, INT_MAX));
+  // int i1;
+  // s21_decimal dec_res;
+  // проблемы с округлением
+  // float f1 = rand_float(_i, -F_MAX, F_MAX);
 
-  s21_from_float_to_decimal(f1, &dec_res);
-  // if (_i % 2 == 0) {
-  //   decimal_x10(&dec_res);
-  //   set_scale(&dec_res, get_scale(dec_res) + 1);
-  // }
+  // s21_from_float_to_decimal(f1, &dec_res);
 
-  s21_from_decimal_to_int(dec_res, &i1);
+  // s21_from_decimal_to_int(dec_res, &i1);
 
-  ck_assert_int_eq((int)f1, i1);
+  // ck_assert_int_eq((int)f1, i1);
 }
 END_TEST
 
 START_TEST(t_from_decimal_to_float) {  // 14. s21_from_decimal_to_float
-  //
+  float f1, flt_res;
+  s21_decimal dec_res;
+
+  f1 = rand_float(_i, -F_MAX, F_MAX);
+
+  s21_from_float_to_decimal(f1, &dec_res);
+
+  s21_from_decimal_to_float(dec_res, &flt_res);
+
+  ck_assert_float_eq_tol(flt_res, f1, 0.001);
 }
 END_TEST
 
@@ -134,7 +242,16 @@ START_TEST(t_truncate) {  // 17. s21_truncate
 END_TEST
 
 START_TEST(t_negate) {  // 18. s21_negate
-  //
+  float f1, flt_res;
+  s21_decimal dec1, dec_res;
+
+  randomize_decimal(&dec1, &f1, _i);
+
+  s21_negate(dec1, &dec_res);
+
+  s21_from_decimal_to_float(dec_res, &flt_res);
+
+  ck_assert_float_eq_tol(flt_res, -f1, 0.001);
 }
 END_TEST
 

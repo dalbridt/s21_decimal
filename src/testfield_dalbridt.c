@@ -1,122 +1,108 @@
+#include <limits.h>
+#include <string.h>
+#include <time.h>
+
 #include "s21_decimal.h"
 
 int main() {
-  // ---------testing convertr from and to int ----------------
-  // for (int i = -2147483647; i < 2147483647; i++) {
-  //   s21_decimal num;
-  //   int check = 0;
-  //   s21_from_int_to_decimal(i, &num);
-  //   s21_from_decimal_to_int(num, &check);
-  //   if (check != i) {
-  //     printf("number %d is not processed correctly", i);
+  // ---- TESTING FLOAT CONVERSION ------
+  // system("clear");
+  // for (int z = 0; z < 10; z++) {
+  //   printf("------ %d ------\n", z);
+  //   float f1 = rand_float(z, -1000, 1000);
+  //   float f2 = rand_float(z + 6, -1000, 1000);
+  //   // float f2 = -660.448;
+  //   // float f1 = 358.114;
+  //   s21_decimal dec1 = {0};
+  //   s21_decimal dec2 = {0};
+  //   s21_from_float_to_decimal(f1, &dec1);
+  //   s21_from_float_to_decimal(f2, &dec2);
+
+  //   // debug_display_decimal("dec1", dec1);
+  //   // debug_display_decimal("dec2", dec2);
+
+  //   s21_decimal res = {0};
+  //   s21_add(dec1, dec2, &res);
+  //   printf("float add: %0.3f + %0.3f = %f\n", f1, f2, (f1 + f2));
+  //   // debug_display_decimal("res", res);
+  //   float flt_res;
+  //   s21_from_decimal_to_float(res, &flt_res);
+  //   printf("\nfloat res: %f\n", flt_res);
+  //   printf("diff: %0.3f\n", flt_res - (f1 + f2));
+  // }
+  // ------------------------------------------
+  // ------- TESTING INT CONVERSION --------
+
+  // srand((unsigned)time(NULL));
+
+  // for (int i = 0; i < 10; i++) {
+  //   int val, val_res;
+  //   s21_decimal dec_res = {0};
+  //   val = rand();  //% (10000000 - (-10000000) + 1)) + (-10000000);
+  //   if (i % 2 == 0) {
+  //     val *= -1;
   //   }
+
+  //   s21_from_int_to_decimal(val, &dec_res);
+  //   char name[50];
+  //   sprintf(name, "%d", val);
+  //   // debug_display_decimal(name, dec_res);
+  //   s21_from_decimal_to_int(dec_res, &val_res);
+  //   printf("assertion: %d | orig: %d  |  after: %d \n", (val - val_res), val,
+  //          val_res);
   // }
-  // ---------- Working on ADD ALGO  --------------
-    system("clear");
-    float f1 = 3.45;
-    float f2 = -10.1; 
-    s21_decimal dec1 = {0}; 
-    s21_decimal dec2 = {0}; 
-    s21_from_float_to_decimal(f1, &dec1);
-    debug_display_decimal("fl 1", dec1);
-    s21_from_float_to_decimal(f2, &dec2);
-    s21_decimal res = {0}; 
-    s21_add(dec1, dec2, &res); 
-    printf("float add: %f+%f = %f\n",f1, f2, (f1+f2));
-    debug_display_decimal("res",res); 
-    float flt_res; 
-    s21_from_decimal_to_float(res, &flt_res);
-    printf("\nfloat res: %f\n", flt_res);
 
-  // --------------- TESTING BITWISE PRINT ------------------
-  // float f = 1;
+  // ------------------------------------------
+  // ------- TESTING IS GREATER FUNC --------
 
-  // // printf("\nfloat\n");
+  // float val1 = 23.15;
+  // float val2 = 4.5678;
+  // s21_decimal dec_1 = {0};
+  // s21_decimal dec_2 = {0};
+  // s21_from_float_to_decimal(val1, &dec_1);
+  // s21_from_float_to_decimal(val2, &dec_2);
+  // debug_display_decimal("dec1",dec_1);
+  // debug_display_decimal("dec2",dec_2);
+  // printf("%d |val1: %6f |val2: %6f\n", s21_is_greater(dec_1, dec_2), val1,
+  // val2);
 
-  // // debug_display_float(&f);
-
-  // s21_decimal dst;
-  // // reset_decimal(&dst);
-  // // printf("\ndecimal\n");
-  // // // s21_from_float_to_decimal(f, &dst);
-  // dst.bits[0] = 0b00100000001000000001000000100000;
-  // dst.bits[1] = 0b00000000000000000000000000000000;
-  // dst.bits[2] = 0b00000000000000000000000000000000;
-  // dst.bits[3] = 0b10000000000111010000000000000000;
-
-  // debug_display_decimal(&dst);
-  // printf("\n");
-
-  // //   for (uint32_t mask = 0x80000000; mask; mask >>= 1) {
-  // //     printf("%d", !!(num.bits[3] & mask));
-  // //   }
-  // //   printf("\n");
-
-  // --------------- TESTING fukin Dec to float conversion ------------------
-
-  // s21_from_decimal_to_float(dst, &f);
-  // printf("converted: \n");
-  // debug_display_float(&f);
-  // printf("\n%f\n", f);
-
-  // ---------- TESTING FROM FLOAT TO DECIMAL CONVERSION ------------------
-
-  // float f = 1.605;
-
-  // s21_decimal dst = (s21_decimal){0};
-
-  // s21_from_float_to_decimal(f, &dst);
-  // printf("_______________\n\n");
-  // debug_display_decimal("i", dst); 
-
-
-  // --------------- TESTING SET BIT  ---------------------
-  // s21_decimal num = (s21_decimal){0};
-  // for (int i = 0; i < 128; i++) {
-  //   set_bit(&num, i, 1);
+  // for (int i = 0; i < 5; i++) {
+  //   float val1 = i * ((float)rand() / RAND_MAX);
+  //   float val2 = i * ((float)rand() / RAND_MAX);
+  //   s21_decimal dec_1 = {0};
+  //   s21_decimal dec_2 = {0};
+  //   s21_from_float_to_decimal(val1, &dec_1);
+  //   s21_from_float_to_decimal(val2, &dec_2);
+  //   printf("%d |val1: %6f |val2: %6f\n", s21_is_greater(dec_1, dec_2), val1,
+  //   val2);
   // }
-  // printf("\nsetbit check :\n");
-  // for (int i = 0; i < 4; i++) {
-  //   for (uint32_t mask = 0x80000000; mask; mask >>= 1) {
-  //     printf("%d", !!(num.bits[i] & mask));
-  //   }
-  //   printf("\n");
-  // }
-  // for(int i = 112; i < 120; i++){
-  //   set_bit(&num, i, 0);
-  // }
-  // printf("\nsetbit check - 2 :\n");
-  // for (int i = 0; i < 4; i++) {
-  //   for (uint32_t mask = 0x80000000; mask; mask >>= 1) {
-  //     printf("%d", !!(num.bits[i] & mask));
-  //   }
-  //   printf("\n");
-  // }
-  // ---- trying to convert binary float ---------
-  // - мб конвертировать флот / децимал используя операции с децималом
-  // (используя этот алгоритм)!!!!
-  // float f = 15.3; uint32_t f_bits = *(uint32_t*)&f;
-  //  for (uint32_t mask = 0x80000000; mask; mask >>= 1) {
-  //     printf("%d", !!(f_bits & mask));
-  //   }
-  //   printf("\n");
-  // float result = 1;
-  // int i = -1;
 
-  // for (uint32_t mask = 0x400000; mask; mask >>= 1) {
-  //   int bit = !!(f_bits & mask);
-  //   printf("%d", bit);
-  //   result += bit * pow(2, i);
-  //   i--;
+  // for (int i = 0; i < 5; i++) {
+  //   int val, val2;
+  //   s21_decimal dec_1 = {0};
+  //   s21_decimal dec_2 = {0};
+  //   val = (rand() % (100 - (-100) + 1)) + (-100);
+  //   val2 = (rand() % (100 - (-100) + 1)) + (-100);
+  //   // if (i % 2 == 0) {
+  //   //   val *= -1;
+  //   // }
+  //   s21_from_int_to_decimal(val, &dec_1);
+  //   s21_from_int_to_decimal(val2, &dec_2);
+  //   printf("%d |val1: %5d |val2: %5d\n", s21_is_greater(dec_1, dec_2), val,
+  //   val2);
   // }
-  // printf("\n");
-  // printf("mantissa: %f\n", result);
-  // int exponent = ((f_bits & ~0x80000000) >> 23) - 127;
-  // float exp = pow(2, exponent);
-  // float res = result * exp;
 
-  // printf("%f", res);
-
-  // mantissa i need to get : 7665091
+  // ------------------------------------------
+  // ------- TESTING IS not equal FUNC --------
+  float val1 = 512;
+  float val2 = 512;
+  s21_decimal dec_1 = {0};
+  s21_decimal dec_2 = {0};
+  s21_from_float_to_decimal(val1, &dec_1);
+  s21_from_float_to_decimal(val2, &dec_2);
+  //debug_display_decimal("dec1", dec_1);
+  //debug_display_decimal("dec2", dec_2);
+  printf("%d |val1: %6f |val2: %6f\n", s21_is_not_equal(dec_1, dec_2), val1,
+         val2);
   return 0;
 }

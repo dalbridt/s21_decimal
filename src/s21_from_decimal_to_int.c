@@ -1,18 +1,14 @@
 #include "s21_decimal.h"
 
-// maybe scale check should be included?
-
 int s21_from_decimal_to_int(s21_decimal src, int *dst) {
-  if (dst == NULL) {
-    return 1;
+  int scale = get_scale(src);
+
+  for (int i = 0; i < scale; i++) {
+    decimal_div10(&src);
   }
   *dst = src.bits[0];
-
-  unsigned int sign = get_sign(src);
-  *dst = *dst & ~(1 << 31);
-
-  if (sign) {
-    *dst = -1 * *dst;
+  if (get_sign(src)) {  // нужно ли не?
+    *dst *= -1;
   }
 
   return 0;

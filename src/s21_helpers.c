@@ -1,6 +1,8 @@
 
 #include "s21_decimal.h"
 
+void reset_decimal(s21_decimal* src) { *src = (s21_decimal){0}; }
+
 s21_decimal add_decimals_mantissa(s21_decimal* x, s21_decimal* y) {
   s21_decimal result = *x;
   unsigned int carry = 0;
@@ -18,7 +20,7 @@ s21_decimal sub_decimals_mantissa(s21_decimal* x, s21_decimal* y) {
   for (int i = 0; i < 3; i++) {
     uint64_t tmp = (uint64_t)x->bits[i] - y->bits[i] - borrow;
     result.bits[i] = (uint32_t)tmp;
-    borrow = (tmp >> 32) & 1;  // Extract the borrow for the next iteration
+    borrow = (tmp >> 32) & 1;
   }
   return result;
 }
@@ -47,11 +49,6 @@ void decimal_mantissa_shift_l(s21_decimal* dec, int offset) {
 }
 
 void decimal_mantissa_shift_r(s21_decimal* dec, int offset) {
-  unsigned int* byte;
-  size_t size = sizeof(unsigned int);
-  size--;
-  size_t basic_size = size;
-
   switchEndian(dec);
 
   while (offset--) {
@@ -123,7 +120,7 @@ void decimal_div10(s21_decimal* src) {
   *src = q;
 }
 
-int s21_mantisa_compare(s21_decimal *value_1, s21_decimal *value_2) {
+int s21_mantisa_compare(s21_decimal* value_1, s21_decimal* value_2) {
   int flag = -1;
 
   for (int i = 2; i >= 0; i--) {
@@ -135,4 +132,53 @@ int s21_mantisa_compare(s21_decimal *value_1, s21_decimal *value_2) {
     }
   }
   return flag;
+}
+
+void equalize_scale(s21_decimal* value, int scale_required) {
+  int scale_cur = get_scale(*value);
+  if (scale_cur < scale_required) {
+    for (; scale_cur < scale_required; scale_cur++) {
+      decimal_x10(value);
+    }
+  } else if (scale_cur > scale_required) {
+    for (; scale_cur > scale_required; scale_cur--) {
+      decimal_div10(value);
+    }
+  }
+  set_scale(value, scale_required);
+}
+
+int get_scale(s21_decimal num) { return ((SCALE & num.bits[3]) >> 16); }
+
+void set_scale(s21_decimal* num, int scale_value) {
+  num->bits[3] &= 0x80000000;
+  scale_value <<= 16;
+  num->bits[3] |= scale_value;
+}
+
+int get_sign(s21_decimal num) { return (num.bits[3] & MINUS) != 0; }
+
+void set_sign(s21_decimal* num, int sign_value) {
+  int mask = MINUS;
+  if (sign_value == 0)
+    num->bits[3] &= ~mask;
+  else
+    num->bits[3] |= mask;
+}
+
+long double get_mantissa(s21_decimal* src) {
+  unsigned int* b = &src->bits[0];
+  unsigned int byte;
+
+  long double mantissa = 0;
+  long double power = 1;
+  for (short i = 0; i < 0x60; i++, power *= 2) {
+    byte = (b[i / 0x20] >> i) & 1;
+    mantissa += byte * power;
+  }
+  return mantissa;
+}
+
+int decimal_is_zero(s21_decimal src) {
+  return (src.bits[0] == 0 && src.bits[1] == 0 &&  src.bits[2] == 0);
 }

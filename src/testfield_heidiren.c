@@ -22,13 +22,9 @@ int main() {
   float f = 32.02234;
 
   s21_decimal dst;
-  // max_decimal(&dst);
+
   system("clear");
   printf("\n");
-  // debug_display_float(&f);
-  // printf("\n");
-
-  // s21_decimal dec1, dec2;
 
   debug_display_decimal("dec1", &dec1);
 
@@ -66,7 +62,6 @@ int main() {
   unsigned long long b = 1000000000000000000;
   for (int i = 0; i < 30; i++) {
     debug_display_decimal("dec4", dec4);
-    // decimal_mantissa_shift_r(&dec4, 2);
 
     decimal_div10(&dec4);
 
@@ -122,51 +117,7 @@ u_int32_t div10(u_int32_t dividend) {
   return (u_int32_t)((invDivisor * dividend) >> 32);
 }
 
-#elif (SELECTOR == 5)
-
-reset_decimal(&dec1);
-int int_res;
-for (int z = 0; z < 100; z++) {
-  float f1 = rand_float(z, -INT_MAX, INT_MAX);
-
-  int f1_int = (int)f1;
-  debug_display_int(f1_int);
-  s21_from_int_to_decimal(f1_int, &dec1);
-
-  s21_from_decimal_to_int(dec1, &int_res);
-
-  if ((int)f1 != int_res) {
-    printf("%d\n", z);
-    debug_display_decimal("dec1", dec1);
-    debug_display_int(int_res);
-    printf("\n%0.3f, %d = %d \n", f1, f1_int, int_res);
-    break;
-  }
-}
-
-#elif (SELECTOR == 5)
-
-reset_decimal(&dec1);
-int int_res;
-for (int z = 0; z < 100; z++) {
-  float f1 = rand_float(z, -INT_MAX, INT_MAX);
-
-  int f1_int = (int)f1;
-  debug_display_int(f1_int);
-  s21_from_int_to_decimal(f1_int, &dec1);
-
-  s21_from_decimal_to_int(dec1, &int_res);
-
-  if ((int)f1 != int_res) {
-    printf("%d\n", z);
-    debug_display_decimal("dec1", dec1);
-    debug_display_int(int_res);
-    printf("\n%0.3f, %d = %d \n", f1, f1_int, int_res);
-    break;
-  }
-}
-
 #endif
 
-// 00100000010011111100111001011110 00111110001001010000001001100001
-// 00010000000000000000000000000000
+return 0;
+}

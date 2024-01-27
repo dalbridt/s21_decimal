@@ -17,6 +17,8 @@ int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
       set_scale(result, exp_1);
     }
   }
+  // debug_display_decimal("1", value_1);
+  // debug_display_decimal("2", value_2);
 
   if (sign_1 != sign_2) {
     int bigger = s21_mantisa_compare(&value_1, &value_2);
@@ -24,10 +26,11 @@ int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
       case 1:
         *result = sub_decimals_mantissa(&value_2, &value_1);
         break;
-      case 0:
+      default:
+        // case 0:
         *result = sub_decimals_mantissa(&value_1, &value_2);
         break;
-      default:
+
         // результат = 0;
         break;
     }
