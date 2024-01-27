@@ -45,8 +45,8 @@ START_TEST(t_add) {  // 01. s21_add
   s21_from_float_to_decimal(f1, &dec1);
   s21_from_float_to_decimal(f2, &dec2);
   // ck_assert
-  float f1, f2, flt_res;
-  s21_decimal dec1, dec2, dec_res;
+  float flt_res;
+  s21_decimal dec_res;
 
   randomize_decimal(&dec1, &f1, _i);
   randomize_decimal(&dec2, &f2, _i + 5);
