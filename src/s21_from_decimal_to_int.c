@@ -7,8 +7,8 @@ int s21_from_decimal_to_int(s21_decimal src, int *dst) {
     decimal_div10(&src);
   }
   *dst = src.bits[0];
-  if(get_sign(src)){ // нужно ли не? 
-    *dst *= -1; 
+  if (get_sign(src)) {  // нужно ли не?
+    *dst *= -1;
   }
   return 0;
 }

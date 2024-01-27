@@ -99,7 +99,7 @@ void max_decimal(s21_decimal *dst);
 void min_decimal(s21_decimal *dst);
 // void small_decimal(s21_decimal *dst);
 
-void equalize_scale(s21_decimal *value, int scale_required);
+void equalize_scale(s21_decimal *value_1, s21_decimal *value_2);
 
 s21_decimal add_decimals_mantissa(s21_decimal *x, s21_decimal *y);
 s21_decimal sub_decimals_mantissa(s21_decimal *x, s21_decimal *y);

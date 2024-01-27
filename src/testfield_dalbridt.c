@@ -100,8 +100,8 @@ int main() {
   s21_decimal dec_2 = {0};
   s21_from_float_to_decimal(val1, &dec_1);
   s21_from_float_to_decimal(val2, &dec_2);
-  //debug_display_decimal("dec1", dec_1);
-  //debug_display_decimal("dec2", dec_2);
+  // debug_display_decimal("dec1", dec_1);
+  // debug_display_decimal("dec2", dec_2);
   printf("%d |val1: %6f |val2: %6f\n", s21_is_not_equal(dec_1, dec_2), val1,
          val2);
   return 0;

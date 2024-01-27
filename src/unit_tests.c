@@ -90,9 +90,10 @@ END_TEST
 START_TEST(t_is_greater) {  // 07. s21_is_greater
   float val1 = rand_float(_i, -F_MAX, F_MAX);
   float val2 = rand_float(_i, -F_MAX, F_MAX);
-  if(_i %2 == 0){
-    val1 *=-1;
-  } if(_i %5 == 0){
+  if (_i % 2 == 0) {
+    val1 *= -1;
+  }
+  if (_i % 5 == 0) {
     val2 = round(val2);
   }
   s21_decimal dec_1 = {0};
@@ -147,14 +148,14 @@ START_TEST(t_is_not_equal) {  // 10. s21_is_not_equal
   s21_decimal dec1, dec2;
   float f1, f2;
   randomize_decimal(&dec1, &f1, _i);
-  if(_i % 5 == 0){
-    dec2 = dec1; 
-    f2 = f1; 
-  } else if(_i % 10 == 0){
-    dec2 = dec1; 
+  if (_i % 5 == 0) {
+    dec2 = dec1;
+    f2 = f1;
+  } else if (_i % 10 == 0) {
+    dec2 = dec1;
     f2 = -f1;
     s21_from_float_to_decimal(f2, &dec2);
-  } else if (_i % 50 == 0){
+  } else if (_i % 50 == 0) {
     reset_decimal(&dec1);
     reset_decimal(&dec2);
     f1 = 0;
@@ -162,7 +163,7 @@ START_TEST(t_is_not_equal) {  // 10. s21_is_not_equal
   } else {
     randomize_decimal(&dec2, &f2, _i + 5);
   }
-  ck_assert_int_eq(s21_is_not_equal(dec1, dec2), (f1 !=f2));
+  ck_assert_int_eq(s21_is_not_equal(dec1, dec2), (f1 != f2));
 }
 END_TEST
 

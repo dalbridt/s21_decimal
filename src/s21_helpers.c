@@ -134,19 +134,38 @@ int s21_mantisa_compare(s21_decimal* value_1, s21_decimal* value_2) {
   return flag;
 }
 
-void equalize_scale(s21_decimal* value, int scale_required) {
-  int scale_cur = get_scale(*value);
-  if (scale_cur < scale_required) {
-    for (; scale_cur < scale_required; scale_cur++) {
-      decimal_x10(value);
-    }
-  } else if (scale_cur > scale_required) {
-    for (; scale_cur > scale_required; scale_cur--) {
-      decimal_div10(value);
+void equalize_scale(s21_decimal* value_1, s21_decimal* value_2) {
+  int exp_1 = get_scale(*value_1);
+  int exp_2 = get_scale(*value_2);
+
+  if (exp_1 != exp_2) {
+    if (exp_1 < exp_2) {
+      for (; exp_1 < exp_2; exp_1++) {
+        decimal_x10(value_1);
+        set_scale(value_1, exp_2);
+      }
+    } else {
+      for (; exp_2 < exp_1; exp_2++) {
+        decimal_x10(value_2);
+        set_scale(value_2, exp_1);
+      }
     }
   }
-  set_scale(value, scale_required);
 }
+
+// void equalize_scale(s21_decimal* value, int scale_required) {
+//   int scale_cur = get_scale(*value);
+//   if (scale_cur < scale_required) {
+//     for (; scale_cur < scale_required; scale_cur++) {
+//       decimal_x10(value);
+//     }
+//   } else if (scale_cur > scale_required) {
+//     for (; scale_cur > scale_required; scale_cur--) {
+//       decimal_div10(value);
+//     }
+//   }
+//   set_scale(value, scale_required);
+// }
 
 int get_scale(s21_decimal num) { return ((SCALE & num.bits[3]) >> 16); }
 
@@ -180,5 +199,5 @@ long double get_mantissa(s21_decimal* src) {
 }
 
 int decimal_is_zero(s21_decimal src) {
-  return (src.bits[0] == 0 && src.bits[1] == 0 &&  src.bits[2] == 0);
+  return (src.bits[0] == 0 && src.bits[1] == 0 && src.bits[2] == 0);
 }

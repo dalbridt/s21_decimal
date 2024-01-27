@@ -9,13 +9,7 @@ int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   int sign_2 = get_sign(value_2);
 
   if (exp_1 != exp_2) {
-    if (exp_1 < exp_2) {
-      equalize_scale(&value_1, exp_2);
-      set_scale(result, exp_2);
-    } else {
-      equalize_scale(&value_2, exp_1);
-      set_scale(result, exp_1);
-    }
+    equalize_scale(&value_1, &value_2);
   }
   // debug_display_decimal("1", value_1);
   // debug_display_decimal("2", value_2);

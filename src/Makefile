@@ -24,7 +24,7 @@ CFLAGS = -c -Wall -Werror -Wextra -std=c11
 
 BUILD_FLAGS=
 COVERAGE_FLAGS= -fprofile-arcs -ftest-coverage
-all: clean test_seq
+all: clean format test_seq
 test_seq: test call_test gcov_report genhtml
 test: unit_tests.o s21_decimal_tests.a
 	$(CC) unit_tests.o -L. -ls21_decimal $(CHECK_FLAGS) -o unit_test_out
@@ -50,13 +50,14 @@ s21_decimal_tests.a: s21_decimal_tests.o
 	ar rcs libs21_decimal.a s21_*.o
 clean:	
 	rm -rf *.o *.gcno *.gcda *.html *.css *.info unit_test_out report_test_coverage *.a *.out test_report.log
-
+format:
+	clang-format -i *.c 
 #DEBUG_TARGETS
-heidiren: clean
+heidiren: clean format
 	gcc testfield_heidiren.c helpers*.c s21_*.c -o a.out && ./a.out
 
-dalbridt: clean
+dalbridt: clean format
 	gcc testfield_dalbridt.c helpers*.c s21_*.c -o a.out && ./a.out
 
-annamaer: clean
+annamaer: clean format
 	gcc testfield_annamaer.c helpers*.c s21_*.c -o a.out && ./a.out
