@@ -84,19 +84,48 @@ START_TEST(t_div) {  // 04. s21_div
 END_TEST
 
 START_TEST(t_is_less) {  // 05. s21_is_less
-  //
+  float val1 = rand_float(_i, -F_MAX, F_MAX);
+  float val2 = rand_float(_i + 5, -F_MAX, F_MAX);
+  if (_i % 3 == 0) {
+    val1 *= -1;
+  }
+  if (_i % 5 == 0) {
+    val2 = round(val2);
+  }
+  s21_decimal dec_1 = {0};
+  s21_decimal dec_2 = {0};
+  s21_from_float_to_decimal(val1, &dec_1);
+  s21_from_float_to_decimal(val2, &dec_2);
+  int res = val1 < val2;
+  ck_assert_int_eq(res, s21_is_less(dec_1, dec_2));
 }
 END_TEST
 
 START_TEST(t_is_less_or_equal) {  // 06. s21_is_less_or_equal
-  //
+  float val1 = rand_float(_i, -F_MAX, F_MAX);
+  float val2 = rand_float(_i + 5, -F_MAX, F_MAX);
+  if (_i % 3 == 0) {
+    val1 *= -1;
+  }
+  if (_i % 5 == 0) {
+    val2 = round(val2);
+  }
+  if (_i % 7 == 0) {
+    val2 = val1;
+  }
+  s21_decimal dec_1 = {0};
+  s21_decimal dec_2 = {0};
+  s21_from_float_to_decimal(val1, &dec_1);
+  s21_from_float_to_decimal(val2, &dec_2);
+  int res = val1 <= val2;
+  ck_assert_int_eq(res, s21_is_less_or_equal(dec_1, dec_2));
 }
 END_TEST
 
 START_TEST(t_is_greater) {  // 07. s21_is_greater
   float val1 = rand_float(_i, -F_MAX, F_MAX);
-  float val2 = rand_float(_i, -F_MAX, F_MAX);
-  if (_i % 2 == 0) {
+  float val2 = rand_float(_i + 5, -F_MAX, F_MAX);
+  if (_i % 3 == 0) {
     val1 *= -1;
   }
   if (_i % 5 == 0) {
@@ -112,7 +141,23 @@ START_TEST(t_is_greater) {  // 07. s21_is_greater
 END_TEST
 
 START_TEST(t_is_greater_or_equal) {  // 08. s21_is_greater_or_equal
-  //
+  float val1 = rand_float(_i, -F_MAX, F_MAX);
+  float val2 = rand_float(_i + 5, -F_MAX, F_MAX);
+  if (_i % 3 == 0) {
+    val1 *= -1;
+  }
+  if (_i % 5 == 0) {
+    val2 = round(val2);
+  }
+  if (_i % 7 == 0) {
+    val2 = val1;
+  }
+  s21_decimal dec_1 = {0};
+  s21_decimal dec_2 = {0};
+  s21_from_float_to_decimal(val1, &dec_1);
+  s21_from_float_to_decimal(val2, &dec_2);
+  int res = val1 >= val2;
+  ck_assert_int_eq(res, s21_is_greater_or_equal(dec_1, dec_2));
 }
 END_TEST
 
@@ -200,7 +245,6 @@ END_TEST
 START_TEST(t_from_decimal_to_int) {  // 13. s21_from_decimal_to_int
   int i1;
   s21_decimal dec_res;
-  // проблемы с округлением
   float f1 = rand_float(_i, -F_MAX, F_MAX);
 
   s21_from_int_to_decimal((int)f1, &dec_res);

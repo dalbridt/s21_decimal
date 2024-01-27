@@ -12,8 +12,8 @@ int s21_is_greater(s21_decimal value_1, s21_decimal value_2) {
     if (exp_1 != exp_2) {
       equalize_scale(&value_1, &value_2);
     }
-    value = get_mantissa(sign_1 ? &value_1 : &value_2) <
-            get_mantissa(sign_1 ? &value_2 : &value_1);
+    value = get_mantissa(sign_1 ? &value_2 : &value_1) >
+            get_mantissa(sign_1 ? &value_1 : &value_2);
   }
   return value;
 }
