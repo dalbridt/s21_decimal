@@ -30,8 +30,7 @@ void randomize_decimal(s21_decimal *dec, float *fl, int it) {
 
   s21_from_float_to_decimal(*fl, dec);
 
-  int even = it % 2;
-  if (even != 2) {
+  if (it % 3 != 0) {
     decimal_x10(dec);
     set_scale(dec, get_scale(*dec) + 1);
   }
@@ -199,16 +198,21 @@ START_TEST(t_from_float_to_decimal) {  // 12. s21_from_float_to_decimal
 END_TEST
 
 START_TEST(t_from_decimal_to_int) {  // 13. s21_from_decimal_to_int
-  // int i1;
-  // s21_decimal dec_res;
+  int i1;
+  s21_decimal dec_res;
   // проблемы с округлением
-  // float f1 = rand_float(_i, -F_MAX, F_MAX);
+  float f1 = rand_float(_i, -F_MAX, F_MAX);
 
-  // s21_from_float_to_decimal(f1, &dec_res);
+  s21_from_int_to_decimal((int)f1, &dec_res);
 
-  // s21_from_decimal_to_int(dec_res, &i1);
+  if (_i % 3 != 0) {
+    decimal_x10(&dec_res);
+    set_scale(&dec_res, get_scale(dec_res) + 1);
+  }
 
-  // ck_assert_int_eq((int)f1, i1);
+  s21_from_decimal_to_int(dec_res, &i1);
+
+  ck_assert_int_eq((int)f1, i1);
 }
 END_TEST
 
