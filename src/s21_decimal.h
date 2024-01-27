@@ -111,7 +111,7 @@ int s21_mantisa_compare(s21_decimal *value_1, s21_decimal *value_2);
 void switchEndian(s21_decimal *x);
 
 void decimal_x10(s21_decimal *src);
-void decimal_div10(s21_decimal *src);
+void decimal_div10(s21_decimal *src, bool roundup);
 
 float rand_float(int random, float min, float max);
 

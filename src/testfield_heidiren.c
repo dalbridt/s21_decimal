@@ -63,12 +63,12 @@ int main() {
   for (int i = 0; i < 30; i++) {
     debug_display_decimal("dec4", dec4);
 
-    decimal_div10(&dec4);
+    decimal_div10(&dec4, true);
 
     // b = divu10(b);
     // printf("%llu\n", b);
 
-    // decimal_div10(&dec4);
+    // decimal_div10(&dec4, true);
 
     // decimal_x10(&dec4);
     // dec4 = add_decimals_mantissa(&dec4, &dec5);
@@ -84,7 +84,7 @@ int main() {
   return 0;
 #endif
 
-  // printf("divided int %u", div10(abc));
+  // printf("divided int %u", div10(abc, true));
 
   // equalize_scale(&dec1, 1);
   // equalize_scale(&dec2, 1);
@@ -112,7 +112,7 @@ unsigned long long divu10(unsigned long long n) {
 
 #if FALSE
 
-u_int32_t div10(u_int32_t dividend) {
+u_int32_t div10(u_int32_t dividend, , true) {
   u_int64_t invDivisor = 0x1999999A;
   return (u_int32_t)((invDivisor * dividend) >> 32);
 }

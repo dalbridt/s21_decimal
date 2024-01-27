@@ -285,7 +285,14 @@ START_TEST(t_round) {  // 16. s21_round
 END_TEST
 
 START_TEST(t_truncate) {  // 17. s21_truncate
-  //
+  float fl = rand_float(_i, -F_MAX, F_MAX);
+  s21_decimal dec, dec_res, dec_int;
+  s21_from_float_to_decimal(fl, &dec);
+  double res;
+  modf(fl, &res);
+  s21_from_int_to_decimal((int)res, &dec_int);
+  s21_truncate(dec, &dec_res);
+  ck_assert_int_eq(s21_is_equal(dec_int, dec_res), 1);
 }
 END_TEST
 
