@@ -82,6 +82,7 @@ void set_bit(s21_decimal *src, int index, int value);
 long double get_mantissa(s21_decimal *src);
 void debug_display_decimal(char *name, s21_decimal src);
 void debug_display_float(float *src);
+void debug_display_int(int src);
 void reset_decimal(s21_decimal *src);
 void import_to_big_decimal(s21_decimal src, s21_big_decimal *dst);
 void import_to_small_decimal(s21_big_decimal src, s21_decimal *dst);

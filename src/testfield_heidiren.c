@@ -5,22 +5,7 @@
 
 #include "s21_decimal.h"
 
-#define SELECTOR 2
-
-int divideBy10(int num) {
-  // Right shift the bits by 1 (equivalent to dividing by 2)
-  int result = num >> 1;
-
-  // Right shift the bits by 3 more positions (equivalent to dividing by 8)
-  result >>= 3;
-
-  // Add the two results to get the final division by 10
-  result += result >> 1;
-  result += result >> 4;
-  result += result >> 4;
-
-  return result;
-}
+#define SELECTOR 5
 
 int main() {
   s21_decimal dec1 = {
@@ -118,8 +103,6 @@ int main() {
   return 0;
 }
 
-
-
 unsigned long long divu10(unsigned long long n) {
   unsigned long long q, r;
   q = (n >> 1) + (n >> 2);
@@ -137,6 +120,50 @@ unsigned long long divu10(unsigned long long n) {
 u_int32_t div10(u_int32_t dividend) {
   u_int64_t invDivisor = 0x1999999A;
   return (u_int32_t)((invDivisor * dividend) >> 32);
+}
+
+#elif (SELECTOR == 5)
+
+reset_decimal(&dec1);
+int int_res;
+for (int z = 0; z < 100; z++) {
+  float f1 = rand_float(z, -INT_MAX, INT_MAX);
+
+  int f1_int = (int)f1;
+  debug_display_int(f1_int);
+  s21_from_int_to_decimal(f1_int, &dec1);
+
+  s21_from_decimal_to_int(dec1, &int_res);
+
+  if ((int)f1 != int_res) {
+    printf("%d\n", z);
+    debug_display_decimal("dec1", dec1);
+    debug_display_int(int_res);
+    printf("\n%0.3f, %d = %d \n", f1, f1_int, int_res);
+    break;
+  }
+}
+
+#elif (SELECTOR == 5)
+
+reset_decimal(&dec1);
+int int_res;
+for (int z = 0; z < 100; z++) {
+  float f1 = rand_float(z, -INT_MAX, INT_MAX);
+
+  int f1_int = (int)f1;
+  debug_display_int(f1_int);
+  s21_from_int_to_decimal(f1_int, &dec1);
+
+  s21_from_decimal_to_int(dec1, &int_res);
+
+  if ((int)f1 != int_res) {
+    printf("%d\n", z);
+    debug_display_decimal("dec1", dec1);
+    debug_display_int(int_res);
+    printf("\n%0.3f, %d = %d \n", f1, f1_int, int_res);
+    break;
+  }
 }
 
 #endif

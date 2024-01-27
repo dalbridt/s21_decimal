@@ -8,8 +8,12 @@ int s21_from_decimal_to_int(s21_decimal src, int *dst) {
   }
   *dst = src.bits[0];
 
-  if (src.bits[3] & (1 << 31)) {
-    *dst = -1 * (*dst);
+  unsigned int sign = get_sign(src);
+  *dst = *dst & ~(1 << 31);
+
+  if (sign) {
+    *dst = -1 * *dst;
   }
+
   return 0;
 }
