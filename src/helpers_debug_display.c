@@ -82,3 +82,29 @@ void debug_display_float(float* src) {
   }
   printf("\n");
 }
+
+void debug_display_int(int src) {
+  //   unsigned int* b = (unsigned int*)src;
+  unsigned char byte;
+
+  int sign = signbit(src) == 0 ? 1 : -1;
+  int exp;
+
+  printf("int: %d is ", src);
+  printf("%s%d%s", C_RED, sign, C_NO);
+  printf(" * %s%d%s", C_BLUE, sign * src, C_NO);
+  printf(" = %d", src);
+  printf("\n");
+
+  for (short i = 0x20 - 1; i >= 0; i--) {
+    if (i % 8 == 7) printf(C_NO "[");
+    byte = (src >> i) & 1;
+    printf(C_BLUE);
+    // if (i > 0x16 && i < 0x1F) printf(C_NO C_GREEN);
+    if (i == 0x1F) printf(C_NO C_RED);
+
+    printf("%u" C_NO, byte);
+    if (i % 8 == 0) printf(C_NO "] ");
+  }
+  printf("\n");
+}

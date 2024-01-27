@@ -5,7 +5,7 @@
 
 #include "s21_decimal.h"
 
-#define SELECTOR 4
+#define SELECTOR 5
 
 int main() {
   s21_decimal dec1 = {
@@ -64,32 +64,60 @@ int main() {
     debug_display_decimal("dec4", dec4);
 
     decimal_div10(&dec4);
+
+    // b = divu10(b);
+    // printf("%llu\n", b);
+
+    // decimal_div10(&dec4);
+
+    // decimal_x10(&dec4);
+    // dec4 = add_decimals_mantissa(&dec4, &dec5);
   }
+  // decimal_mantissa_shift_l(&dec4, 1);
+  // debug_display_decimal("dec4", dec4);
 
-#elif (SELECTOR == 4)
+  // int number = 5000;
+  // int result = divideBy10(number);
 
-  for (int z = 0; z < 1; z++) {
-    float f1 = rand_float(z, -F_MAX, F_MAX);
-    float f2 = rand_float(z + 6, -F_MAX, F_MAX);
+  // printf("%d divided by 10 is %d\n", number, result);
 
-    s21_decimal dec1 = {0};
-    s21_decimal dec2 = {0};
-    s21_from_float_to_decimal(f1, &dec1);
-    s21_from_float_to_decimal(f2, &dec2);
+  return 0;
+#endif
 
-    debug_display_decimal("dec1", dec1);
-    debug_display_decimal("dec2", dec2);
+  // printf("divided int %u", div10(abc));
 
-    s21_decimal res = {0};
-    s21_sub(dec1, dec2, &res);
-    float flt_res;
-    s21_from_decimal_to_float(res, &flt_res);
-    debug_display_decimal("res", res);
-    printf("\n%0.3f - %0.3f = %0.3f \nshould be %0.3f\n", f1, f2, flt_res,
-           (f1 - f2));
-  }
+  // equalize_scale(&dec1, 1);
+  // equalize_scale(&dec2, 1);
+  // printf("\n");
+
+  // debug_display_decimal("dec3", &dec3);
+
+  // printf("are dec1 and dec2 equal? - %s\n",
+  //        (s21_is_equal(dec1, dec2) == 1) ? "yes" : "no");
+
+  return 0;
+}
+
+unsigned long long divu10(unsigned long long n) {
+  unsigned long long q, r;
+  q = (n >> 1) + (n >> 2);
+  q = q + (q >> 4);
+  q = q + (q >> 8);
+  q = q + (q >> 16);
+  q = q + (q >> 32);
+  q = q >> 3;
+  r = n - (((q << 2) + q) << 1);
+  return q + (r > 9);  // return q+((r+6)>>4);
+}
+
+#if FALSE
+
+u_int32_t div10(u_int32_t dividend) {
+  u_int64_t invDivisor = 0x1999999A;
+  return (u_int32_t)((invDivisor * dividend) >> 32);
+}
 
 #endif
 
-  return 0;
+return 0;
 }

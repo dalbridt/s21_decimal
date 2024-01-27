@@ -38,8 +38,15 @@ void randomize_decimal(s21_decimal *dec, float *fl, int it) {
 }
 
 START_TEST(t_add) {  // 01. s21_add
-  float f1, f2, flt_res;
-  s21_decimal dec1, dec2, dec_res;
+  float f1 = rand_float(_i, FLT_MIN, FLT_MAX);
+  float f2 = rand_float(_i + 6, FLT_MIN, FLT_MAX);
+  s21_decimal dec1 = {0};
+  s21_decimal dec2 = {0};
+  s21_from_float_to_decimal(f1, &dec1);
+  s21_from_float_to_decimal(f2, &dec2);
+  // ck_assert
+  float flt_res;
+  s21_decimal dec_res;
 
   randomize_decimal(&dec1, &f1, _i);
   randomize_decimal(&dec2, &f2, _i + 5);
