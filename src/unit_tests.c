@@ -275,7 +275,13 @@ START_TEST(t_from_decimal_to_float) {  // 14. s21_from_decimal_to_float
 END_TEST
 
 START_TEST(t_floor) {  // 15. s21_floor
-  //
+  float fl = rand_float(_i, -F_MAX, F_MAX);
+  s21_decimal dec, dec_res;
+  s21_from_float_to_decimal(fl, &dec);
+  fl = floor(fl);
+  s21_floor(dec, &dec_res);
+  s21_from_float_to_decimal(fl, &dec);
+  ck_assert_int_eq(s21_is_equal(dec_res, dec), 1);
 }
 END_TEST
 
