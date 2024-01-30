@@ -113,7 +113,6 @@ void decimal_div10(s21_decimal* src, unsigned int roundup) {
         .bits[2] = 0b00000000000000000000000000000000,
         .bits[3] = 0b00000000000000000000000000000000,
     };
-
     q = add_decimals_mantissa(&q, &one);
   }
 
