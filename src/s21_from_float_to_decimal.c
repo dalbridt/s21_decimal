@@ -5,7 +5,7 @@
 typedef union {
   int u_int;
   float u_float;
-} fti_union;
+} ftd_union;
 
 int s21_from_float_to_decimal(float src, s21_decimal *dst) {
   int ret = 1;
@@ -16,18 +16,18 @@ int s21_from_float_to_decimal(float src, s21_decimal *dst) {
       int exponent, sign = signbit(src);
       frexp(src, &exponent);
       double temp = fabs(src);
-      int off = 0;
+      int scale = 0;
       double pow_2_21 = pow(2, 21);
-      while (off < 28 && temp < pow_2_21) {
+      while (scale < 28 && temp < pow_2_21) {
         temp *= 10;
-        off++;
+        scale++;
       }
 
       if ((exponent > -94 && exponent < 96)) {
-        fti_union convertor = {0};
+        ftd_union convertor = {0};
         temp = round(temp);
-        while (fmod(temp, 10) == 0 && off > 0) {
-          off--;
+        while (fmod(temp, 10) == 0 && scale > 0) {
+          scale--;
           temp /= 10;
         }
 
@@ -40,7 +40,7 @@ int s21_from_float_to_decimal(float src, s21_decimal *dst) {
             dst->bits[exp / 0x20] |= 1 << exp % 0x20;
           }
         }
-        dst->bits[3] = (sign << 0x1f) | (off << 0x10);
+        dst->bits[3] = (sign << 0x1f) | (scale << 0x10);
       }
     }
     ret = 0;
@@ -55,7 +55,7 @@ int s21_from_float_to_decimal(float src, s21_decimal *dst) {
 typedef union {
   int u_int;
   float u_float;
-} fti_union;
+} ftd_union;
 
 int s21_from_float_to_decimal(float src, s21_decimal *dst) {
   int flag = 1;
@@ -69,18 +69,18 @@ int s21_from_float_to_decimal(float src, s21_decimal *dst) {
 
       if (exponent > -94 && exponent < 96) {
         double temp = fabs(src);
-        int off = 0;
+        int scale = 0;
 
         double pow_2_21 = pow(2, 21);
-        while (off < 28 && temp < pow_2_21) {
+        while (scale < 28 && temp < pow_2_21) {
           temp *= 10;
-          off++;
+          scale++;
         }
 
-        fti_union convertor = {0};
+        ftd_union convertor = {0};
 
-        while (fmod(temp, 10) == 0 && off > 0) {
-          off--;
+        while (fmod(temp, 10) == 0 && scale > 0) {
+          scale--;
           temp /= 10;
         }
 
@@ -93,7 +93,7 @@ int s21_from_float_to_decimal(float src, s21_decimal *dst) {
             dst->bits[exp / 0x20] |= 1 << exp % 0x20;
           }
         }
-        dst->bits[3] = (sign << 0x1f) | (off << 0x10);
+        dst->bits[3] = (sign << 0x1f) | (scale << 0x10);
 
       } else {
         flag = 1;
