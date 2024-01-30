@@ -6,7 +6,7 @@
 #include <time.h>
 
 #include "s21_decimal.h"
-#define ITER 40
+#define ITER 100
 #define TOL 1e-06
 
 float rand_float(int random, float min, float max) {
