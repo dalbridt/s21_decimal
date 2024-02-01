@@ -59,5 +59,5 @@ heidiren: clean format
 dalbridt: clean format
 	gcc testfield_dalbridt.c helpers*.c s21_*.c -o a.out && ./a.out
 
-annamaer: clean format
-	gcc testfield_annamaer.c helpers*.c s21_*.c -o a.out && ./a.out
+annamaer: clean
+	gcc testfield_annamaer.c helpers*.c s21_*.c -lm -o a.out && ./a.out

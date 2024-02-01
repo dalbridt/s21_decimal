@@ -262,6 +262,7 @@ s21_decimal sub_decimals_mantissa(s21_decimal* x, s21_decimal* y) {
   return result;
 }
 
+//Степени чисел принимаются за 10^0, знаки не учитываются
 void add_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
                      s21_big_decimal* result) {
   int res = 0, overflow = 0;
@@ -276,6 +277,8 @@ void add_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
 int mul_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
                     s21_big_decimal* result) {
   int count = 0, error = 0;
+  if(get_sign_big_decimal(value_1) != get_sign_big_decimal(value_2)) set_sign_big_decimal(result, 1);
+  int res_scale = get_scale_big_decimal(value_1) + get_scale_big_decimal(value_2);
   for (int i = 0; i < 448; i++) {
     if (get_bit_big_decimal(value_2, i)) {
       error = big_decimal_mantissa_shift_l(&value_1, i - count);
@@ -283,7 +286,21 @@ int mul_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
       count = i;
     }
   }
+  set_scale_big_decimal(result, res_scale);
   return error;
+}
+
+//Степени чисел принимаются за 10^0, знаки не учитываются
+void sub_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
+                     s21_big_decimal* result) {
+  int tmp = 0, res = 0;
+  for (int i = 0; i < 448; i++) {
+    res =
+        get_bit_big_decimal(value_1, i) - get_bit_big_decimal(value_2, i) - tmp;
+    tmp = res < 0;
+    res = abs(res);
+    set_bit_big_decimal(result, i, res % 2);
+  }
 }
 
 void decimal_x10(s21_decimal* src) {

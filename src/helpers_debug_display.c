@@ -129,7 +129,7 @@ void debug_display_int(int src) {
   //   unsigned int* b = (unsigned int*)src;
   unsigned char byte;
 
-  int sign = signbit(src) == 0 ? 1 : -1;
+  int sign = signbit((float)src) == 0 ? 1 : -1;
   int exp;
 
   printf("int: %d is ", src);
