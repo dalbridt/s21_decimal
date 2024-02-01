@@ -118,7 +118,8 @@ int s21_mantisa_compare(s21_decimal *value_1, s21_decimal *value_2);
 
 void add_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
                      s21_big_decimal *result);
-void sub_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2, s21_big_decimal *result);
+void sub_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
+                     s21_big_decimal *result);
 int mul_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
                     s21_big_decimal *result);
 

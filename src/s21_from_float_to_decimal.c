@@ -40,7 +40,8 @@ int s21_from_float_to_decimal(float src, s21_decimal *dst) {
             dst->bits[exp / 0x20] |= 1 << exp % 0x20;
           }
         }
-        dst->bits[3] = (sign << 0x1f) | (scale << 0x10);
+        set_scale(dst, scale);
+        set_sign(dst, sign);
       }
     }
     ret = 0;

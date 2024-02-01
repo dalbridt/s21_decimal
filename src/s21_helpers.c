@@ -277,8 +277,10 @@ void add_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
 int mul_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
                     s21_big_decimal* result) {
   int count = 0, error = 0;
-  if(get_sign_big_decimal(value_1) != get_sign_big_decimal(value_2)) set_sign_big_decimal(result, 1);
-  int res_scale = get_scale_big_decimal(value_1) + get_scale_big_decimal(value_2);
+  if (get_sign_big_decimal(value_1) != get_sign_big_decimal(value_2))
+    set_sign_big_decimal(result, 1);
+  int res_scale =
+      get_scale_big_decimal(value_1) + get_scale_big_decimal(value_2);
   for (int i = 0; i < 448; i++) {
     if (get_bit_big_decimal(value_2, i)) {
       error = big_decimal_mantissa_shift_l(&value_1, i - count);

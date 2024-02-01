@@ -55,15 +55,15 @@ int main() {  //
   //     0b1111111111111111111111111111111111111111111111111111111111111111;
   //     b.scale = 0b10000000000111000000000000000000;
   // int i_1 = randomize_int(1);
-  int i_2 = randomize_int(2);
+  int i_2 = randomize_int(1);
   // float f_1 = rand_float(i_1, -0xffffffff, 0xffffffff);
-  float f_2 = rand_float(i_2, -0xffffffff, 0xffffffff);
-
+  float f_2 = rand_float(i_2, -1000, 1000);
+  printf("%f\n", f_2);
   // randomize_decimal(&a, &f_1, i_1);
-  randomize_decimal(&b, &f_2, i_2);
-
+  // randomize_decimal(&b, &f_2, i_2);
+  s21_from_float_to_decimal(f_2, &b);
   // set_scale(&a, 0);
-  set_scale(&b, 0);
+  // set_scale(&b, 0);
 
   // a.bits[0] = 0b00000000000000000000000010000010;
   // a.bits[1] = 0b00000000000000000000000000000000;
@@ -78,12 +78,8 @@ int main() {  //
   // s21_decreace_scale_big_decimal(&b, 10);
   // debug_display_big_decimal("after", b);
 
-  debug_display_decimal("A", a);
   debug_display_decimal("B", b);
-
-  s21_negate(b, &a);
-  debug_display_decimal("A", a);
-  debug_display_decimal("B", b);
+  printf("%d", get_sign(b));
 
   return 0;
 }
