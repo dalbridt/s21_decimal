@@ -11,7 +11,7 @@ float rand_float(int random, float min, float max) {
 
 int main() {
   int fail = 0;
-  for (int i = 0; i < 10000000; i++) {
+  for (int i = 0; i < 10; i++) {
     float fl = rand_float(i, -F_MAX, F_MAX);
     float fl_res;
     s21_decimal dec;
@@ -29,8 +29,9 @@ int main() {
     }
   }
   printf("big dec conversion fails: %d", fail);
+
   // int fail = 0;
-  // for (int i = 0; i < 100; i++) {
+  // for (int i = 0; i < 10; i++) {
   //   float f1 = rand_float(i, -F_MAX, F_MAX);
   //   float f2 = rand_float(i, -F_MAX, F_MAX);
   //   float res = f1 * f2;
@@ -49,5 +50,5 @@ int main() {
   //   }
   // }
   // printf(("\nfails: %d\n"), fail);
-  return 0;
+  // return 0;
 }

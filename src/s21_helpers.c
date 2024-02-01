@@ -231,9 +231,11 @@ void import_to_big_decimal(s21_decimal src, s21_big_decimal* dst) {
 }
 
 void import_to_small_decimal(s21_big_decimal src, s21_decimal* dst) {
+  // normalize 
   dst->bits[0] = src.bits[0] & MAX4BITE;
   src.bits[0] >>= 32;
   dst->bits[1] = src.bits[0] & MAX4BITE;
+  // src.bits[1] >>= 32;
   dst->bits[2] = src.bits[1] & MAX4BITE;
   dst->bits[3] = src.scale & MAX4BITE;
 }
@@ -277,8 +279,8 @@ void add_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
 int mul_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
                     s21_big_decimal* result) {
   int count = 0, error = 0;
-  if (get_sign_big_decimal(value_1) != get_sign_big_decimal(value_2))
-    set_sign_big_decimal(result, 1);
+  // if (get_sign_big_decimal(value_1) != get_sign_big_decimal(value_2))
+  //   set_sign_big_decimal(result, 1); проверяем это в материнской функции
   int res_scale =
       get_scale_big_decimal(value_1) + get_scale_big_decimal(value_2);
   for (int i = 0; i < 448; i++) {
@@ -386,20 +388,6 @@ void equalize_scale(s21_decimal* value_1, s21_decimal* value_2) {
     }
   }
 }
-
-// void equalize_scale(s21_decimal* value, int scale_required) {
-//   int scale_cur = get_scale(*value);
-//   if (scale_cur < scale_required) {
-//     for (; scale_cur < scale_required; scale_cur++) {
-//       decimal_x10(value);
-//     }
-//   } else if (scale_cur > scale_required) {
-//     for (; scale_cur > scale_required; scale_cur--) {
-//       decimal_div10(value);
-//     }
-//   }
-//   set_scale(value, scale_required);
-// }
 
 #if FALSE
 
