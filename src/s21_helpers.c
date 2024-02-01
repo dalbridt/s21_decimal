@@ -262,7 +262,7 @@ s21_decimal sub_decimals_mantissa(s21_decimal* x, s21_decimal* y) {
   return result;
 }
 
-//Степени чисел принимаются за 10^0, знаки не учитываются
+// Степени чисел принимаются за 10^0, знаки не учитываются
 void add_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
                      s21_big_decimal* result) {
   int res = 0, overflow = 0;
@@ -292,7 +292,7 @@ int mul_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
   return error;
 }
 
-//Степени чисел принимаются за 10^0, знаки не учитываются
+// Степени чисел принимаются за 10^0, знаки не учитываются
 void sub_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
                      s21_big_decimal* result) {
   int tmp = 0, res = 0;
