@@ -22,7 +22,7 @@ typedef struct {
 
 typedef struct {
   uint64_t bits[7];
-  uint16_t scale;
+  uint32_t scale;
 } s21_big_decimal;
 
 // Arithmetic Operators
@@ -85,17 +85,25 @@ int get_bit(s21_decimal src, int index);
 void set_bit(s21_decimal *src, int index, int value);
 long double get_mantissa(s21_decimal *src);
 void debug_display_decimal(char *name, s21_decimal src);
+void debug_display_big_decimal(char *name, s21_big_decimal src);
 void debug_display_float(float *src);
 void debug_display_int(int src);
 void reset_decimal(s21_decimal *src);
-// void import_to_big_decimal(s21_decimal src, s21_big_decimal *dst);
-// void import_to_small_decimal(s21_big_decimal src, s21_decimal *dst);
+void import_to_big_decimal(s21_decimal src, s21_big_decimal *dst);
+void import_to_small_decimal(s21_big_decimal src, s21_decimal *dst);
 void reset_big_decimal(s21_big_decimal *src);
 int decimal_is_zero(s21_decimal src);
-// int big_decimal_is_zero(s21_big_decimal src);
+int big_decimal_is_zero(s21_big_decimal src);
 int get_bit_big_decimal(s21_big_decimal src, int index);
 void set_bit_big_decimal(s21_big_decimal *dst, int index, int bit);
-
+int get_sign_big_decimal(s21_big_decimal num);
+void set_sign_big_decimal(s21_big_decimal *num, int sign_value);
+int get_scale_big_decimal(s21_big_decimal num);
+void set_scale_big_decimal(s21_big_decimal *num, int scale_value);
+void switch_endian_big_decimal(s21_big_decimal *x);
+int big_decimal_mantissa_shift_l(s21_big_decimal *dst, int offset);
+void big_decimal_mantissa_shift_r(s21_big_decimal *dst, int offset);
+long double get_mantissa_big_decimal(s21_big_decimal *src);
 void max_decimal(s21_decimal *dst);
 void min_decimal(s21_decimal *dst);
 // void small_decimal(s21_decimal *dst);
@@ -107,6 +115,12 @@ s21_decimal sub_decimals_mantissa(s21_decimal *x, s21_decimal *y);
 void decimal_mantissa_shift_l(s21_decimal *dec, int offset);
 void decimal_mantissa_shift_r(s21_decimal *dec, int offset);
 int s21_mantisa_compare(s21_decimal *value_1, s21_decimal *value_2);
+
+void add_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
+                     s21_big_decimal *result);
+
+int mul_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
+                    s21_big_decimal *result);
 
 void switchEndian(s21_decimal *x);
 

@@ -49,9 +49,51 @@ void debug_display_decimal(char* name, s21_decimal src) {
   printf("\n");
 }
 
-// void debug_display_big_decimal(char* name, s21_big_decimal src) {
+void debug_display_big_decimal(char* name, s21_big_decimal src) {
+  uint64_t* b = &src.bits[0];
+  unsigned int byte;
 
-// }
+  int sign = get_sign_big_decimal(src);
+  int exp = get_scale_big_decimal(src);
+
+  long double mantissa = get_mantissa_big_decimal(&src);
+  long double mantissa_copy = mantissa;
+  int exp_copy = exp;
+
+  while (exp_copy > 0) {
+    mantissa_copy /= 10;
+    exp_copy--;
+  }
+
+  printf("big decimal %s: is ", name);
+  printf("%s%d%s", C_RED, sign ? -1 : 1, C_NO);
+  printf(" * %s%Lf%s", C_BLUE, mantissa, C_NO);
+  printf(" / 10^%s%d%s", C_GREEN, exp, C_NO);
+  printf(" =~ %Lf", mantissa_copy * (sign ? -1 : 1));
+  printf("\n");
+
+  for (short i = 0x1E0 - 1; i >= 0; i--) {
+    if (i % 8 == 7) printf(C_NO "[");
+    if (i >= 0x1E0 && i <= 0x19F) {
+      byte = (b[i / 0x20] >> i) & 1;
+    } else {
+      byte = (b[i / 0x40] >> i) & 1;
+    }
+    printf(C_BLUE);
+    if (i / 0x40 == 7) {
+      printf(C_GREY);  // C_INVIS
+
+      if (i > 0x1D5 && i <= 0x1D8) printf(C_GREY);
+      if (i > 0x1CF && i < 0x1D5) printf(C_NO C_GREEN);
+      if (i == 0x1DF) printf(C_NO C_RED);
+    }
+
+    printf("%u" C_NO, byte);
+    if (i % 8 == 0) printf(C_NO "] ");
+    if (i % 64 == 0) printf("\n");
+  }
+  printf("\n");
+}
 
 void debug_display_float(float* src) {
   unsigned int* b = (unsigned int*)src;
