@@ -30,8 +30,7 @@ void randomize_decimal(s21_decimal *dec, float *fl, int it) {
   s21_from_float_to_decimal(*fl, dec);
 
   if (it % 3 != 0) {
-    decimal_x10(dec);
-    set_scale(dec, get_scale(*dec) + 1);
+    upscale_x10(dec);
   }
 }
 

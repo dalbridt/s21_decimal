@@ -11,5 +11,4 @@ int s21_is_equal(s21_decimal value_1, s21_decimal value_2) {
     value = get_mantissa(&value_1) == get_mantissa(&value_2);
   }
   return value;
-  // return !s21_is_not_equal(value_1, value_2);
 }

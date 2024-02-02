@@ -2,6 +2,11 @@
 
 /*S21_DECIMAL BASIC HELPERS*/
 
+void upscale_x10(s21_decimal* dec) {
+  decimal_x10(dec);
+  set_scale(dec, (get_scale(*dec) + 1));
+}
+
 int get_scale(s21_decimal num) { return ((SCALE & num.bits[3]) >> 16); }
 
 void set_scale(s21_decimal* num, int scale_value) {
@@ -20,20 +25,25 @@ void set_sign(s21_decimal* num, int sign_value) {
     num->bits[3] |= mask;
 }
 
-int get_bit(s21_decimal src, int index) {
-  int mask = 1u << (index % 32);
-  return (src.bits[index / 32] & mask) != 0;
+void decimal_one(s21_decimal* decimal) {
+  reset_decimal(decimal);
+  decimal->bits[0] = 1u;
 }
 
-void set_bit(s21_decimal* src, int index, int value) {
-  int arr_index = index / 32;
-  int bit_index = index % 32;
-  if (value == 1) {
-    src->bits[arr_index] |= (1u << bit_index);
-  } else if (value == 0) {
-    src->bits[arr_index] &= ~(1u << bit_index);
-  }
-}
+// int get_bit(s21_decimal src, int index) {
+//   int mask = 1u << (index % 32);
+//   return (src.bits[index / 32] & mask) != 0;
+// }
+
+// void set_bit(s21_decimal* src, int index, int value) {
+//   int arr_index = index / 32;
+//   int bit_index = index % 32;
+//   if (value == 1) {
+//     src->bits[arr_index] |= (1u << bit_index);
+//   } else if (value == 0) {
+//     src->bits[arr_index] &= ~(1u << bit_index);
+//   }
+// }
 
 void reset_decimal(s21_decimal* src) { *src = (s21_decimal){0}; }
 
@@ -41,19 +51,19 @@ int decimal_is_zero(s21_decimal src) {
   return (src.bits[0] == 0 && src.bits[1] == 0 && src.bits[2] == 0);
 }
 
-void max_decimal(s21_decimal* dst) {
-  dst->bits[0] = 0b11111111111111111111111111111111;
-  dst->bits[1] = 0b11111111111111111111111111111111;
-  dst->bits[2] = 0b11111111111111111111111111111111;
-  dst->bits[3] = 0b00000000000111000000000000000000;
-}
+// void max_decimal(s21_decimal* dst) {
+//   dst->bits[0] = 0b11111111111111111111111111111111;
+//   dst->bits[1] = 0b11111111111111111111111111111111;
+//   dst->bits[2] = 0b11111111111111111111111111111111;
+//   dst->bits[3] = 0b00000000000111000000000000000000;
+// }
 
-void min_decimal(s21_decimal* dst) {
-  dst->bits[0] = 0b11111111111111111111111111111111;
-  dst->bits[1] = 0b11111111111111111111111111111111;
-  dst->bits[2] = 0b11111111111111111111111111111111;
-  dst->bits[3] = 0b10000000000111000000000000000000;
-}
+// void min_decimal(s21_decimal* dst) {
+//   dst->bits[0] = 0b11111111111111111111111111111111;
+//   dst->bits[1] = 0b11111111111111111111111111111111;
+//   dst->bits[2] = 0b11111111111111111111111111111111;
+//   dst->bits[3] = 0b10000000000111000000000000000000;
+// }
 
 void switchEndian(s21_decimal* x) {
   unsigned int temp0 = x->bits[0];
@@ -387,12 +397,8 @@ void decimal_div10(s21_decimal* src, unsigned int roundup) {
   q = add_decimals_mantissa(&q, &src_copy);
 
   if (r.bits[0] >= (0xA - roundup)) {
-    s21_decimal one = {
-        .bits[0] = 0b00000000000000000000000000000001,
-        .bits[1] = 0b00000000000000000000000000000000,
-        .bits[2] = 0b00000000000000000000000000000000,
-        .bits[3] = 0b00000000000000000000000000000000,
-    };
+    s21_decimal one;
+    decimal_one(&one);
     q = add_decimals_mantissa(&q, &one);
   }
 

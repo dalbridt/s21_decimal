@@ -18,7 +18,8 @@
     "climits": "c",
     "string": "c",
     "complex": "c",
-    "__locale": "c"
+    "__locale": "c",
+    "ios": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

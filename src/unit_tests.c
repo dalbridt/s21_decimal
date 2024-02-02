@@ -6,7 +6,8 @@
 #include <time.h>
 
 #include "s21_decimal.h"
-#define ITER 100
+
+#define ITER 200
 #define TOL 1e-06
 
 float rand_float(int random, float min, float max) {
@@ -31,8 +32,7 @@ void randomize_decimal(s21_decimal *dec, float *fl, int it) {
   s21_from_float_to_decimal(*fl, dec);
 
   if (it % 3 != 0) {
-    decimal_x10(dec);
-    set_scale(dec, get_scale(*dec) + 1);
+    upscale_x10(dec);
   }
 }
 
@@ -82,8 +82,7 @@ START_TEST(t_mul) {  // 03. s21_mul
   s21_from_float_to_decimal(f1, &dec1);
   s21_from_float_to_decimal(f2, &dec2);
   if (_i % 5 == 0) {
-    decimal_x10(&dec1);
-    set_scale(&dec1, (get_scale(dec1) + 1));
+    upscale_x10(&dec1);
   }
   s21_mul(dec1, dec2, &dec_res);
   s21_from_decimal_to_float(dec_res, &conv_res);
@@ -169,6 +168,13 @@ START_TEST(t_is_greater_or_equal) {  // 08. s21_is_greater_or_equal
   s21_decimal dec_2 = {0};
   s21_from_float_to_decimal(val1, &dec_1);
   s21_from_float_to_decimal(val2, &dec_2);
+
+  if (_i % 3 == 0) {
+    upscale_x10(&dec_1);
+  }
+  if (_i % 5 == 0) {
+    upscale_x10(&dec_2);
+  }
   int res = val1 >= val2;
   ck_assert_int_eq(res, s21_is_greater_or_equal(dec_1, dec_2));
 }
@@ -265,8 +271,7 @@ START_TEST(t_from_decimal_to_int) {  // 13. s21_from_decimal_to_int
   s21_from_int_to_decimal((int)f1, &dec_res);
 
   if (_i % 3 != 0) {
-    decimal_x10(&dec_res);
-    set_scale(&dec_res, get_scale(dec_res) + 1);
+    upscale_x10(&dec_res);
   }
 
   s21_from_decimal_to_int(dec_res, &i1);
@@ -293,8 +298,12 @@ START_TEST(t_floor) {  // 15. s21_floor
   float fl = rand_float(_i, -F_MAX, F_MAX);
   s21_decimal dec, dec_res;
   s21_from_float_to_decimal(fl, &dec);
+  if (_i % 3 == 0) {
+    upscale_x10(&dec);
+  }
   fl = floor(fl);
   s21_floor(dec, &dec_res);
+
   s21_from_float_to_decimal(fl, &dec);
   ck_assert_int_eq(s21_is_equal(dec_res, dec), 1);
 }
@@ -305,7 +314,11 @@ START_TEST(t_round) {  // 16. s21_round
   s21_decimal dec, dec_res;
   s21_from_float_to_decimal(fl, &dec);
   fl = round(fl);
+  if (_i % 3 != 0) {
+    upscale_x10(&dec);
+  }
   s21_round(dec, &dec_res);
+
   s21_from_float_to_decimal(fl, &dec);
   ck_assert_int_eq(s21_is_equal(dec_res, dec), 1);
 }
@@ -318,6 +331,9 @@ START_TEST(t_truncate) {  // 17. s21_truncate
   double res;
   modf(fl, &res);
   s21_from_int_to_decimal((int)res, &dec_int);
+  if (_i % 3 != 0) {
+    upscale_x10(&dec);
+  }
   s21_truncate(dec, &dec_res);
   ck_assert_int_eq(s21_is_equal(dec_int, dec_res), 1);
 }
