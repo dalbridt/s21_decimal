@@ -122,6 +122,7 @@ void sub_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
                      s21_big_decimal *result);
 int mul_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
                     s21_big_decimal *result);
+void big_decimal_div10(s21_big_decimal* src); 
 
 void switchEndian(s21_decimal *x);
 

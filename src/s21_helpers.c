@@ -231,11 +231,10 @@ void import_to_big_decimal(s21_decimal src, s21_big_decimal* dst) {
 }
 
 void import_to_small_decimal(s21_big_decimal src, s21_decimal* dst) {
-  // normalize 
+  // normalize
   dst->bits[0] = src.bits[0] & MAX4BITE;
   src.bits[0] >>= 32;
   dst->bits[1] = src.bits[0] & MAX4BITE;
-  // src.bits[1] >>= 32;
   dst->bits[2] = src.bits[1] & MAX4BITE;
   dst->bits[3] = src.scale & MAX4BITE;
 }
@@ -305,6 +304,50 @@ void sub_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
     res = abs(res);
     set_bit_big_decimal(result, i, res % 2);
   }
+}
+
+// Не учитывает скейл, делит только мантиссу 
+void big_decimal_div10(s21_big_decimal* src) {
+  s21_big_decimal src_copy = *src;
+  s21_big_decimal src_copy2 = *src;
+  big_decimal_mantissa_shift_r(&src_copy, 1);
+  big_decimal_mantissa_shift_r(&src_copy2, 2);
+  s21_big_decimal q = {0}, temp = {0};
+  add_big_decimal(src_copy, src_copy2, &q);
+
+  for (int i = 4; i < 512; i *= 2) {  // поч 512?
+    src_copy = q;
+    big_decimal_mantissa_shift_r(&src_copy, i);
+    add_big_decimal(src_copy, q, &temp);
+    q = temp;
+  }
+  big_decimal_mantissa_shift_r(&q, 3);
+  src_copy2 = q;
+  big_decimal_mantissa_shift_l(&src_copy2, 2);
+  reset_big_decimal(&temp);
+  add_big_decimal(src_copy2, q, &temp);
+  src_copy2 = temp;
+  s21_big_decimal r;
+  sub_big_decimal(*src, src_copy2, &r);
+  reset_big_decimal(&temp);
+  add_big_decimal(src_copy, q, &temp);
+
+  if (temp.bits[0] >= 9) {
+    s21_big_decimal one = {
+        .bits[0] = 0b00000000000000000000000000000000000000000000000000000001,
+        .bits[1] = 0b00000000000000000000000000000000000000000000000000000000,
+        .bits[2] = 0b00000000000000000000000000000000000000000000000000000000,
+        .bits[3] = 0b00000000000000000000000000000000000000000000000000000000,
+        .bits[4] = 0b00000000000000000000000000000000000000000000000000000000,
+        .bits[5] = 0b00000000000000000000000000000000000000000000000000000000,
+        .bits[6] = 0b00000000000000000000000000000000000000000000000000000000,
+        .scale = 0b00000000000000000000000000000000,
+    };
+    reset_big_decimal(&q);
+    add_big_decimal(temp, one, &q);
+  }
+
+  *src = q;
 }
 
 void decimal_x10(s21_decimal* src) {
