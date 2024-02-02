@@ -54,7 +54,7 @@ START_TEST(t_add) {  // 01. s21_add
 
   s21_from_decimal_to_float(dec_res, &flt_res);
 
-  ck_assert_float_eq_tol(flt_res, f1 + f2, 0.001);
+  ck_assert_float_eq_tol(flt_res, f1 + f2, TOL);
 }
 END_TEST
 
@@ -69,12 +69,25 @@ START_TEST(t_sub) {  // 02. s21_sub
 
   s21_from_decimal_to_float(dec_res, &flt_res);
 
-  ck_assert_float_eq_tol(flt_res, f1 - f2, 0.001);
+  ck_assert_float_eq_tol(flt_res, f1 - f2, TOL);
 }
 END_TEST
 
 START_TEST(t_mul) {  // 03. s21_mul
-  //
+  float f1 = rand_float(_i, -F_MAX / 2, F_MAX / 2);
+  float f2 = rand_float(_i, -F_MAX / 2, F_MAX / 2);
+  float res = f1 * f2;
+  float conv_res;
+  s21_decimal dec1, dec2, dec_res;
+  s21_from_float_to_decimal(f1, &dec1);
+  s21_from_float_to_decimal(f2, &dec2);
+  if (_i % 5 == 0) {
+    decimal_x10(&dec1);
+    set_scale(&dec1, (get_scale(dec1) + 1));
+  }
+  s21_mul(dec1, dec2, &dec_res);
+  s21_from_decimal_to_float(dec_res, &conv_res);
+  ck_assert_float_eq_tol(res, conv_res, TOL);
 }
 END_TEST
 
@@ -179,7 +192,7 @@ START_TEST(t_is_equal) {  // 09. s21_is_equal
   reset_decimal(&dec2);
   int res = s21_is_equal(dec1, dec2);
   ck_assert_int_eq(res, 1);
-  // is it too much for one test and should be two?
+  // // is it too much for one test and should be two?
   float f_val = rand_float(_i, -F_MAX, F_MAX);
   if (_i % 2 == 0) {
     s21_from_float_to_decimal(f_val, &dec1);
@@ -187,8 +200,10 @@ START_TEST(t_is_equal) {  // 09. s21_is_equal
     int res = s21_is_equal(dec1, dec2);
     ck_assert_int_eq(res, 1);
   } else {
+    float not_eq = f_val + 100;
+    // printf("#%d |f_val: %f | 2nd: %f \n", _i, f_val, not_eq);
     s21_from_float_to_decimal(f_val, &dec1);
-    s21_from_float_to_decimal(f_val + _i, &dec2);
+    s21_from_float_to_decimal(not_eq, &dec2);
     int res = s21_is_equal(dec1, dec2);
     ck_assert_int_eq(res, 0);
   }
@@ -238,7 +253,7 @@ START_TEST(t_from_float_to_decimal) {  // 12. s21_from_float_to_decimal
 
   s21_from_decimal_to_float(dec_res, &flt_res);
 
-  ck_assert_float_eq_tol(flt_res, f1, 0.001);
+  ck_assert_float_eq_tol(flt_res, f1, TOL);
 }
 END_TEST
 
@@ -270,7 +285,7 @@ START_TEST(t_from_decimal_to_float) {  // 14. s21_from_decimal_to_float
 
   s21_from_decimal_to_float(dec_res, &flt_res);
 
-  ck_assert_float_eq_tol(flt_res, f1, 0.001);
+  ck_assert_float_eq_tol(flt_res, f1, TOL);
 }
 END_TEST
 
@@ -318,7 +333,7 @@ START_TEST(t_negate) {  // 18. s21_negate
 
   s21_from_decimal_to_float(dec_res, &flt_res);
 
-  ck_assert_float_eq_tol(flt_res, -f1, 0.001);
+  ck_assert_float_eq_tol(flt_res, -f1, TOL);
 }
 END_TEST
 

@@ -306,7 +306,7 @@ void sub_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
   }
 }
 
-// Не учитывает скейл, делит только мантиссу 
+// Не учитывает скейл, делит только мантиссу
 void big_decimal_div10(s21_big_decimal* src) {
   s21_big_decimal src_copy = *src;
   s21_big_decimal src_copy2 = *src;

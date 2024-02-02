@@ -14,7 +14,7 @@
 #define SCALE 0x00ff0000     // 0b00000000 11111111 00000000 00000000
 #define MAX4BITE 0xffffffff  // 0b1111111 1111111 1111111 1111111
 
-#define F_MAX 1233.01  // 4523462362123231234562456.23123
+#define F_MAX 719716300.0  
 
 typedef struct {
   unsigned int bits[4];
