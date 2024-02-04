@@ -30,20 +30,20 @@ void decimal_one(s21_decimal* decimal) {
   decimal->bits[0] = 1u;
 }
 
-// int get_bit(s21_decimal src, int index) {
-//   int mask = 1u << (index % 32);
-//   return (src.bits[index / 32] & mask) != 0;
-// }
+int get_bit(s21_decimal src, int index) {
+  int mask = 1u << (index % 32);
+  return (src.bits[index / 32] & mask) != 0;
+}
 
-// void set_bit(s21_decimal* src, int index, int value) {
-//   int arr_index = index / 32;
-//   int bit_index = index % 32;
-//   if (value == 1) {
-//     src->bits[arr_index] |= (1u << bit_index);
-//   } else if (value == 0) {
-//     src->bits[arr_index] &= ~(1u << bit_index);
-//   }
-// }
+void set_bit(s21_decimal* src, int index, int value) {
+  int arr_index = index / 32;
+  int bit_index = index % 32;
+  if (value == 1) {
+    src->bits[arr_index] |= (1u << bit_index);
+  } else if (value == 0) {
+    src->bits[arr_index] &= ~(1u << bit_index);
+  }
+}
 
 void reset_decimal(s21_decimal* src) { *src = (s21_decimal){0}; }
 

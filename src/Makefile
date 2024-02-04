@@ -20,14 +20,14 @@ endif
 CC=gcc 
 CFLAGS = -c -Wall -Werror -Wextra -std=c11
 
-# 
+UT_EXEC=unit_test_out
 
 BUILD_FLAGS=
 COVERAGE_FLAGS= -fprofile-arcs -ftest-coverage
 all: clean format test_seq
 test_seq: test call_test gcov_report genhtml
 test: unit_tests.o s21_decimal_tests.a
-	$(CC) unit_tests.o -L. -ls21_decimal $(CHECK_FLAGS) -o unit_test_out
+	$(CC) unit_tests.o -L. -ls21_decimal $(CHECK_FLAGS) -o $(UT_EXEC)
 s21_decimal.o: s21_*.c
 	$(CC) $(CFLAGS) -c s21_*.c
 s21_decimal_tests.o: s21_*.c
@@ -43,21 +43,23 @@ ifeq ($(OS),Darwin)
 endif
 
 call_test:
-	./unit_test_out
+	./$(UT_EXEC)
 s21_decimal.a: s21_decimal.o
 	ar rcs s21_decimal.a s21_*.o
 s21_decimal_tests.a: s21_decimal_tests.o
 	ar rcs libs21_decimal.a s21_*.o
 clean:	
-	rm -rf *.o *.gcno *.gcda *.html *.css *.info unit_test_out report_test_coverage *.a *.out test_report.log
+	rm -rf *.o *.gcno *.gcda *.html *.css *.info $(UT_EXEC) report_test_coverage *.a *.out test_report.log
 format:
 	clang-format -i *.c 
 #DEBUG_TARGETS
+DEB_EXEC=a.out
+
 heidiren: clean format
-	gcc testfield_heidiren.c helpers*.c s21_*.c -o a.out && ./a.out
+	gcc testfield_heidiren.c helpers*.c s21_*.c -o $(DEB_EXEC) && ./$(DEB_EXEC)
 
 dalbridt: clean format
-	gcc testfield_dalbridt.c helpers*.c s21_*.c -o a.out && ./a.out
+	gcc testfield_dalbridt.c helpers*.c s21_*.c -o $(DEB_EXEC) && ./$(DEB_EXEC)
 
 annamaer: clean
-	gcc testfield_annamaer.c helpers*.c s21_*.c -lm -o a.out && ./a.out
+	gcc testfield_annamaer.c helpers*.c s21_*.c -lm -o $(DEB_EXEC) && ./$(DEB_EXEC)
