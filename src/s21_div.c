@@ -89,7 +89,7 @@ void divide_dec(s21_decimal dividend, s21_decimal divisor,
     // debug_display_decimal("ostatok", quot_2);
     s21_add(*quotient, quot_2, quotient);
   } else {
-    set_scale(quotient, div_new_scale + dividend_scale);
+    set_scale(quotient, div_new_scale + dividend_scale - divisor_scale);
   }
   set_sign(quotient, sign_dividend ^ sign_divisor);
 }
