@@ -128,6 +128,9 @@ void switchEndian(s21_decimal *x);
 
 void decimal_x10(s21_decimal *src);
 void decimal_div10(s21_decimal *src, unsigned int roundup);
+void divide_dec(s21_decimal dividend, s21_decimal divisor,
+                s21_decimal *quotient, s21_decimal *remainder, int stop);
+
 
 float rand_float(int random, float min, float max);
 
