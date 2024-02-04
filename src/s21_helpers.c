@@ -438,6 +438,25 @@ void equalize_scale(s21_decimal* value_1, s21_decimal* value_2) {
   }
 }
 
+void s21_decreace_scale_big_decimal(s21_big_decimal* dst, int n) {
+  int scale = get_scale_big_decimal(*dst);
+  for (int i = 0; i < n; i++) {
+    scale--;
+  }
+  set_scale_big_decimal(dst, scale);
+}
+
+int s21_post_normalization(s21_big_decimal* result, int scale) {
+  while ((result->bits[3] || result->bits[4] || result->bits[5] ||
+          result->bits[6]) &&
+         scale > 0) {
+    s21_decreace_scale_big_decimal(result, 1);
+    big_decimal_mantissa_shift_r(result, 1);
+  }
+
+  return scale;
+}
+
 #if FALSE
 
 u_int32_t div10(u_int32_t dividend) {

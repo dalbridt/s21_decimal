@@ -30,12 +30,8 @@ void divide_dec(s21_decimal dividend, s21_decimal divisor,
   int divisor_scale = get_scale(divisor);
   int div_new_scale = dividend_scale;
 
-  while (s21_is_greater(divisor, dividend)) {
-    decimal_x10(&dividend);
-    div_new_scale++;
-  }
   if (stop == 1) {
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 7; i++) {
       decimal_x10(&dividend);
       div_new_scale++;
     }
@@ -81,12 +77,9 @@ void divide_dec(s21_decimal dividend, s21_decimal divisor,
     }
   }
   if (stop == 0) {
-    divisor.bits[3] = 0;
-    remainder->bits[3] = 0;
     s21_decimal quot_2 = {0};
     s21_decimal rem_2 = {0};
     divide_dec(*remainder, divisor, &quot_2, &rem_2, 1);
-    // debug_display_decimal("ostatok", quot_2);
     s21_add(*quotient, quot_2, quotient);
   } else {
     set_scale(quotient, div_new_scale + dividend_scale - divisor_scale);

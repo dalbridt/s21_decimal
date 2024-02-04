@@ -34,7 +34,7 @@ int main() {
 
   // --------- DIV ------------
   int fail = 0;
-  float range = 1300.03123;
+  float range = 1301230.03123;
   int i = 0;
   for (; i < 1000; i++) {
     float f1 = rand_float(i + 5, -range, range);
@@ -50,11 +50,8 @@ int main() {
     //   printf("iter # %d\n", i);
     // }
     if (fabs(conv_res - res) > 0.01) {
-      // printf(
-      //     " f1: %6.6f | f2: %6.6f orig :  %6.6f  || conv_res: %6.6f || delta:
-      //     "
-      //     "%6.6f\n",
-      //     f1, f2, res, conv_res, fabs(conv_res / 10 - res));
+      printf("%0.3f/%0.3f=%0.8f =? %0.8f || delta: %0.8f\n", f1, f2, res,
+             conv_res, fabs(conv_res - res));
       fail++;
     }
   }

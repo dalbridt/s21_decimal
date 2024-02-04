@@ -78,3 +78,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 *.gcno
+*.gcda
+*.html
+*.css
+test_report.log

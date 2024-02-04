@@ -20,7 +20,7 @@ endif
 CC=gcc 
 CFLAGS = -c -Wall -Werror -Wextra -std=c11
 
-UT_EXEC=unit_test_out
+UT_EXEC=unit_test.out
 
 BUILD_FLAGS=
 COVERAGE_FLAGS= -fprofile-arcs -ftest-coverage

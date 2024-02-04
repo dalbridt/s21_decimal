@@ -75,7 +75,7 @@ END_TEST
 
 START_TEST(t_mul) {  // 03. s21_mul
   float f1 = rand_float(_i, -F_MAX / 2, F_MAX / 2);
-  float f2 = rand_float(_i, -F_MAX / 2, F_MAX / 2);
+  float f2 = rand_float(_i + 10, -F_MAX / 2, F_MAX / 2);
   float res = f1 * f2;
   float conv_res;
   s21_decimal dec1, dec2, dec_res;
@@ -91,7 +91,25 @@ START_TEST(t_mul) {  // 03. s21_mul
 END_TEST
 
 START_TEST(t_div) {  // 04. s21_div
-  //
+  float f1 = rand_float(_i, -F_MAX / 2, F_MAX / 2);
+  float f2 = 0;
+  while (f2 == 0) {
+    f2 = rand_float(_i + 10, -F_MAX / 2, F_MAX / 2);
+  }
+  float res = f1 / f2;
+  float conv_res;
+  s21_decimal dec1, dec2, dec_res;
+  s21_from_float_to_decimal(f1, &dec1);
+  s21_from_float_to_decimal(f2, &dec2);
+  if (_i % 3 == 0) {
+    upscale_x10(&dec2);
+  }
+  if (_i % 5 == 0) {
+    upscale_x10(&dec1);
+  }
+  s21_div(dec1, dec2, &dec_res);
+  s21_from_decimal_to_float(dec_res, &conv_res);
+  ck_assert_float_eq_tol(res, conv_res, TOL);
 }
 END_TEST
 
@@ -143,9 +161,13 @@ START_TEST(t_is_greater) {  // 07. s21_is_greater
   if (_i % 5 == 0) {
     val2 = round(val2);
   }
+
   s21_decimal dec_1 = {0};
   s21_decimal dec_2 = {0};
   s21_from_float_to_decimal(val1, &dec_1);
+  if (_i % 9 != 0) {
+    upscale_x10(&dec_1);
+  }
   s21_from_float_to_decimal(val2, &dec_2);
   int res = val1 > val2;
   ck_assert_int_eq(res, s21_is_greater(dec_1, dec_2));

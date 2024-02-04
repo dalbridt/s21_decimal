@@ -131,10 +131,12 @@ void decimal_div10(s21_decimal *src, unsigned int roundup);
 void divide_dec(s21_decimal dividend, s21_decimal divisor,
                 s21_decimal *quotient, s21_decimal *remainder, int stop);
 
-
 float rand_float(int random, float min, float max);
 
 void upscale_x10(s21_decimal *dec);
 void decimal_one(s21_decimal *decimal);
+
+void s21_decreace_scale_big_decimal(s21_big_decimal *dst, int n);
+int s21_post_normalization(s21_big_decimal *result, int scale);
 
 #endif
