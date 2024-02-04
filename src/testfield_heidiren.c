@@ -67,42 +67,30 @@ void divide_dec(s21_decimal dividend, s21_decimal divisor,
   num_bits = 96;
 
   while (s21_is_less(*remainder, divisor) && num_bits > 0) {
-    // debug_display_decimal("smth", divisor);
     bit = get_bit(dividend, 95);
-    // printf("bit %d\n", bit);
-    // *remainder = (*remainder << 1) | bit;
     decimal_mantissa_shift_l(remainder, 1);
     if (bit) set_bit(remainder, 0, bit);
 
     d = dividend;
-    // dividend = dividend << 1;
     decimal_mantissa_shift_l(&dividend, 1);
 
     num_bits--;
   }
 
   dividend = d;
-  // *remainder = *remainder >> 1;
   decimal_mantissa_shift_r(remainder, 1);
   num_bits++;
 
   for (i = 0; i < num_bits; i++) {
-    // bit = (dividend & 0x80000000) >> 31;
     bit = get_bit(dividend, 95);
-    // *remainder = (*remainder << 1) | bit;
     decimal_mantissa_shift_l(remainder, 1);
     if (bit) set_bit(remainder, 0, bit);
 
-    // t = *remainder - divisor;
-
     t = sub_decimals_mantissa(remainder, &divisor);
 
-    // q = !((t & 0x80000000) >> 31);
     q = !get_bit(t, 95);
 
-    // dividend = dividend << 1;
     decimal_mantissa_shift_l(&dividend, 1);
-    // *quotient = (*quotient << 1) | q;
     decimal_mantissa_shift_l(quotient, 1);
     if (q) set_bit(quotient, 0, q);
 
