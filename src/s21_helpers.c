@@ -232,7 +232,7 @@ int big_decimal_is_zero(s21_big_decimal src) {
 
 /*IMPORT FUNCTIONS*/
 
-void import_to_big_decimal(s21_decimal src, s21_big_decimal* dst) {
+void decimal_to_big(s21_decimal src, s21_big_decimal* dst) {
   dst->bits[0] = src.bits[1] & MAX4BITE;
   dst->bits[0] <<= 32;
   dst->bits[0] |= src.bits[0] & MAX4BITE;

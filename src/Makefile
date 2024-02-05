@@ -2,20 +2,21 @@ GCOV_FLALG=
 CHECK_FLAGS=
 GENERATE_HTML=
 
-TESTS_C=unit_tests*.c
+TESTS_C=unit_tests_add.c unit_tests_debug.c unit_tests_debug_tests.c unit_tests_div.c unit_tests_floor.c unit_tests_from_decimal_to_float.c unit_tests_from_decimal_to_int.c unit_tests_from_float_to_decimal.c unit_tests_from_int_to_decimal.c unit_tests_is_equal.c unit_tests_is_greater.c unit_tests_is_greater_or_equal.c unit_tests_is_less.c unit_tests_is_less_or_equal.c unit_tests_is_not_equal.c unit_tests_main.c unit_tests_mul.c unit_tests_negate.c unit_tests_round.c unit_tests_sub.c unit_tests_truncate.c
+TESTS_C_EXCLUDE := $(addprefix -e ,$(TESTS_C))
 
 OS := $(shell uname -s)
 ifeq ($(OS),Linux)
-	GCOV_FLAG = gcovr -r . -e $(TESTS_C) --html-details -o report.html
+	GCOV_FLAG = gcovr -r . $(TESTS_C_EXCLUDE) --html-details -o report.html
 	CHECK_FLAGS= -lcheck -lm -lpthread -lrt --coverage -lsubunit
 endif
 ifeq ($(OS),Darwin)
     OS_VERS := $(shell sw_vers -productVersion)
     ifeq ($(findstring 11.,$(OS_VERS)),)
-		GCOV_FLAG = gcovr -r . -e $(TESTS_C) --html-nested -o report.html
+		GCOV_FLAG = gcovr -r . $(TESTS_C_EXCLUDE)  --html-nested -o report.html 
 		CHECK_FLAGS= -lcheck -lm -lpthread --coverage
     else
-        GCOV_FLAG = lcov --base-directory . -e $(TESTS_C) --directory . -f -c -o report_test.info
+        GCOV_FLAG = lcov --base-directory . $(TESTS_C_EXCLUDE)  --directory . -f -c -o report_test.info
 		CHECK_FLAGS= -lcheck -lm -lpthread -lgcov
 		GENERATE_HTML = genhtml -o "report_test_coverage" report_test.info  
     endif
@@ -25,10 +26,11 @@ CFLAGS = -c -Wall -Werror -Wextra -std=c11
 
 UT_EXEC=unit_test.out
 
-UT_LIB=unit_tests*.o
+UT_LIB=unit_test*.o
 
 BUILD_FLAGS=
 COVERAGE_FLAGS= -fprofile-arcs -ftest-coverage
+
 all: clean format test_seq
 test_seq: test call_test gcov_report genhtml
 test: $(UT_LIB) s21_decimal_tests.a

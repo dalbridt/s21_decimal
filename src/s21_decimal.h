@@ -40,10 +40,9 @@ int s21_div(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
 typedef enum am_code {
   AM_ERR = -1,
   AM_OK = 0,
-  AM_OF = 1,
-  AM_NOF = 2,
+  AM_OF = 1,   // overflow
+  AM_NOF = 2,  // negative overflow
   AM_DIV0 = 3,
-
 } am_code;
 
 // Comparison Operators
@@ -98,7 +97,7 @@ void debug_display_big_decimal(char *name, s21_big_decimal src);
 void debug_display_float(float *src);
 void debug_display_int(int src);
 void reset_decimal(s21_decimal *src);
-void import_to_big_decimal(s21_decimal src, s21_big_decimal *dst);
+void decimal_to_big(s21_decimal src, s21_big_decimal *dst);
 void import_to_small_decimal(s21_big_decimal src, s21_decimal *dst);
 void reset_big_decimal(s21_big_decimal *src);
 int decimal_is_zero(s21_decimal src);

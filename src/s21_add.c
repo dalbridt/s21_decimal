@@ -4,6 +4,11 @@ int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   am_code code = AM_OK;
 
   if (result != NULL) {
+    s21_big_decimal big_value_1, big_value_2;
+
+    decimal_to_big(value_1, &big_value_1);
+    decimal_to_big(value_2, &big_value_2);
+
     int exp_1 = get_scale(value_1);
     int exp_2 = get_scale(value_2);
 

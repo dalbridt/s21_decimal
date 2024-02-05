@@ -21,7 +21,8 @@
     "__locale": "c",
     "ios": "c",
     "istream": "c",
-    "variant": "c"
+    "variant": "c",
+    "unit_tests.h": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
