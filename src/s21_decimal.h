@@ -16,11 +16,11 @@
 
 #define F_MAX 719716300.0
 
-typedef struct {
+typedef struct s21_decimal {
   unsigned int bits[4];
 } s21_decimal;
 
-typedef struct {
+typedef struct s21_big_decimal {
   uint64_t bits[7];
   uint32_t scale;
 } s21_big_decimal;
@@ -36,6 +36,15 @@ int s21_div(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
 // 1 - the number is too large or equal to infinity
 // 2 - the number is too small or equal to negative infinity
 // 3 - division by 0
+
+typedef enum am_code {
+  AM_ERR = -1,
+  AM_OK = 0,
+  AM_OF = 1,
+  AM_NOF = 2,
+  AM_DIV0 = 3,
+
+} am_code;
 
 // Comparison Operators
 int s21_is_less(s21_decimal value_1, s21_decimal value_2);

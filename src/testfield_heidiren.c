@@ -20,20 +20,23 @@ float rand_float(int random, float min, float max) {
 }
 
 int main() {
-  float a = 90, b = 4.555, result, rem;
+  // float a = 90, b = 4.555, result, rem;
   // unsigned_divide(a, b, &result, &rem);
+  s21_decimal res;
+  // 7.922816251426433759354395034
+  s21_decimal decimal1 = {{0x9999999A, 0x99999999, 0x19999999, 0x1B0000}};
+  // 3.9614081257132168796771975168
+  s21_decimal decimal2 = {{0x0, 0x0, 0x80000000, 0x1C0000}};
+  // 11.884224377139650639031592551
+  s21_decimal check = {{0x66666667, 0x66666666, 0x26666666, 0x1B0000}};
 
-  s21_decimal dec_a, dec_b, dec_result, dec_rem;
+  s21_add(decimal1, decimal2, &res);
 
-  s21_from_float_to_decimal(a, &dec_a);
-  s21_from_float_to_decimal(b, &dec_b);
+  debug_display_decimal("res", res);
 
-  divide_dec(dec_a, dec_b, &dec_result, &dec_rem, 0);
+  debug_display_decimal("check", check);
 
-  s21_from_decimal_to_float(dec_result, &result);
-  s21_from_decimal_to_float(dec_rem, &rem);
-
-  printf("%f/%f=%f\n", a, b, result);
+  // printf("%f/%f=%f\n", a, b, result);
 
   return 0;
 }
