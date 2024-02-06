@@ -3,13 +3,13 @@
 int s21_truncate(s21_decimal value, s21_decimal *result) {
   int flag = 0;
   // if (result != NULL) {
-  int scale = get_scale(value);
+  int scale = s21_get_scale(value);
 
   while (scale != 0) {
-    decimal_div10(&value, false);
+    s21_div10(&value, false);
     scale--;
   }
-  set_scale(&value, 0);
+  s21_set_scale(&value, 0);
 
   *result = value;
   flag = 1;

@@ -9,7 +9,7 @@ typedef union {
 
 int s21_from_float_to_decimal(float src, s21_decimal *dst) {
   int ret = 1;
-  reset_decimal(dst);
+  s21_reset(dst);
 
   if (!isinf(src) && !isnan(src)) {
     if (src != 0) {
@@ -40,8 +40,8 @@ int s21_from_float_to_decimal(float src, s21_decimal *dst) {
             dst->bits[exp / 0x20] |= 1 << exp % 0x20;
           }
         }
-        set_scale(dst, scale);
-        set_sign(dst, sign);
+        s21_set_scale(dst, scale);
+        s21_set_sign(dst, sign);
       }
     }
     ret = 0;
@@ -60,7 +60,7 @@ typedef union {
 
 int s21_from_float_to_decimal(float src, s21_decimal *dst) {
   int flag = 1;
-  reset_decimal(dst);
+  s21_reset(dst);
 
   if (!isinf(src) && !isnan(src)) {
     flag = 0;

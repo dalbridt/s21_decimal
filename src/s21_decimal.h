@@ -86,73 +86,75 @@ int s21_negate(s21_decimal value, s21_decimal *result);
 
 // extra functions - helpers
 
-void reset_decimal(s21_decimal *src);
-void reset_big_decimal(s21_big_decimal *src);
+void s21_reset(s21_decimal *src);
+void s21_reset_big(s21_big_decimal *src);
 
-int is_decimal_zero(s21_decimal src);
-int is_big_decimal_zero(s21_big_decimal src);
+int s21_is_zero(s21_decimal src);
+int s21_is_big_zero(s21_big_decimal src);
 
-long double get_mantissa(s21_decimal *src);
-long double get_mantissa_big_decimal(s21_big_decimal *src);
+long double s21_get_mantissa(s21_decimal *src);
+long double s21_get_mantissa_big(s21_big_decimal *src);
 
-int get_sign(s21_decimal num);
-int get_sign_big_decimal(s21_big_decimal num);
-void set_sign(s21_decimal *num, int sign_value);
-void set_sign_big_decimal(s21_big_decimal *num, int sign_value);
+int s21_get_sign(s21_decimal num);
+int s21_get_sign_big(s21_big_decimal num);
+void s21_set_sign(s21_decimal *num, int sign_value);
+void s21_set_sign_big(s21_big_decimal *num, int sign_value);
 
-int get_scale(s21_decimal num);
-int get_scale_big_decimal(s21_big_decimal num);
-void set_scale(s21_decimal *num, int scale_value);
-void set_scale_big_decimal(s21_big_decimal *num, int scale_value);
+int s21_get_scale(s21_decimal num);
+int s21_get_scale_big(s21_big_decimal num);
+void s21_set_scale(s21_decimal *num, int scale_value);
+void s21_set_scale_big(s21_big_decimal *num, int scale_value);
 
-int get_bit(s21_decimal src, int index);
-int get_bit_big_decimal(s21_big_decimal src, int index);
-void set_bit(s21_decimal *src, int index, int value);
-void set_bit_big_decimal(s21_big_decimal *dst, int index, int bit);
+int s21_get_bit(s21_decimal src, int index);
+int s21_get_bit_big(s21_big_decimal src, int index);
+void s21_set_bit(s21_decimal *src, int index, int value);
+void s21_set_bit_big(s21_big_decimal *dst, int index, int bit);
 
-void decimal_mantissa_shift_l(s21_decimal *dec, int offset);
-int big_decimal_mantissa_shift_l(s21_big_decimal *dst, int offset);
-void decimal_mantissa_shift_r(s21_decimal *dec, int offset);
-void big_decimal_mantissa_shift_r(s21_big_decimal *dst, int offset);
+void s21_mantissa_shift_l(s21_decimal *dec, int offset);
+int s21_big_mantissa_shift_l(s21_big_decimal *dst, int offset);
+void s21_mantissa_shift_r(s21_decimal *dec, int offset);
+void s21_big_mantissa_shift_r(s21_big_decimal *dst, int offset);
 
-void decimal_to_big(s21_decimal src, s21_big_decimal *dst);
-void big_to_decimal(s21_big_decimal src, s21_decimal *dst);
+void s21_decimal_to_big(s21_decimal src, s21_big_decimal *dst);
+void s21_big_to_decimal(s21_big_decimal src, s21_decimal *dst);
 
-void switch_endian(s21_decimal *x);
-void switch_endian_big_decimal(s21_big_decimal *x);
+void s21_switch_endian(s21_decimal *x);
+void s21_switch_endian_big(s21_big_decimal *x);
 
-void equalize_scale(s21_decimal *value_1, s21_decimal *value_2);
+void s21_equalize_scale(s21_decimal *value_1, s21_decimal *value_2);
+void s21_equalize_scale_big(s21_big_decimal *value_1, s21_big_decimal *value_2);
 
-s21_decimal add_decimals_mantissa(s21_decimal *x, s21_decimal *y);
-s21_decimal sub_decimals_mantissa(s21_decimal *x, s21_decimal *y);
+s21_decimal s21_add_mantissas(s21_decimal *x, s21_decimal *y);
+s21_decimal s21_sub_mantissas(s21_decimal *x, s21_decimal *y);
 
 int s21_mantisa_compare(s21_decimal *value_1, s21_decimal *value_2);
 
-void add_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
-                     s21_big_decimal *result);
-void sub_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
-                     s21_big_decimal *result);
-int mul_big_decimal(s21_big_decimal value_1, s21_big_decimal value_2,
-                    s21_big_decimal *result);
+void s21_add_big(s21_big_decimal value_1, s21_big_decimal value_2,
+                 s21_big_decimal *result);
+void s21_sub_big(s21_big_decimal value_1, s21_big_decimal value_2,
+                 s21_big_decimal *result);
+int s21_mul_big(s21_big_decimal value_1, s21_big_decimal value_2,
+                s21_big_decimal *result);
 
-void decimal_div10(s21_decimal *src, unsigned int roundup);
-void big_decimal_div10(s21_big_decimal *src);  // UPDATE SUPPORT ROUNDUP
+void s21_div10(s21_decimal *src, unsigned int roundup);
+void s21_div10_big(s21_big_decimal *src);  // UPDATE SUPPORT ROUNDUP
 
-void decimal_x10(s21_decimal *src);
-void big_decimal_x10(s21_big_decimal *src);  // NOT REALISED
+void s21_x10(s21_decimal *src);
+void s21_x10_big(s21_big_decimal *src);  // NOT REALISED
 
-void divide_decimal(s21_decimal dividend, s21_decimal divisor,
-                    s21_decimal *quotient, s21_decimal *remainder, int stop);
-void divide_big_decimal(s21_big_decimal dividend, s21_big_decimal divisor,
-                        s21_big_decimal *quotient, s21_big_decimal *remainder,
-                        int stop);  // NOT REALISED
+void s21_divide(s21_decimal dividend, s21_decimal divisor,
+                s21_decimal *quotient, s21_decimal *remainder, int stop);
+void s21_divide_big(s21_big_decimal dividend, s21_big_decimal divisor,
+                    s21_big_decimal *quotient, s21_big_decimal *remainder,
+                    int stop);  // NOT REALISED
 
-void upscale_decimal_x10(s21_decimal *dec);
-void upscale_big_decimal_x10(s21_big_decimal *dec); // NOT REALISED
+void s21_upscale_x10(s21_decimal *dec);
+void s21_upscale_x10_big(s21_big_decimal *dec);  // NOT REALISED
 
-void decimal_one(s21_decimal *decimal);
+void s21_set_one(s21_decimal *dec);
+void s21_set_one_big(s21_big_decimal *dec);
 
-void s21_decreace_scale_big_decimal(s21_big_decimal *dst, int n);
+void s21_decrease_scale_big(s21_big_decimal *dst, int n);
 int s21_post_normalization(s21_big_decimal *result, int scale);
 
 // MARK: DEBUG

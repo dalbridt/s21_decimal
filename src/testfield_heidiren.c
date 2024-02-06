@@ -8,8 +8,8 @@
 void unsigned_divide(unsigned int dividend, unsigned int divisor,
                      unsigned int *quotient, unsigned int *remainder);
 
-void divide_decimal(s21_decimal dividend, s21_decimal divisor,
-                    s21_decimal *quotient, s21_decimal *remainder, int stop);
+void s21_divide(s21_decimal dividend, s21_decimal divisor,
+                s21_decimal *quotient, s21_decimal *remainder, int stop);
 
 #define SELECTOR 5
 
@@ -65,7 +65,7 @@ int main() {
 //   num_bits = 32;
 
 //   while (*remainder < divisor) {
-//     bit = (dividend & 0x80000000) >> 31;
+//     bit = (dividend & MINUS) >> 31;
 //     *remainder = (*remainder << 1) | bit;
 //     d = dividend;
 //     dividend = dividend << 1;
@@ -77,10 +77,10 @@ int main() {
 //   num_bits++;
 
 //   for (i = 0; i < num_bits; i++) {
-//     bit = (dividend & 0x80000000) >> 31;
+//     bit = (dividend & MINUS) >> 31;
 //     *remainder = (*remainder << 1) | bit;
 //     t = *remainder - divisor;
-//     q = !((t & 0x80000000) >> 31);
+//     q = !((t & MINUS) >> 31);
 //     dividend = dividend << 1;
 //     *quotient = (*quotient << 1) | q;
 //     if (q) {

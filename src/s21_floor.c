@@ -2,10 +2,10 @@
 
 int s21_floor(s21_decimal value, s21_decimal *result) {
   s21_truncate(value, result);
-  if (get_sign(value) && get_scale(value)) {
+  if (s21_get_sign(value) && s21_get_scale(value)) {
     // s21_decimal one;
-    // decimal_one(&one);
-    // *result = add_decimals_mantissa(result, &one);
+    // s21_set_one(&one);
+    // *result = s21_add_mantissas(result, &one);
     //??????
   }
   return 0;

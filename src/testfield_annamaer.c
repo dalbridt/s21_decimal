@@ -1,11 +1,11 @@
 #include "s21_decimal.h"
 
-// void s21_decreace_scale_big_decimal(s21_big_decimal *dst, int n) {
-//   int scale = get_scale_big_decimal(*dst);
+// void s21_decrease_scale_big(s21_big_decimal *dst, int n) {
+//   int scale = s21_get_scale_big(*dst);
 //   for(int i = 0; i < n; i++){
 //     scale--;
 //   }
-//   set_scale_big_decimal(dst, scale);
+//   s21_set_scale_big(dst, scale);
 // }
 
 float rand_float(int random, float min, float max) {
@@ -25,12 +25,12 @@ int randomize_int(int random) {
 
 void randomize_decimal(s21_decimal *dec, float *fl, int it) {
   *fl = rand_float(it, -F_MAX, F_MAX);  // FLT_MIN / 2, FLT_MAX / 2
-  reset_decimal(dec);
+  s21_reset(dec);
 
   s21_from_float_to_decimal(*fl, dec);
 
   if (it % 3 != 0) {
-    upscale_decimal_x10(dec);
+    s21_upscale_x10(dec);
   }
 }
 
@@ -61,8 +61,8 @@ int main() {  //
   // randomize_decimal(&a, &f_1, i_1);
   // randomize_decimal(&b, &f_2, i_2);
   s21_from_float_to_decimal(f_2, &b);
-  // set_scale(&a, 0);
-  // set_scale(&b, 0);
+  // s21_set_scale(&a, 0);
+  // s21_set_scale(&b, 0);
 
   // a.bits[0] = 0b00000000000000000000000010000010;
   // a.bits[1] = 0b00000000000000000000000000000000;
@@ -74,11 +74,11 @@ int main() {  //
   // b.bits[2] = 0b00000000000000000000000000000000;
   // b.bits[3] = 0b00000000000000000000000000000000;
   // debug_display_big_decimal("before", b);
-  // s21_decreace_scale_big_decimal(&b, 10);
+  // s21_decrease_scale_big(&b, 10);
   // debug_display_big_decimal("after", b);
 
   debug_display_decimal("B", b);
-  printf("%d", get_sign(b));
+  printf("%d", s21_get_sign(b));
 
   return 0;
 }

@@ -11,10 +11,10 @@ void debug_display_decimal(char* name, s21_decimal src) {
   unsigned int* b = &src.bits[0];
   unsigned int byte;
 
-  int sign = get_sign(src);
-  int exp = get_scale(src);
+  int sign = s21_get_sign(src);
+  int exp = s21_get_scale(src);
 
-  long double mantissa = get_mantissa(&src);
+  long double mantissa = s21_get_mantissa(&src);
   long double mantissa_copy = mantissa;
   int exp_copy = exp;
 
@@ -53,10 +53,10 @@ void debug_display_big_decimal(char* name, s21_big_decimal src) {
   uint64_t* b = &src.bits[0];
   unsigned int byte;
 
-  int sign = get_sign_big_decimal(src);
-  int exp = get_scale_big_decimal(src);
+  int sign = s21_get_sign_big(src);
+  int exp = s21_get_scale_big(src);
 
-  long double mantissa = get_mantissa_big_decimal(&src);
+  long double mantissa = s21_get_mantissa_big(&src);
   long double mantissa_copy = mantissa;
   int exp_copy = exp;
 
