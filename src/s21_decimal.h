@@ -124,18 +124,18 @@ void s21_switch_endian_big(s21_big_decimal *x);
 void s21_equalize_scale(s21_decimal *value_1, s21_decimal *value_2);
 void s21_equalize_scale_big(s21_big_decimal *value_1, s21_big_decimal *value_2);
 
-s21_decimal s21_add_mantissas(s21_decimal *x, s21_decimal *y);
-s21_big_decimal s21_add_mantissas_big(s21_big_decimal *x, s21_big_decimal *y);
-s21_decimal s21_sub_mantissas(s21_decimal *x, s21_decimal *y);
-s21_big_decimal s21_sub_mantissas_big(s21_big_decimal *x, s21_big_decimal *y);
+s21_decimal s21_add_mantissas(s21_decimal x, s21_decimal y);
+s21_big_decimal s21_add_mantissas_big(s21_big_decimal x, s21_big_decimal y);
+s21_decimal s21_sub_mantissas(s21_decimal x, s21_decimal y);
+s21_big_decimal s21_sub_mantissas_big(s21_big_decimal x, s21_big_decimal y);
 
-int s21_mantisa_compare(s21_decimal *value_1, s21_decimal *value_2);
-int s21_mantisa_compare_big(s21_big_decimal *value_1, s21_big_decimal *value_2);
+int s21_mantisa_compare(s21_decimal value_1, s21_decimal value_2);
+int s21_mantisa_compare_big(s21_big_decimal value_1, s21_big_decimal value_2);
 
-void s21_add_big(s21_big_decimal value_1, s21_big_decimal value_2,
-                 s21_big_decimal *result);
-void s21_sub_big(s21_big_decimal value_1, s21_big_decimal value_2,
-                 s21_big_decimal *result);
+// void s21_add_big(s21_big_decimal value_1, s21_big_decimal value_2,
+//                  s21_big_decimal *result);
+// void s21_sub_big(s21_big_decimal value_1, s21_big_decimal value_2,
+//                  s21_big_decimal *result);
 int s21_mul_big(s21_big_decimal value_1, s21_big_decimal value_2,
                 s21_big_decimal *result);
 

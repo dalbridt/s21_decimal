@@ -24,7 +24,7 @@ int main() {
   // unsigned_divide(a, b, &result, &rem);
   s21_decimal res;
   // 7.922816251426433759354395034
-  s21_decimal decimal1 = {{0x00000001, 0x00000000, 0x00000000, 0x00000000}};
+  s21_decimal decimal1 = {{0x00000010, 0x00000000, 0x00000000, 0x00000000}};
   // 3.9614081257132168796771975168
   s21_decimal decimal2 = {{0x00000001, 0x00000000, 0x00000000, 0x00010000}};
   // 11.884224377139650639031592551
@@ -32,16 +32,17 @@ int main() {
   s21_decimal_to_big(decimal1, &big);
 
   // s21_add(decimal1, decimal2, &res);
-
-  for (int i = 0; i < 40; i++) {
-    s21_x10_big(&big);
+  debug_display_decimal("dec1", decimal1);
+  debug_display_decimal("dec2", decimal2);
+  for (int i = 0; i < 1; i++) {
+    s21_mul(decimal1, decimal2, &res);
     // s21_big_mantissa_shift_l(&big, 1);
     // big2 = big;
     // s21_big_mantissa_shift_l(&big, 2);
     // debug_display_big_decimal("big", big);
     // debug_display_big_decimal("big2", big2);
     // big3 = s21_add_mantissas_big(&big, &big2);
-    debug_display_big_decimal("big", big);
+    debug_display_decimal("big", res);
   }
 
   // printf("%f/%f=%f\n", a, b, result);

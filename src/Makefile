@@ -2,7 +2,7 @@ GCOV_FLALG=
 CHECK_FLAGS=
 GENERATE_HTML=
 
-ALLTESTS=0
+ALLTESTS=1
 TESTS_C=unit_tests.c
 
 ifeq ($(ALLTESTS),1)
@@ -31,7 +31,7 @@ CC=gcc
 
 CFLAGS = -c -Wall -Werror -Wextra -std=c11
 ifeq ($(ALLTESTS),1)
-	TESTS_C += -DTESTS=TRUE
+	TESTS_C += -DTESTS=$(ALLTESTS)
 endif
 
 UT_EXEC=unit_test.out

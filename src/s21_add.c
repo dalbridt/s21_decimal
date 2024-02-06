@@ -22,19 +22,19 @@ int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
     int sign_2 = s21_get_sign(value_2);
 
     if (sign_1 != sign_2) {
-      int bigger = s21_mantisa_compare_big(&big_value_1, &big_value_2);
+      int bigger = s21_mantisa_compare_big(big_value_1, big_value_2);
       switch (bigger) {
         case 1:
-          res = s21_sub_mantissas_big(&big_value_2, &big_value_1);
+          res = s21_sub_mantissas_big(big_value_2, big_value_1);
           break;
         default:
-          res = s21_sub_mantissas_big(&big_value_1, &big_value_2);
+          res = s21_sub_mantissas_big(big_value_1, big_value_2);
           break;
       }
       s21_big_to_decimal(res, result);
       s21_set_sign(result, bigger == 0 ? sign_1 : sign_2);
     } else {
-      res = s21_add_mantissas_big(&big_value_1, &big_value_2);
+      res = s21_add_mantissas_big(big_value_1, big_value_2);
 
       // convert big res to decimal result; catch errors
       s21_big_to_decimal(res, result);

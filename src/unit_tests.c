@@ -476,17 +476,17 @@ int main() {
 void hubert_furr_tests(SRunner *runner) {
   srunner_add_suite(runner, add_suite0());
   srunner_add_suite(runner, add_suite1());
-  srunner_add_suite(runner, add_suite2());
-  srunner_add_suite(runner, add_suite3());
-  srunner_add_suite(runner, add_suite4());
-  srunner_add_suite(runner, add_suite5());
-  srunner_add_suite(runner, add_suite6());
-  srunner_add_suite(runner, add_suite7());
-  srunner_add_suite(runner, add_suite8());
-  srunner_add_suite(runner, add_suite9());
+  // srunner_add_suite(runner, add_suite2());
+  // srunner_add_suite(runner, add_suite3());
+  // srunner_add_suite(runner, add_suite4());
+  // srunner_add_suite(runner, add_suite5());
+  // srunner_add_suite(runner, add_suite6());
+  // srunner_add_suite(runner, add_suite7());
+  // srunner_add_suite(runner, add_suite8());
+  // srunner_add_suite(runner, add_suite9());
 
-  // srunner_add_suite(runner, sub_suite0());
-  // srunner_add_suite(runner, sub_suite1());
+  srunner_add_suite(runner, sub_suite0());
+  srunner_add_suite(runner, sub_suite1());
   // srunner_add_suite(runner, sub_suite2());
   // srunner_add_suite(runner, sub_suite3());
   // srunner_add_suite(runner, sub_suite4());
@@ -496,8 +496,8 @@ void hubert_furr_tests(SRunner *runner) {
   // srunner_add_suite(runner, sub_suite8());
   // srunner_add_suite(runner, sub_suite9());
 
-  // srunner_add_suite(runner, mul_suite0());
-  // srunner_add_suite(runner, mul_suite1());
+  srunner_add_suite(runner, mul_suite0());
+  srunner_add_suite(runner, mul_suite1());
   // srunner_add_suite(runner, mul_suite2());
   // srunner_add_suite(runner, mul_suite3());
   // srunner_add_suite(runner, mul_suite4());
@@ -507,8 +507,8 @@ void hubert_furr_tests(SRunner *runner) {
   // srunner_add_suite(runner, mul_suite8());
   // srunner_add_suite(runner, mul_suite9());
 
-  // srunner_add_suite(runner, div_suite0());
-  // srunner_add_suite(runner, div_suite1());
+  srunner_add_suite(runner, div_suite0());
+  srunner_add_suite(runner, div_suite1());
   // srunner_add_suite(runner, div_suite2());
   // srunner_add_suite(runner, div_suite3());
   // srunner_add_suite(runner, div_suite4());
@@ -527,8 +527,8 @@ void hubert_furr_tests(SRunner *runner) {
   // srunner_add_suite(runner, div_suite17());
   // srunner_add_suite(runner, div_suite18());
 
-  // srunner_add_suite(runner, is_less_suite1());
-  // srunner_add_suite(runner, is_less_suite2());
+  srunner_add_suite(runner, is_less_suite1());
+  srunner_add_suite(runner, is_less_suite2());
   // srunner_add_suite(runner, is_less_suite3());
   // srunner_add_suite(runner, is_less_suite4());
   // srunner_add_suite(runner, is_less_suite5());
@@ -544,8 +544,8 @@ void hubert_furr_tests(SRunner *runner) {
   // srunner_add_suite(runner, is_less_suite15());
   // srunner_add_suite(runner, is_less_suite16());
 
-  // srunner_add_suite(runner, is_equal_suite1());
-  // srunner_add_suite(runner, is_equal_suite2());
+  srunner_add_suite(runner, is_equal_suite1());
+  srunner_add_suite(runner, is_equal_suite2());
   // srunner_add_suite(runner, is_equal_suite3());
   // srunner_add_suite(runner, is_equal_suite4());
   // srunner_add_suite(runner, is_equal_suite5());
@@ -561,8 +561,8 @@ void hubert_furr_tests(SRunner *runner) {
   // srunner_add_suite(runner, is_equal_suite15());
   // srunner_add_suite(runner, is_equal_suite16());
 
-  // srunner_add_suite(runner, is_less_or_equal_suite1());
-  // srunner_add_suite(runner, is_less_or_equal_suite2());
+  srunner_add_suite(runner, is_less_or_equal_suite1());
+  srunner_add_suite(runner, is_less_or_equal_suite2());
   // srunner_add_suite(runner, is_less_or_equal_suite3());
   // srunner_add_suite(runner, is_less_or_equal_suite4());
   // srunner_add_suite(runner, is_less_or_equal_suite5());
@@ -578,8 +578,8 @@ void hubert_furr_tests(SRunner *runner) {
   // srunner_add_suite(runner, is_less_or_equal_suite15());
   // srunner_add_suite(runner, is_less_or_equal_suite16());
 
-  // srunner_add_suite(runner, is_greater_suite1());
-  // srunner_add_suite(runner, is_greater_suite2());
+  srunner_add_suite(runner, is_greater_suite1());
+  srunner_add_suite(runner, is_greater_suite2());
   // srunner_add_suite(runner, is_greater_suite3());
   // srunner_add_suite(runner, is_greater_suite4());
   // srunner_add_suite(runner, is_greater_suite5());
@@ -595,8 +595,8 @@ void hubert_furr_tests(SRunner *runner) {
   // srunner_add_suite(runner, is_greater_suite15());
   // srunner_add_suite(runner, is_greater_suite16());
 
-  // srunner_add_suite(runner, is_greater_or_equal_suite1());
-  // srunner_add_suite(runner, is_greater_or_equal_suite2());
+  srunner_add_suite(runner, is_greater_or_equal_suite1());
+  srunner_add_suite(runner, is_greater_or_equal_suite2());
   // srunner_add_suite(runner, is_greater_or_equal_suite3());
   // srunner_add_suite(runner, is_greater_or_equal_suite4());
   // srunner_add_suite(runner, is_greater_or_equal_suite5());
@@ -612,8 +612,8 @@ void hubert_furr_tests(SRunner *runner) {
   // srunner_add_suite(runner, is_greater_or_equal_suite15());
   // srunner_add_suite(runner, is_greater_or_equal_suite16());
 
-  // srunner_add_suite(runner, is_not_equal_suite1());
-  // srunner_add_suite(runner, is_not_equal_suite2());
+  srunner_add_suite(runner, is_not_equal_suite1());
+  srunner_add_suite(runner, is_not_equal_suite2());
   // srunner_add_suite(runner, is_not_equal_suite3());
   // srunner_add_suite(runner, is_not_equal_suite4());
   // srunner_add_suite(runner, is_not_equal_suite5());
@@ -629,9 +629,9 @@ void hubert_furr_tests(SRunner *runner) {
   // srunner_add_suite(runner, is_not_equal_suite15());
   // srunner_add_suite(runner, is_not_equal_suite16());
 
-  // srunner_add_suite(runner, from_int_to_decimal_suite());
+  srunner_add_suite(runner, from_int_to_decimal_suite());
 
-  // srunner_add_suite(runner, from_float_to_decimal_suite0());
+  srunner_add_suite(runner, from_float_to_decimal_suite0());
   // srunner_add_suite(runner, from_float_to_decimal_suite1());
   // srunner_add_suite(runner, from_float_to_decimal_suite2());
   // srunner_add_suite(runner, from_float_to_decimal_suite3());
@@ -640,12 +640,12 @@ void hubert_furr_tests(SRunner *runner) {
   // srunner_add_suite(runner, from_float_to_decimal_suite6());
   // srunner_add_suite(runner, from_float_to_decimal_suite7());
 
-  // srunner_add_suite(runner, from_decimal_to_int_suite0());
+  srunner_add_suite(runner, from_decimal_to_int_suite0());
   // srunner_add_suite(runner, from_decimal_to_int_suite1());
   // srunner_add_suite(runner, from_decimal_to_int_suite2());
   // srunner_add_suite(runner, from_decimal_to_int_suite3());
 
-  // srunner_add_suite(runner, from_decimal_to_float_suite0());
+  srunner_add_suite(runner, from_decimal_to_float_suite0());
   // srunner_add_suite(runner, from_decimal_to_float_suite1());
   // srunner_add_suite(runner, from_decimal_to_float_suite2());
   // srunner_add_suite(runner, from_decimal_to_float_suite3());
@@ -655,27 +655,27 @@ void hubert_furr_tests(SRunner *runner) {
   // srunner_add_suite(runner, from_decimal_to_float_suite7());
   // srunner_add_suite(runner, from_decimal_to_float_suite8());
 
-  // srunner_add_suite(runner, floor_suite0());
+  srunner_add_suite(runner, floor_suite0());
   // srunner_add_suite(runner, floor_suite1());
   // srunner_add_suite(runner, floor_suite2());
   // srunner_add_suite(runner, floor_suite3());
 
-  // srunner_add_suite(runner, round_suite0());
+  srunner_add_suite(runner, round_suite0());
   // srunner_add_suite(runner, round_suite1());
   // srunner_add_suite(runner, round_suite2());
   // srunner_add_suite(runner, round_suite3());
 
-  // srunner_add_suite(runner, truncate_suite0());
+  srunner_add_suite(runner, truncate_suite0());
   // srunner_add_suite(runner, truncate_suite1());
   // srunner_add_suite(runner, truncate_suite2());
   // srunner_add_suite(runner, truncate_suite3());
 
-  // srunner_add_suite(runner, negate_suite0());
+  srunner_add_suite(runner, negate_suite0());
   // srunner_add_suite(runner, negate_suite1());
   // srunner_add_suite(runner, negate_suite2());
   // srunner_add_suite(runner, negate_suite3());
 
-  // srunner_add_suite(runner, debug0());
+  srunner_add_suite(runner, debug0());
   // srunner_add_suite(runner, debug1());
   // srunner_add_suite(runner, debug2());
   // srunner_add_suite(runner, debug3());
