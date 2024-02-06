@@ -140,13 +140,12 @@ int s21_mul_big(s21_big_decimal value_1, s21_big_decimal value_2,
                 s21_big_decimal *result);
 
 void s21_div10(s21_decimal *src, unsigned int roundup);
-void s21_div10_big(s21_big_decimal *src);  // UPDATE SUPPORT ROUNDUP
+void s21_div10_big(s21_big_decimal *src,
+                   unsigned int roundup);  // UPDATE SUPPORT ROUNDUP
 
 void s21_x10(s21_decimal *src);
 void s21_x10_big(s21_big_decimal *src);  // NOT REALISED
 
-void s21_divide(s21_decimal dividend, s21_decimal divisor,
-                s21_decimal *quotient, s21_decimal *remainder, int stop);
 void s21_divide_big(s21_big_decimal dividend, s21_big_decimal divisor,
                     s21_big_decimal *quotient, s21_big_decimal *remainder,
                     int stop);  // NOT REALISED

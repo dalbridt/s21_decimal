@@ -399,7 +399,7 @@ void s21_div10(s21_decimal* src, unsigned int roundup) {
 }
 
 // Не учитывает скейл, делит только мантиссу
-void s21_div10_big(s21_big_decimal* src) {
+void s21_div10_big(s21_big_decimal* src, unsigned int roundup) {
   s21_big_decimal src_copy = *src;
   s21_big_decimal src_copy2 = *src;
   s21_big_mantissa_shift_r(&src_copy, 1);
@@ -424,17 +424,9 @@ void s21_div10_big(s21_big_decimal* src) {
   s21_reset_big(&temp);
   temp = s21_add_mantissas_big(src_copy, q);
 
-  if (temp.bits[0] >= 9) {
-    s21_big_decimal one = {
-        .bits[0] = 0b00000000000000000000000000000000000000000000000000000001,
-        .bits[1] = 0b00000000000000000000000000000000000000000000000000000000,
-        .bits[2] = 0b00000000000000000000000000000000000000000000000000000000,
-        .bits[3] = 0b00000000000000000000000000000000000000000000000000000000,
-        .bits[4] = 0b00000000000000000000000000000000000000000000000000000000,
-        .bits[5] = 0b00000000000000000000000000000000000000000000000000000000,
-        .bits[6] = 0b00000000000000000000000000000000000000000000000000000000,
-        .scale = 0b00000000000000000000000000000000,
-    };
+  if (temp.bits[0] >= (0xA - roundup)) {
+    s21_big_decimal one;
+    s21_set_one_big(&one);
     s21_reset_big(&q);
     q = s21_add_mantissas_big(temp, one);
   }
@@ -462,84 +454,80 @@ void s21_x10_big(s21_big_decimal* src) {
   *src = s21_add_mantissas_big(dec2, dec3);
 }
 
-void s21_divide(s21_decimal dividend, s21_decimal divisor,
-                s21_decimal* quotient, s21_decimal* remainder, int stop) {
+void s21_divide_big(s21_big_decimal dividend, s21_big_decimal divisor,
+                    s21_big_decimal* quotient, s21_big_decimal* remainder,
+                    int stop) {
   int num_bits;
   int q, bit;
   int i;
 
-  s21_equalize_scale(&dividend, &divisor);
-  int sign_dividend = s21_get_sign(dividend);
-  int sign_divisor = s21_get_sign(divisor);
-  s21_set_sign(&dividend, 0);
-  s21_set_sign(&divisor, 0);
+  s21_equalize_scale_big(&dividend, &divisor);
+  int sign_dividend = s21_get_sign_big(dividend);
+  int sign_divisor = s21_get_sign_big(divisor);
+  s21_set_sign_big(&dividend, 0);
+  s21_set_sign_big(&divisor, 0);
 
-  s21_decimal d, t;
+  s21_big_decimal d, t;
 
-  s21_reset(remainder);
-  s21_reset(quotient);
+  s21_reset_big(remainder);
+  s21_reset_big(quotient);
 
-  if (s21_is_zero(divisor)) return;
+  if (s21_is_big_zero(divisor)) return;
 
-  int dividend_scale = s21_get_scale(dividend);
-  int divisor_scale = s21_get_scale(divisor);
+  int dividend_scale = s21_get_scale_big(dividend);
+  int divisor_scale = s21_get_scale_big(divisor);
   int div_new_scale = dividend_scale;
 
   if (stop == 1) {
     for (int i = 0; i < 7; i++) {
-      s21_x10(&dividend);
+      s21_x10_big(&dividend);
       div_new_scale++;
     }
   }
 
-  if (s21_is_equal(divisor, dividend)) {
-    s21_set_one(quotient);
-    return;
-  }
-
   num_bits = 96;
 
-  while (s21_is_less(*remainder, divisor) && num_bits > 0) {
-    bit = s21_get_bit(dividend, 95);
-    s21_mantissa_shift_l(remainder, 1);
-    if (bit) s21_set_bit(remainder, 0, bit);
+  while (s21_mantisa_compare_big(*remainder, divisor) && num_bits > 0) {
+    bit = s21_get_bit_big(dividend, 512 - 1);
+    s21_big_mantissa_shift_l(remainder, 1);
+    if (bit) s21_set_bit_big(remainder, 0, bit);
 
     d = dividend;
-    s21_mantissa_shift_l(&dividend, 1);
+    s21_big_mantissa_shift_l(&dividend, 1);
 
     num_bits--;
   }
 
   dividend = d;
-  s21_mantissa_shift_r(remainder, 1);
+  s21_big_mantissa_shift_r(remainder, 1);
   num_bits++;
 
   for (i = 0; i < num_bits; i++) {
-    bit = s21_get_bit(dividend, 95);
-    s21_mantissa_shift_l(remainder, 1);
-    if (bit) s21_set_bit(remainder, 0, bit);
+    bit = s21_get_bit_big(dividend, 512 - 1);
+    s21_big_mantissa_shift_l(remainder, 1);
+    if (bit) s21_set_bit_big(remainder, 0, bit);
 
-    t = s21_sub_mantissas(*remainder, divisor);
+    t = s21_sub_mantissas_big(*remainder, divisor);
 
-    q = !s21_get_bit(t, 95);
+    q = !s21_get_bit_big(t, 512 - 1);
 
-    s21_mantissa_shift_l(&dividend, 1);
-    s21_mantissa_shift_l(quotient, 1);
-    if (q) s21_set_bit(quotient, 0, q);
+    s21_big_mantissa_shift_l(&dividend, 1);
+    s21_big_mantissa_shift_l(quotient, 1);
+    if (q) s21_set_bit_big(quotient, 0, q);
 
     if (q) {
       *remainder = t;
     }
   }
   if (stop == 0) {
-    s21_decimal quot_2 = {0};
-    s21_decimal rem_2 = {0};
-    s21_divide(*remainder, divisor, &quot_2, &rem_2, 1);
-    s21_add(*quotient, quot_2, quotient);
+    s21_big_decimal quot_2 = {0};
+    s21_big_decimal rem_2 = {0};
+    s21_divide_big(*remainder, divisor, &quot_2, &rem_2, 1);
+    *quotient = s21_add_mantissas_big(*quotient, quot_2);
   } else {
-    s21_set_scale(quotient, div_new_scale + dividend_scale - divisor_scale);
+    s21_set_scale_big(quotient, div_new_scale + dividend_scale - divisor_scale);
   }
-  s21_set_sign(quotient, sign_dividend ^ sign_divisor);
+  s21_set_sign_big(quotient, sign_dividend ^ sign_divisor);
 }
 
 void s21_upscale_x10(s21_decimal* dec) {
@@ -549,6 +537,11 @@ void s21_upscale_x10(s21_decimal* dec) {
 
 void s21_set_one(s21_decimal* dec) {
   s21_reset(dec);
+  dec->bits[0] = 1u;
+}
+
+void s21_set_one_big(s21_big_decimal* dec) {
+  s21_reset_big(dec);
   dec->bits[0] = 1u;
 }
 

@@ -5,12 +5,6 @@
 
 #include "s21_decimal.h"
 
-void unsigned_divide(unsigned int dividend, unsigned int divisor,
-                     unsigned int *quotient, unsigned int *remainder);
-
-void s21_divide(s21_decimal dividend, s21_decimal divisor,
-                s21_decimal *quotient, s21_decimal *remainder, int stop);
-
 #define SELECTOR 5
 
 float rand_float(int random, float min, float max) {
