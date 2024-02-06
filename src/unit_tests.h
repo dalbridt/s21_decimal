@@ -8,6 +8,9 @@
 #include <stdlib.h>
 #include <time.h>
 
+#ifdef TESTS
+
+
 #include "s21_decimal.h"
 #include "unit_tests_debug.h"
 
@@ -310,5 +313,7 @@ int test_decimal_get_sign(s21_decimal value);
 int test_decimal_get_power(s21_decimal value);
 int test_is_correct_decimal(s21_decimal decimal);
 int test_decimal_is_full_equal(s21_decimal value_1, s21_decimal value_2);
+
+#endif
 
 #endif  // SRC_TESTS_TEST_H_

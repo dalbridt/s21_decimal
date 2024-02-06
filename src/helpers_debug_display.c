@@ -50,7 +50,7 @@ void debug_display_decimal(char* name, s21_decimal src) {
 }
 
 void debug_display_big_decimal(char* name, s21_big_decimal src) {
-  uint64_t* b = &src.bits[0];
+  unsigned int* b = &src.bits[0];
   unsigned int byte;
 
   int sign = s21_get_sign_big(src);
@@ -72,25 +72,21 @@ void debug_display_big_decimal(char* name, s21_big_decimal src) {
   printf(" =~ %Lf", mantissa_copy * (sign ? -1 : 1));
   printf("\n");
 
-  for (short i = 0x1E0 - 1; i >= 0; i--) {
+  for (short i = 0x200 + 0x20 - 1; i >= 0; i--) {
     if (i % 8 == 7) printf(C_NO "[");
-    if (i >= 0x1E0 && i <= 0x19F) {
-      byte = (b[i / 0x20] >> i) & 1;
-    } else {
-      byte = (b[i / 0x40] >> i) & 1;
-    }
+    byte = (b[i / 0x20] >> i) & 1;
     printf(C_BLUE);
-    if (i / 0x40 == 7) {
+    if (i / 0x40 == 8) {
       printf(C_GREY);  // C_INVIS
 
-      if (i > 0x1D5 && i <= 0x1D8) printf(C_GREY);
-      if (i > 0x1CF && i < 0x1D5) printf(C_NO C_GREEN);
-      if (i == 0x1DF) printf(C_NO C_RED);
+      if (i > 0x200 && i <= 0x220) printf(C_GREY);
+      if (i > 0x20F && i < 0x220 - 8) printf(C_NO C_GREEN);
+      if (i == 0x220 - 1) printf(C_NO C_RED);
     }
 
     printf("%u" C_NO, byte);
     if (i % 8 == 0) printf(C_NO "] ");
-    if (i % 64 == 0) printf("\n");
+    if (i % 0x40 == 0) printf("\n");
   }
   printf("\n");
 }

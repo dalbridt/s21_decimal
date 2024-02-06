@@ -6,7 +6,7 @@ ALLTESTS=0
 TESTS_C=unit_tests.c
 
 ifeq ($(ALLTESTS),1)
-	TESTS_C= $(TESTS_C) unit_tests_add.c unit_tests_debug.c unit_tests_debug_tests.c unit_tests_div.c unit_tests_floor.c unit_tests_from_decimal_to_float.c unit_tests_from_decimal_to_int.c unit_tests_from_float_to_decimal.c unit_tests_from_int_to_decimal.c unit_tests_is_equal.c unit_tests_is_greater.c unit_tests_is_greater_or_equal.c unit_tests_is_less.c unit_tests_is_less_or_equal.c unit_tests_is_not_equal.c unit_tests_mul.c unit_tests_negate.c unit_tests_round.c unit_tests_sub.c unit_tests_truncate.c
+	TESTS_C += unit_tests_add.c unit_tests_debug.c unit_tests_debug_tests.c unit_tests_div.c unit_tests_floor.c unit_tests_from_decimal_to_float.c unit_tests_from_decimal_to_int.c unit_tests_from_float_to_decimal.c unit_tests_from_int_to_decimal.c unit_tests_is_equal.c unit_tests_is_greater.c unit_tests_is_greater_or_equal.c unit_tests_is_less.c unit_tests_is_less_or_equal.c unit_tests_is_not_equal.c unit_tests_mul.c unit_tests_negate.c unit_tests_round.c unit_tests_sub.c unit_tests_truncate.c
 endif
 
 TESTS_C_EXCLUDE := $(addprefix -e ,$(TESTS_C))
@@ -31,7 +31,7 @@ CC=gcc
 
 CFLAGS = -c -Wall -Werror -Wextra -std=c11
 ifeq ($(ALLTESTS),1)
-	TESTS_C= $(TESTS_C) -DTESTS=TRUE
+	TESTS_C += -DTESTS=TRUE
 endif
 
 UT_EXEC=unit_test.out
@@ -68,7 +68,7 @@ s21_decimal_tests.a: s21_decimal_tests.o
 clean:	
 	rm -rf *.o *.gcno *.gcda *.html *.css *.info $(UT_EXEC) report_test_coverage *.a *.out test_report.log
 format:
-	clang-format -i *.c 
+#	clang-format -i *.c 
 #DEBUG_TARGETS
 DEB_EXEC=a.out
 

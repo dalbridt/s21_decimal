@@ -24,17 +24,25 @@ int main() {
   // unsigned_divide(a, b, &result, &rem);
   s21_decimal res;
   // 7.922816251426433759354395034
-  s21_decimal decimal1 = {{0x9999999A, 0x99999999, 0x19999999, 0x1B0000}};
+  s21_decimal decimal1 = {{0x00000001, 0x00000000, 0x00000000, 0x00000000}};
   // 3.9614081257132168796771975168
-  s21_decimal decimal2 = {{0x0, 0x0, 0x80000000, 0x1C0000}};
+  s21_decimal decimal2 = {{0x00000001, 0x00000000, 0x00000000, 0x00010000}};
   // 11.884224377139650639031592551
-  s21_decimal check = {{0x66666667, 0x66666666, 0x26666666, 0x1B0000}};
+  s21_big_decimal big, big2, big3;
+  s21_decimal_to_big(decimal1, &big);
 
-  s21_add(decimal1, decimal2, &res);
+  // s21_add(decimal1, decimal2, &res);
 
-  debug_display_decimal("res", res);
-
-  debug_display_decimal("check", check);
+  for (int i = 0; i < 40; i++) {
+    s21_x10_big(&big);
+    // s21_big_mantissa_shift_l(&big, 1);
+    // big2 = big;
+    // s21_big_mantissa_shift_l(&big, 2);
+    // debug_display_big_decimal("big", big);
+    // debug_display_big_decimal("big2", big2);
+    // big3 = s21_add_mantissas_big(&big, &big2);
+    debug_display_big_decimal("big", big);
+  }
 
   // printf("%f/%f=%f\n", a, b, result);
 

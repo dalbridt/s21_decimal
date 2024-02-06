@@ -22,8 +22,8 @@ typedef struct s21_decimal {
 } s21_decimal;
 
 typedef struct s21_big_decimal {
-  uint64_t bits[7];
-  uint32_t scale;
+  unsigned int bits[16];
+  unsigned int scale;
 } s21_big_decimal;
 
 // Arithmetic Operators
@@ -125,9 +125,12 @@ void s21_equalize_scale(s21_decimal *value_1, s21_decimal *value_2);
 void s21_equalize_scale_big(s21_big_decimal *value_1, s21_big_decimal *value_2);
 
 s21_decimal s21_add_mantissas(s21_decimal *x, s21_decimal *y);
+s21_big_decimal s21_add_mantissas_big(s21_big_decimal *x, s21_big_decimal *y);
 s21_decimal s21_sub_mantissas(s21_decimal *x, s21_decimal *y);
+s21_big_decimal s21_sub_mantissas_big(s21_big_decimal *x, s21_big_decimal *y);
 
 int s21_mantisa_compare(s21_decimal *value_1, s21_decimal *value_2);
+int s21_mantisa_compare_big(s21_big_decimal *value_1, s21_big_decimal *value_2);
 
 void s21_add_big(s21_big_decimal value_1, s21_big_decimal value_2,
                  s21_big_decimal *result);

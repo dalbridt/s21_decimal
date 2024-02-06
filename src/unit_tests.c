@@ -7,9 +7,9 @@
 
 #ifdef TESTS
 #include "unit_tests.h"
-#endif
-
 void hubert_furr_tests(SRunner *runner);
+
+#endif
 
 float rand_float(int random, float min, float max) {
   srand(random * time(NULL));
@@ -471,6 +471,7 @@ int main() {
   srunner_free(runner);
   return (failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
+
 #ifdef TESTS
 void hubert_furr_tests(SRunner *runner) {
   srunner_add_suite(runner, add_suite0());
