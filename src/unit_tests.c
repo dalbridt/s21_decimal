@@ -1,11 +1,13 @@
-
-
-#include "unit_tests.h"
+#include <check.h>
 
 #include "s21_decimal.h"
 
 #define ITER 200
 #define TOL 1e-05
+
+#ifdef TESTS
+#include "unit_tests.h"
+#endif
 
 void hubert_furr_tests(SRunner *runner);
 
@@ -457,7 +459,9 @@ int main() {
   Suite *s = decimal_suite();
   SRunner *runner = srunner_create(s);
 
-  // hubert_furr_tests(runner);
+#ifdef TESTS
+  hubert_furr_tests(runner);
+#endif
 
   srunner_set_log(runner, "test_report.log");
 
@@ -467,7 +471,7 @@ int main() {
   srunner_free(runner);
   return (failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
-
+#ifdef TESTS
 void hubert_furr_tests(SRunner *runner) {
   srunner_add_suite(runner, add_suite0());
   srunner_add_suite(runner, add_suite1());
@@ -675,3 +679,4 @@ void hubert_furr_tests(SRunner *runner) {
   // srunner_add_suite(runner, debug2());
   // srunner_add_suite(runner, debug3());
 }
+#endif

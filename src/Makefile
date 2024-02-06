@@ -2,7 +2,13 @@ GCOV_FLALG=
 CHECK_FLAGS=
 GENERATE_HTML=
 
-TESTS_C=unit_tests_add.c unit_tests_debug.c unit_tests_debug_tests.c unit_tests_div.c unit_tests_floor.c unit_tests_from_decimal_to_float.c unit_tests_from_decimal_to_int.c unit_tests_from_float_to_decimal.c unit_tests_from_int_to_decimal.c unit_tests_is_equal.c unit_tests_is_greater.c unit_tests_is_greater_or_equal.c unit_tests_is_less.c unit_tests_is_less_or_equal.c unit_tests_is_not_equal.c unit_tests.c unit_tests_mul.c unit_tests_negate.c unit_tests_round.c unit_tests_sub.c unit_tests_truncate.c
+ALLTESTS=0
+TESTS_C=unit_tests.c
+
+ifeq ($(ALLTESTS),1)
+	TESTS_C= $(TESTS_C) unit_tests_add.c unit_tests_debug.c unit_tests_debug_tests.c unit_tests_div.c unit_tests_floor.c unit_tests_from_decimal_to_float.c unit_tests_from_decimal_to_int.c unit_tests_from_float_to_decimal.c unit_tests_from_int_to_decimal.c unit_tests_is_equal.c unit_tests_is_greater.c unit_tests_is_greater_or_equal.c unit_tests_is_less.c unit_tests_is_less_or_equal.c unit_tests_is_not_equal.c unit_tests_mul.c unit_tests_negate.c unit_tests_round.c unit_tests_sub.c unit_tests_truncate.c
+endif
+
 TESTS_C_EXCLUDE := $(addprefix -e ,$(TESTS_C))
 
 OS := $(shell uname -s)
@@ -21,8 +27,12 @@ ifeq ($(OS),Darwin)
 		GENERATE_HTML = genhtml -o "report_test_coverage" report_test.info  
     endif
 endif
-CC=gcc 
+CC=gcc
+
 CFLAGS = -c -Wall -Werror -Wextra -std=c11
+ifeq ($(ALLTESTS),1)
+	TESTS_C= $(TESTS_C) -DTESTS=TRUE
+endif
 
 UT_EXEC=unit_test.out
 
