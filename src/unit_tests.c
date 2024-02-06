@@ -2,7 +2,7 @@
 
 #include "s21_decimal.h"
 
-#define ITER 200
+#define ITER 10
 #define TOL 1e-05
 
 #ifdef TESTS

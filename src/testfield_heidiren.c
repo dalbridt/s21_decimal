@@ -18,18 +18,16 @@ int main() {
   // unsigned_divide(a, b, &result, &rem);
   s21_decimal res;
   // 7.922816251426433759354395034
-  s21_decimal decimal1 = {{0x00000010, 0x00000000, 0x00000000, 0x00000000}};
+  s21_decimal decimal1 = {{0x00001231, 0x00000000, 0x00000000, 0x00000000}};
   // 3.9614081257132168796771975168
-  s21_decimal decimal2 = {{0x00000001, 0x00000000, 0x00000000, 0x00010000}};
+  s21_decimal decimal2 = {{0x00232331, 0x00000000, 0x00000000, 0x00030000}};
   // 11.884224377139650639031592551
-  s21_big_decimal big, big2, big3;
-  s21_decimal_to_big(decimal1, &big);
 
   // s21_add(decimal1, decimal2, &res);
   debug_display_decimal("dec1", decimal1);
   debug_display_decimal("dec2", decimal2);
   for (int i = 0; i < 1; i++) {
-    s21_mul(decimal1, decimal2, &res);
+    s21_div(decimal1, decimal2, &res);
     // s21_big_mantissa_shift_l(&big, 1);
     // big2 = big;
     // s21_big_mantissa_shift_l(&big, 2);

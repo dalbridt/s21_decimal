@@ -159,6 +159,12 @@ void s21_set_one_big(s21_big_decimal *dec);
 void s21_decrease_scale_big(s21_big_decimal *dst, int n);
 int s21_post_normalization(s21_big_decimal *result, int scale);
 
+s21_big_decimal s21_add_big(s21_big_decimal value_1, s21_big_decimal value_2);
+
+int s21_is_less_big(s21_big_decimal value_1, s21_big_decimal value_2);
+int s21_is_greater_or_equal_big(s21_big_decimal value_1,
+                                s21_big_decimal value_2);
+
 // MARK: DEBUG
 
 float rand_float(int random, float min, float max);

@@ -1,204 +1,4 @@
 Running suite s21_decimal_tests
-unit_tests.c:113:F:04. s21_div:t_div:0: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.992679, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:1: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 7.82479, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:2: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.27464, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:3: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.41709, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:4: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.09148, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:5: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.73154, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:6: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.82905, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:7: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.221508, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:8: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.626678, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:9: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 1.99149, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:10: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 13.9, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:11: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.17168, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:12: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.43963, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:13: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.19164, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:14: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.96626, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:15: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.36697, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:16: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.261161, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:17: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.686684, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:18: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.06424, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:19: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 117.56, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:20: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.0840337, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:21: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.460473, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:22: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.30198, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:23: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 3.27459, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:24: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.03492, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:25: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.297003, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:26: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.751224, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:27: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.14859, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:28: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -15.567, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:29: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.00865352, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:30: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.479839, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:31: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.4239, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:32: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 3.69808, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:33: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.784564, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:34: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.329498, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:35: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.820967, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:36: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.24736, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:37: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -6.72999, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:38: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.056925, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:39: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.497846, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:40: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.55958, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:41: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 4.31462, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:42: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.5889, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:43: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.359123, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:44: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.896422, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:45: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.36484, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:46: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -4.0427, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:47: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.114548, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:48: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.514648, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:49: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.71121, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:50: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 5.2976, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:51: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.432036, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:52: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.386265, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:53: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.978401, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:54: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.5066, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:55: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -2.74095, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:56: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.165489, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:57: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.557491, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:58: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.88194, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:59: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 7.10694, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:60: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.303251, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:61: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.411178, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:62: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.06788, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:63: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.68122, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:64: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.97396, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:65: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.210928, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:66: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.612361, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:67: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 1.97485, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:68: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 11.5477, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:69: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.195812, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:70: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.434169, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:71: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.16573, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:72: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.90186, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:73: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.46773, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:74: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.251638, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:75: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.671297, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:76: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.04508, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:77: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 39.7559, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:78: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.10473, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:79: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.455412, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:80: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.27341, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:81: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 3.18884, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:82: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.10883, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:83: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.288387, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:84: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.734642, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:85: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.12631, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:86: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -22.1816, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:87: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.0264859, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:88: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.475137, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:89: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.39224, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:90: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 3.57827, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:91: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.841154, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:92: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.321665, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:93: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.803045, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:94: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.22113, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:95: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -7.91718, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:96: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.0413538, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:97: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.493465, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:98: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.52431, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:99: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 4.13562, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:100: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.633605, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:101: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.35197, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:102: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.876991, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:103: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.33349, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:104: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -4.52232, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:105: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.100835, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:106: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.510557, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:107: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.67167, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:108: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 5.00142, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:109: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.468249, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:110: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.379708, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:111: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.957263, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:112: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.46849, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:113: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -2.99858, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:114: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.15332, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:115: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.544361, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:116: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.8373, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:117: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 6.52574, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:118: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.333176, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:119: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.405145, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:120: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.04479, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:121: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.6339, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:122: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -2.13451, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:123: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.200057, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:124: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.598294, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:125: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 1.95875, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:126: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 9.92611, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:127: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.220958, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:128: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.4286, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:129: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.14042, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:130: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.84153, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:131: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.57753, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:132: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.241866, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:133: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.656187, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:134: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.0266, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:135: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 24.2419, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:136: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.126165, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:137: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.450256, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:138: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.24554, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:139: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 3.10932, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:140: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.18831, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:141: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.279523, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:142: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.71837, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:143: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.10487, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:144: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -37.5885, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:145: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.0449602, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:146: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.47033, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:147: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.36141, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:148: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 3.46865, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:149: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.90145, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:150: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.313646, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:151: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.785435, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:152: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.19597, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:153: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -9.53522, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:154: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.0252599, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:155: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.489007, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:156: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.48995, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:157: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 3.97495, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:158: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.680899, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:159: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.344655, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:160: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.857955, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:161: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.30355, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:162: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -5.10277, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:163: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.086691, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:164: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.506396, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:165: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.63327, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:166: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 4.74343, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:167: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.506342, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:168: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.373009, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:169: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.936572, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:170: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.43227, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:171: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -3.29433, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:172: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.14079, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:173: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.53145, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:174: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.79403, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:175: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 6.04555, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:176: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.364507, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:177: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.398988, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:178: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.02222, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:179: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.58918, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:180: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -2.31339, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:181: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.188881, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:182: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.58447, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:183: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 1.94317, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:184: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 8.73668, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:185: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.247185, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:186: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.422921, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:187: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.1157, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:188: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.78492, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:189: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.69727, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:190: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.231836, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:191: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.641348, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:192: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 2.00877, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:193: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 17.5977, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:194: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -0.148441, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:195: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.445001, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:196: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.21835, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:197: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 3.03538, conv_res == 2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:198: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == -1.27401, conv_res == -2, 1e-05 == 1e-05
-unit_tests.c:113:F:04. s21_div:t_div:199: Assertion 'fabsl(conv_res - res) < 1e-05' failed: res == 0.27047, conv_res == 2, 1e-05 == 1e-05
 Running suite add0
 unit_tests_add.c:30:F:Core:test_add_fail_manual2:0: Assertion 'code != 0' failed: code == 0, 0 == 0
 unit_tests_add.c:41:F:Core:test_add_fail_manual3:0: Assertion 'code != 0' failed: code == 0, 0 == 0
@@ -921,28 +721,14 @@ unit_tests_div.c:75:F:Core:test_div_fail_manual6:0: Assertion 'code != 0' failed
 unit_tests_div.c:86:F:Core:test_div_fail_manual7:0: Assertion 'code != 0' failed: code == 0, 0 == 0
 unit_tests_div.c:97:F:Core:test_div_fail_manual8:0: Assertion 'code != 0' failed: code == 0, 0 == 0
 unit_tests_div.c:108:F:Core:test_div_fail_manual9:0: Assertion 'code != 0' failed: code == 0, 0 == 0
-unit_tests_div.c:121:F:Core:test_div_fail_manual10:0: Assertion 'code != 0' failed: code == 0, 0 == 0
 unit_tests_div.c:132:F:Core:test_div_fail_manual11:0: Assertion 'code != 0' failed: code == 0, 0 == 0
-unit_tests_div.c:143:F:Core:test_div_fail_manual12:0: Assertion 'code != 0' failed: code == 0, 0 == 0
 unit_tests_div.c:154:F:Core:test_div_fail_manual13:0: Assertion 'code != 0' failed: code == 0, 0 == 0
 unit_tests_div.c:165:F:Core:test_div_fail_manual14:0: Assertion 'code != 0' failed: code == 0, 0 == 0
 unit_tests_div.c:176:F:Core:test_div_fail_manual15:0: Assertion 'code != 0' failed: code == 0, 0 == 0
 unit_tests_div.c:187:F:Core:test_div_fail_manual16:0: Assertion 'code != 0' failed: code == 0, 0 == 0
 unit_tests_div.c:198:F:Core:test_div_fail_manual17:0: Assertion 'code != 0' failed: code == 0, 0 == 0
-unit_tests_div.c:86872:F:Core:test_div_manual1:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div_manual2:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div_manual3:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div_manual4:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div_manual5:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div_manual6:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div_manual7:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div_manual8:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div_manual9:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div_manual10:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div_manual11:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div_manual12:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div_manual13:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86899:F:Core:test_div_manual14:0: Assertion 'code == code_check' failed: code == 0, code_check == 3
 unit_tests_div.c:86899:F:Core:test_div_manual15:0: Assertion 'code == code_check' failed: code == 0, code_check == 1
 unit_tests_div.c:86899:F:Core:test_div_manual16:0: Assertion 'code == code_check' failed: code == 0, code_check == 2
 unit_tests_div.c:86925:F:Core:test_div_manual17:0: Assertion 'code == code_check' failed: code == 0, code_check == 2
@@ -957,26 +743,15 @@ unit_tests_div.c:86899:F:Core:test_div_manual25:0: Assertion 'code == code_check
 unit_tests_div.c:86872:F:Core:test_div_manual26:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div_manual27:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 Running suite div1
-unit_tests_div.c:86872:F:Core:test_div2:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div3:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div4:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div6:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div7:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div8:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
+unit_tests_div.c:86872:F:Core:test_div9:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
+unit_tests_div.c:86872:F:Core:test_div10:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
+unit_tests_div.c:86872:F:Core:test_div11:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
+unit_tests_div.c:86872:F:Core:test_div12:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div13:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div14:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div15:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div16:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div17:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div18:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div19:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div20:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div21:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div22:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div23:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div24:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div25:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div26:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div27:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div28:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div29:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
@@ -993,8 +768,6 @@ unit_tests_div.c:86899:F:Core:test_div39:0: Assertion 'code == code_check' faile
 unit_tests_div.c:86899:F:Core:test_div40:0: Assertion 'code == code_check' failed: code == 0, code_check == 2
 unit_tests_div.c:86899:F:Core:test_div41:0: Assertion 'code == code_check' failed: code == 0, code_check == 1
 unit_tests_div.c:86899:F:Core:test_div42:0: Assertion 'code == code_check' failed: code == 0, code_check == 2
-unit_tests_div.c:86872:F:Core:test_div43:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div44:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div45:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div46:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86899:F:Core:test_div47:0: Assertion 'code == code_check' failed: code == 0, code_check == 1
@@ -1003,58 +776,29 @@ unit_tests_div.c:86899:F:Core:test_div49:0: Assertion 'code == code_check' faile
 unit_tests_div.c:86899:F:Core:test_div50:0: Assertion 'code == code_check' failed: code == 0, code_check == 2
 unit_tests_div.c:86899:F:Core:test_div51:0: Assertion 'code == code_check' failed: code == 0, code_check == 1
 unit_tests_div.c:86899:F:Core:test_div52:0: Assertion 'code == code_check' failed: code == 0, code_check == 2
-unit_tests_div.c:86872:F:Core:test_div53:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div54:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div55:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div56:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div57:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div58:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div59:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div60:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86899:F:Core:test_div61:0: Assertion 'code == code_check' failed: code == 0, code_check == 1
 unit_tests_div.c:86899:F:Core:test_div62:0: Assertion 'code == code_check' failed: code == 0, code_check == 2
-unit_tests_div.c:86872:F:Core:test_div63:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div64:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div65:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div66:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div67:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div68:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div69:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div70:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div71:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div72:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div73:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div74:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86899:F:Core:test_div75:0: Assertion 'code == code_check' failed: code == 0, code_check == 3
-unit_tests_div.c:86899:F:Core:test_div76:0: Assertion 'code == code_check' failed: code == 0, code_check == 3
-unit_tests_div.c:86899:F:Core:test_div77:0: Assertion 'code == code_check' failed: code == 0, code_check == 3
-unit_tests_div.c:86899:F:Core:test_div78:0: Assertion 'code == code_check' failed: code == 0, code_check == 3
 unit_tests_div.c:86872:F:Core:test_div79:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div80:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div81:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div82:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div83:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div84:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div85:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div87:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div88:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div89:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div91:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div92:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
+unit_tests_div.c:86872:F:Core:test_div93:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
+unit_tests_div.c:86872:F:Core:test_div94:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
+unit_tests_div.c:86872:F:Core:test_div95:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
+unit_tests_div.c:86872:F:Core:test_div96:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div97:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div98:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div99:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div100:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div101:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div102:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div103:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div104:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div105:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div106:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div107:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div108:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div109:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div110:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div111:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div112:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div113:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
@@ -1071,8 +815,6 @@ unit_tests_div.c:86899:F:Core:test_div123:0: Assertion 'code == code_check' fail
 unit_tests_div.c:86899:F:Core:test_div124:0: Assertion 'code == code_check' failed: code == 0, code_check == 1
 unit_tests_div.c:86899:F:Core:test_div125:0: Assertion 'code == code_check' failed: code == 0, code_check == 2
 unit_tests_div.c:86899:F:Core:test_div126:0: Assertion 'code == code_check' failed: code == 0, code_check == 1
-unit_tests_div.c:86872:F:Core:test_div127:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div128:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div129:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div130:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86899:F:Core:test_div131:0: Assertion 'code == code_check' failed: code == 0, code_check == 2
@@ -1081,32 +823,14 @@ unit_tests_div.c:86899:F:Core:test_div133:0: Assertion 'code == code_check' fail
 unit_tests_div.c:86899:F:Core:test_div134:0: Assertion 'code == code_check' failed: code == 0, code_check == 1
 unit_tests_div.c:86899:F:Core:test_div135:0: Assertion 'code == code_check' failed: code == 0, code_check == 2
 unit_tests_div.c:86899:F:Core:test_div136:0: Assertion 'code == code_check' failed: code == 0, code_check == 1
-unit_tests_div.c:86872:F:Core:test_div137:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div138:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div139:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div140:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div141:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div142:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div143:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div144:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86899:F:Core:test_div145:0: Assertion 'code == code_check' failed: code == 0, code_check == 2
 unit_tests_div.c:86899:F:Core:test_div146:0: Assertion 'code == code_check' failed: code == 0, code_check == 1
-unit_tests_div.c:86872:F:Core:test_div147:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div148:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div149:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div150:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div151:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div152:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div153:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div154:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div155:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div156:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div157:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div158:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86899:F:Core:test_div159:0: Assertion 'code == code_check' failed: code == 0, code_check == 3
-unit_tests_div.c:86899:F:Core:test_div160:0: Assertion 'code == code_check' failed: code == 0, code_check == 3
-unit_tests_div.c:86899:F:Core:test_div161:0: Assertion 'code == code_check' failed: code == 0, code_check == 3
-unit_tests_div.c:86899:F:Core:test_div162:0: Assertion 'code == code_check' failed: code == 0, code_check == 3
 unit_tests_div.c:86872:F:Core:test_div163:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div164:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div165:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
@@ -1114,30 +838,15 @@ unit_tests_div.c:86872:F:Core:test_div166:0: Assertion 's21_is_equal(result, che
 unit_tests_div.c:86872:F:Core:test_div167:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div168:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div169:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div170:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div172:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div173:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div174:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div175:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div176:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div177:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div178:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div179:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div180:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div181:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div182:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div183:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div184:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div185:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div186:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div187:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div188:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div189:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div190:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div191:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div192:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div193:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div194:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div195:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div196:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div197:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
@@ -1154,73 +863,34 @@ unit_tests_div.c:86899:F:Core:test_div207:0: Assertion 'code == code_check' fail
 unit_tests_div.c:86899:F:Core:test_div208:0: Assertion 'code == code_check' failed: code == 0, code_check == 2
 unit_tests_div.c:86872:F:Core:test_div209:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div210:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div211:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div212:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div213:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div214:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div215:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div216:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86899:F:Core:test_div217:0: Assertion 'code == code_check' failed: code == 0, code_check == 1
 unit_tests_div.c:86899:F:Core:test_div218:0: Assertion 'code == code_check' failed: code == 0, code_check == 2
 unit_tests_div.c:86899:F:Core:test_div219:0: Assertion 'code == code_check' failed: code == 0, code_check == 1
 unit_tests_div.c:86899:F:Core:test_div220:0: Assertion 'code == code_check' failed: code == 0, code_check == 2
-unit_tests_div.c:86872:F:Core:test_div221:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div222:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div223:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div224:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div225:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div226:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div227:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div228:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div229:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div230:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div231:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div232:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div233:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div234:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div235:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div236:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div237:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div238:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div239:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div240:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div241:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div242:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86899:F:Core:test_div243:0: Assertion 'code == code_check' failed: code == 0, code_check == 3
-unit_tests_div.c:86899:F:Core:test_div244:0: Assertion 'code == code_check' failed: code == 0, code_check == 3
-unit_tests_div.c:86899:F:Core:test_div245:0: Assertion 'code == code_check' failed: code == 0, code_check == 3
-unit_tests_div.c:86899:F:Core:test_div246:0: Assertion 'code == code_check' failed: code == 0, code_check == 3
 unit_tests_div.c:86872:F:Core:test_div247:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div248:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div249:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div250:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div251:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div252:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div253:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div254:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div255:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div257:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div258:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div259:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div260:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div261:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div262:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div263:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div264:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div265:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div266:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div267:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div268:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div269:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div270:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div271:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div272:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div273:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div274:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div275:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div276:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div277:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div278:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div279:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div280:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div281:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
@@ -1237,42 +907,18 @@ unit_tests_div.c:86899:F:Core:test_div291:0: Assertion 'code == code_check' fail
 unit_tests_div.c:86899:F:Core:test_div292:0: Assertion 'code == code_check' failed: code == 0, code_check == 1
 unit_tests_div.c:86872:F:Core:test_div293:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div294:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div295:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div296:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div297:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div298:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div299:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div300:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86899:F:Core:test_div301:0: Assertion 'code == code_check' failed: code == 0, code_check == 2
 unit_tests_div.c:86899:F:Core:test_div302:0: Assertion 'code == code_check' failed: code == 0, code_check == 1
 unit_tests_div.c:86899:F:Core:test_div303:0: Assertion 'code == code_check' failed: code == 0, code_check == 2
 unit_tests_div.c:86899:F:Core:test_div304:0: Assertion 'code == code_check' failed: code == 0, code_check == 1
-unit_tests_div.c:86872:F:Core:test_div305:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div306:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div307:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div308:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div309:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div310:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div311:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div312:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div313:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div314:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div315:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div316:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div317:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div318:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div319:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div320:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div321:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div322:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div323:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div324:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div325:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div326:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86899:F:Core:test_div327:0: Assertion 'code == code_check' failed: code == 0, code_check == 3
-unit_tests_div.c:86899:F:Core:test_div328:0: Assertion 'code == code_check' failed: code == 0, code_check == 3
-unit_tests_div.c:86899:F:Core:test_div329:0: Assertion 'code == code_check' failed: code == 0, code_check == 3
-unit_tests_div.c:86899:F:Core:test_div330:0: Assertion 'code == code_check' failed: code == 0, code_check == 3
 unit_tests_div.c:86872:F:Core:test_div331:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div332:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div333:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
@@ -1282,25 +928,16 @@ unit_tests_div.c:86872:F:Core:test_div336:0: Assertion 's21_is_equal(result, che
 unit_tests_div.c:86872:F:Core:test_div338:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div339:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div340:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div342:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div343:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div344:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
+unit_tests_div.c:86872:F:Core:test_div345:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
+unit_tests_div.c:86872:F:Core:test_div346:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
+unit_tests_div.c:86872:F:Core:test_div347:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
+unit_tests_div.c:86872:F:Core:test_div348:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div349:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div350:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div351:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div352:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div353:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div354:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div355:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div356:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div357:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div358:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div359:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div360:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div361:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div362:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div363:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div364:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div365:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div366:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div367:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
@@ -1325,12 +962,8 @@ unit_tests_div.c:86899:F:Core:test_div385:0: Assertion 'code == code_check' fail
 unit_tests_div.c:86899:F:Core:test_div386:0: Assertion 'code == code_check' failed: code == 0, code_check == 2
 unit_tests_div.c:86899:F:Core:test_div387:0: Assertion 'code == code_check' failed: code == 0, code_check == 1
 unit_tests_div.c:86899:F:Core:test_div388:0: Assertion 'code == code_check' failed: code == 0, code_check == 2
-unit_tests_div.c:86872:F:Core:test_div389:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div390:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div391:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div392:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div393:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
-unit_tests_div.c:86872:F:Core:test_div394:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div395:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86872:F:Core:test_div396:0: Assertion 's21_is_equal(result, check) == 1' failed: s21_is_equal(result, check) == 0, 1 == 1
 unit_tests_div.c:86899:F:Core:test_div397:0: Assertion 'code == code_check' failed: code == 0, code_check == 1
@@ -1538,4 +1171,4 @@ unit_tests_negate.c:96:F:Core:test_negate_fail8:0: Assertion 'code == 1' failed:
 unit_tests_negate.c:107:F:Core:test_negate_fail9:0: Assertion 'code == 1' failed: code == 0, 1 == 1
 Running suite debug0
 Results for all suites run:
-85%: Checks: 10299, Failures: 1503, Errors: 6
+83%: Checks: 6879, Failures: 1136, Errors: 6

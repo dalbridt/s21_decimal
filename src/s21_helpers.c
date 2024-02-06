@@ -89,8 +89,8 @@ int s21_get_bit(s21_decimal src, int index) {
 }
 
 int s21_get_bit_big(s21_big_decimal src, int index) {
-  unsigned long mask = 1UL << (index % 64);
-  return (src.bits[index / 64] & mask) != 0;
+  unsigned long mask = 1UL << (index % 32);
+  return (src.bits[index / 32] & mask) != 0;
 }
 
 void s21_set_bit(s21_decimal* src, int index, int value) {
@@ -104,11 +104,11 @@ void s21_set_bit(s21_decimal* src, int index, int value) {
 }
 
 void s21_set_bit_big(s21_big_decimal* dst, int index, int bit) {
-  unsigned long mask = 1UL << (index % 64);
+  unsigned long mask = 1UL << (index % 32);
   if (bit == 0) {
-    dst->bits[index / 64] = dst->bits[index / 64] & ~mask;
+    dst->bits[index / 32] = dst->bits[index / 32] & ~mask;
   } else {
-    dst->bits[index / 64] = dst->bits[index / 64] | mask;
+    dst->bits[index / 32] = dst->bits[index / 32] | mask;
   }
 }
 
@@ -472,22 +472,24 @@ void s21_divide_big(s21_big_decimal dividend, s21_big_decimal divisor,
   s21_reset_big(remainder);
   s21_reset_big(quotient);
 
-  if (s21_is_big_zero(divisor)) return;
+  // if (s21_is_big_zero(divisor)) return;
 
   int dividend_scale = s21_get_scale_big(dividend);
   int divisor_scale = s21_get_scale_big(divisor);
   int div_new_scale = dividend_scale;
 
+  // printf("scales %d %d\n", dividend_scale, divisor_scale);
+
   if (stop == 1) {
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < 6; i++) {
       s21_x10_big(&dividend);
       div_new_scale++;
     }
   }
 
-  num_bits = 96;
+  num_bits = 512;
 
-  while (s21_mantisa_compare_big(*remainder, divisor) && num_bits > 0) {
+  while (s21_is_less_big(*remainder, divisor) && num_bits > 0) {
     bit = s21_get_bit_big(dividend, 512 - 1);
     s21_big_mantissa_shift_l(remainder, 1);
     if (bit) s21_set_bit_big(remainder, 0, bit);
@@ -523,7 +525,7 @@ void s21_divide_big(s21_big_decimal dividend, s21_big_decimal divisor,
     s21_big_decimal quot_2 = {0};
     s21_big_decimal rem_2 = {0};
     s21_divide_big(*remainder, divisor, &quot_2, &rem_2, 1);
-    *quotient = s21_add_mantissas_big(*quotient, quot_2);
+    *quotient = s21_add_big(*quotient, quot_2);
   } else {
     s21_set_scale_big(quotient, div_new_scale + dividend_scale - divisor_scale);
   }
@@ -533,6 +535,11 @@ void s21_divide_big(s21_big_decimal dividend, s21_big_decimal divisor,
 void s21_upscale_x10(s21_decimal* dec) {
   s21_x10(dec);
   s21_set_scale(dec, (s21_get_scale(*dec) + 1));
+}
+
+void s21_upscale_x10_big(s21_big_decimal* dec) {
+  s21_x10_big(dec);
+  s21_set_scale_big(dec, (s21_get_scale_big(*dec) + 1));
 }
 
 void s21_set_one(s21_decimal* dec) {
