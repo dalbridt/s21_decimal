@@ -8,8 +8,8 @@
 void unsigned_divide(unsigned int dividend, unsigned int divisor,
                      unsigned int *quotient, unsigned int *remainder);
 
-void divide_dec(s21_decimal dividend, s21_decimal divisor,
-                s21_decimal *quotient, s21_decimal *remainder, int stop);
+void divide_decimal(s21_decimal dividend, s21_decimal divisor,
+                    s21_decimal *quotient, s21_decimal *remainder, int stop);
 
 #define SELECTOR 5
 

@@ -12,7 +12,7 @@ int s21_mul(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   scale = s21_post_normalization(&res, scale);
   if (scale >= 0) {
     set_scale(result, scale);
-    import_to_small_decimal(res, result);
+    big_to_decimal(res, result);
   } else {
     error = 1;
   }

@@ -2,7 +2,7 @@
 
 /*S21_DECIMAL BASIC HELPERS*/
 
-void upscale_x10(s21_decimal* dec) {
+void upscale_decimal_x10(s21_decimal* dec) {
   decimal_x10(dec);
   set_scale(dec, (get_scale(*dec) + 1));
 }
@@ -47,7 +47,7 @@ void set_bit(s21_decimal* src, int index, int value) {
 
 void reset_decimal(s21_decimal* src) { *src = (s21_decimal){0}; }
 
-int decimal_is_zero(s21_decimal src) {
+int is_decimal_zero(s21_decimal src) {
   return (src.bits[0] == 0 && src.bits[1] == 0 && src.bits[2] == 0);
 }
 
@@ -65,7 +65,7 @@ int decimal_is_zero(s21_decimal src) {
 //   dst->bits[3] = 0b10000000000111000000000000000000;
 // }
 
-void switchEndian(s21_decimal* x) {
+void switch_endian(s21_decimal* x) {
   unsigned int temp0 = x->bits[0];
   unsigned int temp2 = x->bits[2];
   x->bits[0] = temp2;
@@ -78,7 +78,7 @@ void decimal_mantissa_shift_l(s21_decimal* dec, int offset) {
   size--;
   size_t basic_size = size;
 
-  switchEndian(dec);
+  switch_endian(dec);
 
   for (int i = 0; i < offset; i++) {
     for (byte = dec->bits; basic_size--; ++byte) {
@@ -92,11 +92,11 @@ void decimal_mantissa_shift_l(s21_decimal* dec, int offset) {
     basic_size = size;
   }
 
-  switchEndian(dec);
+  switch_endian(dec);
 }
 
 void decimal_mantissa_shift_r(s21_decimal* dec, int offset) {
-  switchEndian(dec);
+  switch_endian(dec);
 
   while (offset--) {
     int carry = 0;
@@ -107,7 +107,7 @@ void decimal_mantissa_shift_r(s21_decimal* dec, int offset) {
     }
   }
 
-  switchEndian(dec);
+  switch_endian(dec);
 }
 
 long double get_mantissa(s21_decimal* src) {
@@ -224,7 +224,7 @@ long double get_mantissa_big_decimal(s21_big_decimal* src) {
   return mantissa;
 }
 
-int big_decimal_is_zero(s21_big_decimal src) {
+int is_big_decimal_zero(s21_big_decimal src) {
   return (src.bits[0] == 0 && src.bits[1] == 0 && src.bits[2] == 0 &&
           src.bits[3] == 0 && src.bits[4] == 0 && src.bits[5] == 0 &&
           src.bits[6] == 0);
@@ -240,7 +240,7 @@ void decimal_to_big(s21_decimal src, s21_big_decimal* dst) {
   dst->scale = src.bits[3] & MAX4BITE;
 }
 
-void import_to_small_decimal(s21_big_decimal src, s21_decimal* dst) {
+void big_to_decimal(s21_big_decimal src, s21_decimal* dst) {
   // normalize
   dst->bits[0] = src.bits[0] & MAX4BITE;
   src.bits[0] >>= 32;

@@ -3,12 +3,12 @@
 int s21_div(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   s21_decimal dec_rem;
 
-  divide_dec(value_1, value_2, result, &dec_rem, 0);
+  divide_decimal(value_1, value_2, result, &dec_rem, 0);
   return 0;
 }
 
-void divide_dec(s21_decimal dividend, s21_decimal divisor,
-                s21_decimal *quotient, s21_decimal *remainder, int stop) {
+void divide_decimal(s21_decimal dividend, s21_decimal divisor,
+                    s21_decimal *quotient, s21_decimal *remainder, int stop) {
   int num_bits;
   int q, bit;
   int i;
@@ -24,7 +24,7 @@ void divide_dec(s21_decimal dividend, s21_decimal divisor,
   reset_decimal(remainder);
   reset_decimal(quotient);
 
-  if (decimal_is_zero(divisor)) return;
+  if (is_decimal_zero(divisor)) return;
 
   int dividend_scale = get_scale(dividend);
   int divisor_scale = get_scale(divisor);
@@ -79,7 +79,7 @@ void divide_dec(s21_decimal dividend, s21_decimal divisor,
   if (stop == 0) {
     s21_decimal quot_2 = {0};
     s21_decimal rem_2 = {0};
-    divide_dec(*remainder, divisor, &quot_2, &rem_2, 1);
+    divide_decimal(*remainder, divisor, &quot_2, &rem_2, 1);
     s21_add(*quotient, quot_2, quotient);
   } else {
     set_scale(quotient, div_new_scale + dividend_scale - divisor_scale);
