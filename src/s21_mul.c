@@ -9,14 +9,13 @@ int s21_mul(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
 
   scale = s21_get_scale(value_1) + s21_get_scale(value_2);
   error = s21_mul_big(val_1, val_2, &res);
-  scale = s21_post_normalization(&res, scale);
-  if (scale >= 0) {
+  scale = s21_post_normalization(&res);
+  if (scale == AM_OK) {
     s21_set_scale(result, scale);
     s21_big_to_decimal(res, result);
   } else {
-    error = 1;
+    error = scale;
   }
-  if (error == 1 && s21_get_sign(*result)) error = 2;
   if (error) s21_reset(result);
   s21_set_sign(result, s21_get_sign(value_1) ^ s21_get_sign(value_2));
   return error;

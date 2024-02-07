@@ -10,7 +10,6 @@
 
 #ifdef TESTS
 
-
 #include "s21_decimal.h"
 #include "unit_tests_debug.h"
 

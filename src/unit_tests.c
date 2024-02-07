@@ -189,6 +189,8 @@ START_TEST(t_is_greater_or_equal) {  // 08. s21_is_greater_or_equal
   }
   s21_decimal dec_1 = {0};
   s21_decimal dec_2 = {0};
+  s21_big_decimal dec_1_big = {0};
+  s21_big_decimal dec_2_big = {0};
   s21_from_float_to_decimal(val1, &dec_1);
   s21_from_float_to_decimal(val2, &dec_2);
 
@@ -198,8 +200,11 @@ START_TEST(t_is_greater_or_equal) {  // 08. s21_is_greater_or_equal
   if (_i % 5 == 0) {
     s21_upscale_x10(&dec_2);
   }
+  s21_decimal_to_big(dec_1, &dec_1_big);
+  s21_decimal_to_big(dec_2, &dec_2_big);
   int res = val1 >= val2;
   ck_assert_int_eq(res, s21_is_greater_or_equal(dec_1, dec_2));
+  ck_assert_int_eq(res, s21_is_greater_or_equal_big(dec_1_big, dec_2_big));
 }
 END_TEST
 
@@ -376,6 +381,49 @@ START_TEST(t_negate) {  // 18. s21_negate
 }
 END_TEST
 
+START_TEST(t_div_eq) {  // 19. s21_div_equal
+  float f1 = rand_float(_i, -F_MAX / 2, F_MAX / 2);
+  while (f1 == 0) {
+    f1 = rand_float(_i + 10, -F_MAX / 2, F_MAX / 2);
+  }
+  float f2 = f1;
+  float res = 1.0;
+  float conv_res;
+  s21_decimal dec1, dec2, dec_res;
+  s21_from_float_to_decimal(f1, &dec1);
+  s21_from_float_to_decimal(f2, &dec2);
+  if (_i % 3 == 0) {
+    s21_upscale_x10(&dec2);
+  }
+  if (_i % 5 == 0) {
+    s21_upscale_x10(&dec1);
+  }
+  s21_div(dec1, dec2, &dec_res);
+  s21_from_decimal_to_float(dec_res, &conv_res);
+  ck_assert_float_eq_tol(res, conv_res, TOL);
+}
+END_TEST
+
+START_TEST(t_div_zero) {  // 20. s21_div_zero
+  float f1 = rand_float(_i, -F_MAX / 2, F_MAX / 2);
+  while (f1 == 0) {
+    f1 = rand_float(_i + 10, -F_MAX / 2, F_MAX / 2);
+  }
+  float f2 = 0.0;
+  int res = 3;
+  s21_decimal dec1, dec2, dec_res;
+  s21_from_float_to_decimal(f1, &dec1);
+  s21_from_float_to_decimal(f2, &dec2);
+  if (_i % 3 == 0) {
+    s21_upscale_x10(&dec2);
+  }
+  if (_i % 5 == 0) {
+    s21_upscale_x10(&dec1);
+  }
+  ck_assert_int_eq(s21_div(dec1, dec2, &dec_res), res);
+}
+END_TEST
+
 Suite *decimal_suite() {
   Suite *s = suite_create("s21_decimal_tests");
 
@@ -451,6 +499,13 @@ Suite *decimal_suite() {
   tcase_add_loop_test(negate, t_negate, 0, ITER);
   suite_add_tcase(s, negate);
 
+  TCase *div_equal = tcase_create("19. s21_div equal");
+  tcase_add_test(div_equal, t_div_eq);
+  suite_add_tcase(s, div_equal);
+
+  TCase *div_zero = tcase_create("20. s21_div zero");
+  tcase_add_test(div_zero, t_div_zero);
+  suite_add_tcase(s, div_zero);
   return s;
 }
 

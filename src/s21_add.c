@@ -13,7 +13,14 @@ int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
 
     res = s21_add_big(big_value_1, big_value_2);
 
-    s21_big_to_decimal(res, result);
+    int new_scale = s21_post_normalization(&res);
+
+    if (new_scale == AM_OK) {
+      s21_big_to_decimal(res, result);
+      s21_set_scale(result, new_scale);
+    } else {
+      code = new_scale;
+    }
   }
 
   return code;

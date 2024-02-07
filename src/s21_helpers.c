@@ -13,7 +13,10 @@ int s21_is_zero(s21_decimal src) {
 int s21_is_big_zero(s21_big_decimal src) {
   return (src.bits[0] == 0 && src.bits[1] == 0 && src.bits[2] == 0 &&
           src.bits[3] == 0 && src.bits[4] == 0 && src.bits[5] == 0 &&
-          src.bits[6] == 0);
+          src.bits[6] == 0 && src.bits[7] == 0 && src.bits[8] == 0 &&
+          src.bits[9] == 0 && src.bits[10] == 0 && src.bits[11] == 0 &&
+          src.bits[12] == 0 && src.bits[13] == 0 && src.bits[14] == 0 &&
+          src.bits[15] == 0);
 }
 
 long double s21_get_mantissa(s21_decimal* src) {
@@ -560,14 +563,44 @@ void s21_decrease_scale_big(s21_big_decimal* dst, int n) {
   s21_set_scale_big(dst, scale);
 }
 
-int s21_post_normalization(s21_big_decimal* result, int scale) {
+int s21_post_normalization(s21_big_decimal* result) {
+  int dop = 0;
+  int scale = s21_get_scale_big(*result);
   while ((result->bits[3] || result->bits[4] || result->bits[5] ||
-          result->bits[6]) &&
+          result->bits[6] || result->bits[7] || result->bits[8] ||
+          result->bits[9] || result->bits[10] || result->bits[11] ||
+          result->bits[12] || result->bits[13] || result->bits[14] ||
+          result->bits[15]) &&
          scale > 0) {
+    if (scale == 1 && result->bits[3]) dop = 1;
     s21_decrease_scale_big(result, 1);
-    s21_big_mantissa_shift_r(result, 1);
+    s21_div10_big(result, 1);
+    scale--;
   }
 
+  while ((result->bits[0] || result->bits[1] || result->bits[2]) &&
+         scale > 28) {
+    s21_decrease_scale_big(result, 1);
+    s21_div10_big(result, 1);
+    scale--;
+  }
+
+  if (dop && scale == 0 && result->bits[3] == 0 && s21_get_bit_big(*result, 0)){
+    s21_set_bit_big(result, 0, 0);}
+  if ((result->bits[3] || result->bits[4] || result->bits[5] ||
+       result->bits[6] || result->bits[7] || result->bits[8] ||
+       result->bits[9] || result->bits[10] || result->bits[11] ||
+       result->bits[12] || result->bits[13] || result->bits[14] ||
+       result->bits[15])) {
+    scale = AM_OF;
+  }
+
+  if (scale > 28 && s21_is_big_zero(*result)) {
+    scale = AM_NOF;
+  }
+  if (scale == AM_OF && s21_get_sign_big(*result)){
+  scale = AM_NOF;
+  }
   return scale;
 }
 

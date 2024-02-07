@@ -157,8 +157,7 @@ void s21_set_one(s21_decimal *dec);
 void s21_set_one_big(s21_big_decimal *dec);
 
 void s21_decrease_scale_big(s21_big_decimal *dst, int n);
-int s21_post_normalization(s21_big_decimal *result, int scale);
-
+int s21_post_normalization(s21_big_decimal* result);
 s21_big_decimal s21_add_big(s21_big_decimal value_1, s21_big_decimal value_2);
 
 int s21_is_less_big(s21_big_decimal value_1, s21_big_decimal value_2);

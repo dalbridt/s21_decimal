@@ -15,9 +15,17 @@ int s21_div(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
 
     s21_divide_big(value_big_1, value_big_2, &big_res, &big_rem, 0);
 
-    // debug_display_big_decimal("big res", big_res);
-
+    int scale = s21_post_normalization(&big_res);
+    if (scale != AM_OK){
+      flag = scale;
+      s21_reset_big(&big_res);
+    } else {
     s21_big_to_decimal(big_res, result);
+    s21_set_scale(result, scale);
+    }
+    s21_set_sign(result, s21_get_sign(value_1) ^ s21_get_sign(value_2));
+
+    // debug_display_big_decimal("big res", big_res);
   }
 
   return flag;
