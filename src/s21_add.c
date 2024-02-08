@@ -2,25 +2,24 @@
 
 int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   am_code code = AM_ERR;
+  code = s21_decimal_validation(value_1);
+  if (code == AM_OK){
+    code = s21_decimal_validation(value_2);
+  }
 
   if (result != NULL) {
     s21_reset(result);
-    code = AM_OK;
     s21_big_decimal big_value_1, big_value_2, res;
 
     s21_decimal_to_big(value_1, &big_value_1);
     s21_decimal_to_big(value_2, &big_value_2);
 
     res = s21_add_big(big_value_1, big_value_2);
-
-    int new_scale = s21_post_normalization(&res);
-
-    if (new_scale == AM_OK) {
-      s21_big_to_decimal(res, result);
-      s21_set_scale(result, new_scale);
-    } else {
-      code = new_scale;
+    int error = s21_post_normalization(&res, s21_get_scale_big(res));
+    if(error != AM_OK){
+      code = error;
     }
+    s21_big_to_decimal(res, result);
   }
 
   return code;

@@ -1,6 +1,8 @@
 #include "s21_decimal.h"
 
 int s21_from_decimal_to_float(s21_decimal src, float* dst) {
+  int flag = AM_OK;
+  flag = s21_decimal_validation(src);
   int sign = s21_get_sign(src);
   int exp = s21_get_scale(src);
 
@@ -12,6 +14,5 @@ int s21_from_decimal_to_float(s21_decimal src, float* dst) {
   }
 
   *dst = mantissa * (sign ? -1 : 1);
-
-  return 0;
+  return flag;
 }
