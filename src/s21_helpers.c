@@ -622,7 +622,7 @@ int s21_decimal_validation(s21_decimal value) {
   }
   for (int i = 96; i < 112; i++) {
     if (s21_get_bit(value, i) != 0) {
-      flag = AM_OF;
+      flag = AM_OF;   // is it overflow or conversion error? 
     }
   }
   for (int i = 120; i < 127; i++) {

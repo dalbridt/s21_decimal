@@ -1466,7 +1466,7 @@ START_TEST(test_from_decimal_to_int_ok170) {
 
 START_TEST(test_from_decimal_to_int_ok171) {
   // -2147483648
-  s21_decimal decimal = {{0x80000000, 0x0, 0x0, 0x80000000}};
+  s21_decimal decimal = {{0x80000000, 0x0, 0x0, 0x80000000}}; 
   int check = -2147483648;
 
   test_from_decimal_to_int(decimal, check);
@@ -3169,7 +3169,7 @@ START_TEST(test_from_decimal_to_int_ok383) {
 }
 
 START_TEST(test_from_decimal_to_int_ok384) {
-  // -2147483648
+  // -2147483648   // -2147483648
   s21_decimal decimal = {{0x80000000, 0x0, 0x0, 0x80000000}};
   int check = -2147483648;
 
@@ -6095,7 +6095,7 @@ Suite *from_decimal_to_int_suite1(void) {
   tcase_add_test(tc_core, test_from_decimal_to_int_ok381);
   tcase_add_test(tc_core, test_from_decimal_to_int_ok382);
   tcase_add_test(tc_core, test_from_decimal_to_int_ok383);
-  tcase_add_test(tc_core, test_from_decimal_to_int_ok384);
+  tcase_add_test(tc_core, test_from_decimal_to_int_ok384); 
   tcase_add_test(tc_core, test_from_decimal_to_int_ok385);
   tcase_add_test(tc_core, test_from_decimal_to_int_ok386);
   tcase_add_test(tc_core, test_from_decimal_to_int_ok387);

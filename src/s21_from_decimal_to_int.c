@@ -8,12 +8,10 @@ int s21_from_decimal_to_int(s21_decimal src, int *dst) {
     for (int i = 0; i < scale; i++) {
       s21_div10(&src, false);
     }
-    // s21_decimal res;
 
-    // s21_truncate(src, &res);
-
-    if (src.bits[1] != 0 || src.bits[2] != 0 || s21_get_bit(src, 31)) {  //
-      flag = CNV_ERR;
+   unsigned int biggest = s21_get_sign(src)? ~0x7fffffff:0x7fffffff;; // dummy code, review needed 
+    if (src.bits[1] != 0 || src.bits[2] != 0 || /*s21_get_bit(src, 31)*/ src.bits[0] > biggest){  
+      flag = CNV_ERR;  
       *dst = 0xffffffff;
     } else {
       *dst = (int)src.bits[0];
@@ -23,6 +21,5 @@ int s21_from_decimal_to_int(s21_decimal src, int *dst) {
       flag = CNV_OK;
     }
   }
-
   return flag;
 }
