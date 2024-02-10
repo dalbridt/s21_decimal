@@ -68,6 +68,13 @@ int s21_from_decimal_to_float(s21_decimal src, float *dst);
 // 0 - OK
 // 1 - convertation error
 
+typedef enum cnv_code {
+  
+  CNV_OK = 0,
+  CNV_ERR = 1,
+} cnv_code;
+
+
 // Rounds a specified Decimal number to the closest integer toward negative
 // infinity.
 int s21_floor(s21_decimal value, s21_decimal *result);
