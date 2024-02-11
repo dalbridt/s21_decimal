@@ -12,7 +12,6 @@ int s21_div(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
     s21_decimal_to_big(value_1, &value_big_1);
     s21_decimal_to_big(value_2, &value_big_2);
     s21_divide_big(value_big_1, value_big_2, &big_res, &big_rem, 0);
-    flag = s21_post_normalization(&big_res, s21_get_scale_big(big_res));
     s21_big_to_decimal(big_res, result);
   }
   return flag;

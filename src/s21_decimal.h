@@ -69,11 +69,14 @@ int s21_from_decimal_to_float(s21_decimal src, float *dst);
 // 1 - convertation error
 
 typedef enum cnv_code {
-  
   CNV_OK = 0,
   CNV_ERR = 1,
 } cnv_code;
 
+typedef enum val_code {
+  VAL_ERR = 0,
+  VAL_OK = 1,
+} val_code;
 
 // Rounds a specified Decimal number to the closest integer toward negative
 // infinity.
@@ -123,7 +126,7 @@ void s21_mantissa_shift_r(s21_decimal *dec, int offset);
 void s21_big_mantissa_shift_r(s21_big_decimal *dst, int offset);
 
 void s21_decimal_to_big(s21_decimal src, s21_big_decimal *dst);
-void s21_big_to_decimal(s21_big_decimal src, s21_decimal *dst);
+am_code s21_big_to_decimal(s21_big_decimal src, s21_decimal *dst);
 
 void s21_switch_endian(s21_decimal *x);
 void s21_switch_endian_big(s21_big_decimal *x);
@@ -164,13 +167,13 @@ void s21_set_one(s21_decimal *dec);
 void s21_set_one_big(s21_big_decimal *dec);
 
 void s21_decrease_scale_big(s21_big_decimal *dst, int n);
-int s21_post_normalization(s21_big_decimal *result, int scale);
+am_code s21_post_normalization(s21_big_decimal *result);
 s21_big_decimal s21_add_big(s21_big_decimal value_1, s21_big_decimal value_2);
 
 int s21_is_less_big(s21_big_decimal value_1, s21_big_decimal value_2);
 int s21_is_greater_or_equal_big(s21_big_decimal value_1,
                                 s21_big_decimal value_2);
-int s21_decimal_validation(s21_decimal value);
+val_code s21_decimal_validation(s21_decimal value);
 
 // MARK: DEBUG
 

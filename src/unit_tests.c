@@ -530,8 +530,8 @@ int main() {
 #ifdef TESTS
 
 void hubert_furr_tests(SRunner *runner) {
-  // srunner_add_suite(runner, add_suite0());
-  // srunner_add_suite(runner, add_suite1());
+  srunner_add_suite(runner, add_suite0());
+  srunner_add_suite(runner, add_suite1());
 
   // #if TESTS == 2
   //   srunner_add_suite(runner, add_suite2());
@@ -715,19 +715,11 @@ void hubert_furr_tests(SRunner *runner) {
   //   srunner_add_suite(runner, is_not_equal_suite16());
   // #endif
 
-  //   srunner_add_suite(runner, from_int_to_decimal_suite());
+  srunner_add_suite(runner, from_int_to_decimal_suite());
 
-  //   srunner_add_suite(runner, from_float_to_decimal_suite0());
+#if TESTS == 2
 
-  // #if TESTS == 2
-  //   srunner_add_suite(runner, from_float_to_decimal_suite1());
-  //   srunner_add_suite(runner, from_float_to_decimal_suite2());
-  //   srunner_add_suite(runner, from_float_to_decimal_suite3());
-  //   srunner_add_suite(runner, from_float_to_decimal_suite4());
-  //   srunner_add_suite(runner, from_float_to_decimal_suite5());
-  //   srunner_add_suite(runner, from_float_to_decimal_suite6());
-  //   srunner_add_suite(runner, from_float_to_decimal_suite7());
-  // #endif
+#endif
 
   srunner_add_suite(runner, from_decimal_to_int_suite0());
 
@@ -737,18 +729,18 @@ void hubert_furr_tests(SRunner *runner) {
   srunner_add_suite(runner, from_decimal_to_int_suite3());
 #endif
 
-  //   srunner_add_suite(runner, from_decimal_to_float_suite0());
+  srunner_add_suite(runner, from_decimal_to_float_suite0());
 
-  // #if TESTS == 2
-  //   srunner_add_suite(runner, from_decimal_to_float_suite1());
-  //   srunner_add_suite(runner, from_decimal_to_float_suite2());
-  //   srunner_add_suite(runner, from_decimal_to_float_suite3());
-  //   srunner_add_suite(runner, from_decimal_to_float_suite4());
-  //   srunner_add_suite(runner, from_decimal_to_float_suite5());
-  //   srunner_add_suite(runner, from_decimal_to_float_suite6());
-  //   srunner_add_suite(runner, from_decimal_to_float_suite7());
-  //   srunner_add_suite(runner, from_decimal_to_float_suite8());
-  // #endif
+#if TESTS == 2
+  srunner_add_suite(runner, from_decimal_to_float_suite1());
+  srunner_add_suite(runner, from_decimal_to_float_suite2());
+  srunner_add_suite(runner, from_decimal_to_float_suite3());
+  srunner_add_suite(runner, from_decimal_to_float_suite4());
+  srunner_add_suite(runner, from_decimal_to_float_suite5());
+  srunner_add_suite(runner, from_decimal_to_float_suite6());
+  srunner_add_suite(runner, from_decimal_to_float_suite7());
+  srunner_add_suite(runner, from_decimal_to_float_suite8());
+#endif
 
   //   srunner_add_suite(runner, floor_suite0());
 
@@ -791,3 +783,12 @@ void hubert_furr_tests(SRunner *runner) {
   // #endif
 }
 #endif
+
+// srunner_add_suite(runner, from_float_to_decimal_suite0());
+// srunner_add_suite(runner, from_float_to_decimal_suite1());
+// srunner_add_suite(runner, from_float_to_decimal_suite2());
+// srunner_add_suite(runner, from_float_to_decimal_suite3());
+// srunner_add_suite(runner, from_float_to_decimal_suite4());
+// srunner_add_suite(runner, from_float_to_decimal_suite5());
+// srunner_add_suite(runner, from_float_to_decimal_suite6());
+// srunner_add_suite(runner, from_float_to_decimal_suite7());

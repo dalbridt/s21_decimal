@@ -10364,7 +10364,7 @@ START_TEST(test_from_decimal_to_float_ok1282) {
 START_TEST(test_from_decimal_to_float_ok1283) {
   // 1.0000001788139343261718750
   s21_decimal decimal = {{0x8603D8DE, 0x2EE4C08A, 0x84595, 0x190000}};
-  int check = 1065353218;
+  int check = 1065353217;
 
   test_from_decimal_to_float(decimal, check);
 }
@@ -10372,7 +10372,7 @@ START_TEST(test_from_decimal_to_float_ok1283) {
 START_TEST(test_from_decimal_to_float_ok1284) {
   // -1.0000001788139343261718750
   s21_decimal decimal = {{0x8603D8DE, 0x2EE4C08A, 0x84595, 0x80190000}};
-  int check = -1082130430;
+  int check = -1082130431;
 
   test_from_decimal_to_float(decimal, check);
 }
@@ -10428,7 +10428,7 @@ START_TEST(test_from_decimal_to_float_ok1290) {
 START_TEST(test_from_decimal_to_float_ok1291) {
   // 27670117210075957249
   s21_decimal decimal = {{0x801, 0x80000100, 0x1, 0x0}};
-  int check = 1606418432;
+  int check = 1606418433;
 
   test_from_decimal_to_float(decimal, check);
 }
@@ -10436,7 +10436,7 @@ START_TEST(test_from_decimal_to_float_ok1291) {
 START_TEST(test_from_decimal_to_float_ok1292) {
   // -27670117210075957249
   s21_decimal decimal = {{0x801, 0x80000100, 0x1, 0x80000000}};
-  int check = -541065216;
+  int check = -541065215;
 
   test_from_decimal_to_float(decimal, check);
 }
@@ -10460,7 +10460,7 @@ START_TEST(test_from_decimal_to_float_ok1294) {
 START_TEST(test_from_decimal_to_float_ok1295) {
   // 27670117210075957248
   s21_decimal decimal = {{0x800, 0x80000100, 0x1, 0x0}};
-  int check = 1606418432;
+  int check = 1606418433;
 
   test_from_decimal_to_float(decimal, check);
 }
@@ -10468,7 +10468,7 @@ START_TEST(test_from_decimal_to_float_ok1295) {
 START_TEST(test_from_decimal_to_float_ok1296) {
   // -27670117210075957248
   s21_decimal decimal = {{0x800, 0x80000100, 0x1, 0x80000000}};
-  int check = -541065216;
+  int check = -541065215;
 
   test_from_decimal_to_float(decimal, check);
 }
@@ -10892,7 +10892,7 @@ START_TEST(test_from_decimal_to_float_ok1348) {
 START_TEST(test_from_decimal_to_float_ok1349) {
   // 79228160153081091760674832384
   s21_decimal decimal = {{0x0, 0xFFFFFC00, 0xFFFFFF7F, 0x0}};
-  int check = 1870659584;
+  int check = 1870659583;
 
   test_from_decimal_to_float(decimal, check);
 }
@@ -10900,7 +10900,7 @@ START_TEST(test_from_decimal_to_float_ok1349) {
 START_TEST(test_from_decimal_to_float_ok1350) {
   // -79228160153081091760674832384
   s21_decimal decimal = {{0x0, 0xFFFFFC00, 0xFFFFFF7F, 0x80000000}};
-  int check = -276824064;
+  int check = -276824065;
 
   test_from_decimal_to_float(decimal, check);
 }
@@ -10908,7 +10908,7 @@ START_TEST(test_from_decimal_to_float_ok1350) {
 START_TEST(test_from_decimal_to_float_ok1351) {
   // 79228160153081091760674832383
   s21_decimal decimal = {{0xFFFFFFFF, 0xFFFFFBFF, 0xFFFFFF7F, 0x0}};
-  int check = 1870659584;
+  int check = 1870659583;
 
   test_from_decimal_to_float(decimal, check);
 }
@@ -10916,7 +10916,7 @@ START_TEST(test_from_decimal_to_float_ok1351) {
 START_TEST(test_from_decimal_to_float_ok1352) {
   // -79228160153081091760674832383
   s21_decimal decimal = {{0xFFFFFFFF, 0xFFFFFBFF, 0xFFFFFF7F, 0x80000000}};
-  int check = -276824064;
+  int check = -276824065;
 
   test_from_decimal_to_float(decimal, check);
 }

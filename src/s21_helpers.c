@@ -191,13 +191,21 @@ void s21_decimal_to_big(s21_decimal src, s21_big_decimal* dst) {
   dst->scale = src.bits[3];
 }
 
-void s21_big_to_decimal(s21_big_decimal src, s21_decimal* dst) {
-  // normalize
-  s21_reset(dst);
-  dst->bits[0] = src.bits[0];
-  dst->bits[1] = src.bits[1];
-  dst->bits[2] = src.bits[2];
-  dst->bits[3] = src.scale;
+am_code s21_big_to_decimal(s21_big_decimal src, s21_decimal* dst) {
+  am_code flag = AM_ERR;
+  if (dst != NULL) {
+    flag = s21_post_normalization(&src);
+    s21_reset(dst);
+    // if (flag == AM_OK) {
+
+    // }
+    dst->bits[0] = src.bits[0];
+    dst->bits[1] = src.bits[1];
+    dst->bits[2] = src.bits[2];
+    dst->bits[3] = src.scale;
+  }
+
+  return flag;
 }
 
 void s21_switch_endian(s21_decimal* x) {
@@ -571,65 +579,75 @@ void s21_increase_scale_big(s21_big_decimal* dst, int n) {
   s21_set_scale_big(dst, scale);
 }
 
-int s21_post_normalization(s21_big_decimal* result, int scale) {
-  int dop = 0;
-  int flag = AM_OK;
-  while ((result->bits[3] || result->bits[4] || result->bits[5] ||
-          result->bits[6] || result->bits[7] || result->bits[8] ||
-          result->bits[9] || result->bits[10] || result->bits[11] ||
-          result->bits[12] || result->bits[13] || result->bits[14] ||
-          result->bits[15]) &&
-         scale > 0) {
-    if (scale == 1 && result->bits[3]) dop = 1;
-    s21_decrease_scale_big(result, 1);
-    s21_div10_big(result, 0);
-    scale--;
+am_code s21_post_normalization(s21_big_decimal* result) {
+  am_code flag = AM_ERR;
+  if (result != NULL) {
+    flag = AM_OK;
+    int scale = s21_get_scale_big(*result);
+    int dop = 0;
+
+    while ((result->bits[3] || result->bits[4] || result->bits[5] ||
+            result->bits[6] || result->bits[7] || result->bits[8] ||
+            result->bits[9] || result->bits[10] || result->bits[11] ||
+            result->bits[12] || result->bits[13] || result->bits[14] ||
+            result->bits[15]) &&
+           scale > 0) {
+      if (scale == 1 && result->bits[3]) dop = 1;
+      s21_decrease_scale_big(result, 1);
+      s21_div10_big(result, 0);
+      scale--;
+    }
+
+    while ((result->bits[0] || result->bits[1] || result->bits[2]) &&
+           scale > 28) {
+      s21_decrease_scale_big(result, 1);
+      s21_div10_big(result, 0);
+      scale--;
+    }
+
+    if (dop && scale == 0 && result->bits[3] == 0 &&
+        s21_get_bit_big(*result, 0)) {
+      s21_set_bit_big(result, 0, 0);
+    }
+    if ((result->bits[3] || result->bits[4] || result->bits[5] ||
+         result->bits[6] || result->bits[7] || result->bits[8] ||
+         result->bits[9] || result->bits[10] || result->bits[11] ||
+         result->bits[12] || result->bits[13] || result->bits[14] ||
+         result->bits[15])) {
+      flag = AM_OF;
+    }
+
+    if (scale > 28 && s21_is_big_zero(*result)) {
+      flag = AM_NOF;
+    }
+    if (flag == AM_OF && s21_get_sign_big(*result)) {
+      flag = AM_NOF;
+    }
   }
 
-  while ((result->bits[0] || result->bits[1] || result->bits[2]) &&
-         scale > 28) {
-    s21_decrease_scale_big(result, 1);
-    s21_div10_big(result, 0);
-    scale--;
-  }
-
-  if (dop && scale == 0 && result->bits[3] == 0 &&
-      s21_get_bit_big(*result, 0)) {
-    s21_set_bit_big(result, 0, 0);
-  }
-  if ((result->bits[3] || result->bits[4] || result->bits[5] ||
-       result->bits[6] || result->bits[7] || result->bits[8] ||
-       result->bits[9] || result->bits[10] || result->bits[11] ||
-       result->bits[12] || result->bits[13] || result->bits[14] ||
-       result->bits[15])) {
-    flag = AM_OF;
-  }
-
-  if (scale > 28 && s21_is_big_zero(*result)) {
-    flag = AM_NOF;
-  }
-  if (flag == AM_OF && s21_get_sign_big(*result)) {
-    flag = AM_NOF;
-  }
   return flag;
 }
 
-int s21_decimal_validation(s21_decimal value) {
-  int flag = AM_OK;
+val_code s21_decimal_validation(s21_decimal value) {
+  val_code flag = VAL_OK;
   int scale = s21_get_scale(value);
   if (scale > 28) {
-    flag = AM_OF;
-  }
-  for (int i = 96; i < 112; i++) {
-    if (s21_get_bit(value, i) != 0) {
-      flag = AM_OF;   // is it overflow or conversion error? 
+    flag = VAL_ERR;
+  } else {
+    for (int i = 96; i < 112; i++) {
+      if (s21_get_bit(value, i) != 0) {
+        flag = VAL_ERR;
+        break;
+      }
+    }
+    for (int i = 120; i < 127 && flag; i++) {
+      if (s21_get_bit(value, i) != 0) {
+        flag = VAL_ERR;
+        break;
+      }
     }
   }
-  for (int i = 120; i < 127; i++) {
-    if (s21_get_bit(value, i) != 0) {
-      flag = AM_OF;
-    }
-  }
+
   return flag;
 }
 

@@ -9,7 +9,6 @@ int s21_mul(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
 
   error = s21_mul_big(val_1, val_2, &res);
   s21_set_sign_big(&res, s21_get_sign(value_1) ^ s21_get_sign(value_2));
-  error = s21_post_normalization(&res, s21_get_scale_big(res));
   s21_big_to_decimal(res, result);
 
   return error;
