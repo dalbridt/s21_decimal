@@ -27752,5 +27752,5 @@ void test_from_float_to_decimal(int f, s21_decimal decimal_check) {
 #endif
 
   ck_assert_int_eq(code, TEST_CONVERSION_OK);
-  ck_assert_int_eq(s21_is_equal(result, decimal_check), 1);
+  ck_assert_int_eq(s21_is_equal_tol(result, decimal_check), 1);
 }

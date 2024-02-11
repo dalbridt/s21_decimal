@@ -492,7 +492,7 @@ void s21_divide_big(s21_big_decimal dividend, s21_big_decimal divisor,
   // printf("scales %d %d\n", dividend_scale, divisor_scale);
 
   if (stop == 1) {
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 10; i++) {
       s21_x10_big(&dividend);
       div_new_scale++;
     }

@@ -94,6 +94,11 @@ int s21_negate(s21_decimal value, s21_decimal *result);
 // 0 - OK
 // 1 - calculation error
 
+typedef enum rnd_code {
+  RND_OK = 0,
+  RND_ERR = 1,
+} rnd_code;
+
 // extra functions - helpers
 
 void s21_reset(s21_decimal *src);

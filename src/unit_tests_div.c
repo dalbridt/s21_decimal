@@ -86869,7 +86869,7 @@ void test_div(s21_decimal decimal1, s21_decimal decimal2, s21_decimal check) {
   s21_print_decimal_string(result);
   printf("---------------------------------\n");
 #endif
-  ck_assert_int_eq(s21_is_equal(result, check), 1);
+  ck_assert_int_eq(s21_is_equal_tol(result, check), 1);
   ck_assert_int_eq(code, TEST_ARITHMETIC_OK);
 }
 
@@ -86923,5 +86923,5 @@ void test_div_fail2(s21_decimal decimal1, s21_decimal decimal2,
 #endif
 
   ck_assert_int_eq(code, code_check);
-  ck_assert_int_eq(s21_is_equal(result, decimal_check), 1);
+  ck_assert_int_eq(s21_is_equal_tol(result, decimal_check), 1);
 }

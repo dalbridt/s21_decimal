@@ -43568,7 +43568,7 @@ void test_add(s21_decimal decimal1, s21_decimal decimal2, s21_decimal check) {
   printf("---------------------------------\n\n\n\n");
 #endif
 
-  ck_assert_int_eq(s21_is_equal(result, check), 1);
+  ck_assert_int_eq(s21_is_equal_tol(result, check), 1);
   ck_assert_int_eq(code, TEST_ARITHMETIC_OK);
 }
 

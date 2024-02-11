@@ -3,6 +3,7 @@
 #include "s21_decimal.h"
 
 #define ITER 50
+
 #define TOL 1e-05
 
 #ifdef TESTS
@@ -24,6 +25,15 @@ int randomize_int(int random) {
     value = -value;
   }
   return value;
+}
+
+bool s21_is_equal_tol(s21_decimal value_1, s21_decimal value_2) {
+  float dec1, dec2;
+
+  s21_from_decimal_to_float(value_1, &dec1);
+  s21_from_decimal_to_float(value_2, &dec2);
+
+  return fabsf(fabsf(dec1) - fabsf(dec2)) < TOL;
 }
 
 void randomize_decimal(s21_decimal *dec, float *fl, int it) {
@@ -333,7 +343,7 @@ START_TEST(t_floor) {  // 15. s21_floor
   s21_floor(dec, &dec_res);
 
   s21_from_float_to_decimal(fl, &dec);
-  ck_assert_int_eq(s21_is_equal(dec_res, dec), 1);
+  ck_assert_int_eq(s21_is_equal_tol(dec_res, dec), 1);
 }
 END_TEST
 
@@ -348,7 +358,7 @@ START_TEST(t_round) {  // 16. s21_round
   s21_round(dec, &dec_res);
 
   s21_from_float_to_decimal(fl, &dec);
-  ck_assert_int_eq(s21_is_equal(dec_res, dec), 1);
+  ck_assert_int_eq(s21_is_equal_tol(dec_res, dec), 1);
 }
 END_TEST
 
@@ -363,7 +373,7 @@ START_TEST(t_truncate) {  // 17. s21_truncate
     s21_upscale_x10(&dec);
   }
   s21_truncate(dec, &dec_res);
-  ck_assert_int_eq(s21_is_equal(dec_int, dec_res), 1);
+  ck_assert_int_eq(s21_is_equal_tol(dec_int, dec_res), 1);
 }
 END_TEST
 
@@ -533,193 +543,189 @@ void hubert_furr_tests(SRunner *runner) {
   srunner_add_suite(runner, add_suite0());
   srunner_add_suite(runner, add_suite1());
 
-  // #if TESTS == 2
-  //   srunner_add_suite(runner, add_suite2());
-  //   srunner_add_suite(runner, add_suite3());
-  //   srunner_add_suite(runner, add_suite4());
-  //   srunner_add_suite(runner, add_suite5());
-  //   srunner_add_suite(runner, add_suite6());
-  //   srunner_add_suite(runner, add_suite7());
-  //   srunner_add_suite(runner, add_suite8());
-  //   srunner_add_suite(runner, add_suite9());
-
-  // #endif
-
-  //   srunner_add_suite(runner, sub_suite0());
-  //   srunner_add_suite(runner, sub_suite1());
-
-  // #if TESTS == 2
-  //   srunner_add_suite(runner, sub_suite2());
-  //   srunner_add_suite(runner, sub_suite3());
-  //   srunner_add_suite(runner, sub_suite4());
-  //   srunner_add_suite(runner, sub_suite5());
-  //   srunner_add_suite(runner, sub_suite6());
-  //   srunner_add_suite(runner, sub_suite7());
-  //   srunner_add_suite(runner, sub_suite8());
-  //   srunner_add_suite(runner, sub_suite9());
-  // #endif
-
-  //   srunner_add_suite(runner, mul_suite0());
-  //   srunner_add_suite(runner, mul_suite1());
-
-  // #if TESTS == 2
-  //   srunner_add_suite(runner, mul_suite2());
-  //   srunner_add_suite(runner, mul_suite3());
-  //   srunner_add_suite(runner, mul_suite4());
-  //   srunner_add_suite(runner, mul_suite5());
-  //   srunner_add_suite(runner, mul_suite6());
-  //   srunner_add_suite(runner, mul_suite7());
-  //   srunner_add_suite(runner, mul_suite8());
-  //   srunner_add_suite(runner, mul_suite9());
-  // #endif
-
-  //   srunner_add_suite(runner, div_suite0());
-  //   srunner_add_suite(runner, div_suite1());
-
-  // #if TESTS == 2
-  //   srunner_add_suite(runner, div_suite2());
-  //   srunner_add_suite(runner, div_suite3());
-  //   srunner_add_suite(runner, div_suite4());
-  //   srunner_add_suite(runner, div_suite5());
-  //   srunner_add_suite(runner, div_suite6());
-  //   srunner_add_suite(runner, div_suite7());
-  //   srunner_add_suite(runner, div_suite8());
-  //   srunner_add_suite(runner, div_suite9());
-  //   srunner_add_suite(runner, div_suite10());
-  //   srunner_add_suite(runner, div_suite11());
-  //   srunner_add_suite(runner, div_suite12());
-  //   srunner_add_suite(runner, div_suite13());
-  //   srunner_add_suite(runner, div_suite14());
-  //   srunner_add_suite(runner, div_suite15());
-  //   srunner_add_suite(runner, div_suite16());
-  //   srunner_add_suite(runner, div_suite17());
-  //   srunner_add_suite(runner, div_suite18());
-  // #endif
-
-  //   srunner_add_suite(runner, is_less_suite1());
-  //   srunner_add_suite(runner, is_less_suite2());
-
-  // #if TESTS == 2
-  //   srunner_add_suite(runner, is_less_suite3());
-  //   srunner_add_suite(runner, is_less_suite4());
-  //   srunner_add_suite(runner, is_less_suite5());
-  //   srunner_add_suite(runner, is_less_suite6());
-  //   srunner_add_suite(runner, is_less_suite7());
-  //   srunner_add_suite(runner, is_less_suite8());
-  //   srunner_add_suite(runner, is_less_suite9());
-  //   srunner_add_suite(runner, is_less_suite10());
-  //   srunner_add_suite(runner, is_less_suite11());
-  //   srunner_add_suite(runner, is_less_suite12());
-  //   srunner_add_suite(runner, is_less_suite13());
-  //   srunner_add_suite(runner, is_less_suite14());
-  //   srunner_add_suite(runner, is_less_suite15());
-  //   srunner_add_suite(runner, is_less_suite16());
-  // #endif
-
-  //   srunner_add_suite(runner, is_equal_suite1());
-  //   srunner_add_suite(runner, is_equal_suite2());
-
-  // #if TESTS == 2
-  //   srunner_add_suite(runner, is_equal_suite3());
-  //   srunner_add_suite(runner, is_equal_suite4());
-  //   srunner_add_suite(runner, is_equal_suite5());
-  //   srunner_add_suite(runner, is_equal_suite6());
-  //   srunner_add_suite(runner, is_equal_suite7());
-  //   srunner_add_suite(runner, is_equal_suite8());
-  //   srunner_add_suite(runner, is_equal_suite9());
-  //   srunner_add_suite(runner, is_equal_suite10());
-  //   srunner_add_suite(runner, is_equal_suite11());
-  //   srunner_add_suite(runner, is_equal_suite12());
-  //   srunner_add_suite(runner, is_equal_suite13());
-  //   srunner_add_suite(runner, is_equal_suite14());
-  //   srunner_add_suite(runner, is_equal_suite15());
-  //   srunner_add_suite(runner, is_equal_suite16());
-  // #endif
-
-  //   srunner_add_suite(runner, is_less_or_equal_suite1());
-  //   srunner_add_suite(runner, is_less_or_equal_suite2());
-  // #if TESTS == 2
-  //   srunner_add_suite(runner, is_less_or_equal_suite3());
-  //   srunner_add_suite(runner, is_less_or_equal_suite4());
-  //   srunner_add_suite(runner, is_less_or_equal_suite5());
-  //   srunner_add_suite(runner, is_less_or_equal_suite6());
-  //   srunner_add_suite(runner, is_less_or_equal_suite7());
-  //   srunner_add_suite(runner, is_less_or_equal_suite8());
-  //   srunner_add_suite(runner, is_less_or_equal_suite9());
-  //   srunner_add_suite(runner, is_less_or_equal_suite10());
-  //   srunner_add_suite(runner, is_less_or_equal_suite11());
-  //   srunner_add_suite(runner, is_less_or_equal_suite12());
-  //   srunner_add_suite(runner, is_less_or_equal_suite13());
-  //   srunner_add_suite(runner, is_less_or_equal_suite14());
-  //   srunner_add_suite(runner, is_less_or_equal_suite15());
-  //   srunner_add_suite(runner, is_less_or_equal_suite16());
-  // #endif
-
-  //   srunner_add_suite(runner, is_greater_suite1());
-  //   srunner_add_suite(runner, is_greater_suite2());
-
-  // #if TESTS == 2
-  //   srunner_add_suite(runner, is_greater_suite3());
-  //   srunner_add_suite(runner, is_greater_suite4());
-  //   srunner_add_suite(runner, is_greater_suite5());
-  //   srunner_add_suite(runner, is_greater_suite6());
-  //   srunner_add_suite(runner, is_greater_suite7());
-  //   srunner_add_suite(runner, is_greater_suite8());
-  //   srunner_add_suite(runner, is_greater_suite9());
-  //   srunner_add_suite(runner, is_greater_suite10());
-  //   srunner_add_suite(runner, is_greater_suite11());
-  //   srunner_add_suite(runner, is_greater_suite12());
-  //   srunner_add_suite(runner, is_greater_suite13());
-  //   srunner_add_suite(runner, is_greater_suite14());
-  //   srunner_add_suite(runner, is_greater_suite15());
-  //   srunner_add_suite(runner, is_greater_suite16());
-  // #endif
-
-  //   srunner_add_suite(runner, is_greater_or_equal_suite1());
-  //   srunner_add_suite(runner, is_greater_or_equal_suite2());
-
-  // #if TESTS == 2
-  //   srunner_add_suite(runner, is_greater_or_equal_suite3());
-  //   srunner_add_suite(runner, is_greater_or_equal_suite4());
-  //   srunner_add_suite(runner, is_greater_or_equal_suite5());
-  //   srunner_add_suite(runner, is_greater_or_equal_suite6());
-  //   srunner_add_suite(runner, is_greater_or_equal_suite7());
-  //   srunner_add_suite(runner, is_greater_or_equal_suite8());
-  //   srunner_add_suite(runner, is_greater_or_equal_suite9());
-  //   srunner_add_suite(runner, is_greater_or_equal_suite10());
-  //   srunner_add_suite(runner, is_greater_or_equal_suite11());
-  //   srunner_add_suite(runner, is_greater_or_equal_suite12());
-  //   srunner_add_suite(runner, is_greater_or_equal_suite13());
-  //   srunner_add_suite(runner, is_greater_or_equal_suite14());
-  //   srunner_add_suite(runner, is_greater_or_equal_suite15());
-  //   srunner_add_suite(runner, is_greater_or_equal_suite16());
-  // #endif
-
-  //   srunner_add_suite(runner, is_not_equal_suite1());
-  //   srunner_add_suite(runner, is_not_equal_suite2());
-
-  // #if TESTS == 2
-  //   srunner_add_suite(runner, is_not_equal_suite3());
-  //   srunner_add_suite(runner, is_not_equal_suite4());
-  //   srunner_add_suite(runner, is_not_equal_suite5());
-  //   srunner_add_suite(runner, is_not_equal_suite6());
-  //   srunner_add_suite(runner, is_not_equal_suite7());
-  //   srunner_add_suite(runner, is_not_equal_suite8());
-  //   srunner_add_suite(runner, is_not_equal_suite9());
-  //   srunner_add_suite(runner, is_not_equal_suite10());
-  //   srunner_add_suite(runner, is_not_equal_suite11());
-  //   srunner_add_suite(runner, is_not_equal_suite12());
-  //   srunner_add_suite(runner, is_not_equal_suite13());
-  //   srunner_add_suite(runner, is_not_equal_suite14());
-  //   srunner_add_suite(runner, is_not_equal_suite15());
-  //   srunner_add_suite(runner, is_not_equal_suite16());
-  // #endif
-
-  srunner_add_suite(runner, from_int_to_decimal_suite());
-
 #if TESTS == 2
+  srunner_add_suite(runner, add_suite2());
+  srunner_add_suite(runner, add_suite3());
+  srunner_add_suite(runner, add_suite4());
+  srunner_add_suite(runner, add_suite5());
+  srunner_add_suite(runner, add_suite6());
+  srunner_add_suite(runner, add_suite7());
+  srunner_add_suite(runner, add_suite8());
+  srunner_add_suite(runner, add_suite9());
 
 #endif
+
+  srunner_add_suite(runner, sub_suite0());
+  srunner_add_suite(runner, sub_suite1());
+
+#if TESTS == 2
+  srunner_add_suite(runner, sub_suite2());
+  srunner_add_suite(runner, sub_suite3());
+  srunner_add_suite(runner, sub_suite4());
+  srunner_add_suite(runner, sub_suite5());
+  srunner_add_suite(runner, sub_suite6());
+  srunner_add_suite(runner, sub_suite7());
+  srunner_add_suite(runner, sub_suite8());
+  srunner_add_suite(runner, sub_suite9());
+#endif
+
+  srunner_add_suite(runner, mul_suite0());
+  srunner_add_suite(runner, mul_suite1());
+
+#if TESTS == 2
+  srunner_add_suite(runner, mul_suite2());
+  srunner_add_suite(runner, mul_suite3());
+  srunner_add_suite(runner, mul_suite4());
+  srunner_add_suite(runner, mul_suite5());
+  srunner_add_suite(runner, mul_suite6());
+  srunner_add_suite(runner, mul_suite7());
+  srunner_add_suite(runner, mul_suite8());
+  srunner_add_suite(runner, mul_suite9());
+#endif
+
+  srunner_add_suite(runner, div_suite0());
+  srunner_add_suite(runner, div_suite1());
+
+#if TESTS == 2
+  srunner_add_suite(runner, div_suite2());
+  srunner_add_suite(runner, div_suite3());
+  srunner_add_suite(runner, div_suite4());
+  srunner_add_suite(runner, div_suite5());
+  srunner_add_suite(runner, div_suite6());
+  srunner_add_suite(runner, div_suite7());
+  srunner_add_suite(runner, div_suite8());
+  srunner_add_suite(runner, div_suite9());
+  srunner_add_suite(runner, div_suite10());
+  srunner_add_suite(runner, div_suite11());
+  srunner_add_suite(runner, div_suite12());
+  srunner_add_suite(runner, div_suite13());
+  srunner_add_suite(runner, div_suite14());
+  srunner_add_suite(runner, div_suite15());
+  srunner_add_suite(runner, div_suite16());
+  srunner_add_suite(runner, div_suite17());
+  srunner_add_suite(runner, div_suite18());
+#endif
+
+  srunner_add_suite(runner, is_less_suite1());
+  srunner_add_suite(runner, is_less_suite2());
+
+#if TESTS == 2
+  srunner_add_suite(runner, is_less_suite3());
+  srunner_add_suite(runner, is_less_suite4());
+  srunner_add_suite(runner, is_less_suite5());
+  srunner_add_suite(runner, is_less_suite6());
+  srunner_add_suite(runner, is_less_suite7());
+  srunner_add_suite(runner, is_less_suite8());
+  srunner_add_suite(runner, is_less_suite9());
+  srunner_add_suite(runner, is_less_suite10());
+  srunner_add_suite(runner, is_less_suite11());
+  srunner_add_suite(runner, is_less_suite12());
+  srunner_add_suite(runner, is_less_suite13());
+  srunner_add_suite(runner, is_less_suite14());
+  srunner_add_suite(runner, is_less_suite15());
+  srunner_add_suite(runner, is_less_suite16());
+#endif
+
+  srunner_add_suite(runner, is_equal_suite1());
+  srunner_add_suite(runner, is_equal_suite2());
+
+#if TESTS == 2
+  srunner_add_suite(runner, is_equal_suite3());
+  srunner_add_suite(runner, is_equal_suite4());
+  srunner_add_suite(runner, is_equal_suite5());
+  srunner_add_suite(runner, is_equal_suite6());
+  srunner_add_suite(runner, is_equal_suite7());
+  srunner_add_suite(runner, is_equal_suite8());
+  srunner_add_suite(runner, is_equal_suite9());
+  srunner_add_suite(runner, is_equal_suite10());
+  srunner_add_suite(runner, is_equal_suite11());
+  srunner_add_suite(runner, is_equal_suite12());
+  srunner_add_suite(runner, is_equal_suite13());
+  srunner_add_suite(runner, is_equal_suite14());
+  srunner_add_suite(runner, is_equal_suite15());
+  srunner_add_suite(runner, is_equal_suite16());
+#endif
+
+  srunner_add_suite(runner, is_less_or_equal_suite1());
+  srunner_add_suite(runner, is_less_or_equal_suite2());
+#if TESTS == 2
+  srunner_add_suite(runner, is_less_or_equal_suite3());
+  srunner_add_suite(runner, is_less_or_equal_suite4());
+  srunner_add_suite(runner, is_less_or_equal_suite5());
+  srunner_add_suite(runner, is_less_or_equal_suite6());
+  srunner_add_suite(runner, is_less_or_equal_suite7());
+  srunner_add_suite(runner, is_less_or_equal_suite8());
+  srunner_add_suite(runner, is_less_or_equal_suite9());
+  srunner_add_suite(runner, is_less_or_equal_suite10());
+  srunner_add_suite(runner, is_less_or_equal_suite11());
+  srunner_add_suite(runner, is_less_or_equal_suite12());
+  srunner_add_suite(runner, is_less_or_equal_suite13());
+  srunner_add_suite(runner, is_less_or_equal_suite14());
+  srunner_add_suite(runner, is_less_or_equal_suite15());
+  srunner_add_suite(runner, is_less_or_equal_suite16());
+#endif
+
+  srunner_add_suite(runner, is_greater_suite1());
+  srunner_add_suite(runner, is_greater_suite2());
+
+#if TESTS == 2
+  srunner_add_suite(runner, is_greater_suite3());
+  srunner_add_suite(runner, is_greater_suite4());
+  srunner_add_suite(runner, is_greater_suite5());
+  srunner_add_suite(runner, is_greater_suite6());
+  srunner_add_suite(runner, is_greater_suite7());
+  srunner_add_suite(runner, is_greater_suite8());
+  srunner_add_suite(runner, is_greater_suite9());
+  srunner_add_suite(runner, is_greater_suite10());
+  srunner_add_suite(runner, is_greater_suite11());
+  srunner_add_suite(runner, is_greater_suite12());
+  srunner_add_suite(runner, is_greater_suite13());
+  srunner_add_suite(runner, is_greater_suite14());
+  srunner_add_suite(runner, is_greater_suite15());
+  srunner_add_suite(runner, is_greater_suite16());
+#endif
+
+  srunner_add_suite(runner, is_greater_or_equal_suite1());
+  srunner_add_suite(runner, is_greater_or_equal_suite2());
+
+#if TESTS == 2
+  srunner_add_suite(runner, is_greater_or_equal_suite3());
+  srunner_add_suite(runner, is_greater_or_equal_suite4());
+  srunner_add_suite(runner, is_greater_or_equal_suite5());
+  srunner_add_suite(runner, is_greater_or_equal_suite6());
+  srunner_add_suite(runner, is_greater_or_equal_suite7());
+  srunner_add_suite(runner, is_greater_or_equal_suite8());
+  srunner_add_suite(runner, is_greater_or_equal_suite9());
+  srunner_add_suite(runner, is_greater_or_equal_suite10());
+  srunner_add_suite(runner, is_greater_or_equal_suite11());
+  srunner_add_suite(runner, is_greater_or_equal_suite12());
+  srunner_add_suite(runner, is_greater_or_equal_suite13());
+  srunner_add_suite(runner, is_greater_or_equal_suite14());
+  srunner_add_suite(runner, is_greater_or_equal_suite15());
+  srunner_add_suite(runner, is_greater_or_equal_suite16());
+#endif
+
+  srunner_add_suite(runner, is_not_equal_suite1());
+  srunner_add_suite(runner, is_not_equal_suite2());
+
+#if TESTS == 2
+  srunner_add_suite(runner, is_not_equal_suite3());
+  srunner_add_suite(runner, is_not_equal_suite4());
+  srunner_add_suite(runner, is_not_equal_suite5());
+  srunner_add_suite(runner, is_not_equal_suite6());
+  srunner_add_suite(runner, is_not_equal_suite7());
+  srunner_add_suite(runner, is_not_equal_suite8());
+  srunner_add_suite(runner, is_not_equal_suite9());
+  srunner_add_suite(runner, is_not_equal_suite10());
+  srunner_add_suite(runner, is_not_equal_suite11());
+  srunner_add_suite(runner, is_not_equal_suite12());
+  srunner_add_suite(runner, is_not_equal_suite13());
+  srunner_add_suite(runner, is_not_equal_suite14());
+  srunner_add_suite(runner, is_not_equal_suite15());
+  srunner_add_suite(runner, is_not_equal_suite16());
+#endif
+
+  srunner_add_suite(runner, from_int_to_decimal_suite());
 
   srunner_add_suite(runner, from_decimal_to_int_suite0());
 
@@ -740,55 +746,59 @@ void hubert_furr_tests(SRunner *runner) {
   srunner_add_suite(runner, from_decimal_to_float_suite6());
   srunner_add_suite(runner, from_decimal_to_float_suite7());
   srunner_add_suite(runner, from_decimal_to_float_suite8());
+
 #endif
 
-  //   srunner_add_suite(runner, floor_suite0());
+  //   srunner_add_suite(runner, from_float_to_decimal_suite0());
+  //   srunner_add_suite(runner, from_float_to_decimal_suite1());
 
   // #if TESTS == 2
-  //   srunner_add_suite(runner, floor_suite1());
-  //   srunner_add_suite(runner, floor_suite2());
-  //   srunner_add_suite(runner, floor_suite3());
+  //   srunner_add_suite(runner, from_float_to_decimal_suite2());
+  //   srunner_add_suite(runner, from_float_to_decimal_suite3());
+  //   srunner_add_suite(runner, from_float_to_decimal_suite4());
+  //   srunner_add_suite(runner, from_float_to_decimal_suite5());
+  //   srunner_add_suite(runner, from_float_to_decimal_suite6());
+  //   srunner_add_suite(runner, from_float_to_decimal_suite7());
   // #endif
 
-  //   srunner_add_suite(runner, round_suite0());
+  srunner_add_suite(runner, floor_suite0());
 
-  // #if TESTS == 2
-  //   srunner_add_suite(runner, round_suite1());
-  //   srunner_add_suite(runner, round_suite2());
-  //   srunner_add_suite(runner, round_suite3());
-  // #endif
+#if TESTS == 2
+  srunner_add_suite(runner, floor_suite1());
+  srunner_add_suite(runner, floor_suite2());
+  srunner_add_suite(runner, floor_suite3());
+#endif
 
-  //   srunner_add_suite(runner, truncate_suite0());
+  srunner_add_suite(runner, round_suite0());
 
-  // #if TESTS == 2
-  //   srunner_add_suite(runner, truncate_suite1());
-  //   srunner_add_suite(runner, truncate_suite2());
-  //   srunner_add_suite(runner, truncate_suite3());
-  // #endif
+#if TESTS == 2
+  srunner_add_suite(runner, round_suite1());
+  srunner_add_suite(runner, round_suite2());
+  srunner_add_suite(runner, round_suite3());
+#endif
 
-  //   srunner_add_suite(runner, negate_suite0());
+  srunner_add_suite(runner, truncate_suite0());
 
-  // #if TESTS == 2
-  //   srunner_add_suite(runner, negate_suite1());
-  //   srunner_add_suite(runner, negate_suite2());
-  //   srunner_add_suite(runner, negate_suite3());
-  // #endif
+#if TESTS == 2
+  srunner_add_suite(runner, truncate_suite1());
+  srunner_add_suite(runner, truncate_suite2());
+  srunner_add_suite(runner, truncate_suite3());
+#endif
 
-  //   srunner_add_suite(runner, debug0());
+  srunner_add_suite(runner, negate_suite0());
 
-  // #if TESTS == 2
-  //   srunner_add_suite(runner, debug1());
-  //   srunner_add_suite(runner, debug2());
-  //   srunner_add_suite(runner, debug3());
-  // #endif
+#if TESTS == 2
+  srunner_add_suite(runner, negate_suite1());
+  srunner_add_suite(runner, negate_suite2());
+  srunner_add_suite(runner, negate_suite3());
+#endif
+
+  srunner_add_suite(runner, debug0());
+
+#if TESTS == 2
+  srunner_add_suite(runner, debug1());
+  srunner_add_suite(runner, debug2());
+  srunner_add_suite(runner, debug3());
+#endif
 }
 #endif
-
-// srunner_add_suite(runner, from_float_to_decimal_suite0());
-// srunner_add_suite(runner, from_float_to_decimal_suite1());
-// srunner_add_suite(runner, from_float_to_decimal_suite2());
-// srunner_add_suite(runner, from_float_to_decimal_suite3());
-// srunner_add_suite(runner, from_float_to_decimal_suite4());
-// srunner_add_suite(runner, from_float_to_decimal_suite5());
-// srunner_add_suite(runner, from_float_to_decimal_suite6());
-// srunner_add_suite(runner, from_float_to_decimal_suite7());

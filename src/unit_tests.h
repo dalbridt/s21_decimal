@@ -13,6 +13,8 @@
 #include "s21_decimal.h"
 #include "unit_tests_debug.h"
 
+bool s21_is_equal_tol(s21_decimal value_1, s21_decimal value_2);
+
 // Отображение отладочной информации в тестах
 // #define __DEBUG 1
 

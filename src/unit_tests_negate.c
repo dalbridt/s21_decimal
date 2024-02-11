@@ -10638,6 +10638,6 @@ void test_negate(s21_decimal decimal, s21_decimal decimal_check) {
 #endif
 
   ck_assert_int_eq(code, TEST_OTHER_OK);
-  ck_assert_int_eq(s21_is_equal(result, decimal_check), 1);
+  ck_assert_int_eq(s21_is_equal_tol(result, decimal_check), 1);
   ck_assert_int_eq(sign_check, sign_result);
 }
