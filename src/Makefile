@@ -2,7 +2,7 @@ GCOV_FLALG=
 CHECK_FLAGS=
 GENERATE_HTML=
 
-ALLTESTS=1
+ALLTESTS=2
 TESTS_C=unit_tests.c
 
 ifeq ($(shell test $(ALLTESTS) -gt 0; echo $$?),0)

@@ -196,9 +196,6 @@ am_code s21_big_to_decimal(s21_big_decimal src, s21_decimal* dst) {
   if (dst != NULL) {
     flag = s21_post_normalization(&src);
     s21_reset(dst);
-    // if (flag == AM_OK) {
-
-    // }
     dst->bits[0] = src.bits[0];
     dst->bits[1] = src.bits[1];
     dst->bits[2] = src.bits[2];
@@ -307,6 +304,7 @@ s21_big_decimal s21_sub_mantissas_big(s21_big_decimal x, s21_big_decimal y) {
   return result;
 }
 
+// returns : -1 if equal, 1 if left bigger, 0 if right bigger
 int s21_mantisa_compare(s21_decimal value_1, s21_decimal value_2) {
   int flag = -1;
 
@@ -314,7 +312,7 @@ int s21_mantisa_compare(s21_decimal value_1, s21_decimal value_2) {
     if (value_1.bits[i] == value_2.bits[i]) {
       continue;
     } else {
-      flag = value_1.bits[i] < value_2.bits[i];
+      flag = value_1.bits[i] > value_2.bits[i];
       break;
     }
   }
@@ -328,7 +326,7 @@ int s21_mantisa_compare_big(s21_big_decimal value_1, s21_big_decimal value_2) {
     if (value_1.bits[i] == value_2.bits[i]) {
       continue;
     } else {
-      flag = value_1.bits[i] < value_2.bits[i];
+      flag = value_1.bits[i] > value_2.bits[i];
       break;
     }
   }
@@ -492,7 +490,7 @@ void s21_divide_big(s21_big_decimal dividend, s21_big_decimal divisor,
   // printf("scales %d %d\n", dividend_scale, divisor_scale);
 
   if (stop == 1) {
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 33; i++) {
       s21_x10_big(&dividend);
       div_new_scale++;
     }
@@ -617,9 +615,9 @@ am_code s21_post_normalization(s21_big_decimal* result) {
       flag = AM_OF;
     }
 
-    if (scale > 28 && s21_is_big_zero(*result)) {
-      flag = AM_NOF;
-    }
+    // if (scale > 28 || s21_is_big_zero(*result)) {
+    //   flag = AM_NOF;
+    // }
     if (flag == AM_OF && s21_get_sign_big(*result)) {
       flag = AM_NOF;
     }

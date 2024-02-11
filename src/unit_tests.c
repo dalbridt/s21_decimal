@@ -69,6 +69,9 @@ START_TEST(t_add) {  // 01. s21_add
 }
 END_TEST
 
+START_TEST(t_add_edge) {}
+END_TEST
+
 START_TEST(t_sub) {  // 02. s21_sub
   float f1, f2, flt_res;
   s21_decimal dec1, dec2, dec_res;
@@ -81,6 +84,11 @@ START_TEST(t_sub) {  // 02. s21_sub
   s21_from_decimal_to_float(dec_res, &flt_res);
 
   ck_assert_float_eq_tol(flt_res, f1 - f2, TOL);
+}
+END_TEST
+
+START_TEST(t_sub_edge) {
+  //
 }
 END_TEST
 
@@ -98,6 +106,11 @@ START_TEST(t_mul) {  // 03. s21_mul
   s21_mul(dec1, dec2, &dec_res);
   s21_from_decimal_to_float(dec_res, &conv_res);
   ck_assert_float_eq_tol(res, conv_res, TOL);
+}
+END_TEST
+
+START_TEST(t_mul_edge) {
+  //
 }
 END_TEST
 
@@ -124,6 +137,11 @@ START_TEST(t_div) {  // 04. s21_div
 }
 END_TEST
 
+START_TEST(t_div_edge) {
+  //
+}
+END_TEST
+
 START_TEST(t_is_less) {  // 05. s21_is_less
   float val1 = rand_float(_i, -F_MAX, F_MAX);
   float val2 = rand_float(_i + 5, -F_MAX, F_MAX);
@@ -139,6 +157,11 @@ START_TEST(t_is_less) {  // 05. s21_is_less
   s21_from_float_to_decimal(val2, &dec_2);
   int res = val1 < val2;
   ck_assert_int_eq(res, s21_is_less(dec_1, dec_2));
+}
+END_TEST
+
+START_TEST(t_is_less_edge) {
+  //
 }
 END_TEST
 
@@ -163,6 +186,11 @@ START_TEST(t_is_less_or_equal) {  // 06. s21_is_less_or_equal
 }
 END_TEST
 
+START_TEST(t_is_less_or_equal_edge) {
+  //
+}
+END_TEST
+
 START_TEST(t_is_greater) {  // 07. s21_is_greater
   float val1 = rand_float(_i, -F_MAX, F_MAX);
   float val2 = rand_float(_i + 5, -F_MAX, F_MAX);
@@ -182,6 +210,11 @@ START_TEST(t_is_greater) {  // 07. s21_is_greater
   s21_from_float_to_decimal(val2, &dec_2);
   int res = val1 > val2;
   ck_assert_int_eq(res, s21_is_greater(dec_1, dec_2));
+}
+END_TEST
+
+START_TEST(t_is_greater_edge) {
+  //
 }
 END_TEST
 
@@ -215,6 +248,11 @@ START_TEST(t_is_greater_or_equal) {  // 08. s21_is_greater_or_equal
   int res = val1 >= val2;
   ck_assert_int_eq(res, s21_is_greater_or_equal(dec_1, dec_2));
   ck_assert_int_eq(res, s21_is_greater_or_equal_big(dec_1_big, dec_2_big));
+}
+END_TEST
+
+START_TEST(t_is_greater_or_equal_edge) {
+  //
 }
 END_TEST
 
@@ -254,6 +292,11 @@ START_TEST(t_is_equal) {  // 09. s21_is_equal
 }
 END_TEST
 
+START_TEST(t_is_equal_edge) {
+  //
+}
+END_TEST
+
 START_TEST(t_is_not_equal) {  // 10. s21_is_not_equal
   s21_decimal dec1, dec2;
   float f1, f2;
@@ -277,6 +320,11 @@ START_TEST(t_is_not_equal) {  // 10. s21_is_not_equal
 }
 END_TEST
 
+START_TEST(t_is_not_equal_edge) {
+  //
+}
+END_TEST
+
 START_TEST(t_from_int_to_decimal) {  // 11. s21_from_int_to_decimal
   int val, val_res;
   s21_decimal dec_res;
@@ -284,6 +332,11 @@ START_TEST(t_from_int_to_decimal) {  // 11. s21_from_int_to_decimal
   s21_from_int_to_decimal(val, &dec_res);
   s21_from_decimal_to_int(dec_res, &val_res);
   ck_assert_int_eq(val, val_res);
+}
+END_TEST
+
+START_TEST(t_from_int_to_decimal_edge) {
+  //
 }
 END_TEST
 
@@ -298,6 +351,11 @@ START_TEST(t_from_float_to_decimal) {  // 12. s21_from_float_to_decimal
   s21_from_decimal_to_float(dec_res, &flt_res);
 
   ck_assert_float_eq_tol(flt_res, f1, TOL);
+}
+END_TEST
+
+START_TEST(t_from_float_to_decimal_edge) {
+  //
 }
 END_TEST
 
@@ -318,6 +376,11 @@ START_TEST(t_from_decimal_to_int) {  // 13. s21_from_decimal_to_int
 }
 END_TEST
 
+START_TEST(t_from_decimal_to_int_edge) {
+  //
+}
+END_TEST
+
 START_TEST(t_from_decimal_to_float) {  // 14. s21_from_decimal_to_float
   float f1, flt_res;
   s21_decimal dec_res;
@@ -329,6 +392,11 @@ START_TEST(t_from_decimal_to_float) {  // 14. s21_from_decimal_to_float
   s21_from_decimal_to_float(dec_res, &flt_res);
 
   ck_assert_float_eq_tol(flt_res, f1, TOL);
+}
+END_TEST
+
+START_TEST(t_from_decimal_to_float_edge) {
+  //
 }
 END_TEST
 
@@ -347,6 +415,11 @@ START_TEST(t_floor) {  // 15. s21_floor
 }
 END_TEST
 
+START_TEST(t_floor_edge) {
+  //
+}
+END_TEST
+
 START_TEST(t_round) {  // 16. s21_round
   float fl = rand_float(_i, -F_MAX, F_MAX);
   s21_decimal dec, dec_res;
@@ -359,6 +432,11 @@ START_TEST(t_round) {  // 16. s21_round
 
   s21_from_float_to_decimal(fl, &dec);
   ck_assert_int_eq(s21_is_equal_tol(dec_res, dec), 1);
+}
+END_TEST
+
+START_TEST(t_round_edge) {
+  //
 }
 END_TEST
 
@@ -377,6 +455,11 @@ START_TEST(t_truncate) {  // 17. s21_truncate
 }
 END_TEST
 
+START_TEST(t_truncate_edge) {
+  //
+}
+END_TEST
+
 START_TEST(t_negate) {  // 18. s21_negate
   float f1, flt_res;
   s21_decimal dec1, dec_res;
@@ -388,6 +471,11 @@ START_TEST(t_negate) {  // 18. s21_negate
   s21_from_decimal_to_float(dec_res, &flt_res);
 
   ck_assert_float_eq_tol(flt_res, -f1, TOL);
+}
+END_TEST
+
+START_TEST(t_negate_edge) {
+  //
 }
 END_TEST
 
@@ -414,6 +502,11 @@ START_TEST(t_div_eq) {  // 19. s21_div_equal
 }
 END_TEST
 
+START_TEST(t_div_eq_edge) {
+  //
+}
+END_TEST
+
 START_TEST(t_div_zero) {  // 20. s21_div_zero
   float f1 = rand_float(_i, -F_MAX / 2, F_MAX / 2);
   while (f1 == 0) {
@@ -434,87 +527,112 @@ START_TEST(t_div_zero) {  // 20. s21_div_zero
 }
 END_TEST
 
+START_TEST(t_div_zero_edge) {
+  //
+}
+END_TEST
+
 Suite *decimal_suite() {
   Suite *s = suite_create("s21_decimal_tests");
 
   TCase *add = tcase_create("01. s21_add");
   tcase_add_loop_test(add, t_add, 0, ITER);
+  tcase_add_test(add, t_add_edge);
   suite_add_tcase(s, add);
 
   TCase *sub = tcase_create("02. s21_sub");
   tcase_add_loop_test(sub, t_sub, 0, ITER);
+  tcase_add_test(sub, t_sub_edge);
   suite_add_tcase(s, sub);
 
   TCase *mul = tcase_create("03. s21_mul");
   tcase_add_loop_test(mul, t_mul, 0, ITER);
+  tcase_add_test(mul, t_mul_edge);
   suite_add_tcase(s, mul);
 
   TCase *div = tcase_create("04. s21_div");
   tcase_add_loop_test(div, t_div, 0, ITER);
+  tcase_add_test(div, t_div_edge);
   suite_add_tcase(s, div);
 
   TCase *is_less = tcase_create("05. s21_is_less");
   tcase_add_loop_test(is_less, t_is_less, 0, ITER);
+  tcase_add_test(is_less, t_is_less_edge);
   suite_add_tcase(s, is_less);
 
   TCase *is_less_or_equal = tcase_create("06. s21_is_less_or_equal");
   tcase_add_loop_test(is_less_or_equal, t_is_less_or_equal, 0, ITER);
+  tcase_add_test(is_less_or_equal, t_is_less_or_equal_edge);
   suite_add_tcase(s, is_less_or_equal);
 
   TCase *is_greater = tcase_create("07. s21_is_greater");
   tcase_add_loop_test(is_greater, t_is_greater, 0, ITER);
+  tcase_add_test(is_greater, t_is_greater_edge);
   suite_add_tcase(s, is_greater);
 
   TCase *is_greater_or_equal = tcase_create("08. s21_is_greater_or_equal");
   tcase_add_loop_test(is_greater_or_equal, t_is_greater_or_equal, 0, ITER);
+  tcase_add_test(is_greater_or_equal, t_is_greater_or_equal_edge);
   suite_add_tcase(s, is_greater_or_equal);
 
   TCase *is_equal = tcase_create("09. s21_is_equal");
   tcase_add_loop_test(is_equal, t_is_equal, 0, ITER);
+  tcase_add_test(is_equal, t_is_equal_edge);
   suite_add_tcase(s, is_equal);
 
   TCase *is_not_equal = tcase_create("10. s21_is_not_equal");
   tcase_add_loop_test(is_not_equal, t_is_not_equal, 0, ITER);
+  tcase_add_test(is_not_equal, t_is_not_equal_edge);
   suite_add_tcase(s, is_not_equal);
 
   TCase *from_int_to_decimal = tcase_create("11. s21_from_int_to_decimal");
   tcase_add_loop_test(from_int_to_decimal, t_from_int_to_decimal, 0, ITER);
+  tcase_add_test(from_int_to_decimal, t_from_int_to_decimal_edge);
   suite_add_tcase(s, from_int_to_decimal);
 
   TCase *from_float_to_decimal = tcase_create("12. s21_from_float_to_decimal");
   tcase_add_loop_test(from_float_to_decimal, t_from_float_to_decimal, 0, ITER);
+  tcase_add_test(from_float_to_decimal, t_from_float_to_decimal_edge);
   suite_add_tcase(s, from_float_to_decimal);
 
   TCase *from_decimal_to_int = tcase_create("13. s21_from_decimal_to_int");
   tcase_add_loop_test(from_decimal_to_int, t_from_decimal_to_int, 0, ITER);
+  tcase_add_test(from_decimal_to_int, t_from_decimal_to_int_edge);
   suite_add_tcase(s, from_decimal_to_int);
 
   TCase *from_decimal_to_float = tcase_create("14. s21_from_decimal_to_float");
   tcase_add_loop_test(from_decimal_to_float, t_from_decimal_to_float, 0, ITER);
+  tcase_add_test(from_decimal_to_float, t_from_decimal_to_float_edge);
   suite_add_tcase(s, from_decimal_to_float);
 
   TCase *floor = tcase_create("15. s21_floor");
   tcase_add_loop_test(floor, t_floor, 0, ITER);
+  tcase_add_test(floor, t_floor_edge);
   suite_add_tcase(s, floor);
 
   TCase *round = tcase_create("16. s21_round");
   tcase_add_loop_test(round, t_round, 0, ITER);
+  tcase_add_test(round, t_round_edge);
   suite_add_tcase(s, round);
 
   TCase *truncate = tcase_create("17. s21_truncate");
   tcase_add_loop_test(truncate, t_truncate, 0, ITER);
+  tcase_add_test(truncate, t_truncate_edge);
   suite_add_tcase(s, truncate);
 
   TCase *negate = tcase_create("18. s21_negate");
   tcase_add_loop_test(negate, t_negate, 0, ITER);
+  tcase_add_test(negate, t_negate_edge);
   suite_add_tcase(s, negate);
 
   TCase *div_equal = tcase_create("19. s21_div equal");
   tcase_add_test(div_equal, t_div_eq);
+  tcase_add_test(div_equal, t_div_eq_edge);
   suite_add_tcase(s, div_equal);
 
   TCase *div_zero = tcase_create("20. s21_div zero");
   tcase_add_test(div_zero, t_div_zero);
+  tcase_add_test(div_zero, t_div_zero_edge);
   suite_add_tcase(s, div_zero);
   return s;
 }
@@ -541,9 +659,9 @@ int main() {
 
 void hubert_furr_tests(SRunner *runner) {
   srunner_add_suite(runner, add_suite0());
-  srunner_add_suite(runner, add_suite1());
 
 #if TESTS == 2
+  srunner_add_suite(runner, add_suite1());
   srunner_add_suite(runner, add_suite2());
   srunner_add_suite(runner, add_suite3());
   srunner_add_suite(runner, add_suite4());
@@ -556,9 +674,9 @@ void hubert_furr_tests(SRunner *runner) {
 #endif
 
   srunner_add_suite(runner, sub_suite0());
-  srunner_add_suite(runner, sub_suite1());
 
 #if TESTS == 2
+  srunner_add_suite(runner, sub_suite1());
   srunner_add_suite(runner, sub_suite2());
   srunner_add_suite(runner, sub_suite3());
   srunner_add_suite(runner, sub_suite4());
@@ -571,10 +689,11 @@ void hubert_furr_tests(SRunner *runner) {
 
   srunner_add_suite(runner, mul_suite0());
   srunner_add_suite(runner, mul_suite1());
-
-#if TESTS == 2
   srunner_add_suite(runner, mul_suite2());
   srunner_add_suite(runner, mul_suite3());
+
+#if TESTS == 2
+
   srunner_add_suite(runner, mul_suite4());
   srunner_add_suite(runner, mul_suite5());
   srunner_add_suite(runner, mul_suite6());
@@ -584,9 +703,9 @@ void hubert_furr_tests(SRunner *runner) {
 #endif
 
   srunner_add_suite(runner, div_suite0());
-  srunner_add_suite(runner, div_suite1());
 
 #if TESTS == 2
+  srunner_add_suite(runner, div_suite1());
   srunner_add_suite(runner, div_suite2());
   srunner_add_suite(runner, div_suite3());
   srunner_add_suite(runner, div_suite4());
@@ -607,9 +726,9 @@ void hubert_furr_tests(SRunner *runner) {
 #endif
 
   srunner_add_suite(runner, is_less_suite1());
-  srunner_add_suite(runner, is_less_suite2());
 
 #if TESTS == 2
+  srunner_add_suite(runner, is_less_suite2());
   srunner_add_suite(runner, is_less_suite3());
   srunner_add_suite(runner, is_less_suite4());
   srunner_add_suite(runner, is_less_suite5());
@@ -627,9 +746,9 @@ void hubert_furr_tests(SRunner *runner) {
 #endif
 
   srunner_add_suite(runner, is_equal_suite1());
-  srunner_add_suite(runner, is_equal_suite2());
 
 #if TESTS == 2
+  srunner_add_suite(runner, is_equal_suite2());
   srunner_add_suite(runner, is_equal_suite3());
   srunner_add_suite(runner, is_equal_suite4());
   srunner_add_suite(runner, is_equal_suite5());
@@ -647,8 +766,9 @@ void hubert_furr_tests(SRunner *runner) {
 #endif
 
   srunner_add_suite(runner, is_less_or_equal_suite1());
-  srunner_add_suite(runner, is_less_or_equal_suite2());
+
 #if TESTS == 2
+  srunner_add_suite(runner, is_less_or_equal_suite2());
   srunner_add_suite(runner, is_less_or_equal_suite3());
   srunner_add_suite(runner, is_less_or_equal_suite4());
   srunner_add_suite(runner, is_less_or_equal_suite5());
@@ -666,9 +786,9 @@ void hubert_furr_tests(SRunner *runner) {
 #endif
 
   srunner_add_suite(runner, is_greater_suite1());
-  srunner_add_suite(runner, is_greater_suite2());
 
 #if TESTS == 2
+  srunner_add_suite(runner, is_greater_suite2());
   srunner_add_suite(runner, is_greater_suite3());
   srunner_add_suite(runner, is_greater_suite4());
   srunner_add_suite(runner, is_greater_suite5());
@@ -686,9 +806,9 @@ void hubert_furr_tests(SRunner *runner) {
 #endif
 
   srunner_add_suite(runner, is_greater_or_equal_suite1());
-  srunner_add_suite(runner, is_greater_or_equal_suite2());
 
 #if TESTS == 2
+  srunner_add_suite(runner, is_greater_or_equal_suite2());
   srunner_add_suite(runner, is_greater_or_equal_suite3());
   srunner_add_suite(runner, is_greater_or_equal_suite4());
   srunner_add_suite(runner, is_greater_or_equal_suite5());
@@ -706,9 +826,9 @@ void hubert_furr_tests(SRunner *runner) {
 #endif
 
   srunner_add_suite(runner, is_not_equal_suite1());
-  srunner_add_suite(runner, is_not_equal_suite2());
 
 #if TESTS == 2
+  srunner_add_suite(runner, is_not_equal_suite2());
   srunner_add_suite(runner, is_not_equal_suite3());
   srunner_add_suite(runner, is_not_equal_suite4());
   srunner_add_suite(runner, is_not_equal_suite5());
@@ -750,9 +870,9 @@ void hubert_furr_tests(SRunner *runner) {
 #endif
 
   //   srunner_add_suite(runner, from_float_to_decimal_suite0());
-  //   srunner_add_suite(runner, from_float_to_decimal_suite1());
 
   // #if TESTS == 2
+  //   srunner_add_suite(runner, from_float_to_decimal_suite1());
   //   srunner_add_suite(runner, from_float_to_decimal_suite2());
   //   srunner_add_suite(runner, from_float_to_decimal_suite3());
   //   srunner_add_suite(runner, from_float_to_decimal_suite4());

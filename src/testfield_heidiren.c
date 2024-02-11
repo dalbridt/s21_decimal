@@ -14,13 +14,17 @@ float rand_float(int random, float min, float max) {
 }
 
 int main() {
-  // -7922816251426433759.3543950335
-  s21_decimal decimal = {{0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0x800A0000}};
-  // -7922816251426433760
-  s21_decimal decimal_check = {{0x5EF6EAE0, 0x6DF37F67, 0x0, 0x80000000}};
+  // -1.0
+  s21_decimal decimal1 = {{0xA, 0x0, 0x0, 0x80010000}};
+  // -1429062841781896312709593009.2
+  s21_decimal decimal2 = {{0xDF162CEC, 0xD6D0972E, 0x2E2CEE46, 0x80010000}};
+  // 0.0000000000000000000000000007
+  s21_decimal decimal_check = {{0x7, 0x0, 0x0, 0x1C0000}};
   s21_decimal result;
+  s21_div(decimal1, decimal2, &result);
 
-  s21_floor(decimal, &result);
+  debug_display_decimal("decimal1", decimal1);
+  debug_display_decimal("decimal2", decimal2);
 
   debug_display_decimal("decimal_check", decimal_check);
   debug_display_decimal("result", result);

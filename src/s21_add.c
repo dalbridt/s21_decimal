@@ -32,7 +32,7 @@ s21_big_decimal s21_add_big(s21_big_decimal value_1, s21_big_decimal value_2) {
   int sign_2 = s21_get_sign_big(value_2);
 
   if (sign_1 != sign_2) {
-    int bigger = s21_mantisa_compare_big(value_1, value_2);
+    int bigger = s21_mantisa_compare_big(value_1, value_2) == 0;
     switch (bigger) {
       case 1:
         res = s21_sub_mantissas_big(value_2, value_1);
