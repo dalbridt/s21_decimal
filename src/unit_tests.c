@@ -110,7 +110,31 @@ START_TEST(t_mul) {  // 03. s21_mul
 END_TEST
 
 START_TEST(t_mul_edge) {
-  //
+   // 0.5
+  s21_decimal decimal1 = {{0x5, 0x0, 0x0, 0x10000}};
+  // 0.0000000000000000000000000000
+  s21_decimal decimal2 = {{0x0, 0x0, 0x0, 0x1C0000}};
+  // 0.0000000000000000000000000000
+  s21_decimal decimal_check = {{0x0, 0x0, 0x0, 0x1C0000}};
+  s21_decimal result; 
+  int code = s21_mul(decimal1, decimal2, &result); 
+  ck_assert_int_eq(code, 0);
+  ck_assert_int_eq(s21_is_equal(result, decimal_check), 1); 
+}
+END_TEST
+
+START_TEST(t_mul_edge2) {
+  // 0.5
+  s21_decimal decimal1 = {{0x5, 0x0, 0x0, 0x10000}};
+  // 0.0000000000000000000000000001
+  s21_decimal decimal2 = {{0x1, 0x0, 0x0, 0x1C0000}};
+  // 0.0000000000000000000000000000
+  s21_decimal decimal_check = {{0x0, 0x0, 0x0, 0x1C0000}};
+  int code_check = AM_NOF;
+  s21_decimal result; 
+  int code = s21_mul(decimal1, decimal2, &result); 
+  ck_assert_int_eq(code, code_check);
+  ck_assert_int_eq(s21_is_equal(result, decimal_check), 1); 
 }
 END_TEST
 
@@ -138,7 +162,30 @@ START_TEST(t_div) {  // 04. s21_div
 END_TEST
 
 START_TEST(t_div_edge) {
-  //
+  // 0.0000000000000000000000000000
+  s21_decimal decimal1 = {{0x0, 0x0, 0x0, 0x1C0000}};
+  // -626656361.06935169033698303587
+  s21_decimal decimal2 = {{0xD8705E63, 0x5DC32547, 0xCA7BCC9C, 0x80140000}};
+  // -0.00000000
+  s21_decimal decimal_check = {{0x0, 0x0, 0x0, 0x80080000}};
+  s21_decimal result;
+  int code = s21_div(decimal1, decimal2, &result);
+  ck_assert_int_eq(code, 0);  // code from div
+  ck_assert_int_eq(s21_is_equal(result, decimal_check), 1); 
+
+}
+END_TEST
+START_TEST(t_div_edge2) {
+  // -1429062841781896312709593009.2
+  s21_decimal decimal1 = {{0xDF162CEC, 0xD6D0972E, 0x2E2CEE46, 0x80010000}};
+  // 0.0000000000000000000000000008
+  s21_decimal decimal2 = {{0x8, 0x0, 0x0, 0x1C0000}};
+  // overflow
+  s21_decimal result;
+  int code = s21_div(decimal1, decimal2, &result);
+  int code_check = AM_NOF;
+  ck_assert_int_eq(code, code_check); 
+
 }
 END_TEST
 
@@ -377,7 +424,11 @@ START_TEST(t_from_decimal_to_int) {  // 13. s21_from_decimal_to_int
 END_TEST
 
 START_TEST(t_from_decimal_to_int_edge) {
-  //
+  // 7922816251426433758924898304.0
+  s21_decimal decimal = {{0x0, 0xFFFFFFFF, 0xFFFFFFFF, 0x10000}};
+  int i1;
+  int code = s21_from_decimal_to_int(decimal, &i1);
+  ck_assert_int_eq(code, 1);
 }
 END_TEST
 
@@ -548,11 +599,13 @@ Suite *decimal_suite() {
   TCase *mul = tcase_create("03. s21_mul");
   tcase_add_loop_test(mul, t_mul, 0, ITER);
   tcase_add_test(mul, t_mul_edge);
+  tcase_add_test(mul, t_mul_edge2);
   suite_add_tcase(s, mul);
 
   TCase *div = tcase_create("04. s21_div");
   tcase_add_loop_test(div, t_div, 0, ITER);
   tcase_add_test(div, t_div_edge);
+  tcase_add_test(div, t_div_edge2);
   suite_add_tcase(s, div);
 
   TCase *is_less = tcase_create("05. s21_is_less");

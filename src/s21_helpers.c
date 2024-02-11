@@ -10,14 +10,14 @@ int s21_is_zero(s21_decimal src) {
   return (src.bits[0] == 0 && src.bits[1] == 0 && src.bits[2] == 0);
 }
 
-int s21_is_big_zero(s21_big_decimal src) {
-  return (src.bits[0] == 0 && src.bits[1] == 0 && src.bits[2] == 0 &&
-          src.bits[3] == 0 && src.bits[4] == 0 && src.bits[5] == 0 &&
-          src.bits[6] == 0 && src.bits[7] == 0 && src.bits[8] == 0 &&
-          src.bits[9] == 0 && src.bits[10] == 0 && src.bits[11] == 0 &&
-          src.bits[12] == 0 && src.bits[13] == 0 && src.bits[14] == 0 &&
-          src.bits[15] == 0);
-}
+// int s21_is_big_zero(s21_big_decimal src) {
+//   return (src.bits[0] == 0 && src.bits[1] == 0 && src.bits[2] == 0 &&
+//           src.bits[3] == 0 && src.bits[4] == 0 && src.bits[5] == 0 &&
+//           src.bits[6] == 0 && src.bits[7] == 0 && src.bits[8] == 0 &&
+//           src.bits[9] == 0 && src.bits[10] == 0 && src.bits[11] == 0 &&
+//           src.bits[12] == 0 && src.bits[13] == 0 && src.bits[14] == 0 &&
+//           src.bits[15] == 0);
+// }
 
 long double s21_get_mantissa(s21_decimal* src) {
   unsigned int* b = &src->bits[0];
@@ -32,18 +32,18 @@ long double s21_get_mantissa(s21_decimal* src) {
   return mantissa;
 }
 
-long double s21_get_mantissa_big(s21_big_decimal* src) {
-  unsigned int* b = &src->bits[0];
-  unsigned int byte;
+// long double s21_get_mantissa_big(s21_big_decimal* src) {
+//   unsigned int* b = &src->bits[0];
+//   unsigned int byte;
 
-  long double mantissa = 0;
-  long double power = 1;
-  for (short i = 0; i < 0x200; i++, power *= 2) {
-    byte = (b[i / 0x20] >> i) & 1;
-    mantissa += byte * power;
-  }
-  return mantissa;
-}
+//   long double mantissa = 0;
+//   long double power = 1;
+//   for (short i = 0; i < 0x200; i++, power *= 2) {
+//     byte = (b[i / 0x20] >> i) & 1;
+//     mantissa += byte * power;
+//   }
+//   return mantissa;
+// }
 
 int s21_get_sign(s21_decimal num) { return (num.bits[3] & MINUS) != 0; }
 
@@ -96,15 +96,15 @@ int s21_get_bit_big(s21_big_decimal src, int index) {
   return (src.bits[index / 32] & mask) != 0;
 }
 
-void s21_set_bit(s21_decimal* src, int index, int value) {
-  int arr_index = index / 32;
-  int bit_index = index % 32;
-  if (value == 1) {
-    src->bits[arr_index] |= (1u << bit_index);
-  } else if (value == 0) {
-    src->bits[arr_index] &= ~(1u << bit_index);
-  }
-}
+// void s21_set_bit(s21_decimal* src, int index, int value) {
+//   int arr_index = index / 32;
+//   int bit_index = index % 32;
+//   if (value == 1) {
+//     src->bits[arr_index] |= (1u << bit_index);
+//   } else if (value == 0) {
+//     src->bits[arr_index] &= ~(1u << bit_index);
+//   }
+// }
 
 void s21_set_bit_big(s21_big_decimal* dst, int index, int bit) {
   unsigned long mask = 1UL << (index % 32);
@@ -546,10 +546,10 @@ void s21_upscale_x10(s21_decimal* dec) {
   s21_set_scale(dec, (s21_get_scale(*dec) + 1));
 }
 
-void s21_upscale_x10_big(s21_big_decimal* dec) {
-  s21_x10_big(dec);
-  s21_set_scale_big(dec, (s21_get_scale_big(*dec) + 1));
-}
+// void s21_upscale_x10_big(s21_big_decimal* dec) {
+//   s21_x10_big(dec);
+//   s21_set_scale_big(dec, (s21_get_scale_big(*dec) + 1));
+// }
 
 void s21_set_one(s21_decimal* dec) {
   s21_reset(dec);
@@ -569,13 +569,13 @@ void s21_decrease_scale_big(s21_big_decimal* dst, int n) {
   s21_set_scale_big(dst, scale);
 }
 
-void s21_increase_scale_big(s21_big_decimal* dst, int n) {
-  int scale = s21_get_scale_big(*dst);
-  for (int i = 0; i < n; i++) {
-    scale++;
-  }
-  s21_set_scale_big(dst, scale);
-}
+// void s21_increase_scale_big(s21_big_decimal* dst, int n) {
+//   int scale = s21_get_scale_big(*dst);
+//   for (int i = 0; i < n; i++) {
+//     scale++;
+//   }
+//   s21_set_scale_big(dst, scale);
+// }
 
 am_code s21_post_normalization(s21_big_decimal* result) {
   am_code flag = AM_ERR;
