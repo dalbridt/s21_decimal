@@ -11,9 +11,7 @@ int s21_from_decimal_to_int(s21_decimal src, int *dst) {
     }
 
     unsigned int biggest = s21_get_sign(src) ? ~0x7fffffff : 0x7fffffff;
-    ;  // dummy code, review needed
-    if (src.bits[1] != 0 || src.bits[2] != 0 ||
-        /*s21_get_bit(src, 31)*/ src.bits[0] > biggest) {
+    if (((src.bits[1] + src.bits[2]) != 0) || src.bits[0] > biggest) {
       flag = CNV_ERR;
       *dst = 0xffffffff;
     } else {

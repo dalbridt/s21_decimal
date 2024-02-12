@@ -10,15 +10,6 @@ int s21_is_zero(s21_decimal src) {
   return (src.bits[0] == 0 && src.bits[1] == 0 && src.bits[2] == 0);
 }
 
-// int s21_is_big_zero(s21_big_decimal src) {
-//   return (src.bits[0] == 0 && src.bits[1] == 0 && src.bits[2] == 0 &&
-//           src.bits[3] == 0 && src.bits[4] == 0 && src.bits[5] == 0 &&
-//           src.bits[6] == 0 && src.bits[7] == 0 && src.bits[8] == 0 &&
-//           src.bits[9] == 0 && src.bits[10] == 0 && src.bits[11] == 0 &&
-//           src.bits[12] == 0 && src.bits[13] == 0 && src.bits[14] == 0 &&
-//           src.bits[15] == 0);
-// }
-
 long double s21_get_mantissa(s21_decimal* src) {
   unsigned int* b = &src->bits[0];
   unsigned int byte;
@@ -31,19 +22,6 @@ long double s21_get_mantissa(s21_decimal* src) {
   }
   return mantissa;
 }
-
-// long double s21_get_mantissa_big(s21_big_decimal* src) {
-//   unsigned int* b = &src->bits[0];
-//   unsigned int byte;
-
-//   long double mantissa = 0;
-//   long double power = 1;
-//   for (short i = 0; i < 0x200; i++, power *= 2) {
-//     byte = (b[i / 0x20] >> i) & 1;
-//     mantissa += byte * power;
-//   }
-//   return mantissa;
-// }
 
 int s21_get_sign(s21_decimal num) { return (num.bits[3] & MINUS) != 0; }
 
@@ -95,16 +73,6 @@ int s21_get_bit_big(s21_big_decimal src, int index) {
   unsigned long mask = 1UL << (index % 32);
   return (src.bits[index / 32] & mask) != 0;
 }
-
-// void s21_set_bit(s21_decimal* src, int index, int value) {
-//   int arr_index = index / 32;
-//   int bit_index = index % 32;
-//   if (value == 1) {
-//     src->bits[arr_index] |= (1u << bit_index);
-//   } else if (value == 0) {
-//     src->bits[arr_index] &= ~(1u << bit_index);
-//   }
-// }
 
 void s21_set_bit_big(s21_big_decimal* dst, int index, int bit) {
   unsigned long mask = 1UL << (index % 32);
@@ -333,33 +301,10 @@ int s21_mantisa_compare_big(s21_big_decimal value_1, s21_big_decimal value_2) {
   return flag;
 }
 
-// // Степени чисел принимаются за 10^0, знаки не учитываются
-// void s21_add_big(s21_big_decimal value_1, s21_big_decimal value_2,
-//                  s21_big_decimal* result) {
-//   int res = 0, overflow = 0;
-//   for (int i = 0; i < 448; i++) {
-//     res = s21_get_bit_big(value_1, i) + s21_get_bit_big(value_2, i) +
-//     overflow; overflow = res / 2; s21_set_bit_big(result, i, res % 2);
-//   }
-// }
-
-// // Степени чисел принимаются за 10^0, знаки не учитываются
-// void s21_sub_big(s21_big_decimal value_1, s21_big_decimal value_2,
-//                  s21_big_decimal* result) {
-//   int tmp = 0, res = 0;
-//   for (int i = 0; i < 448; i++) {
-//     res = s21_get_bit_big(value_1, i) - s21_get_bit_big(value_2, i) - tmp;
-//     tmp = res < 0;
-//     res = abs(res);
-//     s21_set_bit_big(result, i, res % 2);
-//   }
-// }
-
 int s21_mul_big(s21_big_decimal value_1, s21_big_decimal value_2,
                 s21_big_decimal* result) {
   int count = 0, error = 0;
-  // if (s21_get_sign_big(value_1) != s21_get_sign_big(value_2))
-  //   s21_set_sign_big(result, 1); проверяем это в материнской функции
+
   int res_scale = s21_get_scale_big(value_1) + s21_get_scale_big(value_2);
   for (int i = 0; i < 512; i++) {
     if (s21_get_bit_big(value_2, i)) {
@@ -407,7 +352,6 @@ void s21_div10(s21_decimal* src, unsigned int roundup) {
   *src = q;
 }
 
-// Не учитывает скейл, делит только мантиссу
 void s21_div10_big(s21_big_decimal* src, unsigned int roundup) {
   s21_big_decimal src_copy = *src;
   s21_big_decimal src_copy2 = *src;
@@ -416,7 +360,7 @@ void s21_div10_big(s21_big_decimal* src, unsigned int roundup) {
   s21_big_decimal q = {0}, temp = {0};
   q = s21_add_mantissas_big(src_copy, src_copy2);
 
-  for (int i = 4; i < 512; i *= 2) {  // поч 512?
+  for (int i = 4; i < 512; i *= 2) {
     src_copy = q;
     s21_big_mantissa_shift_r(&src_copy, i);
     temp = s21_add_mantissas_big(src_copy, q);
@@ -428,8 +372,7 @@ void s21_div10_big(s21_big_decimal* src, unsigned int roundup) {
   s21_reset_big(&temp);
   temp = s21_add_mantissas_big(src_copy2, q);
   src_copy2 = temp;
-  // s21_big_decimal r;
-  // r = s21_sub_mantissas_big(*src, src_copy2);
+
   s21_reset_big(&temp);
   temp = s21_add_mantissas_big(src_copy, q);
 
@@ -481,13 +424,9 @@ void s21_divide_big(s21_big_decimal dividend, s21_big_decimal divisor,
   s21_reset_big(remainder);
   s21_reset_big(quotient);
 
-  // if (s21_is_big_zero(divisor)) return;
-
   int dividend_scale = s21_get_scale_big(dividend);
   int divisor_scale = s21_get_scale_big(divisor);
   int div_new_scale = dividend_scale;
-
-  // printf("scales %d %d\n", dividend_scale, divisor_scale);
 
   if (stop == 1) {
     for (int i = 0; i < 33; i++) {
@@ -546,11 +485,6 @@ void s21_upscale_x10(s21_decimal* dec) {
   s21_set_scale(dec, (s21_get_scale(*dec) + 1));
 }
 
-// void s21_upscale_x10_big(s21_big_decimal* dec) {
-//   s21_x10_big(dec);
-//   s21_set_scale_big(dec, (s21_get_scale_big(*dec) + 1));
-// }
-
 void s21_set_one(s21_decimal* dec) {
   s21_reset(dec);
   dec->bits[0] = 1u;
@@ -569,14 +503,6 @@ void s21_decrease_scale_big(s21_big_decimal* dst, int n) {
   s21_set_scale_big(dst, scale);
 }
 
-// void s21_increase_scale_big(s21_big_decimal* dst, int n) {
-//   int scale = s21_get_scale_big(*dst);
-//   for (int i = 0; i < n; i++) {
-//     scale++;
-//   }
-//   s21_set_scale_big(dst, scale);
-// }
-
 am_code s21_post_normalization(s21_big_decimal* result) {
   am_code flag = AM_ERR;
   if (result != NULL) {
@@ -584,12 +510,13 @@ am_code s21_post_normalization(s21_big_decimal* result) {
     int scale = s21_get_scale_big(*result);
     int dop = 0;
 
-    while ((result->bits[3] || result->bits[4] || result->bits[5] ||
-            result->bits[6] || result->bits[7] || result->bits[8] ||
-            result->bits[9] || result->bits[10] || result->bits[11] ||
-            result->bits[12] || result->bits[13] || result->bits[14] ||
-            result->bits[15]) &&
-           scale > 0) {
+    while (true) {
+      bool bits = false;
+      for (int i = 3; i < 16; i++) {
+        bits += result->bits[i] > 0;
+      }
+      bits *= scale > 0;
+      if (!bits) break;
       if (scale == 1 && result->bits[3]) dop = 1;
       s21_decrease_scale_big(result, 1);
       s21_div10_big(result, 0);
@@ -607,17 +534,13 @@ am_code s21_post_normalization(s21_big_decimal* result) {
         s21_get_bit_big(*result, 0)) {
       s21_set_bit_big(result, 0, 0);
     }
-    if ((result->bits[3] || result->bits[4] || result->bits[5] ||
-         result->bits[6] || result->bits[7] || result->bits[8] ||
-         result->bits[9] || result->bits[10] || result->bits[11] ||
-         result->bits[12] || result->bits[13] || result->bits[14] ||
-         result->bits[15])) {
-      flag = AM_OF;
+    for (int i = 3; i < 16; i++) {
+      if (result->bits[i]) {
+        flag = AM_OF;
+        break;
+      }
     }
 
-    // if (scale > 28 || s21_is_big_zero(*result)) {
-    //   flag = AM_NOF;
-    // }
     if (flag == AM_OF && s21_get_sign_big(*result)) {
       flag = AM_NOF;
     }
@@ -649,36 +572,69 @@ val_code s21_decimal_validation(s21_decimal value) {
   return flag;
 }
 
-#if FALSE
+// void s21_increase_scale_big(s21_big_decimal* dst, int n) {
+//   int scale = s21_get_scale_big(*dst);
+//   for (int i = 0; i < n; i++) {
+//     scale++;
+//   }
+//   s21_set_scale_big(dst, scale);
+// }
 
-u_int32_t div10(u_int32_t dividend) {
-  u_int64_t invDivisor = 0x1999999A;
-  return (u_int32_t)((invDivisor * dividend) >> 32);
-}
+// int s21_is_big_zero(s21_big_decimal src) {
+//   return (src.bits[0] == 0 && src.bits[1] == 0 && src.bits[2] == 0 &&
+//           src.bits[3] == 0 && src.bits[4] == 0 && src.bits[5] == 0 &&
+//           src.bits[6] == 0 && src.bits[7] == 0 && src.bits[8] == 0 &&
+//           src.bits[9] == 0 && src.bits[10] == 0 && src.bits[11] == 0 &&
+//           src.bits[12] == 0 && src.bits[13] == 0 && src.bits[14] == 0 &&
+//           src.bits[15] == 0);
+// }
 
-unsigned long long divu10(unsigned long long n) {
-  unsigned long long q, r;
-  q = (n >> 1) + (n >> 2);
-  q = q + (q >> 4);
-  q = q + (q >> 8);
-  q = q + (q >> 16);
-  q = q >> 3;
-  r = n - (((q << 2) + q) << 1);
-  return q + (r > 9);  // return q+((r+6)>>4);
-}
+// long double s21_get_mantissa_big(s21_big_decimal* src) {
+//   unsigned int* b = &src->bits[0];
+//   unsigned int byte;
 
-void max_decimal(s21_decimal* dst) {
-  dst->bits[0] = 0b11111111111111111111111111111111;
-  dst->bits[1] = 0b11111111111111111111111111111111;
-  dst->bits[2] = 0b11111111111111111111111111111111;
-  dst->bits[3] = 0b00000000000111000000000000000000;
-}
+//   long double mantissa = 0;
+//   long double power = 1;
+//   for (short i = 0; i < 0x200; i++, power *= 2) {
+//     byte = (b[i / 0x20] >> i) & 1;
+//     mantissa += byte * power;
+//   }
+//   return mantissa;
+// }
 
-void min_decimal(s21_decimal* dst) {
-  dst->bits[0] = 0b11111111111111111111111111111111;
-  dst->bits[1] = 0b11111111111111111111111111111111;
-  dst->bits[2] = 0b11111111111111111111111111111111;
-  dst->bits[3] = 0b10000000000111000000000000000000;
-}
+// void s21_upscale_x10_big(s21_big_decimal* dec) {
+//   s21_x10_big(dec);
+//   s21_set_scale_big(dec, (s21_get_scale_big(*dec) + 1));
+// }
 
-#endif
+// void s21_set_bit(s21_decimal* src, int index, int value) {
+//   int arr_index = index / 32;
+//   int bit_index = index % 32;
+//   if (value == 1) {
+//     src->bits[arr_index] |= (1u << bit_index);
+//   } else if (value == 0) {
+//     src->bits[arr_index] &= ~(1u << bit_index);
+//   }
+// }
+
+// // Степени чисел принимаются за 10^0, знаки не учитываются
+// void s21_add_big(s21_big_decimal value_1, s21_big_decimal value_2,
+//                  s21_big_decimal* result) {
+//   int res = 0, overflow = 0;
+//   for (int i = 0; i < 448; i++) {
+//     res = s21_get_bit_big(value_1, i) + s21_get_bit_big(value_2, i) +
+//     overflow; overflow = res / 2; s21_set_bit_big(result, i, res % 2);
+//   }
+// }
+
+// // Степени чисел принимаются за 10^0, знаки не учитываются
+// void s21_sub_big(s21_big_decimal value_1, s21_big_decimal value_2,
+//                  s21_big_decimal* result) {
+//   int tmp = 0, res = 0;
+//   for (int i = 0; i < 448; i++) {
+//     res = s21_get_bit_big(value_1, i) - s21_get_bit_big(value_2, i) - tmp;
+//     tmp = res < 0;
+//     res = abs(res);
+//     s21_set_bit_big(result, i, res % 2);
+//   }
+// }

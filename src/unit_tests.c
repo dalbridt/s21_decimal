@@ -2,7 +2,7 @@
 
 #include "s21_decimal.h"
 
-#define ITER 50
+#define ITER 500
 
 #define TOL 1e-05
 
@@ -25,6 +25,13 @@ int randomize_int(int random) {
     value = -value;
   }
   return value;
+}
+
+void invalid_value(s21_decimal *invalid, int random) {
+  s21_reset(invalid);  //
+  for (int i = 0; i < 4; i++) {
+    invalid->bits[i] = randomize_int(random + 123123 * i);
+  }
 }
 
 bool s21_is_equal_tol(s21_decimal value_1, s21_decimal value_2) {
@@ -69,7 +76,22 @@ START_TEST(t_add) {  // 01. s21_add
 }
 END_TEST
 
-START_TEST(t_add_edge) {}
+START_TEST(t_add_edge) {
+  s21_decimal dec_01, dec_02, dec_res;
+  invalid_value(&dec_01, _i);
+  float f2 = rand_float(_i + 6, FLT_MIN, FLT_MAX);
+  s21_from_float_to_decimal(f2, &dec_02);
+  int code = s21_add(dec_01, dec_02, &dec_res);
+  ck_assert_int_eq(code, AM_ERR);
+
+  code = s21_add(dec_02, dec_01, &dec_res);
+
+  ck_assert_int_eq(code, AM_ERR);
+
+  code = s21_add(dec_02, dec_01, NULL);
+
+  ck_assert_int_eq(code, AM_ERR);
+}
 END_TEST
 
 START_TEST(t_sub) {  // 02. s21_sub
@@ -88,7 +110,16 @@ START_TEST(t_sub) {  // 02. s21_sub
 END_TEST
 
 START_TEST(t_sub_edge) {
-  //
+  s21_decimal dec_01, dec_02, dec_res;
+  invalid_value(&dec_01, _i);
+  float f2 = rand_float(_i + 6, FLT_MIN, FLT_MAX);
+  s21_from_float_to_decimal(f2, &dec_02);
+  int code = s21_sub(dec_01, dec_02, &dec_res);
+  ck_assert_int_eq(code, AM_ERR);
+
+  code = s21_sub(dec_02, dec_01, &dec_res);
+
+  ck_assert_int_eq(code, AM_ERR);
 }
 END_TEST
 
@@ -110,16 +141,16 @@ START_TEST(t_mul) {  // 03. s21_mul
 END_TEST
 
 START_TEST(t_mul_edge) {
-   // 0.5
+  // 0.5
   s21_decimal decimal1 = {{0x5, 0x0, 0x0, 0x10000}};
   // 0.0000000000000000000000000000
   s21_decimal decimal2 = {{0x0, 0x0, 0x0, 0x1C0000}};
   // 0.0000000000000000000000000000
   s21_decimal decimal_check = {{0x0, 0x0, 0x0, 0x1C0000}};
-  s21_decimal result; 
-  int code = s21_mul(decimal1, decimal2, &result); 
+  s21_decimal result;
+  int code = s21_mul(decimal1, decimal2, &result);
   ck_assert_int_eq(code, 0);
-  ck_assert_int_eq(s21_is_equal(result, decimal_check), 1); 
+  ck_assert_int_eq(s21_is_equal(result, decimal_check), 1);
 }
 END_TEST
 
@@ -131,10 +162,34 @@ START_TEST(t_mul_edge2) {
   // 0.0000000000000000000000000000
   s21_decimal decimal_check = {{0x0, 0x0, 0x0, 0x1C0000}};
   int code_check = AM_NOF;
-  s21_decimal result; 
-  int code = s21_mul(decimal1, decimal2, &result); 
+  s21_decimal result;
+  int code = s21_mul(decimal1, decimal2, &result);
   ck_assert_int_eq(code, code_check);
-  ck_assert_int_eq(s21_is_equal(result, decimal_check), 1); 
+  ck_assert_int_eq(s21_is_equal(result, decimal_check), 1);
+}
+END_TEST
+
+START_TEST(t_mul_edge3) {
+  float f1 = rand_float(_i, FLT_MIN, FLT_MAX);
+  float f2 = rand_float(_i + 6, FLT_MIN, FLT_MAX);
+  s21_decimal dec1 = {0};
+  s21_decimal dec2 = {0};
+  s21_from_float_to_decimal(f1, &dec1);
+  s21_from_float_to_decimal(f2, &dec2);
+
+  randomize_decimal(&dec1, &f1, _i);
+  randomize_decimal(&dec2, &f2, _i + 5);
+
+  s21_decimal dec_01, dec_res;
+  invalid_value(&dec_01, _i + 123123);
+  // float f2 = rand_float(_i + 6, FLT_MIN, FLT_MAX);
+  // s21_from_float_to_decimal(f2, &dec_02);
+  int code = s21_mul(dec1, dec_01, &dec_res);
+  ck_assert_int_eq(code, AM_ERR);
+  code = s21_mul(dec_01, dec1, &dec_res);
+  ck_assert_int_eq(code, AM_ERR);
+  code = s21_mul(dec_01, dec1, NULL);
+  ck_assert_int_eq(code, AM_ERR);
 }
 END_TEST
 
@@ -171,10 +226,10 @@ START_TEST(t_div_edge) {
   s21_decimal result;
   int code = s21_div(decimal1, decimal2, &result);
   ck_assert_int_eq(code, 0);  // code from div
-  ck_assert_int_eq(s21_is_equal(result, decimal_check), 1); 
-
+  ck_assert_int_eq(s21_is_equal(result, decimal_check), 1);
 }
 END_TEST
+
 START_TEST(t_div_edge2) {
   // -1429062841781896312709593009.2
   s21_decimal decimal1 = {{0xDF162CEC, 0xD6D0972E, 0x2E2CEE46, 0x80010000}};
@@ -184,8 +239,55 @@ START_TEST(t_div_edge2) {
   s21_decimal result;
   int code = s21_div(decimal1, decimal2, &result);
   int code_check = AM_NOF;
-  ck_assert_int_eq(code, code_check); 
+  ck_assert_int_eq(code, code_check);
+}
+END_TEST
 
+START_TEST(t_div_edge3) {
+  float f1 = rand_float(_i, FLT_MIN, FLT_MAX);
+  float f2 = rand_float(_i + 6, FLT_MIN, FLT_MAX);
+  s21_decimal dec1 = {0};
+  s21_decimal dec2 = {0};
+  s21_from_float_to_decimal(f1, &dec1);
+  s21_from_float_to_decimal(f2, &dec2);
+
+  randomize_decimal(&dec1, &f1, _i);
+  randomize_decimal(&dec2, &f2, _i + 5);
+
+  s21_decimal dec_01, dec_res;
+  invalid_value(&dec_01, _i + 123123);
+  // float f2 = rand_float(_i + 6, FLT_MIN, FLT_MAX);
+  // s21_from_float_to_decimal(f2, &dec_02);
+  int code = s21_div(dec1, dec_01, &dec_res);
+  ck_assert_int_eq(code, AM_ERR);
+  code = s21_div(dec_01, dec1, &dec_res);
+  ck_assert_int_eq(code, AM_ERR);
+  code = s21_div(dec_01, dec1, NULL);
+  ck_assert_int_eq(code, AM_ERR);
+}
+END_TEST
+
+START_TEST(t_div_edge4) {
+  float f1 = rand_float(_i, FLT_MIN, FLT_MAX);
+  float f2 = rand_float(_i + 6, FLT_MIN, FLT_MAX);
+  s21_decimal dec1 = {0};
+  s21_decimal dec2 = {0};
+  s21_from_float_to_decimal(f1, &dec1);
+  s21_from_float_to_decimal(f2, &dec2);
+
+  randomize_decimal(&dec1, &f1, _i);
+  randomize_decimal(&dec2, &f2, _i + 5);
+
+  s21_decimal dec_01, dec_res;
+  invalid_value(&dec_01, _i + 123123);
+  // float f2 = rand_float(_i + 6, FLT_MIN, FLT_MAX);
+  // s21_from_float_to_decimal(f2, &dec_02);
+  int code = s21_div(dec1, dec_01, &dec_res);
+  ck_assert_int_eq(code, AM_ERR);
+  code = s21_div(dec_01, dec1, &dec_res);
+  ck_assert_int_eq(code, AM_ERR);
+  code = s21_div(dec_01, dec1, NULL);
+  ck_assert_int_eq(code, AM_ERR);
 }
 END_TEST
 
@@ -383,7 +485,9 @@ START_TEST(t_from_int_to_decimal) {  // 11. s21_from_int_to_decimal
 END_TEST
 
 START_TEST(t_from_int_to_decimal_edge) {
-  //
+  int integer = 1231231231;
+  int code = s21_from_int_to_decimal(integer, NULL);
+  ck_assert_int_eq(code, RND_ERR);
 }
 END_TEST
 
@@ -429,6 +533,23 @@ START_TEST(t_from_decimal_to_int_edge) {
   int i1;
   int code = s21_from_decimal_to_int(decimal, &i1);
   ck_assert_int_eq(code, 1);
+
+  s21_decimal dec_01, dec_02;
+  invalid_value(&dec_01, _i);
+  float f2 = rand_float(_i + 6, FLT_MIN, FLT_MAX);
+  s21_from_float_to_decimal(f2, &dec_02);
+
+  int int_res;
+
+  code = s21_from_decimal_to_int(dec_01, NULL);
+
+  ck_assert_int_eq(code, CNV_ERR);
+
+  invalid_value(&dec_01, _i + 123123);
+
+  code = s21_from_decimal_to_int(dec_01, &int_res);
+
+  ck_assert_int_eq(code, CNV_ERR);
 }
 END_TEST
 
@@ -447,7 +568,24 @@ START_TEST(t_from_decimal_to_float) {  // 14. s21_from_decimal_to_float
 END_TEST
 
 START_TEST(t_from_decimal_to_float_edge) {
-  //
+  s21_decimal dec_01, dec_02, dec_res;
+  invalid_value(&dec_01, _i);
+  float f2 = rand_float(_i + 6, FLT_MIN, FLT_MAX);
+  s21_from_float_to_decimal(f2, &dec_02);
+  int code = s21_add(dec_01, dec_02, &dec_res);
+  ck_assert_int_eq(code, AM_ERR);
+
+  float flt_res;
+
+  code = s21_from_decimal_to_float(dec_01, NULL);
+
+  ck_assert_int_eq(code, CNV_ERR);
+
+  invalid_value(&dec_01, _i + 123123);
+
+  code = s21_from_decimal_to_float(dec_01, &flt_res);
+
+  ck_assert_int_eq(code, CNV_ERR);
 }
 END_TEST
 
@@ -467,7 +605,12 @@ START_TEST(t_floor) {  // 15. s21_floor
 END_TEST
 
 START_TEST(t_floor_edge) {
-  //
+  s21_decimal dec_01, dec_res;
+  invalid_value(&dec_01, _i + 123123);
+  int code = s21_floor(dec_01, &dec_res);
+  ck_assert_int_eq(code, RND_ERR);
+  code = s21_floor(dec_01, NULL);
+  ck_assert_int_eq(code, RND_ERR);
 }
 END_TEST
 
@@ -487,7 +630,14 @@ START_TEST(t_round) {  // 16. s21_round
 END_TEST
 
 START_TEST(t_round_edge) {
-  //
+  s21_decimal dec_01, dec_res;
+  invalid_value(&dec_01, _i + 123123);
+  // float f2 = rand_float(_i + 6, FLT_MIN, FLT_MAX);
+  // s21_from_float_to_decimal(f2, &dec_02);
+  int code = s21_round(dec_01, &dec_res);
+  ck_assert_int_eq(code, RND_ERR);
+  code = s21_round(dec_01, NULL);
+  ck_assert_int_eq(code, RND_ERR);
 }
 END_TEST
 
@@ -507,7 +657,14 @@ START_TEST(t_truncate) {  // 17. s21_truncate
 END_TEST
 
 START_TEST(t_truncate_edge) {
-  //
+  s21_decimal dec_01, dec_res;
+  invalid_value(&dec_01, _i + 123123);
+  // float f2 = rand_float(_i + 6, FLT_MIN, FLT_MAX);
+  // s21_from_float_to_decimal(f2, &dec_02);
+  int code = s21_truncate(dec_01, &dec_res);
+  ck_assert_int_eq(code, RND_ERR);
+  code = s21_truncate(dec_01, NULL);
+  ck_assert_int_eq(code, RND_ERR);
 }
 END_TEST
 
@@ -526,7 +683,12 @@ START_TEST(t_negate) {  // 18. s21_negate
 END_TEST
 
 START_TEST(t_negate_edge) {
-  //
+  s21_decimal dec_01, dec_res;
+  invalid_value(&dec_01, _i + 123123);
+  int code = s21_negate(dec_01, &dec_res);
+  ck_assert_int_eq(code, RND_ERR);
+  code = s21_negate(dec_01, NULL);
+  ck_assert_int_eq(code, RND_ERR);
 }
 END_TEST
 
@@ -600,12 +762,15 @@ Suite *decimal_suite() {
   tcase_add_loop_test(mul, t_mul, 0, ITER);
   tcase_add_test(mul, t_mul_edge);
   tcase_add_test(mul, t_mul_edge2);
+  tcase_add_test(mul, t_mul_edge3);
   suite_add_tcase(s, mul);
 
   TCase *div = tcase_create("04. s21_div");
   tcase_add_loop_test(div, t_div, 0, ITER);
   tcase_add_test(div, t_div_edge);
   tcase_add_test(div, t_div_edge2);
+  tcase_add_test(div, t_div_edge3);
+  tcase_add_test(div, t_div_edge4);
   suite_add_tcase(s, div);
 
   TCase *is_less = tcase_create("05. s21_is_less");

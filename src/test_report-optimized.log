@@ -430,6 +430,9 @@ Running suite from_decimal_to_int0
 Running suite from_decimal_to_int1
 Running suite from_decimal_to_int2
 Running suite from_decimal_to_int3
+unit_tests_from_decimal_to_int.c:6509:F:Core:test_from_decimal_to_int_fail152:0: Assertion 'code == 1' failed: code == 0, 1 == 1
+unit_tests_from_decimal_to_int.c:6509:F:Core:test_from_decimal_to_int_fail155:0: Assertion 'code == 1' failed: code == 0, 1 == 1
+unit_tests_from_decimal_to_int.c:6509:F:Core:test_from_decimal_to_int_fail156:0: Assertion 'code == 1' failed: code == 0, 1 == 1
 Running suite from_decimal_to_float0
 Running suite from_decimal_to_float1
 Running suite from_decimal_to_float2
@@ -492,4 +495,4 @@ Running suite debug1
 Running suite debug2
 Running suite debug3
 Results for all suites run:
-99%: Checks: 65048, Failures: 313, Errors: 0
+99%: Checks: 67753, Failures: 316, Errors: 0
