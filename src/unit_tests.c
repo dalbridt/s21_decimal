@@ -451,7 +451,12 @@ START_TEST(t_is_equal) {  // 09. s21_is_equal
 END_TEST
 
 START_TEST(t_is_equal_edge) {
-  //
+  s21_decimal dec1 = {0}, dec2 = {0};
+  float f1 = rand_float(_i, -F_MAX, F_MAX);
+  s21_from_float_to_decimal(f1, &dec2);
+  int res;
+  res = s21_is_equal(dec1, dec2);
+  ck_assert_int_eq(res, false);
 }
 END_TEST
 
@@ -515,7 +520,14 @@ START_TEST(t_from_float_to_decimal) {  // 12. s21_from_float_to_decimal
 END_TEST
 
 START_TEST(t_from_float_to_decimal_edge) {
-  //
+  float f1;
+  s21_decimal dec_res;
+  f1 = INFINITY;
+  int code = s21_from_float_to_decimal(f1, &dec_res);
+  ck_assert_int_eq(code, RND_ERR);
+  f1 = NAN;
+  code = s21_from_float_to_decimal(f1, &dec_res);
+  ck_assert_int_eq(code, RND_ERR);
 }
 END_TEST
 
@@ -639,14 +651,17 @@ START_TEST(t_round) {  // 16. s21_round
 END_TEST
 
 START_TEST(t_round_edge) {
-  s21_decimal dec_01, dec_res;
+  s21_decimal dec_01, dec_02, dec_res;
   invalid_value(&dec_01, _i + 123123);
-  // float f2 = rand_float(_i + 6, FLT_MIN, FLT_MAX);
-  // s21_from_float_to_decimal(f2, &dec_02);
+  float f2 = rand_float(_i + 6, FLT_MIN, FLT_MAX);
+  s21_from_float_to_decimal(f2, &dec_02);
   int code = s21_round(dec_01, &dec_res);
   ck_assert_int_eq(code, RND_ERR);
   code = s21_round(dec_01, NULL);
   ck_assert_int_eq(code, RND_ERR);
+  s21_set_scale(&dec_02, 2);
+  code = s21_round(dec_02, &dec_res);
+  ck_assert_int_eq(code, AM_OK);
 }
 END_TEST
 
