@@ -11,13 +11,12 @@ int s21_is_zero(s21_decimal src) {
 }
 
 long double s21_get_mantissa(s21_decimal* src) {
-  unsigned int* b = &src->bits[0];
-  unsigned int byte;
+  unsigned const int* b = &src->bits[0];
 
   long double mantissa = 0;
   long double power = 1;
   for (short i = 0; i < 0x60; i++, power *= 2) {
-    byte = (b[i / 0x20] >> i) & 1;
+    unsigned int byte = (b[i / 0x20] >> i) & 1;
     mantissa += byte * power;
   }
   return mantissa;
@@ -181,9 +180,8 @@ void s21_switch_endian(s21_decimal* x) {
 }
 
 void s21_switch_endian_big(s21_big_decimal* x) {
-  unsigned int temp;
   for (int i = 0; i < 0x8; i++) {
-    temp = x->bits[i];
+    unsigned int temp = x->bits[i];
     x->bits[i] = x->bits[0xF - i];
     x->bits[0xF - i] = temp;
   }
@@ -376,8 +374,7 @@ void s21_divide_big(s21_big_decimal dividend, s21_big_decimal divisor,
                     s21_big_decimal* quotient, s21_big_decimal* remainder,
                     int stop) {
   int num_bits;
-  int q, bit;
-  int i;
+  int bit;
 
   s21_equalize_scale_big(&dividend, &divisor);
   int sign_dividend = s21_get_sign_big(dividend);
@@ -385,7 +382,8 @@ void s21_divide_big(s21_big_decimal dividend, s21_big_decimal divisor,
   s21_set_sign_big(&dividend, 0);
   s21_set_sign_big(&divisor, 0);
 
-  s21_big_decimal d, t;
+  s21_big_decimal d;
+  s21_reset_big(&d);
 
   s21_reset_big(remainder);
   s21_reset_big(quotient);
@@ -418,7 +416,9 @@ void s21_divide_big(s21_big_decimal dividend, s21_big_decimal divisor,
   s21_big_mantissa_shift_r(remainder, 1);
   num_bits++;
 
-  for (i = 0; i < num_bits; i++) {
+  for (int i = 0; i < num_bits; i++) {
+    s21_big_decimal t;
+    int q;
     bit = s21_get_bit_big(dividend, 512 - 1);
     s21_big_mantissa_shift_l(remainder, 1);
     if (bit) s21_set_bit_big(remainder, 0, bit);
@@ -429,9 +429,8 @@ void s21_divide_big(s21_big_decimal dividend, s21_big_decimal divisor,
 
     s21_big_mantissa_shift_l(&dividend, 1);
     s21_big_mantissa_shift_l(quotient, 1);
-    if (q) s21_set_bit_big(quotient, 0, q);
-
     if (q) {
+      s21_set_bit_big(quotient, 0, q);
       *remainder = t;
     }
   }
@@ -481,7 +480,7 @@ am_code s21_post_normalization(s21_big_decimal* result) {
       for (int i = 3; i < 16; i++) {
         bits += result->bits[i] > 0;
       }
-      bits *= scale > 0;
+      bits = bits && scale > 0;
       if (!bits) break;
       if (scale == 1 && result->bits[3]) dop = 1;
       s21_decrease_scale_big(result, 1);

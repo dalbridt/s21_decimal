@@ -6,12 +6,6 @@
 
 #define TOL 1e-05
 
-#ifdef TESTS
-#include "unit_tests.h"
-void hubert_furr_tests(SRunner *runner);
-
-#endif
-
 float rand_float(int random, float min, float max) {
   srand(random * time(NULL));
   float value = min + ((float)rand() / RAND_MAX) * (max - min);
@@ -34,14 +28,14 @@ void invalid_value(s21_decimal *invalid, int random) {
   }
 }
 
-bool s21_is_equal_tol(s21_decimal value_1, s21_decimal value_2) {
-  float dec1, dec2;
+// bool s21_is_equal_tol(s21_decimal value_1, s21_decimal value_2) {
+//   float dec1, dec2;
 
-  s21_from_decimal_to_float(value_1, &dec1);
-  s21_from_decimal_to_float(value_2, &dec2);
+//   s21_from_decimal_to_float(value_1, &dec1);
+//   s21_from_decimal_to_float(value_2, &dec2);
 
-  return fabsf(fabsf(dec1) - fabsf(dec2)) < TOL;
-}
+//   return fabsf(fabsf(dec1) - fabsf(dec2)) < TOL;
+// }
 
 void randomize_decimal(s21_decimal *dec, float *fl, int it) {
   *fl = rand_float(it, -F_MAX, F_MAX);  // FLT_MIN / 2, FLT_MAX / 2
@@ -421,35 +415,36 @@ END_TEST
 
 START_TEST(t_is_equal) {  // 09. s21_is_equal
   int v_int = randomize_int(_i);
+  int res;
   s21_decimal dec1, dec2;
   if (_i % 2 == 0) {
     s21_from_int_to_decimal(v_int, &dec1);
     s21_from_int_to_decimal(v_int, &dec2);
-    int res = s21_is_equal(dec1, dec2);
+    res = s21_is_equal(dec1, dec2);
     ck_assert_int_eq(res, 1);
   } else {
     s21_from_int_to_decimal(v_int, &dec1);
     s21_from_int_to_decimal((v_int + _i), &dec2);
-    int res = s21_is_equal(dec1, dec2);
+    res = s21_is_equal(dec1, dec2);
     ck_assert_int_eq(res, 0);
   }
   s21_reset(&dec1);
   s21_reset(&dec2);
-  int res = s21_is_equal(dec1, dec2);
+  res = s21_is_equal(dec1, dec2);
   ck_assert_int_eq(res, 1);
   // // is it too much for one test and should be two?
   float f_val = rand_float(_i, -F_MAX, F_MAX);
   if (_i % 2 == 0) {
     s21_from_float_to_decimal(f_val, &dec1);
     s21_from_float_to_decimal(f_val, &dec2);
-    int res = s21_is_equal(dec1, dec2);
+    res = s21_is_equal(dec1, dec2);
     ck_assert_int_eq(res, 1);
   } else {
     float not_eq = f_val + 100;
     // printf("#%d |f_val: %f | 2nd: %f \n", _i, f_val, not_eq);
     s21_from_float_to_decimal(f_val, &dec1);
     s21_from_float_to_decimal(not_eq, &dec2);
-    int res = s21_is_equal(dec1, dec2);
+    res = s21_is_equal(dec1, dec2);
     ck_assert_int_eq(res, 0);
   }
 }

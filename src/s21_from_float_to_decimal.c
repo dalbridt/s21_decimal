@@ -13,7 +13,7 @@ int s21_from_float_to_decimal(float src, s21_decimal *dst) {
 
   if (isinf(src) == 0 && isnan(src) == 0) {
     if (src != 0) {
-      int exponent, sign = signbit(src);
+      int exponent;
       frexp(src, &exponent);
       double temp = fabs(src);
       int scale = 0;
@@ -24,6 +24,7 @@ int s21_from_float_to_decimal(float src, s21_decimal *dst) {
       }
 
       if ((exponent > -94 && exponent < 96)) {
+        int sign = signbit(src);
         ftd_union convertor = {0};
         temp = round(temp);
         while (fmod(temp, 10) == 0 && scale > 0) {
