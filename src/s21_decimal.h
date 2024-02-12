@@ -108,7 +108,6 @@ int s21_is_zero(s21_decimal src);
 int s21_is_big_zero(s21_big_decimal src);
 
 long double s21_get_mantissa(s21_decimal *src);
-long double s21_get_mantissa_big(s21_big_decimal *src);
 
 int s21_get_sign(s21_decimal num);
 int s21_get_sign_big(s21_big_decimal num);
@@ -122,7 +121,6 @@ void s21_set_scale_big(s21_big_decimal *num, int scale_value);
 
 int s21_get_bit(s21_decimal src, int index);
 int s21_get_bit_big(s21_big_decimal src, int index);
-void s21_set_bit(s21_decimal *src, int index, int value);
 void s21_set_bit_big(s21_big_decimal *dst, int index, int bit);
 
 void s21_mantissa_shift_l(s21_decimal *dec, int offset);
@@ -144,29 +142,23 @@ s21_big_decimal s21_add_mantissas_big(s21_big_decimal x, s21_big_decimal y);
 s21_decimal s21_sub_mantissas(s21_decimal x, s21_decimal y);
 s21_big_decimal s21_sub_mantissas_big(s21_big_decimal x, s21_big_decimal y);
 
-int s21_mantisa_compare(s21_decimal value_1, s21_decimal value_2);
 int s21_mantisa_compare_big(s21_big_decimal value_1, s21_big_decimal value_2);
 
-// void s21_add_big(s21_big_decimal value_1, s21_big_decimal value_2,
-//                  s21_big_decimal *result);
-// void s21_sub_big(s21_big_decimal value_1, s21_big_decimal value_2,
-//                  s21_big_decimal *result);
 int s21_mul_big(s21_big_decimal value_1, s21_big_decimal value_2,
                 s21_big_decimal *result);
 
 void s21_div10(s21_decimal *src, unsigned int roundup);
-void s21_div10_big(s21_big_decimal *src,
-                   unsigned int roundup);  // UPDATE SUPPORT ROUNDUP
+void s21_div10_big(s21_big_decimal *src, unsigned int roundup);
 
 void s21_x10(s21_decimal *src);
-void s21_x10_big(s21_big_decimal *src);  // NOT REALISED
+void s21_x10_big(s21_big_decimal *src);
 
 void s21_divide_big(s21_big_decimal dividend, s21_big_decimal divisor,
                     s21_big_decimal *quotient, s21_big_decimal *remainder,
-                    int stop);  // NOT REALISED
+                    int stop);
 
 void s21_upscale_x10(s21_decimal *dec);
-void s21_upscale_x10_big(s21_big_decimal *dec);  // NOT REALISED
+// void s21_upscale_x10_big(s21_big_decimal *dec);  // NOT REALISED
 
 void s21_set_one(s21_decimal *dec);
 void s21_set_one_big(s21_big_decimal *dec);

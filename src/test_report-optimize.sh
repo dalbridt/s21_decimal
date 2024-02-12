@@ -1,1 +1,0 @@
-sed -n '/Passed/!p' test_report.log > test_report-optimized.log

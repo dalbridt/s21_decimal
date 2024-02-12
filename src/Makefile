@@ -2,12 +2,7 @@ GCOV_FLALG=
 CHECK_FLAGS=
 GENERATE_HTML=
 
-ALLTESTS=2
 TESTS_C=unit_tests.c
-
-ifeq ($(shell test $(ALLTESTS) -gt 0; echo $$?),0)
-	TESTS_C += unit_tests_add.c unit_tests_debug.c unit_tests_debug_tests.c unit_tests_div.c unit_tests_floor.c unit_tests_from_decimal_to_float.c unit_tests_from_decimal_to_int.c unit_tests_from_float_to_decimal.c unit_tests_from_int_to_decimal.c unit_tests_is_equal.c unit_tests_is_greater.c unit_tests_is_greater_or_equal.c unit_tests_is_less.c unit_tests_is_less_or_equal.c unit_tests_is_not_equal.c unit_tests_mul.c unit_tests_negate.c unit_tests_round.c unit_tests_sub.c unit_tests_truncate.c
-endif
 
 TESTS_C_EXCLUDE := $(addprefix -e ,$(TESTS_C))
 
@@ -27,12 +22,10 @@ ifeq ($(OS),Darwin)
 		GENERATE_HTML = genhtml -o "report_test_coverage" report_test.info  
     endif
 endif
+
 CC=gcc
 
 CFLAGS = -c -Wall -Werror -Wextra -std=c11
-ifeq ($(shell test $(ALLTESTS) -gt 0; echo $$?),0)
-	TESTS_C += -DTESTS=$(ALLTESTS)
-endif
 
 UT_EXEC=unit_test.out
 
@@ -68,15 +61,4 @@ s21_decimal_tests.a: s21_decimal_tests.o
 clean:	
 	rm -rf *.o *.gcno *.gcda *.html *.css *.info $(UT_EXEC) report_test_coverage *.a *.out test_report.log
 format:
-#	clang-format -i *.c 
-#DEBUG_TARGETS
-DEB_EXEC=a.out
-
-heidiren: clean format
-	gcc testfield_heidiren.c helpers*.c s21_*.c -o $(DEB_EXEC) && ./$(DEB_EXEC)
-
-dalbridt: clean format
-	gcc testfield_dalbridt.c helpers*.c s21_*.c -o $(DEB_EXEC) && ./$(DEB_EXEC)
-
-annamaer: clean
-	gcc testfield_annamaer.c helpers*.c s21_*.c -lm -o $(DEB_EXEC) && ./$(DEB_EXEC)
+	clang-format -i *.c

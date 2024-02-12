@@ -189,25 +189,6 @@ void s21_switch_endian_big(s21_big_decimal* x) {
   }
 }
 
-void s21_equalize_scale(s21_decimal* value_1, s21_decimal* value_2) {
-  int exp_1 = s21_get_scale(*value_1);
-  int exp_2 = s21_get_scale(*value_2);
-
-  if (exp_1 != exp_2) {
-    if (exp_1 < exp_2) {
-      for (; exp_1 < exp_2; exp_1++) {
-        s21_x10(value_1);
-        s21_set_scale(value_1, exp_2);
-      }
-    } else {
-      for (; exp_2 < exp_1; exp_2++) {
-        s21_x10(value_2);
-        s21_set_scale(value_2, exp_1);
-      }
-    }
-  }
-}
-
 void s21_equalize_scale_big(s21_big_decimal* value_1,
                             s21_big_decimal* value_2) {
   int exp_1 = s21_get_scale_big(*value_1);
@@ -270,21 +251,6 @@ s21_big_decimal s21_sub_mantissas_big(s21_big_decimal x, s21_big_decimal y) {
     borrow = (tmp >> 32) & 1;
   }
   return result;
-}
-
-// returns : -1 if equal, 1 if left bigger, 0 if right bigger
-int s21_mantisa_compare(s21_decimal value_1, s21_decimal value_2) {
-  int flag = -1;
-
-  for (int i = 2; i >= 0; i--) {
-    if (value_1.bits[i] == value_2.bits[i]) {
-      continue;
-    } else {
-      flag = value_1.bits[i] > value_2.bits[i];
-      break;
-    }
-  }
-  return flag;
 }
 
 int s21_mantisa_compare_big(s21_big_decimal value_1, s21_big_decimal value_2) {
@@ -580,13 +546,48 @@ val_code s21_decimal_validation(s21_decimal value) {
 //   s21_set_scale_big(dst, scale);
 // }
 
-// int s21_is_big_zero(s21_big_decimal src) {
-//   return (src.bits[0] == 0 && src.bits[1] == 0 && src.bits[2] == 0 &&
-//           src.bits[3] == 0 && src.bits[4] == 0 && src.bits[5] == 0 &&
-//           src.bits[6] == 0 && src.bits[7] == 0 && src.bits[8] == 0 &&
-//           src.bits[9] == 0 && src.bits[10] == 0 && src.bits[11] == 0 &&
-//           src.bits[12] == 0 && src.bits[13] == 0 && src.bits[14] == 0 &&
-//           src.bits[15] == 0);
+int s21_is_big_zero(s21_big_decimal src) {
+  int flag = 1;
+  for (int i = 0; i < 16; i++) {
+    if (src.bits[i] == 0) continue;
+    flag = 0;
+    break;
+  }
+  return flag;
+}
+
+// // returns : -1 if equal, 1 if left bigger, 0 if right bigger
+// int s21_mantisa_compare(s21_decimal value_1, s21_decimal value_2) {
+//   int flag = -1;
+
+//   for (int i = 2; i >= 0; i--) {
+//     if (value_1.bits[i] == value_2.bits[i]) {
+//       continue;
+//     } else {
+//       flag = value_1.bits[i] > value_2.bits[i];
+//       break;
+//     }
+//   }
+//   return flag;
+// }
+
+// void s21_equalize_scale(s21_decimal* value_1, s21_decimal* value_2) {
+//   int exp_1 = s21_get_scale(*value_1);
+//   int exp_2 = s21_get_scale(*value_2);
+
+//   if (exp_1 != exp_2) {
+//     if (exp_1 < exp_2) {
+//       for (; exp_1 < exp_2; exp_1++) {
+//         s21_x10(value_1);
+//         s21_set_scale(value_1, exp_2);
+//       }
+//     } else {
+//       for (; exp_2 < exp_1; exp_2++) {
+//         s21_x10(value_2);
+//         s21_set_scale(value_2, exp_1);
+//       }
+//     }
+//   }
 // }
 
 // long double s21_get_mantissa_big(s21_big_decimal* src) {
