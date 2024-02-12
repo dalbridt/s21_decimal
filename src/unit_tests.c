@@ -600,7 +600,7 @@ START_TEST(t_floor) {  // 15. s21_floor
   s21_floor(dec, &dec_res);
 
   s21_from_float_to_decimal(fl, &dec);
-  ck_assert_int_eq(s21_is_equal_tol(dec_res, dec), 1);
+  ck_assert_int_eq(s21_is_equal(dec_res, dec), 1);  // s21_is_equal_tol
 }
 END_TEST
 
@@ -625,7 +625,7 @@ START_TEST(t_round) {  // 16. s21_round
   s21_round(dec, &dec_res);
 
   s21_from_float_to_decimal(fl, &dec);
-  ck_assert_int_eq(s21_is_equal_tol(dec_res, dec), 1);
+  ck_assert_int_eq(s21_is_equal(dec_res, dec), 1);  // s21_is_equal_tol
 }
 END_TEST
 
@@ -652,7 +652,7 @@ START_TEST(t_truncate) {  // 17. s21_truncate
     s21_upscale_x10(&dec);
   }
   s21_truncate(dec, &dec_res);
-  ck_assert_int_eq(s21_is_equal_tol(dec_int, dec_res), 1);
+  ck_assert_int_eq(s21_is_equal(dec_int, dec_res), 1);  // s21_is_equal_tol
 }
 END_TEST
 
