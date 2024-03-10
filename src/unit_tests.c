@@ -22,7 +22,7 @@ int randomize_int(int random) {
 }
 
 void invalid_value(s21_decimal *invalid, int random) {
-  s21_reset(invalid);  //
+  s21_reset(invalid); //
   for (int i = 0; i < 4; i++) {
     invalid->bits[i] = randomize_int(random + 123123 * i);
   }
@@ -38,7 +38,7 @@ void invalid_value(s21_decimal *invalid, int random) {
 // }
 
 void randomize_decimal(s21_decimal *dec, float *fl, int it) {
-  *fl = rand_float(it, -F_MAX, F_MAX);  // FLT_MIN / 2, FLT_MAX / 2
+  *fl = rand_float(it, -F_MAX, F_MAX); // FLT_MIN / 2, FLT_MAX / 2
   s21_reset(dec);
 
   s21_from_float_to_decimal(*fl, dec);
@@ -48,7 +48,7 @@ void randomize_decimal(s21_decimal *dec, float *fl, int it) {
   }
 }
 
-START_TEST(t_add) {  // 01. s21_add
+START_TEST(t_add) { // 01. s21_add
   float f1 = rand_float(_i, FLT_MIN, FLT_MAX);
   float f2 = rand_float(_i + 6, FLT_MIN, FLT_MAX);
   s21_decimal dec1 = {0};
@@ -88,7 +88,7 @@ START_TEST(t_add_edge) {
 }
 END_TEST
 
-START_TEST(t_sub) {  // 02. s21_sub
+START_TEST(t_sub) { // 02. s21_sub
   float f1, f2, flt_res;
   s21_decimal dec1, dec2, dec_res;
 
@@ -117,7 +117,7 @@ START_TEST(t_sub_edge) {
 }
 END_TEST
 
-START_TEST(t_mul) {  // 03. s21_mul
+START_TEST(t_mul) { // 03. s21_mul
   float f1 = rand_float(_i, -F_MAX / 2, F_MAX / 2);
   float f2 = rand_float(_i + 10, -F_MAX / 2, F_MAX / 2);
   float res = f1 * f2;
@@ -187,7 +187,7 @@ START_TEST(t_mul_edge3) {
 }
 END_TEST
 
-START_TEST(t_div) {  // 04. s21_div
+START_TEST(t_div) { // 04. s21_div
   float f1 = rand_float(_i, -F_MAX / 2, F_MAX / 2);
   float f2 = 0;
   while (f2 == 0) {
@@ -219,7 +219,7 @@ START_TEST(t_div_edge) {
   s21_decimal decimal_check = {{0x0, 0x0, 0x0, 0x80080000}};
   s21_decimal result;
   int code = s21_div(decimal1, decimal2, &result);
-  ck_assert_int_eq(code, 0);  // code from div
+  ck_assert_int_eq(code, 0); // code from div
   ck_assert_int_eq(s21_is_equal(result, decimal_check), 1);
 }
 END_TEST
@@ -294,12 +294,12 @@ START_TEST(t_div_edge5) {
   s21_decimal decimal_check = {{0x0, 0x0, 0x0, 0x80080000}};
   s21_decimal result;
   int code = s21_div(decimal1, decimal2, &result);
-  ck_assert_int_eq(code, AM_NOF);  // code from div
+  ck_assert_int_eq(code, AM_NOF); // code from div
   ck_assert_int_eq(s21_is_equal(result, decimal_check), 1);
 }
 END_TEST
 
-START_TEST(t_is_less) {  // 05. s21_is_less
+START_TEST(t_is_less) { // 05. s21_is_less
   float val1 = rand_float(_i, -F_MAX, F_MAX);
   float val2 = rand_float(_i + 5, -F_MAX, F_MAX);
   if (_i % 3 == 0) {
@@ -322,7 +322,7 @@ START_TEST(t_is_less_edge) {
 }
 END_TEST
 
-START_TEST(t_is_less_or_equal) {  // 06. s21_is_less_or_equal
+START_TEST(t_is_less_or_equal) { // 06. s21_is_less_or_equal
   float val1 = rand_float(_i, -F_MAX, F_MAX);
   float val2 = rand_float(_i + 5, -F_MAX, F_MAX);
   if (_i % 3 == 0) {
@@ -348,7 +348,7 @@ START_TEST(t_is_less_or_equal_edge) {
 }
 END_TEST
 
-START_TEST(t_is_greater) {  // 07. s21_is_greater
+START_TEST(t_is_greater) { // 07. s21_is_greater
   float val1 = rand_float(_i, -F_MAX, F_MAX);
   float val2 = rand_float(_i + 5, -F_MAX, F_MAX);
   if (_i % 3 == 0) {
@@ -375,7 +375,7 @@ START_TEST(t_is_greater_edge) {
 }
 END_TEST
 
-START_TEST(t_is_greater_or_equal) {  // 08. s21_is_greater_or_equal
+START_TEST(t_is_greater_or_equal) { // 08. s21_is_greater_or_equal
   float val1 = rand_float(_i, -F_MAX, F_MAX);
   float val2 = rand_float(_i + 5, -F_MAX, F_MAX);
   if (_i % 3 == 0) {
@@ -413,7 +413,7 @@ START_TEST(t_is_greater_or_equal_edge) {
 }
 END_TEST
 
-START_TEST(t_is_equal) {  // 09. s21_is_equal
+START_TEST(t_is_equal) { // 09. s21_is_equal
   int v_int = randomize_int(_i);
   int res;
   s21_decimal dec1, dec2;
@@ -460,7 +460,7 @@ START_TEST(t_is_equal_edge) {
 }
 END_TEST
 
-START_TEST(t_is_not_equal) {  // 10. s21_is_not_equal
+START_TEST(t_is_not_equal) { // 10. s21_is_not_equal
   s21_decimal dec1, dec2;
   float f1, f2;
   randomize_decimal(&dec1, &f1, _i);
@@ -488,7 +488,7 @@ START_TEST(t_is_not_equal_edge) {
 }
 END_TEST
 
-START_TEST(t_from_int_to_decimal) {  // 11. s21_from_int_to_decimal
+START_TEST(t_from_int_to_decimal) { // 11. s21_from_int_to_decimal
   int val, val_res;
   s21_decimal dec_res;
   val = randomize_int(_i);
@@ -505,7 +505,7 @@ START_TEST(t_from_int_to_decimal_edge) {
 }
 END_TEST
 
-START_TEST(t_from_float_to_decimal) {  // 12. s21_from_float_to_decimal
+START_TEST(t_from_float_to_decimal) { // 12. s21_from_float_to_decimal
   float f1, flt_res;
   s21_decimal dec_res;
 
@@ -531,7 +531,7 @@ START_TEST(t_from_float_to_decimal_edge) {
 }
 END_TEST
 
-START_TEST(t_from_decimal_to_int) {  // 13. s21_from_decimal_to_int
+START_TEST(t_from_decimal_to_int) { // 13. s21_from_decimal_to_int
   int i1;
   s21_decimal dec_res;
   float f1 = rand_float(_i, -F_MAX, F_MAX);
@@ -574,7 +574,7 @@ START_TEST(t_from_decimal_to_int_edge) {
 }
 END_TEST
 
-START_TEST(t_from_decimal_to_float) {  // 14. s21_from_decimal_to_float
+START_TEST(t_from_decimal_to_float) { // 14. s21_from_decimal_to_float
   float f1, flt_res;
   s21_decimal dec_res;
 
@@ -610,7 +610,7 @@ START_TEST(t_from_decimal_to_float_edge) {
 }
 END_TEST
 
-START_TEST(t_floor) {  // 15. s21_floor
+START_TEST(t_floor) { // 15. s21_floor
   float fl = rand_float(_i, -F_MAX, F_MAX);
   s21_decimal dec, dec_res;
   s21_from_float_to_decimal(fl, &dec);
@@ -621,7 +621,7 @@ START_TEST(t_floor) {  // 15. s21_floor
   s21_floor(dec, &dec_res);
 
   s21_from_float_to_decimal(fl, &dec);
-  ck_assert_int_eq(s21_is_equal(dec_res, dec), 1);  // s21_is_equal_tol
+  ck_assert_int_eq(s21_is_equal(dec_res, dec), 1); // s21_is_equal_tol
 }
 END_TEST
 
@@ -635,7 +635,7 @@ START_TEST(t_floor_edge) {
 }
 END_TEST
 
-START_TEST(t_round) {  // 16. s21_round
+START_TEST(t_round) { // 16. s21_round
   float fl = rand_float(_i, -F_MAX, F_MAX);
   s21_decimal dec, dec_res;
   s21_from_float_to_decimal(fl, &dec);
@@ -646,7 +646,7 @@ START_TEST(t_round) {  // 16. s21_round
   s21_round(dec, &dec_res);
 
   s21_from_float_to_decimal(fl, &dec);
-  ck_assert_int_eq(s21_is_equal(dec_res, dec), 1);  // s21_is_equal_tol
+  ck_assert_int_eq(s21_is_equal(dec_res, dec), 1); // s21_is_equal_tol
 }
 END_TEST
 
@@ -665,7 +665,7 @@ START_TEST(t_round_edge) {
 }
 END_TEST
 
-START_TEST(t_truncate) {  // 17. s21_truncate
+START_TEST(t_truncate) { // 17. s21_truncate
   float fl = rand_float(_i, -F_MAX, F_MAX);
   s21_decimal dec, dec_res, dec_int;
   s21_from_float_to_decimal(fl, &dec);
@@ -676,7 +676,7 @@ START_TEST(t_truncate) {  // 17. s21_truncate
     s21_upscale_x10(&dec);
   }
   s21_truncate(dec, &dec_res);
-  ck_assert_int_eq(s21_is_equal(dec_int, dec_res), 1);  // s21_is_equal_tol
+  ck_assert_int_eq(s21_is_equal(dec_int, dec_res), 1); // s21_is_equal_tol
 }
 END_TEST
 
@@ -692,7 +692,7 @@ START_TEST(t_truncate_edge) {
 }
 END_TEST
 
-START_TEST(t_negate) {  // 18. s21_negate
+START_TEST(t_negate) { // 18. s21_negate
   float f1, flt_res;
   s21_decimal dec1, dec_res;
 
@@ -716,7 +716,7 @@ START_TEST(t_negate_edge) {
 }
 END_TEST
 
-START_TEST(t_div_eq) {  // 19. s21_div_equal
+START_TEST(t_div_eq) { // 19. s21_div_equal
   float f1 = rand_float(_i, -F_MAX / 2, F_MAX / 2);
   while (f1 == 0) {
     f1 = rand_float(_i + 10, -F_MAX / 2, F_MAX / 2);
@@ -744,7 +744,7 @@ START_TEST(t_div_eq_edge) {
 }
 END_TEST
 
-START_TEST(t_div_zero) {  // 20. s21_div_zero
+START_TEST(t_div_zero) { // 20. s21_div_zero
   float f1 = rand_float(_i, -F_MAX / 2, F_MAX / 2);
   while (f1 == 0) {
     f1 = rand_float(_i + 10, -F_MAX / 2, F_MAX / 2);

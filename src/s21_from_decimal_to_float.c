@@ -1,6 +1,6 @@
 #include "s21_decimal.h"
 
-int s21_from_decimal_to_float(s21_decimal src, float* dst) {
+int s21_from_decimal_to_float(s21_decimal src, float *dst) {
   cnv_code flag = CNV_ERR;
   if (dst != NULL && s21_decimal_validation(src)) {
     flag = CNV_OK;

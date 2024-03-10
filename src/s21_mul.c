@@ -2,8 +2,8 @@
 
 int s21_mul(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   am_code flag = AM_ERR;
-  if (result != NULL                      //
-      && s21_decimal_validation(value_1)  //
+  if (result != NULL                     //
+      && s21_decimal_validation(value_1) //
       && s21_decimal_validation(value_2)) {
     flag = AM_OK;
     if (s21_is_zero(value_1) || s21_is_zero(value_2)) {
